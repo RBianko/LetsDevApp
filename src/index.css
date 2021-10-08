@@ -4,9 +4,11 @@ body {
   font-size: 20px;
   line-height: 26px;
   font-weight: 500;
+  background-color: var(--background-color-lighter);
 }
 
 * {
+  font-family: inherit;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,7 +17,16 @@ body {
 :root {
   --highlight-color: rgb(161, 58, 58);
   --background-color: #cccccc;
+  --background-color-darken: #a0a0a0;
+  --background-color-lighter: #eeeeee;
+  --border-color: #9f9f9f;
   --transition-all: all 200ms ease-in-out, color 150ms ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .btn {
@@ -27,7 +38,7 @@ body {
   background-color: var(--background-color);
 
   color: #000;
-  font-weight: 700;
+  font-weight: 900;
   text-align: center;
   cursor: pointer;
 
@@ -37,4 +48,8 @@ body {
 .btn:hover {
   background-color: var(--highlight-color);
   color: #fff;
+}
+
+.btn:hover .arrow-icon svg path {
+  stroke: #fff;
 }

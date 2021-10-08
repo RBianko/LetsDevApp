@@ -1,7 +1,8 @@
 import React from 'react'
-import Logo from '../logo/logo'
 import './header.css'
 import LoginBtn from './../login-btn/login-btn';
+import Logo from '../../style-components/logo';
+
 
 const Header = () => {
     return (

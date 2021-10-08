@@ -1,14 +1,21 @@
 import './app.css';
-import Header from "../main-page/header";
-import MainPage from '../main-page';
-import Footer from '../footer/footer';
+import WeclomePage from '../welcome-page';
+import { Route, Redirect } from 'react-router';
+import Profile from '../profile';
+
 
 const App = () => {
   return (
     <>
-      <Header />
-      <MainPage />
-      <Footer />
+      <Route exact path="/" render={() =>
+        <Redirect to="/welcome" />
+      } />
+      <Route path='/welcome' render={() =>
+        <WeclomePage />
+      } />
+      <Route path='/profile' render={() =>
+        <Profile />
+      } />
     </>
   )
 }

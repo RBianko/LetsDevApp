@@ -3,7 +3,7 @@ import './login-btn.css'
 
 const LoginBtn = () => {
     return (
-        <button className="btn_login btn">Login</button>
+        <label className="btn_login btn" for="modal-toggle">Login</label>
     )
 }
 

@@ -1,0 +1,14 @@
+import React from 'react'
+import './arrow-icon.css'
+
+const ArrowIcon = () => {
+    return (
+        <div className="arrow-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 23.5L23.5 2M23.5 2H2M23.5 2V23.5" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+    )
+}
+
+export default ArrowIcon
