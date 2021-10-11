@@ -4,7 +4,7 @@
   top: 0;
   height: 100vh;
   z-index: 100;
-  background-color: var(--background-color-dark);
+  background-color: #000;
 }
 
 .links__list {
@@ -41,15 +41,22 @@
   height: 100vh;
   width: 63px;
   border: 4px solid #000;
-  border-bottom: none;
+}
+
+.menu-icon.icon_last {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
 }
 
 .menu-icon {
   line-height: 0;
-  border-bottom: 4px solid #000;
+  border-radius: 4px;
   cursor: pointer;
   position: relative;
+  background-color: var(--background-color-dark);
   transition: var(--transition-all);
+  margin-bottom: 4px;
 }
 
 .menu-icon:hover,

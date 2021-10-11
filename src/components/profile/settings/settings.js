@@ -24,16 +24,11 @@ const Settings = () => {
                                 </button>
                             </div>
                             <div className="profile__info">
-                                <div className="settings_field">
-                                    <button className="settings-btn">
-                                        <EditIcon />
-                                    </button>
-                                    <p className="profile__info_name">Roman Bianko</p>
+                                <div className="settings-field">
+                                    <input className="text-input" type="text" placeholder="Name" value="Roman Bianko" />
+                                    <input className="text-input" type="text" placeholder="City" value="Minsk, Belarus" />
+                                    <input className="text-input" type="text" placeholder="Role" value="Frontend" />
                                 </div>
-                                <p className="profile__info_sity">Minsk, Belarus</p>
-                                <p className="profile__info_role">Frontend</p>
-
-
                                 <div className="profile__skills">
                                     <button className="settings-btn">
                                         <EditIcon />
@@ -47,15 +42,18 @@ const Settings = () => {
                         </div>
                         <div className="profile-content_body">
                             <div className="profile__description">
-                                <div className="settings_field">
-                                    <button className="settings-btn">
-                                        <EditIcon />
-                                    </button>
-                                    <h3 className="description_title">Bio</h3>
-                                </div>
-                                <p className="description_text">lorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing el</p>
-
+                                <h3 className="description_title">Bio</h3>
+                                <textarea className="textarea-input" type="text" placeholder="City" value="Lorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet,
+                                consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing el" />
                             </div>
+                        </div>
+                        <div className="settings__buttons">
+                            <button className="btn settings_btn">
+                                Update
+                            </button>
+                            <button className="btn settings_btn">
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>
