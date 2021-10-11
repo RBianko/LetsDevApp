@@ -1,6 +1,6 @@
 import React from 'react'
 import './profile.css'
-import ProfileIcon from '../../img/user.png'
+import ProfileIcon from '../../img/users.svg'
 import CssIcon from '../style-components/skills-icons/css-icon'
 import ReactIcon from '../style-components/skills-icons/react-icon'
 import HtmlIcon from '../style-components/skills-icons/html-icon'

@@ -14,11 +14,12 @@
 
 .skill-icon {
   width: 50px;
+  height: 50px;
   padding: 3px;
 }
 
 .skill_wrapper:hover {
   transform: translateY(-3px);
   color: var(--highlight-color);
-  box-shadow: 4px 5px #000;
+  box-shadow: 4px 6px #000;
 }

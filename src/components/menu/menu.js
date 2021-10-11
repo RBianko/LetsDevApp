@@ -1,10 +1,10 @@
 import React from 'react'
 import './menu.css'
-import ProfileIcon from '../../img/user.png'
-import SearchIcon from '../../img/search.png'
-import ChatIcon from '../../img/chat.png'
-import SettingsIcon from '../../img/setting.png'
-import ProjectIcon from '../../img/project.png'
+import ProfileIcon from '../../img/user.svg'
+import SearchIcon from '../../img/search.svg'
+import ChatIcon from '../../img/chat.svg'
+import SettingsIcon from '../../img/settings.svg'
+import ProjectIcon from '../../img/project.svg'
 import { NavLink } from "react-router-dom";
 
 const Menu = () => {

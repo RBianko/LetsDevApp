@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from '../../../img/react.png'
+import icon from '../../../img/react.svg'
 
 const ReactIcon = () => {
     return (

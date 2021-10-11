@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from '../../../img/javascript.png'
+import icon from '../../../img/js.svg'
 
 const JsIcon = () => {
     return (

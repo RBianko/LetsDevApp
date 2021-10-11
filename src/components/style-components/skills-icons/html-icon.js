@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from '../../../img/html.png'
+import icon from '../../../img/html5.svg'
 
 const HtmlIcon = () => {
     return (

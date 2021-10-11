@@ -65,7 +65,8 @@
 .close-btn_icon {
   transition: 0.2s;
   cursor: pointer;
-  width: 27px;
+  width: 40px;
+  height: 40px;
 }
 
 .close-btn_icon line {

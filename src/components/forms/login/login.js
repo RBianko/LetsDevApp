@@ -1,6 +1,6 @@
 import React from 'react'
 import './login.css'
-import CloseIcon from '../../../img/close.png'
+import CloseIcon from '../../../img/xmark.svg'
 
 const Login = () => {
     return (<>

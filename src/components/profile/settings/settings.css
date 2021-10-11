@@ -1,0 +1,27 @@
+.edit-icon {
+  width: 25px;
+  height: 25px;
+  transition: var(--transition-all);
+}
+
+.settings-btn {
+  background-color: rgba(0, 0, 0, 0);
+  margin-right: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  transform: translatex(14%);
+}
+
+.settings_field {
+  display: flex;
+  align-items: center;
+}
+
+.settings_profile-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

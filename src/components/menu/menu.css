@@ -10,6 +10,7 @@
 .links__list {
   background-color: var(--background-color-darken);
   position: absolute;
+  height: 71px;
   width: 210px;
   top: -4px;
   left: 55px;
@@ -64,7 +65,8 @@
   display: block;
   padding: 15px;
   text-decoration: none;
-  color: white;
+  filter: invert(68%) sepia(0%) saturate(2%) hue-rotate(111deg) brightness(94%)
+    contrast(87%);
 }
 
 .icon_project:hover .links_project {

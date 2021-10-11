@@ -1,5 +1,5 @@
 import React from 'react'
-import ProjectIcon from '../../../img/project.png'
+import ProjectIcon from '../../../img/project.svg'
 import './project-card.css'
 
 
