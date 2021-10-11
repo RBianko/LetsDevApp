@@ -22,7 +22,13 @@
   font-size: 2rem;
   text-align: center;
 }
-.profile-content {
+
+.card__header_small {
+  padding: 6px 10px;
+  font-size: 1.3rem;
+}
+
+.card__content {
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -61,7 +67,7 @@
   color: var(--highlight-color);
   font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .profile__skills {
@@ -73,18 +79,23 @@
   margin-right: 10px;
 }
 
-.project-icon {
-  width: 70px;
-  margin-right: 10px;
-}
-
 .profile__description {
   margin-bottom: 40px;
 }
 
-.description_title,
+.description_title {
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 700;
+}
+
 .projects_title {
   font-size: 2rem;
   line-height: 3rem;
   font-weight: 700;
+}
+
+.projects__list {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -3,7 +3,10 @@ import icon from '../../../img/javascript.png'
 
 const JsIcon = () => {
     return (
-        <img className="skill-icon" src={icon} alt="css" />
+        <div className="skill_wrapper">
+            <img className="skill-icon" src={icon} alt="javascript" />
+            <span>JS</span>
+        </div>
     )
 }
 

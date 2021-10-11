@@ -3,7 +3,10 @@ import icon from '../../../img/react.png'
 
 const ReactIcon = () => {
     return (
-        <img className="skill-icon" src={icon} alt="css" />
+        <div className="skill_wrapper">
+            <img className="skill-icon" src={icon} alt="react" />
+            <span>React</span>
+        </div>
     )
 }
 

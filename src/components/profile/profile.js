@@ -6,8 +6,8 @@ import CssIcon from '../style-components/skills-icons/css-icon'
 import ReactIcon from '../style-components/skills-icons/react-icon'
 import HtmlIcon from '../style-components/skills-icons/html-icon'
 import JsIcon from '../style-components/skills-icons/js-icon'
-import ProjectIcon from '../../img/project.png'
 import Footer from './../footer';
+import ProjectCard from '../project/project-card/project-card'
 
 const Profile = () => {
     return (
@@ -18,7 +18,7 @@ const Profile = () => {
                     <div className="card__header">
                         profile.info
                     </div>
-                    <div className="profile-content">
+                    <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={ProfileIcon} alt="profile" />
@@ -41,10 +41,14 @@ const Profile = () => {
                                 <p className="description_text">lorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing ellorem ipsum dolor sit amet, consectetur adipiscing el</p>
                             </div>
                             <div className="profile__projects">
-                                <h3 className="projects_title">Projects</h3>
-                                <img className="project-icon" src={ProjectIcon} alt="profile" />
-                                <img className="project-icon" src={ProjectIcon} alt="profile" />
-                                <img className="project-icon" src={ProjectIcon} alt="profile" />
+                                <h3 className="projects_title">Projects List</h3>
+                                <div className="projects__list">
+                                    <ProjectCard />
+                                    <ProjectCard />
+                                    <ProjectCard />
+                                    <ProjectCard />
+                                    <ProjectCard />
+                                </div>
                             </div>
                         </div>
                     </div>

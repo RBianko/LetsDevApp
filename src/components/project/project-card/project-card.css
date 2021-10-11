@@ -1,0 +1,40 @@
+.project__card_small {
+  width: 30%;
+  margin-bottom: 3%;
+  margin-right: 3%;
+  cursor: crosshair;
+}
+
+.project__card_small:hover .project-info__title {
+  color: var(--highlight-color);
+}
+
+.project-content_small {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  align-items: center;
+}
+
+.project__icon {
+  width: 70px;
+  margin-right: 10px;
+}
+
+.project__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info__title {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  font-weight: 700;
+  transition: var(--transition-all);
+}
+
+.project-info__status {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 400;
+}

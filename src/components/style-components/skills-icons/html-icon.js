@@ -3,7 +3,10 @@ import icon from '../../../img/html.png'
 
 const HtmlIcon = () => {
     return (
-        <img className="skill-icon" src={icon} alt="css" />
+        <div className="skill_wrapper">
+            <img className="skill-icon" src={icon} alt="html" />
+            <span>HTML</span>
+        </div>
     )
 }
 
