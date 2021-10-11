@@ -1,18 +1,15 @@
 import React from 'react'
 import './profile.css'
-import Menu from '../menu'
 import ProfileIcon from '../../img/user.png'
 import CssIcon from '../style-components/skills-icons/css-icon'
 import ReactIcon from '../style-components/skills-icons/react-icon'
 import HtmlIcon from '../style-components/skills-icons/html-icon'
 import JsIcon from '../style-components/skills-icons/js-icon'
-import Footer from './../footer';
 import ProjectCard from '../project/project-card/project-card'
 
 const Profile = () => {
     return (
         <>
-            <Menu />
             <div className="container">
                 <div className="profile__card card">
                     <div className="card__header">
@@ -54,7 +51,6 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     )
 }

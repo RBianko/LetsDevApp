@@ -1,8 +1,8 @@
 import React from 'react'
-import './login-form.css'
-import CloseIcon from '../../img/close.png'
+import './login.css'
+import CloseIcon from '../../../img/close.png'
 
-const LoginForm = () => {
+const Login = () => {
     return (<>
         <input id="modal-toggle" type="checkbox" />
         <label className="modal-backdrop" for="modal-toggle"></label>
@@ -49,4 +49,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default Login

@@ -1,6 +1,6 @@
 import React from 'react'
 import './header.css'
-import LoginBtn from './../login-btn/login-btn';
+import LoginBtn from '../login-btn/login-btn';
 import Logo from '../../style-components/logo';
 
 

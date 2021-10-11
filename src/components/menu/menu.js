@@ -70,9 +70,7 @@ const Menu = () => {
                             </NavLink>
                         </li>
                         <li className="menu__link">
-                            <NavLink to="/logout">
-                                <span>Log Out</span>
-                            </NavLink>
+                            <span>Log Out</span>
                         </li>
                     </ul>
                 </li>

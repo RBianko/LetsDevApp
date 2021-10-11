@@ -1,18 +1,14 @@
 import React from 'react'
-import LoginForm from '../login-form/login-form'
+import Login from '../forms/login'
 import ArrowIcon from '../style-components/arrow-icon'
-import Header from "./header";
-import Footer from '../footer';
 import './welcome-page.css'
-
 
 const WeclomePage = () => {
     return (
         <>
-            <Header />
             <div className="container container_welcome-page">
                 <div className="welcome-page">
-                    <LoginForm />
+                    <Login />
                     <h1 className="welcome-page__title">We<span className="highlight-letter">L</span>come!</h1>
                     <p className="welcome-page__text">Cod<span className="highlight-letter">e</span> with friends</p>
                     <p className="welcome-page__text">Boos<span className="highlight-letter">t</span> your skill<span className="highlight-letter">s</span></p>
@@ -22,7 +18,6 @@ const WeclomePage = () => {
                     <label className="btn_get-started btn" for="modal-toggle">Get Started <ArrowIcon /></label>
                 </div>
             </div>
-            <Footer />
         </>
     )
 }
