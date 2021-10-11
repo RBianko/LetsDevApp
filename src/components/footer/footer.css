@@ -1,12 +1,11 @@
 .footer-wrapper {
+  height: 50px;
   border-top: 4px solid #000;
   background-color: var(--background-color);
-}
-
-.footer {
   display: flex;
   justify-content: center;
   padding-top: 12px;
   padding-bottom: 12px;
   font-size: 1.3rem;
+  margin-top: 50px;
 }

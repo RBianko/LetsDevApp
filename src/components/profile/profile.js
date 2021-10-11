@@ -6,6 +6,8 @@ import CssIcon from '../style-components/skills-icons/css-icon'
 import ReactIcon from '../style-components/skills-icons/react-icon'
 import HtmlIcon from '../style-components/skills-icons/html-icon'
 import JsIcon from '../style-components/skills-icons/js-icon'
+import ProjectIcon from '../../img/project.png'
+import Footer from './../footer';
 
 const Profile = () => {
     return (
@@ -40,14 +42,15 @@ const Profile = () => {
                             </div>
                             <div className="profile__projects">
                                 <h3 className="projects_title">Projects</h3>
-                                <img className="project-icon" src={ProfileIcon} alt="profile" />
-                                <img className="project-icon" src={ProfileIcon} alt="profile" />
-                                <img className="project-icon" src={ProfileIcon} alt="profile" />
+                                <img className="project-icon" src={ProjectIcon} alt="profile" />
+                                <img className="project-icon" src={ProjectIcon} alt="profile" />
+                                <img className="project-icon" src={ProjectIcon} alt="profile" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

@@ -10,7 +10,7 @@ const WeclomePage = () => {
     return (
         <>
             <Header />
-            <div className="container">
+            <div className="container container_welcome-page">
                 <div className="welcome-page">
                     <LoginForm />
                     <h1 className="welcome-page__title">We<span className="highlight-letter">L</span>come!</h1>

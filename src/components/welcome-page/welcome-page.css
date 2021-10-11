@@ -1,11 +1,13 @@
 .welcome-page {
   padding-top: 150px;
-  margin-bottom: 100px;
-  height: 83.52vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   cursor: default;
+}
+
+.container_welcome-page {
+  min-height: calc(100vh - 100px);
 }
 
 .highlight-letter {

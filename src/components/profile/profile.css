@@ -1,5 +1,5 @@
 .profile__card {
-  margin-top: 80px;
+  margin-top: 50px;
 }
 .card {
   border: 4px solid #000;
@@ -11,8 +11,8 @@
   transition: var(--transition-all);
 }
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 10px 12px #000;
+  transform: translateY(-2px);
+  box-shadow: 9px 10px #000;
 }
 .card__header {
   padding: 12px 20px;
