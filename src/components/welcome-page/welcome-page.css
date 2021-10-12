@@ -12,6 +12,7 @@
 
 .highlight-letter {
   color: var(--highlight-color);
+  text-shadow: -4px -3px #000;
 }
 
 .welcome-page__title {

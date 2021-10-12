@@ -74,7 +74,7 @@ const Menu = () => {
                         </li>
                     </ul>
                 </li>
-                <li className="menu-icon icon_last"></li>
+                <li className="icon_last"></li>
             </ul>
         </nav>
     )

@@ -54,8 +54,8 @@
 
 .profile__info_name {
   font-size: 4rem;
+  line-height: 3rem;
   font-weight: 900;
-  margin-bottom: 8px;
 }
 
 .profile__info_sity {
