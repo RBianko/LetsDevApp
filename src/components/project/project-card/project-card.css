@@ -1,3 +1,8 @@
+.project__card {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
 .project__card_small {
   width: 30%;
   margin-bottom: 3%;
@@ -7,6 +12,13 @@
 
 .project__card_small:hover .project-info__title {
   color: var(--highlight-color);
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center;
 }
 
 .project-content_small {
@@ -21,12 +33,14 @@
   margin-right: 10px;
 }
 
-.project__info {
-  display: flex;
-  flex-direction: column;
+.project-info__title {
+  font-size: 3rem;
+  line-height: 2rem;
+  font-weight: 700;
+  transition: var(--transition-all);
 }
 
-.project-info__title {
+.project-info__title_small {
   font-size: 1.8rem;
   line-height: 2rem;
   font-weight: 700;
@@ -34,7 +48,62 @@
 }
 
 .project-info__status {
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 400;
+  align-self: center;
+}
+
+.project-info__status_small {
   font-size: 1rem;
   line-height: 1rem;
   font-weight: 400;
+}
+
+.project-content__header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.project__picture {
+  width: 20%;
+}
+
+.project__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 40%;
+  margin-bottom: 3%;
+}
+
+.project__info_small {
+  flex-basis: 100%;
+}
+
+.need-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.need-list__title,
+.need-list__roles {
+  font-size: 1.5rem;
+  line-height: 1rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.need-list__roles {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--highlight-color);
+}
+
+.skills_project {
+  justify-content: center;
 }

@@ -35,15 +35,15 @@ const Login = ({ user, setUser }) => {
                         <form className="tabs-content__form" action="">
                             <input className="form-input" type="email" placeholder="Email" required />
                             <input className="form-input" type="password" placeholder="Password" required />
-                            <form className="forgot-password" action="">
-                                <input id="forgot-password-toggle" type="checkbox" />
-                                <label className="forgot-password__link" htmlFor="forgot-password-toggle">forgot password?</label>
-                                <div className="forgot-password-content">
-                                    <input className="form-input form-input_forgot" type="email" placeholder="enter your email" required />
-                                    <button className="form-btn_go btn" type="submit">Go</button>
-                                </div>
-                            </form>
                             <button className="form-btn btn" type="submit" onClick={() => loginClickHandler()}>Login</button>
+                        </form>
+                        <form className="forgot-password" action="">
+                            <input id="forgot-password-toggle" type="checkbox" />
+                            <label className="forgot-password__link" htmlFor="forgot-password-toggle">forgot password?</label>
+                            <div className="forgot-password-content">
+                                <input className="form-input form-input_forgot" type="email" placeholder="enter your email" required />
+                                <button className="form-btn_go btn" type="submit">Go</button>
+                            </div>
                         </form>
                     </div>
                     <input className="radio" id="tab-2" name="tabs-name" type="radio" />

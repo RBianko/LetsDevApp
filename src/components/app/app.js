@@ -1,6 +1,6 @@
 import './app.css';
 import WeclomePage from '../welcome-page';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router';
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -20,7 +20,6 @@ import Settings from './../profile/settings';
 const App = ({ user }) => {
 
     let history = useHistory();
-
     if (!user.isLogedIn) {
         history.push('/welcome')
     }

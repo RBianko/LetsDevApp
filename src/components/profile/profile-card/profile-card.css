@@ -1,0 +1,29 @@
+.profile__card_small {
+  width: 15%;
+  margin-bottom: 3%;
+  margin-right: 3%;
+  cursor: crosshair;
+}
+
+.profile-content_small {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+}
+
+.profile__card_small:hover {
+  transform: translateY(-2px);
+  box-shadow: 9px 10px #000;
+}
+
+.profile__info_name-small {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.profile__info_role-small {
+  font-size: 1.2rem;
+  color: var(--highlight-color);
+  font-weight: 800;
+}

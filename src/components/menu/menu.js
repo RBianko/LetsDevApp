@@ -19,16 +19,16 @@ const Menu = () => {
                 <li className="menu-icon icon_project">
                     <img className="link-icon" src={ProjectIcon} alt="project-menu" />
                     <ul className="links__list links_project">
-                        <li className="menu__link">
-                            <NavLink to="/my-projects">
+                        <NavLink to="/my-projects">
+                            <li className="menu__link">
                                 <span>My Projects</span>
-                            </NavLink>
-                        </li>
-                        <li className="menu__link">
-                            <NavLink to="/create-project">
+                            </li>
+                        </NavLink>
+                        <NavLink to="/create-project">
+                            <li className="menu__link">
                                 <span>Create Project</span>
-                            </NavLink>
-                        </li>
+                            </li>
+                        </NavLink>
                     </ul>
                 </li>
                 <li className="menu-icon icon_search">

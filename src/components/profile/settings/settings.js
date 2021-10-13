@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './settings.css'
-import EditIcon from './edit-icon'
 import {
     editFirstName,
     editLastName,
@@ -340,7 +339,7 @@ const Settings = ({
                                         <option value="Zimbabwe">Zimbabwe</option>
                                     </select>
                                     <input className="text-input" type="text" placeholder="Role" value={role} ref={roleInput} onChange={() => onChangeHandler('role')} />
-                                    <input className="text-input" type="text" placeholder="Role" value={skills} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
+                                    <input className="text-input" type="text" placeholder="Skills" value={skills} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
                                 </div>
                             </div>
                         </div>

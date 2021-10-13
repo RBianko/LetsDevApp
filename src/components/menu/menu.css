@@ -28,7 +28,7 @@
   transition: var(--transition-all);
 }
 
-.menu__link a {
+.links__list a {
   color: var(--background-color-lighter);
 }
 

@@ -9,7 +9,6 @@ const EDIT_COUNTRY = `EDIT_COUNTRY`
 const EDIT_BIO = `EDIT_BIO`
 const EDIT_ROLE = `EDIT_ROLE`
 const EDIT_SKILLS = `EDIT_SKILLS`
-const UPDATE_INFO = `UPDATE_INFO`
 
 const initialState = {
     userId: null,
@@ -27,7 +26,7 @@ const initialState = {
     projects: []
 }
 
-let getNewUserFromServer = {
+const getNewUserFromServer = {
     isLogedIn: true,
     userId: 1,
     email: null,
@@ -42,11 +41,13 @@ let getNewUserFromServer = {
     bio: 'A bio is a detailed description of someone’s life, professional background, education history, achievements, and skill set. Unlike a curriculum vitae, a bio presents a person’s life by highlighting important aspects such as their unique skill set, details of their professional experience, notable projects they are involved in, and an analysis of their personality.',
     projects: [
         {
+            projectId: 1,
             title: 'My Project',
             status: 'Done',
             description: 'Some Information'
         },
         {
+            projectId: 2,
             title: 'New Project',
             status: 'Active',
             description: 'Some Information'
@@ -71,8 +72,6 @@ const userReduser = (state = initialState, { type, payload }) => {
         case EDIT_ROLE:
             return { ...state, role: payload }
         case EDIT_SKILLS:
-            return { ...state, skills: payload }
-        case UPDATE_INFO:
             return { ...state, skills: payload }
         default:
             return state

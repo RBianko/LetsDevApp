@@ -1,7 +1,7 @@
 import React from 'react'
 import './profile.css'
 import SkillIcon from '../style-components/skills-icon'
-import ProjectCard from '../project/project-card'
+import ProjectCardSmall from '../project/project-card/project-card-small'
 import { connect } from 'react-redux'
 
 const Profile = ({ user }) => {
@@ -11,8 +11,8 @@ const Profile = ({ user }) => {
     )
 
     const projectsList = user.projects.map(project =>
-        <ProjectCard
-            key={project.title}
+        <ProjectCardSmall
+            key={project.projectId}
             title={project.title}
             status={project.status}
         />
@@ -34,7 +34,7 @@ const Profile = ({ user }) => {
                                 <p className="profile__info_name">{user.firstName} {user.lastName}</p>
                                 <p className="profile__info_sity">{user.city}, {user.country}</p>
                                 <p className="profile__info_role">{user.role}</p>
-                                <div className="profile__skills">
+                                <div className="skills-list">
                                     {skillsList}
                                 </div>
                             </div>
