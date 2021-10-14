@@ -19,10 +19,10 @@ const Login = ({ user, setUser }) => {
 
     return (
         <>
-            <input id="modal-toggle" type="checkbox" />
-            <label className="modal-backdrop" htmlFor="modal-toggle"></label>
+            <input id="modal-toggle_login" type="checkbox" />
+            <div className="modal-backdrop" htmlFor="modal-toggle_login" />
             <div className="modal-content">
-                <label className="modal-close-btn" htmlFor="modal-toggle">
+                <label className="modal-close-btn" htmlFor="modal-toggle_login">
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
 
@@ -46,7 +46,7 @@ const Login = ({ user, setUser }) => {
                             </div>
                         </form>
                     </div>
-                    <input className="radio" id="tab-2" name="tabs-name" type="radio" />
+                    <input className="radio" id="tab-2" name="tabs-name" type="radio" readOnly />
                     <label className="table" htmlFor="tab-2">
                         <span className="tab-title">Sign Up</span>
                     </label>

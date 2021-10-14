@@ -1,6 +1,8 @@
 import defaultProjectPicture from '../../img/project.svg'
+import defaultProfilePicture from '../../img/users.svg'
 
 const ADD_PROJECT = `ADD_PROJECT`
+const SET_SKILLS = `SET_SKILLS`
 
 const initialState1 = {
     list: [
@@ -26,8 +28,27 @@ const initialState = {
             status: 'Active',
             description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
             skills: ['CSS', 'HTML', 'JS', 'React'],
-            devsId: [1, 2, 3],
-            needList: ['Frontend', 'Tester'],
+            devs: [
+                {
+                    userId: 1,
+                    firstName: 'John',
+                    role: 'Frontend',
+                    profilePicture: defaultProfilePicture
+                },
+                {
+                    userId: 2,
+                    firstName: 'Roman',
+                    role: 'Frontend',
+                    profilePicture: defaultProfilePicture
+                },
+                {
+                    userId: 3,
+                    firstName: 'Dave',
+                    role: 'Backend',
+                    profilePicture: defaultProfilePicture
+                },
+            ],
+            needList: ['Designer', 'Tester'],
         }
     ]
 }
@@ -36,14 +57,21 @@ const projectsReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PROJECT:
             return { ...state, list: [...state.list, payload] }
+        case SET_SKILLS:
+            return { ...state, skills: [...payload] }
         default:
             return state
     }
 }
 
-export const addProjest = () => ({
+export const addProject = (payload) => ({
     type: ADD_PROJECT,
-    payload: initialState1
+    payload
+})
+
+export const setSkills = (payload) => ({
+    type: SET_SKILLS,
+    payload
 })
 
 export default projectsReduser

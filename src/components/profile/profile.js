@@ -45,7 +45,7 @@ const Profile = ({ user }) => {
                                 <p className="description_text">{user.bio}</p>
                             </div>
                             <div className="profile__projects">
-                                <h3 className="projects_title">Projects List</h3>
+                                <h3 className="projects__title">Projects List</h3>
                                 <div className="projects__list">
                                     {projectsList}
                                 </div>

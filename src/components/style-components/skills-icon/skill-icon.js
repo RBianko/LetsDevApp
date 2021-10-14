@@ -6,23 +6,24 @@ import htmlIcon from '../../../img/html5.svg'
 import jsIcon from '../../../img/js.svg'
 import reactIcon from '../../../img/react.svg'
 
-const SkillIcon = ({ skill }) => {
+const SkillIcon = ({ skill, toggleSelected }) => {
+
     let icon = null
     let icons = {
         'CSS': () => { return cssIcon },
         'HTML': () => { return htmlIcon },
         'JS': () => { return jsIcon },
-        'React': () => { return reactIcon }
+        'React': () => { return reactIcon },
     }
     if (icons[skill]) {
         icon = icons[skill]()
     }
 
     return (
-        <div className="skill_wrapper">
+        <button className="skill_wrapper" onClick={() => toggleSelected(skill)}>
             <img className="skill-icon" src={icon} alt="css" />
             <span>{skill}</span>
-        </div>
+        </button>
     )
 }
 

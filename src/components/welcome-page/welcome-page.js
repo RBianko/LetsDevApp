@@ -14,8 +14,8 @@ const WeclomePage = () => {
                     <p className="welcome-page__text">Boos<span className="highlight-letter">t</span> your skill<span className="highlight-letter">'s</span></p>
                     <p className="welcome-page__text">Fin<span className="highlight-letter">D</span> your zen</p>
                     <p className="welcome-page__text">G<span className="highlight-letter">e</span>t mo<span className="highlight-letter">v</span>ing</p>
-                    <p className="welcome-page__text">Share <span className="highlight-letter">:)</span></p>
-                    <label className="btn_get-started btn" htmlFor="modal-toggle">Get Started <ArrowIcon /></label>
+                    <p className="welcome-page__text">Share<span className="highlight-letter">.</span></p>
+                    <label className="btn_get-started btn" htmlFor="modal-toggle_login">Get Started <ArrowIcon /></label>
                 </div>
             </div>
         </>
