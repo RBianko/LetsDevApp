@@ -8,7 +8,7 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     const [skillsList, setSkillsList] = useState([])
 
-    const toggleSelected = (skill) => {
+    const onSelectHandler = (skill) => {
         if (!skillsList.some(sk => sk === skill)) {
             setSkillsList([...skillsList, skill])
         }
@@ -16,7 +16,7 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     const skillsGrid = skills.map(skill =>
         <label className="modal-skill" type="checkbox" id={skill}>
-            <SkillIcon key={skill} skill={skill} toggleSelected={toggleSelected} />
+            <SkillIcon key={skill} skill={skill} onSelectHandler={onSelectHandler} />
         </label>
     )
 

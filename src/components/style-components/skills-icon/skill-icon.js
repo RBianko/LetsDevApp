@@ -6,7 +6,7 @@ import htmlIcon from '../../../img/html5.svg'
 import jsIcon from '../../../img/js.svg'
 import reactIcon from '../../../img/react.svg'
 
-const SkillIcon = ({ skill, toggleSelected }) => {
+const SkillIcon = ({ skill, onSelectHandler }) => {
 
     let icon = null
     let icons = {
@@ -20,7 +20,7 @@ const SkillIcon = ({ skill, toggleSelected }) => {
     }
 
     return (
-        <button className="skill_wrapper" onClick={() => toggleSelected(skill)}>
+        <button className="skill_wrapper" onClick={() => onSelectHandler(skill)}>
             <img className="skill-icon" src={icon} alt="css" />
             <span>{skill}</span>
         </button>
