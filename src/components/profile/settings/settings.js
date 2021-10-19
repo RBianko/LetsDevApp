@@ -103,8 +103,9 @@ const Settings = ({
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" for="country">Country</label>
-                                        <select className="text-input" id="country" name="country" value={country} ref={countryInput} onChange={() => onChangeHandler('country')} >
+                                        <label className="text-label" htmlFor="country">Country</label>
+                                        <input className="text-input" autocomplete="on" list="country" value={country} ref={countryInput} onChange={() => onChangeHandler('country')} />
+                                        <datalist id="country">
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
                                             <option value="Algeria">Algeria</option>
@@ -351,7 +352,7 @@ const Settings = ({
                                             <option value="Zaire">Zaire</option>
                                             <option value="Zambia">Zambia</option>
                                             <option value="Zimbabwe">Zimbabwe</option>
-                                        </select>
+                                        </datalist>
                                     </div>
 
                                     <div className="settings__item">

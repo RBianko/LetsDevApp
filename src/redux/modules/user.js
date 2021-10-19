@@ -1,5 +1,5 @@
 import defaultProfilePicture from '../../img/users.svg'
-import ProfilePicture from '../../img/administrator.svg'
+// import ProfilePicture from '../../img/administrator.svg'
 
 const SET_USER = `SET_USER`
 const EDIT_FIRSTNAME = `EDIT_FIRSTNAME`
@@ -12,6 +12,7 @@ const EDIT_SKILLS = `EDIT_SKILLS`
 
 const initialState = {
     userId: null,
+    token: null,
     email: null,
     password: null,
     isLogedIn: false,
@@ -23,41 +24,46 @@ const initialState = {
     bio: null,
     role: [],
     skills: [],
-    projects: []
+    projects: [],
+    login: () => { },
+    logout: () => { }
 }
 
-const getNewUserFromServer = {
-    isLogedIn: true,
-    userId: 1,
-    email: null,
-    password: null,
-    firstName: 'Roman',
-    lastName: 'Bianko',
-    profilePicture: ProfilePicture,
-    city: 'Minsk',
-    country: 'Belarus',
-    role: ['Frontend'],
-    skills: ['CSS', 'HTML', 'JS', 'React'],
-    bio: 'A bio is a detailed description of someone’s life, professional background, education history, achievements, and skill set. Unlike a curriculum vitae, a bio presents a person’s life by highlighting important aspects such as their unique skill set, details of their professional experience, notable projects they are involved in, and an analysis of their personality.',
-    projects: [
-        {
-            projectId: 1,
-            title: 'My Project',
-            status: 'Done',
-            description: 'Some Information'
-        },
-        {
-            projectId: 2,
-            title: 'New Project',
-            status: 'Active',
-            description: 'Some Information'
-        },
-    ]
-}
+// const getNewUserFromServer = {
+//     isLogedIn: true,
+//     userId: 1,
+//     email: null,
+//     password: null,
+//     firstName: 'Roman',
+//     lastName: 'Bianko',
+//     profilePicture: ProfilePicture,
+//     city: 'Minsk',
+//     country: 'Belarus',
+//     role: ['Frontend'],
+//     skills: ['CSS', 'HTML', 'JS', 'React'],
+//     bio: 'A bio is a detailed description of someone’s life, professional background, education history, achievements, and skill set. Unlike a curriculum vitae, a bio presents a person’s life by highlighting important aspects such as their unique skill set, details of their professional experience, notable projects they are involved in, and an analysis of their personality.',
+//     projects: [
+//         {
+//             projectId: 1,
+//             title: 'My Project',
+//             status: 'Done',
+//             description: 'Some Information'
+//         },
+//         {
+//             projectId: 2,
+//             title: 'New Project',
+//             status: 'Active',
+//             description: 'Some Information'
+//         },
+//     ]
+// }
 
 const userReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_USER:
+            if (payload.token) {
+                state.isLogedIn = true
+            }
             return Object.assign(state, payload)
         case EDIT_FIRSTNAME:
             return { ...state, firstName: payload }
@@ -78,9 +84,9 @@ const userReduser = (state = initialState, { type, payload }) => {
     }
 }
 
-export const setUser = () => ({
+export const setUser = (user) => ({
     type: SET_USER,
-    payload: getNewUserFromServer
+    payload: user
 })
 
 export const editFirstName = (string) => ({

@@ -4,20 +4,20 @@ import defaultProfilePicture from '../../img/users.svg'
 const ADD_PROJECT = `ADD_PROJECT`
 const SET_SKILLS = `SET_SKILLS`
 
-const initialState1 = {
-    list: [
-        {
-            projectId: null,
-            title: null,
-            projectPicture: defaultProjectPicture,
-            status: null,
-            description: null,
-            skills: [],
-            devs: [],
-            needList: [],
-        }
-    ]
-}
+// const initialState1 = {
+//     list: [
+//         {
+//             projectId: null,
+//             title: null,
+//             projectPicture: defaultProjectPicture,
+//             status: null,
+//             description: null,
+//             skills: [],
+//             devs: [],
+//             needList: [],
+//         }
+//     ]
+// }
 
 const initialState = {
     list: [

@@ -6,8 +6,9 @@ import ChatIcon from '../../img/chat.svg'
 import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
 import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const Menu = () => {
+const Menu = ({ user }) => {
     return (
         <nav className="side-menu">
             <ul className="menu__icons">
@@ -69,8 +70,8 @@ const Menu = () => {
                                 <span>Settings</span>
                             </NavLink>
                         </li>
-                        <li className="menu__link">
-                            <span>Log Out</span>
+                        <li className="menu__link menu__link_logout">
+                            <button className="btn btn_logout" onClick={user.logout}>Log Out</button>
                         </li>
                     </ul>
                 </li>
@@ -80,4 +81,4 @@ const Menu = () => {
     )
 }
 
-export default Menu
+export default connect(({ user }) => ({ user }))(Menu)
