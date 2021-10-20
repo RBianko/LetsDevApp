@@ -83,7 +83,8 @@ const Settings = ({
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={user.profilePicture} alt="profile" />
-                                <input className="text-input btn" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
+                                <label className="picture-label" for="profilePicture">Profile picture:</label>
+                                <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
                             </div>
                             <div className="profile__info">
                                 <div className="settings-field">
@@ -104,7 +105,7 @@ const Settings = ({
 
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="country">Country</label>
-                                        <input className="text-input" autocomplete="on" list="country" value={country} ref={countryInput} onChange={() => onChangeHandler('country')} />
+                                        <input className="text-input" autoComplete="on" placeholder="Country" list="country" value={country} ref={countryInput} onChange={() => onChangeHandler('country')} />
                                         <datalist id="country">
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>

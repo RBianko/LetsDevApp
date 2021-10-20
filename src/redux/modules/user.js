@@ -9,12 +9,11 @@ const EDIT_COUNTRY = `EDIT_COUNTRY`
 const EDIT_BIO = `EDIT_BIO`
 const EDIT_ROLE = `EDIT_ROLE`
 const EDIT_SKILLS = `EDIT_SKILLS`
+const ADD_PROJECT_ID = `ADD_PROJECT_ID`
 
 const initialState = {
     userId: null,
     token: null,
-    email: null,
-    password: null,
     isLogedIn: false,
     firstName: null,
     lastName: null,
@@ -42,20 +41,11 @@ const initialState = {
 //     role: ['Frontend'],
 //     skills: ['CSS', 'HTML', 'JS', 'React'],
 //     bio: 'A bio is a detailed description of someone’s life, professional background, education history, achievements, and skill set. Unlike a curriculum vitae, a bio presents a person’s life by highlighting important aspects such as their unique skill set, details of their professional experience, notable projects they are involved in, and an analysis of their personality.',
-//     projects: [
-//         {
-//             projectId: 1,
-//             title: 'My Project',
-//             status: 'Done',
-//             description: 'Some Information'
-//         },
-//         {
-//             projectId: 2,
-//             title: 'New Project',
-//             status: 'Active',
-//             description: 'Some Information'
-//         },
-//     ]
+//     projects: [ 
+//     { 
+//       title: 'Title'
+//       status: 'Active'
+//     } ]
 // }
 
 const userReduser = (state = initialState, { type, payload }) => {
@@ -79,6 +69,8 @@ const userReduser = (state = initialState, { type, payload }) => {
             return { ...state, role: payload }
         case EDIT_SKILLS:
             return { ...state, skills: payload }
+        case ADD_PROJECT_ID:
+            return { ...state, projects: [...state.projects, payload] }
         default:
             return state
     }
@@ -122,6 +114,11 @@ export const editRole = (string) => ({
 export const editSkills = (string) => ({
     type: EDIT_SKILLS,
     payload: string.split(',')
+})
+
+export const addProjectId = (project) => ({
+    type: ADD_PROJECT_ID,
+    payload: project
 })
 
 

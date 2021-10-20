@@ -28,7 +28,7 @@
 }
 
 .card__content {
-  padding: 70px;
+  padding: calc(7% - 10px);
   display: flex;
   flex-direction: column;
 }
@@ -45,9 +45,9 @@
 
 .profile__picture {
   display: flex;
-    width: 20%;
-    margin-right: 3%;
-    flex-direction: column;
+  width: 20%;
+  margin-right: 3%;
+  flex-direction: column;
 }
 
 .profile-icon {

@@ -22,7 +22,6 @@ const Login = ({ user }) => {
         setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
     }
 
-
     const signUpHandler = async () => {
         try {
             await request('/api/auth/register', 'POST', { ...signUpForm })

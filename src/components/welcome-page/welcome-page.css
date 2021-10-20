@@ -7,6 +7,7 @@
 }
 
 .container_welcome-page {
+  padding-left: 0;
   min-height: calc(100vh - 100px);
 }
 
