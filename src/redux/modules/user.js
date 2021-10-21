@@ -7,7 +7,7 @@ const EDIT_LASTNAME = `EDIT_LASTNAME`
 const EDIT_CITY = `EDIT_CITY`
 const EDIT_COUNTRY = `EDIT_COUNTRY`
 const EDIT_BIO = `EDIT_BIO`
-const EDIT_ROLE = `EDIT_ROLE`
+const EDIT_ROLES = `EDIT_ROLES`
 const EDIT_SKILLS = `EDIT_SKILLS`
 const ADD_PROJECT_ID = `ADD_PROJECT_ID`
 
@@ -65,8 +65,8 @@ const userReduser = (state = initialState, { type, payload }) => {
             return { ...state, country: payload }
         case EDIT_BIO:
             return { ...state, bio: payload }
-        case EDIT_ROLE:
-            return { ...state, role: payload }
+        case EDIT_ROLES:
+            return { ...state, roles: payload }
         case EDIT_SKILLS:
             return { ...state, skills: payload }
         case ADD_PROJECT_ID:
@@ -106,14 +106,14 @@ export const editBio = (string) => ({
     payload: string
 })
 
-export const editRole = (string) => ({
-    type: EDIT_ROLE,
+export const editRoles = (string) => ({
+    type: EDIT_ROLES,
     payload: string
 })
 
-export const editSkills = (string) => ({
+export const editSkills = (array) => ({
     type: EDIT_SKILLS,
-    payload: string.split(',')
+    payload: array
 })
 
 export const addProjectId = (project) => ({

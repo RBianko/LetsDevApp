@@ -1,5 +1,5 @@
 .profile__card_small {
-  width: 15%;
+  width: 20%;
   margin-bottom: 3%;
   margin-right: 3%;
   height: 100%;
@@ -9,7 +9,6 @@
 .profile__info {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .profile__icon_small {

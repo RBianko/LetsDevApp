@@ -6,28 +6,35 @@ import {
     editCity,
     editCountry,
     editBio,
-    editRole,
+    editRoles,
     editSkills
 } from '../../../redux/modules/user'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom';
+import SkillsForm from './../../forms/skills';
+import RolesForm from './../../forms/roles';
 
 const Settings = ({
     user,
+    roles: rolesList,
+    skills: skillsList,
     editFirstName,
     editLastName,
     editCity,
     editCountry,
     editBio,
-    editRole,
+    editRoles,
     editSkills
 }) => {
+
+    const history = useHistory()
 
     const firstNameInput = React.createRef()
     const lastNameInput = React.createRef()
     const cityInput = React.createRef()
     const countryInput = React.createRef()
     const bioInput = React.createRef()
-    const roleInput = React.createRef()
+    const rolesInput = React.createRef()
     const skillsInput = React.createRef()
 
     const [firstName, setFirstName] = useState(user.firstName)
@@ -35,8 +42,9 @@ const Settings = ({
     const [city, setCity] = useState(user.city)
     const [country, setCountry] = useState(user.country)
     const [bio, setBio] = useState(user.bio)
-    const [role, setRole] = useState(user.role)
-    const [skills, setSkills] = useState(user.skills.join(','))
+    const [roles, setRoles] = useState(user.roles)
+    const [skills, setSkills] = useState(user.skills)
+    let showSkillsList = user.skills.join(',')
 
     const event = {
         'firstName': () => setFirstName(firstNameInput.current.value),
@@ -44,7 +52,7 @@ const Settings = ({
         'city': () => setCity(cityInput.current.value),
         'country': () => setCountry(countryInput.current.value),
         'bio': () => setBio(bioInput.current.value),
-        'role': () => setRole(roleInput.current.value),
+        'roles': () => setRoles(rolesInput.current.value),
         'skills': () => setSkills(skillsInput.current.value),
     }
 
@@ -58,8 +66,10 @@ const Settings = ({
         editCity(city)
         editCountry(country)
         editBio(bio)
-        editRole(role)
+        editRoles(roles)
         editSkills(skills)
+
+        history.push('/profile')
     }
 
     const cancelClickHandler = () => {
@@ -68,13 +78,15 @@ const Settings = ({
         setCity(user.city)
         setCountry(user.country)
         setBio(user.bio)
-        setRole(user.role)
+        setRoles(user.roles)
         setSkills(user.skills.join(','))
     }
 
     return (
         <>
             <div className="container">
+                <SkillsForm setSkills={setSkills} skills={skillsList} />
+                <RolesForm setRoles={setRoles} roles={rolesList} />
                 <div className="profile__card card">
                     <div className="card__header">
                         settings.cfg
@@ -83,23 +95,23 @@ const Settings = ({
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={user.profilePicture} alt="profile" />
-                                <label className="picture-label" for="profilePicture">Profile picture:</label>
+                                <label className="picture-label" htmlFor="profilePicture">Profile picture:</label>
                                 <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
                             </div>
                             <div className="profile__info">
                                 <div className="settings-field">
                                     <div className="settings__item">
-                                        <label className="text-label" for="firstname">First Name</label>
+                                        <label className="text-label" htmlFor="firstname">First Name</label>
                                         <input className="text-input" id="firstname" type="text" placeholder="First Name" value={firstName} ref={firstNameInput} onChange={() => onChangeHandler('firstName')} />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" for="lastName">Last Name</label>
+                                        <label className="text-label" htmlFor="lastName">Last Name</label>
                                         <input className="text-input" id="lastName" type="text" placeholder="Last Name" value={lastName} ref={lastNameInput} onChange={() => onChangeHandler('lastName')} />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" for="city">City</label>
+                                        <label className="text-label" htmlFor="city">City</label>
                                         <input className="text-input" id="city" type="text" placeholder="City" value={city} ref={cityInput} onChange={() => onChangeHandler('city')} />
                                     </div>
 
@@ -357,18 +369,18 @@ const Settings = ({
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" for="role">Role</label>
+                                        <label className="text-label" htmlFor="roles">Roles</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="role" type="text" placeholder="Role" value={role} ref={roleInput} onChange={() => onChangeHandler('role')} />
-                                            <button className="btn input_btn" onClick={() => ('')}>Add</button>
+                                            <input className="text-input input_complex" disabled id="roles" type="text" placeholder="Roles" value={roles} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
+                                            <label className="btn input_btn" htmlFor="modal-toggle_roles">Edit</label>
                                         </div>
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" for="skills">Skills</label>
+                                        <label className="text-label" htmlFor="skills">Skills</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="skills" type="text" placeholder="Skills" value={skills} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
-                                            <button className="btn input_btn" onClick={() => ('')}>Add</button>
+                                            <input className="text-input input_complex" disabled id="skills" type="text" placeholder="Skills" value={showSkillsList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
+                                            <label className="btn input_btn" htmlFor="modal-toggle_skills">Edit</label>
                                         </div>
                                     </div>
 
@@ -386,7 +398,7 @@ const Settings = ({
                                 Update
                             </button>
                             <button className="btn settings_btn" onClick={() => cancelClickHandler()}>
-                                Cancel
+                                Cancel changes
                             </button>
                         </div>
                     </div>
@@ -397,14 +409,14 @@ const Settings = ({
 }
 
 export default connect(
-    ({ user }) => ({ user }),
+    ({ user, roles, skills }) => ({ user, roles, skills }),
     {
         editFirstName,
         editLastName,
         editCity,
         editCountry,
         editBio,
-        editRole,
+        editRoles,
         editSkills
     }
 )(Settings)

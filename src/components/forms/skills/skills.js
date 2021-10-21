@@ -7,21 +7,23 @@ import SkillIcon from '../../style-components/skills-icon/skill-icon'
 const SkillsForm = ({ skills, setSkills }) => {
 
     const [skillsList, setSkillsList] = useState([])
+    const [isChecked, setIsChecked] = useState(false)
 
-    const onSelectHandler = (skill) => {
-        if (!skillsList.some(sk => sk === skill)) {
-            setSkillsList([...skillsList, skill])
+    const onSelectHandler = (selectedSkill) => {
+        if (!skillsList.some(skill => skill === selectedSkill)) {
+            setSkillsList([...skillsList, selectedSkill])
         }
     }
 
     const skillsGrid = skills.map(skill =>
-        <label className="modal-skill" type="checkbox" id={skill}>
+        <label className="modal-skill" type="checkbox" key={skill} id={skill}>
             <SkillIcon key={skill} skill={skill} onSelectHandler={onSelectHandler} />
         </label>
     )
 
     const submitClickHandler = () => {
         setSkills(skillsList)
+        setIsChecked(!isChecked)
     }
 
     const clearClickHandler = () => {
@@ -30,9 +32,9 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     return (
         <>
-            <input id="modal-toggle_skills" type="checkbox" />
-            <div className="modal-backdrop" htmlFor="modal-toggle_skills" />
-            <div className="modal-content">
+            <input id="modal-toggle_skills" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
+            <div className="modal-backdrop_skills" htmlFor="modal-toggle_skills" onClick={() => setIsChecked(!isChecked)} />
+            <div className="modal-content_skills">
                 <label className="modal-close-btn" htmlFor="modal-toggle_skills">
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>

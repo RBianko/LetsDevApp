@@ -10,7 +10,7 @@ import Messages from './../messages';
 import FriendList from './../friend-list';
 import Settings from './../profile/settings';
 import Header from './../welcome-page/header';
-import WeclomePage from './../welcome-page';
+import WelcomePage from './../welcome-page';
 import Footer from './../footer';
 
 export const useRoutes = isAuth => {
@@ -54,7 +54,7 @@ export const useRoutes = isAuth => {
         <Switch>
             <Route path='/welcome' >
                 <Header />
-                <WeclomePage />
+                <WelcomePage />
                 <Footer />
             </Route>
             <Redirect to='/welcome' />

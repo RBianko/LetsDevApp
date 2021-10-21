@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './app.css';
 import { connect } from 'react-redux'
 import { useMemo } from 'react'

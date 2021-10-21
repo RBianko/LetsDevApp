@@ -25,7 +25,9 @@
   display: flex;
   flex-direction: row;
   padding: 15px;
+  width: 100%;
   align-items: center;
+  overflow: overlay;
 }
 
 .project__icon {
@@ -35,14 +37,14 @@
 
 .project-info__title {
   font-size: 3rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
   font-weight: 700;
   transition: var(--transition-all);
 }
 
 .project-info__title_small {
-  font-size: 1.8rem;
-  line-height: 2rem;
+  font-size: 1em;
+  line-height: 1em;
   font-weight: 700;
   transition: var(--transition-all);
 }
@@ -68,6 +70,12 @@
   margin-bottom: 20px;
 }
 
+.project-content_body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .project__picture {
   width: 20%;
 }
@@ -82,15 +90,16 @@
 
 .project__info_small {
   flex-basis: 100%;
+  align-items: flex-start;
 }
-
 
 .need-list {
   font-size: 1.5rem;
   line-height: 1rem;
   font-weight: 600;
   color: var(--highlight-color);
-  margin-bottom: 5px;
+  margin-bottom: 3%;
+}
 
 .need-list__roles {
   font-size: 1.4rem;
@@ -119,7 +128,7 @@
   line-height: 3rem;
   font-weight: 700;
 }
-  
+
 .projects__list {
   display: flex;
   flex-wrap: wrap;

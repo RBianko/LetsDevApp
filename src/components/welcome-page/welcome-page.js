@@ -3,7 +3,7 @@ import Login from '../forms/login'
 import ArrowIcon from '../style-components/arrow-icon'
 import './welcome-page.css'
 
-const WeclomePage = () => {
+const WelcomePage = () => {
     return (
         <>
             <div className="container container_welcome-page">
@@ -22,4 +22,4 @@ const WeclomePage = () => {
     )
 }
 
-export default WeclomePage
+export default WelcomePage

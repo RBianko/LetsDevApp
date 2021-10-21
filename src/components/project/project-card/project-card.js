@@ -13,7 +13,7 @@ const ProjectCard = (props) => {
         description,
         skills,
         devs,
-        needList
+        roles
     } = props.project
 
     const skillsList = skills.map(skill =>
@@ -24,12 +24,16 @@ const ProjectCard = (props) => {
 
     const devsList = devs.map(dev =>
         <ProfileCard
-            key={dev.id}
-            title={'Dev Name'}
+            key={dev.userId}
+            firstName={dev.firstName}
+            lastName={dev.lastName}
+            role={dev.role}
+            profilePicture={dev.profilePicture}
+
         />
     )
 
-    const needListString = needList.toString(', ')
+    const needListString = roles.join(', ')
 
     return (
         <div className="project__card card">

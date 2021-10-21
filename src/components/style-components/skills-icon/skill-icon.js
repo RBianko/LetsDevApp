@@ -6,7 +6,7 @@ import htmlIcon from '../../../img/html5.svg'
 import jsIcon from '../../../img/js.svg'
 import reactIcon from '../../../img/react.svg'
 
-const SkillIcon = ({ skill, onSelectHandler }) => {
+const SkillIcon = ({ skill, onSelectHandler = () => { } }) => {
 
     let icon = null
     let icons = {

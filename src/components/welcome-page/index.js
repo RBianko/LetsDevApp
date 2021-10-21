@@ -1,3 +1,3 @@
-import WeclomePage from "./welcome-page";
+import WelcomePage from "./welcome-page";
 
-export default WeclomePage
+export default WelcomePage

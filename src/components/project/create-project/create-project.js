@@ -5,10 +5,12 @@ import './create-project.css'
 
 import defaultProjectPicture from '../../../img/project.svg'
 import SkillsForm from '../../forms/skills'
+import RolesForm from './../../forms/roles';
 import { addProject } from '../../../redux/modules/projects'
 import { addProjectId } from './../../../redux/modules/user';
 
-const CreateProject = ({ user, skills, addProject, addProjectId }) => {
+
+const CreateProject = ({ user, skills: skillsList, roles: rolesList, addProject, addProjectId }) => {
 
     const history = useHistory()
 
@@ -22,16 +24,20 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
     const [title, setTitle] = useState('')
     const [status, setStatus] = useState('')
     const [description, setDescription] = useState('')
-    const [devs, setDevs] = useState([])
+    const [devs, setDevs] = useState([user])
     const [roles, setRoles] = useState([])
-    const [skillsStack, setSkillsStack] = useState([])
+    const [skills, setSkills] = useState([])
+
+    let devsList = devs.map(dev => `${dev.firstName} (${dev.role})`).join(', ')
+    let rolesStackList = roles.join(', ')
+    let skillsStackList = skills.join(', ')
 
     const event = {
         'title': () => setTitle(titleInput.current.value),
         'status': () => setStatus(statusInput.current.value),
         'devs': () => setDevs(devsInput.current.value),
         'roles': () => setRoles(rolesInput.current.value),
-        'skillsStack': () => setSkillsStack(skillsInput.current.value),
+        'skillsStack': () => setSkills(skillsInput.current.value),
         'description': () => setDescription(descriptionInput.current.value),
     }
 
@@ -47,27 +53,29 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
             description,
             devs,
             roles,
-            skillsStack
+            skills
         }
         addProject(project)
         addProjectId({ title, status })
         clearClickHandler()
-        history.push('/projects')
+
+        history.push('/my-projects')
     }
 
     const clearClickHandler = () => {
         setTitle('')
         setStatus('')
         setDescription('')
-        setDevs([])
+        setDevs([user])
         setRoles([])
-        setSkillsStack([])
+        setSkills([])
     }
 
     return (
         <>
             <div className="container">
-                <SkillsForm setSkills={setSkillsStack} skills={skills} />
+                <SkillsForm setSkills={setSkills} skills={skillsList} />
+                <RolesForm setRoles={setRoles} roles={rolesList} />
                 <div className="profile__card card">
                     <div className="card__header">
                         project.init
@@ -118,10 +126,10 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
                                                 id="devs"
                                                 type="text"
                                                 placeholder="Devs"
-                                                value={devs.join(', ')}
+                                                value={devsList}
                                                 ref={devsInput}
                                                 onChange={() => onChangeHandler('devs')} />
-                                            <button className="btn input_btn" onClick={() => ('')}>Add</button>
+                                            <label className="btn input_btn" htmlFor="modal-toggle_devs">Edit</label>
                                         </div>
                                     </div>
 
@@ -133,10 +141,10 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
                                                 id="role"
                                                 type="text"
                                                 placeholder="Roles"
-                                                value={roles.join(', ')}
+                                                value={rolesStackList}
                                                 ref={rolesInput}
                                                 onChange={() => onChangeHandler('roles')} />
-                                            <button className="btn input_btn" onClick={() => ('')}>Add</button>
+                                            <label className="btn input_btn" htmlFor="modal-toggle_roles">Edit</label>
                                         </div>
                                     </div>
 
@@ -148,10 +156,10 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
                                                 id="skills"
                                                 type="text"
                                                 placeholder="Tech stack"
-                                                value={skillsStack.join(', ')}
+                                                value={skillsStackList}
                                                 ref={skillsInput}
                                                 onChange={() => onChangeHandler('skillsStack')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_skills">Add</label>
+                                            <label className="btn input_btn" htmlFor="modal-toggle_skills">Edit</label>
                                         </div>
                                     </div>
                                 </div>
@@ -186,6 +194,6 @@ const CreateProject = ({ user, skills, addProject, addProjectId }) => {
 }
 
 export default connect(
-    ({ user, skills }) => ({ user, skills }),
+    ({ user, skills, roles }) => ({ user, skills, roles }),
     { addProject, addProjectId }
 )(CreateProject)

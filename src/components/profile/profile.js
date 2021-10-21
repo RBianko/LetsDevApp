@@ -10,9 +10,9 @@ const Profile = ({ user }) => {
         <SkillIcon key={skill} skill={skill} />
     )
 
-    const projectsList = user.projects.map(project =>
+    const projectsList = user.projects.map((project, id) =>
         <ProjectCardSmall
-            key={project.id}
+            key={id}
             title={project.title}
             status={project.status}
         />
@@ -20,7 +20,6 @@ const Profile = ({ user }) => {
 
     let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
     let skillsListContent = skillsList.length > 0 ? skillsList : <p>You have no selected skills</p>
-
 
     let profileFirstName = user.firstName || "New"
     let profileLastName = user.lastName || "User"
