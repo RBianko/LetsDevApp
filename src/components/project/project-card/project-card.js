@@ -24,12 +24,12 @@ const ProjectCard = (props) => {
 
     const devsList = devs.map(dev =>
         <ProfileCard
-            key={dev.userId}
-            dev={dev}
+            key={dev.id}
+            title={'Dev Name'}
         />
     )
 
-    let needListString = needList.join(', ')
+    const needListString = needList.toString(', ')
 
     return (
         <div className="project__card card">
@@ -48,6 +48,7 @@ const ProjectCard = (props) => {
                     </div>
                 </div>
                 <div className="project-content_body">
+
                     <div className="need-list">
                         <h3 className="need-list__title">We need</h3>
                         <span className="need-list__roles">

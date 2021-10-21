@@ -84,14 +84,13 @@
   flex-basis: 100%;
 }
 
-.devs__list {
-  display: flex;
-}
 
 .need-list {
-  display: flex;
-  flex-direction: column;
-}
+  font-size: 1.5rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: var(--highlight-color);
+  margin-bottom: 5px;
 
 .need-list__roles {
   font-size: 1.4rem;
@@ -100,8 +99,16 @@
   color: var(--highlight-color);
 }
 
+.devs__list {
+  display: flex;
+}
+
 .skills_project {
   justify-content: center;
+}
+
+.project__description {
+  margin-bottom: 3%;
 }
 
 .projects__title,
@@ -112,7 +119,7 @@
   line-height: 3rem;
   font-weight: 700;
 }
-
+  
 .projects__list {
   display: flex;
   flex-wrap: wrap;
