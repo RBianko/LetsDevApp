@@ -17,7 +17,7 @@
 .project-content {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 70px;
   align-items: center;
 }
 
@@ -84,16 +84,16 @@
   flex-basis: 100%;
 }
 
+
 .need-list {
   font-size: 1.5rem;
   line-height: 1rem;
   font-weight: 600;
   color: var(--highlight-color);
   margin-bottom: 5px;
-}
 
 .need-list__roles {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 30px;
   color: var(--highlight-color);
@@ -111,10 +111,21 @@
   margin-bottom: 3%;
 }
 
-.description_title,
-.devs_title,
+.projects__title,
+.description__title,
+.devs__title,
 .need-list__title {
   font-size: 2rem;
   line-height: 3rem;
   font-weight: 700;
+}
+  
+.projects__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project__card_small:hover {
+  transform: translateY(-2px);
+  box-shadow: 9px 10px #000;
 }

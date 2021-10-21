@@ -2,48 +2,72 @@ import defaultProjectPicture from '../../img/project.svg'
 
 const ADD_PROJECT = `ADD_PROJECT`
 
-const initialState1 = {
-    list: [
-        {
-            projectId: null,
-            title: null,
-            projectPicture: defaultProjectPicture,
-            status: null,
-            description: null,
-            skills: [],
-            devs: [],
-            needList: [],
-        }
-    ]
-}
+let PROJECT_ID = 0
+
+//         {
+//             id: null,
+//             creator: null,
+//             title: null,
+//             projectPicture: defaultProjectPicture,
+//             status: null,
+//             description: null,
+//             skills: [],
+//             devs: [],
+//             needList: [],
+//         }
+
+
+//         {
+//             id: 1,
+//             title: 'New Project',
+//             projectPicture: defaultProjectPicture,
+//             status: 'Active',
+//             description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
+//             skills: ['CSS', 'HTML', 'JS', 'React'],
+//             devs: [
+//                 {
+//                     userId: 1,
+//                     firstName: 'John',
+//                     role: 'Frontend',
+//                     profilePicture: defaultProfilePicture
+//                 },
+//                 {
+//                     userId: 2,
+//                     firstName: 'Roman',
+//                     role: 'Frontend',
+//                     profilePicture: defaultProfilePicture
+//                 },
+//                 {
+//                     userId: 3,
+//                     firstName: 'Dave',
+//                     role: 'Backend',
+//                     profilePicture: defaultProfilePicture
+//                 },
+//             ],
+//             needList: ['Designer', 'Tester'],
+//         }
 
 const initialState = {
-    list: [
-        {
-            projectId: 1,
-            title: 'New Project',
-            projectPicture: defaultProjectPicture,
-            status: 'Active',
-            description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
-            skills: ['CSS', 'HTML', 'JS', 'React'],
-            devsId: [1, 2, 3],
-            needList: ['Frontend', 'Tester'],
-        }
-    ]
+    list: []
 }
 
 const projectsReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PROJECT:
+            payload.id = PROJECT_ID++
+            payload.projectPicture = payload.projectPicture || defaultProjectPicture
             return { ...state, list: [...state.list, payload] }
         default:
             return state
     }
 }
 
-export const addProjest = () => ({
+export const addProject = (project) => ({
     type: ADD_PROJECT,
-    payload: initialState1
+    payload: project
 })
+
+export const getId = () => PROJECT_ID
+
 
 export default projectsReduser

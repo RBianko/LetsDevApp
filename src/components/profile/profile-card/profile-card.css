@@ -2,6 +2,7 @@
   width: 15%;
   margin-bottom: 3%;
   margin-right: 3%;
+  height: 100%;
   cursor: crosshair;
 }
 
@@ -36,4 +37,19 @@
   font-size: 1.5rem;
   color: var(--highlight-color);
   font-weight: 800;
+}
+
+.project__description {
+  margin-bottom: 3%;
+}
+
+.profile__icon_small {
+  height: 30%;
+  margin-bottom: 10px;
+}
+
+.profile__info_small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

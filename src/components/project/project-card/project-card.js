@@ -12,15 +12,17 @@ const ProjectCard = (props) => {
         status,
         description,
         skills,
-        devsId,
+        devs,
         needList
     } = props.project
 
     const skillsList = skills.map(skill =>
-        <SkillIcon key={skill} skill={skill} />
+        <SkillIcon
+            key={skill}
+            skill={skill} />
     )
 
-    const devsList = devsId.map(dev =>
+    const devsList = devs.map(dev =>
         <ProfileCard
             key={dev.id}
             title={'Dev Name'}
@@ -40,25 +42,27 @@ const ProjectCard = (props) => {
                     </div>
                     <img className="project__picture" src={projectPicture} alt="project" />
                     <div className="project__info">
-                        <span>STACK:</span>
                         <div className="skills-list skills_project">
                             {skillsList}
                         </div>
                     </div>
                 </div>
                 <div className="project-content_body">
+
+                    <div className="need-list">
+                        <h3 className="need-list__title">We need</h3>
+                        <span className="need-list__roles">
+                            {needListString}
+                        </span>
+                    </div>
                     <div className="project__description">
-                        <h3 className="description_title">Description</h3>
-                        <p className="description_text">{description}</p>
+                        <h3 className="description__title">Description</h3>
+                        <p className="description__text">{description}</p>
                     </div>
                     <div className="project__devs">
-                        <h3 className="devs_title">Devs List</h3>
+                        <h3 className="devs__title">Devs List</h3>
                         <div className="devs__list">
                             {devsList}
-                        </div>
-                        <h3 className="need-list__title">We need</h3>
-                        <div className="need-list">
-                            {needListString}
                         </div>
                     </div>
                 </div>

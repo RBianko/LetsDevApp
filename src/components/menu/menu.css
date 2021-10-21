@@ -90,3 +90,12 @@
 .icon_search:hover .links_search {
   display: flex;
 }
+
+.btn_logout {
+  font-size: 18px;
+}
+
+.menu__link_logout {
+  padding: 5px 15px;
+  border-bottom: 4px solid #000;
+}

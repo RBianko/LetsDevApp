@@ -1,0 +1,5 @@
+.modal-skill_selected {
+    transform: translateY(-3px);
+    color: var(--highlight-color);
+    box-shadow: 4px 6px #000;
+}
