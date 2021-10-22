@@ -1,11 +1,13 @@
 import { useState, useCallback, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 
 const storageName = 'userData'
 export const useAuth = () => {
+    const history = useHistory()
     const [token, setToken] = useState(null)
     const [userId, setUserId] = useState(null)
 
-    const login = useCallback((jwt, id) => {
+    const login = useCallback((jwt = null, id = null) => {
         setToken(jwt)
         setUserId(id)
         localStorage.setItem(storageName, JSON.stringify({
@@ -16,6 +18,7 @@ export const useAuth = () => {
     const logout = useCallback(() => {
         setToken(null)
         setUserId(null)
+        history.push('/')
         localStorage.removeItem(storageName)
     }, [])
 

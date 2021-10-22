@@ -4,7 +4,6 @@ import './project-card.css'
 import SkillIcon from '../../style-components/skills-icon'
 import ProfileCard from '../../profile/profile-card'
 
-
 const ProjectCard = (props) => {
     const {
         title,
@@ -25,11 +24,7 @@ const ProjectCard = (props) => {
     const devsList = devs.map(dev =>
         <ProfileCard
             key={dev.userId}
-            firstName={dev.firstName}
-            lastName={dev.lastName}
-            role={dev.role}
-            profilePicture={dev.profilePicture}
-
+            user={dev}
         />
     )
 

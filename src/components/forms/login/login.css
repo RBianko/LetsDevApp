@@ -1,4 +1,4 @@
-#modal-toggle,
+#modal-toggle_login,
 #modal-toggle_devs,
 #modal-toggle_skills,
 #modal-toggle_roles {
@@ -8,10 +8,11 @@
 .modal-content_roles,
 .modal-content_skills,
 .modal-content_devs,
+.modal-content_login,
 .modal-backdrop_roles,
 .modal-backdrop_skills,
 .modal-backdrop_devs,
-.modal-backdrop {
+.modal-backdrop_login {
   opacity: 0;
   position: fixed;
   z-index: -1;
@@ -23,7 +24,7 @@
 .modal-content_roles,
 .modal-content_skills,
 .modal-content_devs,
-.modal-content {
+.modal-content_login {
   top: 0;
   bottom: 0;
   margin: auto;
@@ -40,7 +41,7 @@
   transform: translateY(-125%);
 }
 
-#modal-toggle_login:checked ~ .modal-backdrop,
+#modal-toggle_login:checked ~ .modal-backdrop_login,
 #modal-toggle_roles:checked ~ .modal-backdrop_roles,
 #modal-toggle_devs:checked ~ .modal-backdrop_devs,
 #modal-toggle_skills:checked ~ .modal-backdrop_skills {
@@ -50,7 +51,7 @@
   transform: scale(10);
 }
 
-#modal-toggle_login:checked ~ .modal-content,
+#modal-toggle_login:checked ~ .modal-content_login,
 #modal-toggle_roles:checked ~ .modal-content_roles,
 #modal-toggle_devs:checked ~ .modal-content_devs,
 #modal-toggle_skills:checked ~ .modal-content_skills {
@@ -74,8 +75,9 @@
 .modal__list {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
   overflow-y: scroll;
-  height: 100%;
 }
 
 .modal__buttons {
@@ -86,7 +88,8 @@
 .modal__list-selected {
   margin-top: auto;
   text-align: center;
-  margin: 10px 0;
+  margin-top: auto;
+  margin-bottom: 10px;
   display: flex;
   min-height: 43px;
   width: 80%;
@@ -99,7 +102,7 @@
   margin: 0 10px;
 }
 
-.modal-backdrop,
+.modal-backdrop_login,
 .modal-backdrop_devs,
 .modal-backdrop_skills,
 .modal-backdrop_roles {

@@ -2,15 +2,18 @@ import React from 'react'
 import './profile.css'
 import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
-import { connect } from 'react-redux'
 
-const Profile = ({ user }) => {
+import { useLocation } from "react-router-dom";
 
-    const skillsList = user.skills.map(skill =>
+const UserProfile = _ => {
+
+    const { state } = useLocation();
+
+    const skillsList = state.user.skills.map(skill =>
         <SkillIcon key={skill} skill={skill} />
     )
 
-    const projectsList = user.projects.map((project, id) =>
+    const projectsList = state.user.projects.map((project, id) =>
         <ProjectCardSmall
             key={id}
             title={project.title}
@@ -21,12 +24,12 @@ const Profile = ({ user }) => {
     let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
     let skillsListContent = skillsList.length > 0 ? skillsList : <p>You have no selected skills</p>
 
-    let profileFirstName = user.firstName || "New"
-    let profileLastName = user.lastName || "User"
-    let profileCity = (user.city || "City") + ","
-    let profileCountry = user.country || "Country"
-    let profileRoles = user.roles.join(', ')
-    let profileBio = user.bio || "Something about you."
+    let profileFirstName = state.user.firstName || "New"
+    let profileLastName = state.user.lastName || "User"
+    let profileCity = (state.user.city || "City") + ","
+    let profileCountry = state.user.country || "Country"
+    let profileRoles = state.user.roles.join(', ')
+    let profileBio = state.user.bio || "Something about you."
 
 
 
@@ -40,7 +43,7 @@ const Profile = ({ user }) => {
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
-                                <img className="profile-icon" src={user.profilePicture} alt="profile" />
+                                <img className="profile-icon" src={state.user.profilePicture} alt="profile" />
                             </div>
                             <div className="profile__info">
                                 <p className="profile__info_name">{profileFirstName} {profileLastName}</p>
@@ -70,4 +73,4 @@ const Profile = ({ user }) => {
     )
 }
 
-export default connect(({ user }) => ({ user }))(Profile)
+export default UserProfile

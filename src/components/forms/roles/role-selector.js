@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const RoleSelector = ({ roles, counter, selectRole }) => {
+const RoleSelector = ({ roles, selectRole }) => {
     const rolesOptions = roles.map(role => (
         <option key={role} value={role}>{role}</option>
     ))
@@ -19,13 +19,13 @@ const RoleSelector = ({ roles, counter, selectRole }) => {
 
     return (
         <div className="settings__item">
-            <label className="text-label" htmlFor="status">Role #{counter}</label>
+            <label className="text-label" htmlFor="status">Role</label>
             <select
                 className="text-input"
                 id="role"
                 type="text"
                 placeholder="Role"
-                value={role}
+                value={role || ''}
                 ref={roleOption}
                 onChange={() => onRoleChange()}>
                 <option hidden>Select one...</option>

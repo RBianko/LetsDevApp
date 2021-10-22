@@ -71,7 +71,7 @@ const Menu = ({ user }) => {
                             </NavLink>
                         </li>
                         <li className="menu__link menu__link_logout">
-                            <button className="btn btn_logout" onClick={user.logout}>Log Out</button>
+                            <button className="btn btn_logout" onClick={() => user.logout()}>Log Out</button>
                         </li>
                     </ul>
                 </li>

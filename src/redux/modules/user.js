@@ -21,7 +21,8 @@ const initialState = {
     city: null,
     country: null,
     bio: null,
-    role: [],
+    roles: [],
+    friends: [],
     skills: [],
     projects: [],
     login: () => { },
@@ -51,8 +52,10 @@ const initialState = {
 const userReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_USER:
-            if (payload.token) {
+            if (payload.token && payload.userId) {
                 state.isLogedIn = true
+            } else {
+                state.isLogedIn = false
             }
             return Object.assign(state, payload)
         case EDIT_FIRSTNAME:

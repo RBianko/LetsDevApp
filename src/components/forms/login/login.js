@@ -15,6 +15,8 @@ const Login = ({ user }) => {
         email: '', password: ''
     })
 
+    let [activeForm, setActiveForm] = useState(true)
+
     const singUpChangeHandler = event => {
         setSignUpForm({ ...signUpForm, [event.target.name]: event.target.value })
     }
@@ -38,14 +40,14 @@ const Login = ({ user }) => {
     return (
         <>
             <input id="modal-toggle_login" type="checkbox" />
-            <div className="modal-backdrop" htmlFor="modal-toggle_login" />
-            <div className="modal-content">
+            <div className="modal-backdrop_login" htmlFor="modal-toggle_login" />
+            <div className="modal-content_login">
                 <label className="modal-close-btn" htmlFor="modal-toggle_login">
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
 
                 <div className="tabs">
-                    <input className="radio" id="tab-1" name="tabs-name" type="radio" readOnly />
+                    <input className="radio" id="tab-1" name="tabs-name" type="radio" readOnly checked={activeForm} onClick={() => setActiveForm(activeForm = true)} />
                     <label className="table" htmlFor="tab-1">
                         <span className="tab-title">Login</span>
                     </label>
@@ -64,7 +66,7 @@ const Login = ({ user }) => {
                             </div>
                         </form>
                     </div>
-                    <input className="radio" id="tab-2" name="tabs-name" type="radio" readOnly />
+                    <input className="radio" id="tab-2" name="tabs-name" type="radio" readOnly checked={!activeForm} onClick={() => setActiveForm(activeForm = false)} />
                     <label className="table" htmlFor="tab-2">
                         <span className="tab-title">Sign Up</span>
                     </label>

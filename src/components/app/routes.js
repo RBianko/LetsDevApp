@@ -12,6 +12,7 @@ import Settings from './../profile/settings';
 import Header from './../welcome-page/header';
 import WelcomePage from './../welcome-page';
 import Footer from './../footer';
+import UserProfile from './../profile/user-profile';
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -43,6 +44,11 @@ export const useRoutes = isAuth => {
                     <Route path='/settings' >
                         <Settings />
                     </Route>
+                    <Route
+                        exact
+                        path="/user/:id"
+                        component={UserProfile}
+                    />
                     <Redirect to='/profile' />
                 </Switch>
                 <Footer />

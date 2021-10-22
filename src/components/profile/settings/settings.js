@@ -44,7 +44,8 @@ const Settings = ({
     const [bio, setBio] = useState(user.bio)
     const [roles, setRoles] = useState(user.roles)
     const [skills, setSkills] = useState(user.skills)
-    let showSkillsList = user.skills.join(',')
+    let rolesStackList = roles.join(', ')
+    let skillsStackList = skills.join(', ')
 
     const event = {
         'firstName': () => setFirstName(firstNameInput.current.value),
@@ -79,7 +80,7 @@ const Settings = ({
         setCountry(user.country)
         setBio(user.bio)
         setRoles(user.roles)
-        setSkills(user.skills.join(','))
+        setSkills(user.skills.join(', '))
     }
 
     return (
@@ -371,7 +372,7 @@ const Settings = ({
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="roles">Roles</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="roles" type="text" placeholder="Roles" value={roles} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
+                                            <input className="text-input input_complex" disabled id="roles" type="text" placeholder="Roles" value={rolesStackList} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
                                             <label className="btn input_btn" htmlFor="modal-toggle_roles">Edit</label>
                                         </div>
                                     </div>
@@ -379,7 +380,7 @@ const Settings = ({
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="skills">Skills</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="skills" type="text" placeholder="Skills" value={showSkillsList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
+                                            <input className="text-input input_complex" disabled id="skills" type="text" placeholder="Skills" value={skillsStackList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
                                             <label className="btn input_btn" htmlFor="modal-toggle_skills">Edit</label>
                                         </div>
                                     </div>

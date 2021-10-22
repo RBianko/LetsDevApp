@@ -39,6 +39,7 @@
   font-size: 3rem;
   line-height: 2.5rem;
   font-weight: 700;
+  text-align: center;
   transition: var(--transition-all);
 }
 

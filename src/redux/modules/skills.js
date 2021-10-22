@@ -5,9 +5,18 @@ const initialState = [
     'JS',
     'HTML',
     'React',
+    'Python',
+    'Java',
+    'C++',
+    'С#',
+    'R',
+    'Go',
+    'Swift',
+    'Ruby',
+    'SQL'
 ]
 
-const skillsReduser = (state = initialState, { type, payload }) => {
+const skillsReduser = (state = initialState, { type }) => {
     switch (type) {
         case GET_SKILLS:
             return { ...state }

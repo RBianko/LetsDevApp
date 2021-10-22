@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 import './create-project.css'
 
 import defaultProjectPicture from '../../../img/project.svg'
 import SkillsForm from '../../forms/skills'
-import RolesForm from './../../forms/roles';
+import RolesForm from './../../forms/roles'
 import { addProject } from '../../../redux/modules/projects'
-import { addProjectId } from './../../../redux/modules/user';
+import { addProjectId } from './../../../redux/modules/user'
 
 
-const CreateProject = ({ user, skills: skillsList, roles: rolesList, addProject, addProjectId }) => {
+const CreateProject = ({
+    user,
+    skills: skillsList,
+    roles: rolesList,
+    addProject,
+    addProjectId
+}) => {
 
     const history = useHistory()
 
@@ -28,7 +34,7 @@ const CreateProject = ({ user, skills: skillsList, roles: rolesList, addProject,
     const [roles, setRoles] = useState([])
     const [skills, setSkills] = useState([])
 
-    let devsList = devs.map(dev => `${dev.firstName} (${dev.role})`).join(', ')
+    let devsList = devs.map(dev => `${dev.firstName} (${dev.roles[0]})`).join(', ')
     let rolesStackList = roles.join(', ')
     let skillsStackList = skills.join(', ')
 
@@ -112,25 +118,24 @@ const CreateProject = ({ user, skills: skillsList, roles: rolesList, addProject,
                                             ref={statusInput}
                                             onChange={() => onChangeHandler('status')}>
                                             <option hidden>Select one...</option>
-                                            <option value="startingSoon">Startin Soon</option>
-                                            <option value="active">Active</option>
-                                            <option value="planned">Planned</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Offline">Offline</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Planned">Planned</option>
                                         </select>
                                     </div>
 
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="devs">Devs</label>
-                                        <div className="input__item">
-                                            <input
-                                                className="text-input input_complex" disabled
-                                                id="devs"
-                                                type="text"
-                                                placeholder="Devs"
-                                                value={devsList}
-                                                ref={devsInput}
-                                                onChange={() => onChangeHandler('devs')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_devs">Edit</label>
-                                        </div>
+                                        <input
+                                            className="text-input" disabled
+                                            id="devs"
+                                            type="text"
+                                            placeholder="Devs"
+                                            value={devsList}
+                                            ref={devsInput}
+                                            onChange={() => onChangeHandler('devs')} />
+
                                     </div>
 
                                     <div className="settings__item">
