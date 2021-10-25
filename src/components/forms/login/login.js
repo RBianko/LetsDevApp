@@ -61,8 +61,8 @@ const Login = ({ user }) => {
                             <input id="forgot-password-toggle" type="checkbox" />
                             <label className="forgot-password__link" htmlFor="forgot-password-toggle">forgot password?</label>
                             <div className="forgot-password-content">
-                                <input className="form-input form-input_forgot" type="email" placeholder="enter your email" required />
-                                <button className="form-btn_go btn" type="submit">Go</button>
+                                <input className="form-input form-input_forgot" type="email" placeholder="Enter your email" required />
+                                <button className="form-btn_go btn" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>

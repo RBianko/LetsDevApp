@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useCallback, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 
@@ -18,8 +19,8 @@ export const useAuth = () => {
     const logout = useCallback(() => {
         setToken(null)
         setUserId(null)
-        history.push('/')
         localStorage.removeItem(storageName)
+        history.push('/')
     }, [])
 
     useEffect(() => {

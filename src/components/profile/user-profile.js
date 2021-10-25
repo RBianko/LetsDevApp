@@ -24,10 +24,10 @@ const UserProfile = _ => {
     let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
     let skillsListContent = skillsList.length > 0 ? skillsList : <p>You have no selected skills</p>
 
-    let profileFirstName = state.user.firstName || "New"
-    let profileLastName = state.user.lastName || "User"
-    let profileCity = (state.user.city || "City") + ","
-    let profileCountry = state.user.country || "Country"
+    let profileFirstName = state.user.firstname
+    let profileLastName = state.user.lastName
+    let profileCity = (state.user.city) + ", "
+    let profileCountry = state.user.country
     let profileRoles = state.user.roles.join(', ')
     let profileBio = state.user.bio || "Something about you."
 

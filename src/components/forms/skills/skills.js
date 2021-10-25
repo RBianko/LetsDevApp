@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import './skills.css'
 
 import CloseIcon from '../../../img/xmark.svg'
-import SkillIcon from '../../style-components/skills-icon/skill-icon'
+import SkillSelector from './skill-selector'
 
 const SkillsForm = ({ skills, setSkills }) => {
 
-    const [skillsList, setSkillsList] = useState([])
-    const [isChecked, setIsChecked] = useState(false)
+    let [skillsList, setSkillsList] = useState([])
+    let [counter, setCounter] = useState(0)
+    let [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedSkill) => {
         if (!skillsList.some(skill => skill === selectedSkill)) {
@@ -15,11 +16,13 @@ const SkillsForm = ({ skills, setSkills }) => {
         }
     }
 
-    const skillsGrid = skills.map(skill =>
-        <label className="modal-skill" type="checkbox" key={skill} id={skill}>
-            <SkillIcon key={skill} skill={skill} onSelectHandler={onSelectHandler} />
-        </label>
-    )
+    let skillSelector = () => <SkillSelector key={counter} counter={counter} skills={skills} selectSkill={onSelectHandler} />
+    let [selectList, setSelectList] = useState([skillSelector()])
+
+    const addClickHandler = () => {
+        setCounter(++counter)
+        setSelectList([...selectList, skillSelector()])
+    }
 
     const submitClickHandler = () => {
         setSkills(skillsList)
@@ -28,6 +31,7 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     const clearClickHandler = () => {
         setSkillsList([])
+        setSelectList([skillSelector()])
     }
 
     return (
@@ -39,12 +43,10 @@ const SkillsForm = ({ skills, setSkills }) => {
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
                 <div className="modal-content__body">
-                    <h3 className="modal-title">Technical Skills</h3>
-                    <div className="modal__list">
-                        {skillsGrid}
-                    </div>
-                    <div className="modal__list-selected">
-                        {skillsList.join(', ')}
+                    <h3 className="modal-title">Skills Selection</h3>
+                    <div className="modal__select">
+                        {selectList}
+                        <button className="btn modal-btn" onClick={addClickHandler}>Add more</button>
                     </div>
                     <div className="modal__buttons">
                         <button className="modal-btn btn" onClick={submitClickHandler}>Submit</button>

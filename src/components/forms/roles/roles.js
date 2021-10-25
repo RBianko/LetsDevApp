@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './roles.css'
+
 import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
 
 const RolesForm = ({ roles, setRoles }) => {
 
     let [rolesList, setRolesList] = useState([])
+    let [counter, setCounter] = useState(0)
     let [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedRole) => {
@@ -14,11 +16,12 @@ const RolesForm = ({ roles, setRoles }) => {
         }
     }
 
-    const roleSelector = <RoleSelector key={roles} roles={roles} selectRole={onSelectHandler} />
-    let [selectList, setSelectList] = useState([roleSelector])
+    let roleSelector = () => <RoleSelector key={counter} counter={counter} roles={roles} selectRole={onSelectHandler} />
+    let [selectList, setSelectList] = useState([roleSelector()])
 
     const addClickHandler = () => {
-        setSelectList([...selectList, roleSelector])
+        setCounter(++counter)
+        setSelectList([...selectList, roleSelector()])
     }
 
     const submitClickHandler = () => {
@@ -28,7 +31,7 @@ const RolesForm = ({ roles, setRoles }) => {
 
     const clearClickHandler = () => {
         setRolesList([])
-        setSelectList([roleSelector])
+        setSelectList([roleSelector()])
     }
 
     return (

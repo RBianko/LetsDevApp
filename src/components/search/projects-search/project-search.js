@@ -14,6 +14,8 @@ const ProjectSearch = ({ projects }) => {
             return value
         } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
             return value
+        } else {
+            return value
         }
 
     }).map((project) =>

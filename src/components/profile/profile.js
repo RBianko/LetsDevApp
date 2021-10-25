@@ -4,13 +4,36 @@ import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
 import { connect } from 'react-redux'
 
-const Profile = ({ user }) => {
+const Profile = ({ user, skills: skillsGlobalStack }) => {
+    const {
+        firstName,
+        lastName,
+        city,
+        country,
+        roles,
+        bio,
+        projects,
+        skills,
+        profilePicture
+    } = user
 
-    const skillsList = user.skills.map(skill =>
+    const globalSkills = skills.filter(skill =>
+        skillsGlobalStack.some(stack => stack === skill))
+
+    const otherSkills = skills.filter(skill =>
+        !skillsGlobalStack.some(stack => stack === skill))
+
+    const skillsList = globalSkills.map(skill =>
         <SkillIcon key={skill} skill={skill} />
     )
 
-    const projectsList = user.projects.map((project, id) =>
+    const otherSkillsList = otherSkills.map(skill =>
+        <figure key={skill} className="skill_wrapper">
+            <span>{skill}</span>
+        </figure>
+    )
+
+    const projectsList = projects.map((project, id) =>
         <ProjectCardSmall
             key={id}
             title={project.title}
@@ -20,13 +43,14 @@ const Profile = ({ user }) => {
 
     let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
     let skillsListContent = skillsList.length > 0 ? skillsList : <p>You have no selected skills</p>
+    let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
-    let profileFirstName = user.firstName || "New"
-    let profileLastName = user.lastName || "User"
-    let profileCity = (user.city || "City") + ","
-    let profileCountry = user.country || "Country"
-    let profileRoles = user.roles.join(', ')
-    let profileBio = user.bio || "Something about you."
+    let profileFirstName = firstName || "New"
+    let profileLastName = lastName || "User"
+    let profileCity = (city || "City") + ", "
+    let profileCountry = country || "Country"
+    let profileRoles = roles.join(', ')
+    let profileBio = bio || "Something about you."
 
 
 
@@ -40,14 +64,23 @@ const Profile = ({ user }) => {
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
-                                <img className="profile-icon" src={user.profilePicture} alt="profile" />
+                                <img className="profile-icon" src={profilePicture} alt="profile" />
                             </div>
                             <div className="profile__info">
                                 <p className="profile__info_name">{profileFirstName} {profileLastName}</p>
                                 <p className="profile__info_sity">{profileCity} {profileCountry}</p>
                                 <p className="profile__info_role">{profileRoles}</p>
                                 <div className="skills-list">
-                                    {skillsListContent}
+                                    <div className="skills-grid">
+                                        {skillsListContent}
+                                    </div>
+                                    <div className="skills-other">
+                                        <span>Other Technologies:</span>
+                                        <div className="skills-grid">
+                                            {otherSkillsListContent}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -70,4 +103,4 @@ const Profile = ({ user }) => {
     )
 }
 
-export default connect(({ user }) => ({ user }))(Profile)
+export default connect(({ user, skills }) => ({ user, skills }))(Profile)

@@ -15,7 +15,7 @@ import swiftIcon from '../../../img/swift.svg'
 import rubyIcon from '../../../img/ruby.svg'
 import sqlIcon from '../../../img/sql.png'
 
-const SkillIcon = ({ skill, onSelectHandler = () => { } }) => {
+const SkillIcon = ({ skill }) => {
 
     let icon = null
     let icons = {
@@ -31,18 +31,20 @@ const SkillIcon = ({ skill, onSelectHandler = () => { } }) => {
         'Go': () => { return golangIcon },
         'Swift': () => { return swiftIcon },
         'Ruby': () => { return rubyIcon },
-        'SQL': () => { return sqlIcon },
+        'SQL': () => { return sqlIcon }
     }
 
     if (icons[skill]) {
         icon = icons[skill]()
+    } else {
+        return
     }
 
     return (
-        <button className="skill_wrapper" onClick={() => onSelectHandler(skill)}>
+        <figure className="skill_wrapper">
             <img className="skill-icon" src={icon} alt="css" />
             <span>{skill}</span>
-        </button>
+        </figure>
     )
 }
 

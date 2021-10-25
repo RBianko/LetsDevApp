@@ -9,7 +9,7 @@ import ProfileSearchCard from '../../profile/profile-card/profile-search-card';
 const DevsSearch = ({ users }) => {
 
     const usersList = users.map((user) =>
-        <ProfileSearchCard key={user.id} user={user} />
+        <ProfileSearchCard key={user.userId} user={user} />
     )
 
     return (

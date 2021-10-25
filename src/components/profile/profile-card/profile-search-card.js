@@ -1,10 +1,10 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import './profile-card.css'
 import defaultIcon from '../../../img/users.svg'
 
 const ProfileSearchCard = ({ user }) => {
-    const { firstName, lastName, roles, profilePicture, userId } = user
+    const { firstName, lastName, roles, profilePicture } = user
     // const history = useHistory()
 
     // const goToUserPage = () => {

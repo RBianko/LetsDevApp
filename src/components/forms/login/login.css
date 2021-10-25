@@ -19,6 +19,10 @@
   overflow: hidden;
   cursor: pointer;
   transition: var(--transition-all);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-content_roles,
@@ -30,9 +34,8 @@
   margin: auto;
   left: 0;
   right: 0;
-  height: 550px;
-  max-height: 98%;
-  width: 70%;
+  max-height: 550px;
+  width: fit-content;
   max-width: 600px;
   border: 3px solid #000;
   border-radius: 4px;
@@ -118,6 +121,7 @@
 .modal-close-btn {
   display: inline-block;
   margin-bottom: 10px;
+  align-self: flex-end;
 }
 
 .close-btn_icon {
@@ -146,14 +150,15 @@
 
 .tabs {
   display: flex;
+  width: 90%;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   margin-top: 10px;
+  justify-content: space-between;
 }
 
 .table {
   order: -1;
-  flex-basis: 46%;
+  flex-basis: 48%;
   flex-shrink: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,7 +167,7 @@
 }
 
 .tabs-content {
-  margin-top: 30px;
+  margin-top: 2%;
   width: 100%;
   display: none;
 }
@@ -205,9 +210,9 @@
 }
 
 .form-input {
-  width: 90%;
+  width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 2% 0;
   border: none;
   font-size: 18px;
   letter-spacing: 1px;
@@ -224,7 +229,7 @@
 
 .form-btn {
   padding: 15px 0;
-  margin-top: 10px;
+  margin-top: 2%;
   width: 70%;
   background: var(--background-color);
   font-size: 1.3rem;
@@ -239,10 +244,9 @@
 }
 
 .forgot-password__link {
-  margin-top: 10px;
+  margin-top: 2%;
   width: 160px;
   display: block;
-  margin-bottom: 10px;
   transition: var(--transition-all);
 }
 
@@ -259,6 +263,7 @@
   height: 0;
   width: 0;
   opacity: 0;
+  width: 100%;
   visibility: hidden;
   overflow: hidden;
   cursor: pointer;
@@ -267,7 +272,7 @@
 
 .form-input_forgot {
   width: 80%;
-  margin-right: 15px;
+  margin-right: 2%;
 }
 
 .forgot-password {
@@ -279,7 +284,6 @@
 #forgot-password-toggle:checked ~ .forgot-password-content {
   display: flex;
   opacity: 1;
-  width: 90%;
   height: 100%;
   z-index: 999;
   pointer-events: auto;
