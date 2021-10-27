@@ -1,5 +1,10 @@
 import defaultProfilePicture from '../../img/users.svg'
-// import ProfilePicture from '../../img/administrator.svg'
+
+// firstName: null,
+// lastName: null,
+// city: null,
+// country: null,
+// bio: null,
 
 const SET_USER = `SET_USER`
 const EDIT_FIRSTNAME = `EDIT_FIRSTNAME`
@@ -15,12 +20,7 @@ const initialState = {
     userId: null,
     token: null,
     isLogedIn: false,
-    firstName: 'New',
-    lastName: 'User',
     profilePicture: defaultProfilePicture,
-    city: 'City',
-    country: 'Country',
-    bio: 'some information',
     roles: [],
     friends: [],
     skills: [],

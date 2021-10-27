@@ -25,7 +25,7 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
                 id="role"
                 type="text"
                 placeholder="Role"
-                value={role || ''}
+                value={role}
                 ref={roleOption}
                 onChange={() => onRoleChange()}>
                 <option hidden>Select one...</option>

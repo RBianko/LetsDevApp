@@ -3,15 +3,16 @@ import './profile.css'
 import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
 import { connect } from 'react-redux'
+import OtherSkill from '../style-components/skills-icon/other-skill'
 
 const Profile = ({ user, skills: skillsGlobalStack }) => {
     const {
-        firstName,
-        lastName,
-        city,
-        country,
+        firstName = "New",
+        lastName = "User",
+        city = "City",
+        country = "Country",
+        bio = "Something about me.",
         roles,
-        bio,
         projects,
         skills,
         profilePicture
@@ -23,15 +24,11 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     const otherSkills = skills.filter(skill =>
         !skillsGlobalStack.some(stack => stack === skill))
 
-    const skillsList = globalSkills.map(skill =>
-        <SkillIcon key={skill} skill={skill} />
-    )
+    const globalSkillsList = globalSkills.map(skill =>
+        <SkillIcon key={skill} skill={skill} />)
 
     const otherSkillsList = otherSkills.map(skill =>
-        <figure key={skill} className="skill_wrapper">
-            <span>{skill}</span>
-        </figure>
-    )
+        <OtherSkill key={skill} skill={skill} />)
 
     const projectsList = projects.map((project, id) =>
         <ProjectCardSmall
@@ -42,17 +39,15 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     )
 
     let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
-    let skillsListContent = skillsList.length > 0 ? skillsList : <p>You have no selected skills</p>
+
+    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
+    let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+
+    let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
     let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
-    let profileFirstName = firstName || "New"
-    let profileLastName = lastName || "User"
-    let profileCity = (city || "City") + ", "
-    let profileCountry = country || "Country"
+    let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
-    let profileBio = bio || "Something about you."
-
-
 
     return (
         <>
@@ -67,15 +62,16 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
                                 <img className="profile-icon" src={profilePicture} alt="profile" />
                             </div>
                             <div className="profile__info">
-                                <p className="profile__info_name">{profileFirstName} {profileLastName}</p>
-                                <p className="profile__info_sity">{profileCity} {profileCountry}</p>
+                                <p className="profile__info_name">{firstName} {lastName}</p>
+                                <p className="profile__info_sity">{profileLocation}</p>
                                 <p className="profile__info_role">{profileRoles}</p>
                                 <div className="skills-list">
+                                    {noSkillsString}
                                     <div className="skills-grid">
-                                        {skillsListContent}
+                                        {globalSkillsListContent}
                                     </div>
                                     <div className="skills-other">
-                                        <span>Other Technologies:</span>
+                                        {otherSkillsTitle}
                                         <div className="skills-grid">
                                             {otherSkillsListContent}
                                         </div>
@@ -87,7 +83,7 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
                         <div className="profile-content_body">
                             <div className="profile__description">
                                 <h3 className="description_title">Bio</h3>
-                                <p className="description_text">{profileBio}</p>
+                                <p className="description_text">{bio}</p>
                             </div>
                             <div className="profile__projects">
                                 <h3 className="projects__title">Projects List</h3>

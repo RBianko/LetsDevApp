@@ -11,10 +11,15 @@ const SkillsForm = ({ skills, setSkills }) => {
     let [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedSkill) => {
-        if (!skillsList.some(skill => skill === selectedSkill)) {
-            setSkillsList([...skillsList, selectedSkill])
+        if (selectedSkill) {
+            let newSkill = !skillsList.some(skill => skill === selectedSkill)
+            if (newSkill) {
+                setSkillsList([...skillsList, selectedSkill])
+            }
         }
     }
+
+
 
     let skillSelector = () => <SkillSelector key={counter} counter={counter} skills={skills} selectSkill={onSelectHandler} />
     let [selectList, setSelectList] = useState([skillSelector()])

@@ -6,7 +6,6 @@ import ProfileCard from './../profile/profile-card';
 
 
 const FriendList = ({ friends }) => {
-
     const friendsList = friends.map((user) =>
         <ProfileCard key={user.id} user={user} />
     )
