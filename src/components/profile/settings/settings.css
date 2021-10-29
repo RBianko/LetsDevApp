@@ -47,29 +47,6 @@
   transform: translateY(-3px);
 }
 
-.text-input {
-  padding: 5px;
-  font-size: 1rem;
-  white-space: normal;
-}
-
-.input_complex {
-  width: 70%;
-}
-
-.text-label {
-  font-size: 0.8rem;
-  padding: 2px;
-  letter-spacing: 1px;
-  line-height: 0.1;
-  margin-bottom: -3px;
-  z-index: 10;
-  margin-left: 5px;
-  background-color: #fff;
-  width: fit-content;
-  color: var(--background-color-dark);
-}
-
 .picture-label {
   text-align: center;
   font-size: 1rem;
@@ -77,28 +54,8 @@
   letter-spacing: 1px;
 }
 
-.textarea-input {
-  width: 100%;
-  height: 180px;
-  padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 5px;
-  resize: none;
-}
-
-.input_btn {
-  display: inline-block;
-  width: 30%;
-}
-
-.input__item {
+.settings-socials__list {
   display: flex;
+  height: 40px;
   width: 100%;
-}
-
-.input_complex:disabled {
-  background-color: inherit;
-  color: inherit;
-  border: 1px solid rgb(133, 133, 133);
-  border-radius: 3px;
 }

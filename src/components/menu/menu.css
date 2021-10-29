@@ -63,7 +63,7 @@
 
 .menu-icon:hover,
 .menu__link:hover {
-  background-color: #757575;
+  background-color: var(--background-color-mid-dark);
 }
 
 .link-icon {

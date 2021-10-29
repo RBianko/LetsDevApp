@@ -1,12 +1,16 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
 import './menu.css'
+
+import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'
 import SearchIcon from '../../img/search.svg'
 import ChatIcon from '../../img/chat.svg'
 import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
-import { NavLink } from "react-router-dom";
-import { connect } from 'react-redux';
+import Button from '../style-components/button';
+
 
 const Menu = ({ user }) => {
     return (
@@ -14,64 +18,64 @@ const Menu = ({ user }) => {
             <ul className="menu__icons">
                 <li className="menu-icon">
                     <NavLink to="/profile">
-                        <img className="link-icon" src={ProfileIcon} alt="profile" />
+                        <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
                     </NavLink>
                 </li>
                 <li className="menu-icon icon_project">
-                    <img className="link-icon" src={ProjectIcon} alt="project-menu" />
+                    <Icon className={'link-icon'} alt={'project-menu'} src={ProjectIcon} />
                     <ul className="links__list links_project">
-                        <NavLink to="/my-projects">
-                            <li className="menu__link">
-                                <span>My Projects</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/create-project">
-                            <li className="menu__link">
-                                <span>Create Project</span>
-                            </li>
-                        </NavLink>
+                        <li className="menu__link">
+                            <NavLink to="/my-projects">
+                                <span className="link__title">My Projects</span>
+                            </NavLink>
+                        </li>
+                        <li className="menu__link">
+                            <NavLink to="/create-project">
+                                <span className="link__title">Create Project</span>
+                            </NavLink>
+                        </li>
                     </ul>
                 </li>
                 <li className="menu-icon icon_search">
-                    <img className="link-icon" src={SearchIcon} alt="search-menu" />
+                    <Icon className={'link-icon'} alt={'search-menu'} src={SearchIcon} />
                     <ul className="links__list links_search">
                         <li className="menu__link">
                             <NavLink to="/search-projects">
-                                <span>Search for Projects</span>
+                                <span className="link__title">Search for Projects</span>
                             </NavLink>
                         </li>
                         <li className="menu__link">
                             <NavLink to="/search-devs">
-                                <span>Search for Dev's</span>
+                                <span className="link__title">Search for Dev's</span>
                             </NavLink>
                         </li>
                     </ul>
                 </li>
                 <li className="menu-icon icon_messages">
-                    <img className="link-icon" src={ChatIcon} alt="chat-menu" />
+                    <Icon className={'link-icon'} alt={'chat-menu'} src={ChatIcon} />
                     <ul className="links__list links_messages">
                         <li className="menu__link">
                             <NavLink to="/messages">
-                                <span>Messages</span>
+                                <span className="link__title">Messages</span>
                             </NavLink>
                         </li>
                         <li className="menu__link">
                             <NavLink to="/friend-list">
-                                <span>Friends</span>
+                                <span className="link__title">Friends</span>
                             </NavLink>
                         </li>
                     </ul>
                 </li>
                 <li className="menu-icon icon_settings">
-                    <img className="link-icon" src={SettingsIcon} alt="settings-menu" />
+                    <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
                     <ul className="links__list links_settings">
                         <li className="menu__link">
                             <NavLink to="/settings">
-                                <span>Settings</span>
+                                <span className="link__title">Settings</span>
                             </NavLink>
                         </li>
                         <li className="menu__link menu__link_logout">
-                            <button className="btn btn_logout" onClick={() => user.logout()}>Log Out</button>
+                            <Button subClass="btn_logout" onClick={() => user.logout()} text={'Log Out'} />
                         </li>
                     </ul>
                 </li>

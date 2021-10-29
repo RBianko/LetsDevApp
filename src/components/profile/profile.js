@@ -4,6 +4,7 @@ import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
 import { connect } from 'react-redux'
 import OtherSkill from '../style-components/skills-icon/other-skill'
+import SocialLink from './../style-components/social-link';
 
 const Profile = ({ user, skills: skillsGlobalStack }) => {
     const {
@@ -15,6 +16,7 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
         roles,
         projects,
         skills,
+        socials,
         profilePicture
     } = user
 
@@ -30,11 +32,15 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     const otherSkillsList = otherSkills.map(skill =>
         <OtherSkill key={skill} skill={skill} />)
 
+    const socialsList = socials.map(social =>
+        <SocialLink link={social.link} media={social.name} />
+    )
     const projectsList = projects.map((project, id) =>
         <ProjectCardSmall
-            key={id}
+            key={`${project.id}-${id}`}
             title={project.title}
             status={project.status}
+            picture={project.picture}
         />
     )
 
@@ -60,6 +66,16 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={profilePicture} alt="profile" />
+                                <div className="profile__socials">
+                                    <span className="socials__title">Contact me:</span>
+                                    <div className="socials__list">
+                                        <SocialLink link="#" media="vk" />
+                                        <SocialLink link="#" media="facebook" />
+                                        <SocialLink link="#" media="linkedin" />
+                                        <SocialLink link="#" media="github" />
+                                    </div>
+                                </div>
+
                             </div>
                             <div className="profile__info">
                                 <p className="profile__info_name">{firstName} {lastName}</p>

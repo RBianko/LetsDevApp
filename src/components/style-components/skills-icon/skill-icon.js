@@ -42,7 +42,7 @@ const SkillIcon = ({ skill }) => {
 
     return (
         <figure className="skill_wrapper">
-            <img className="skill-icon" src={icon} alt="css" />
+            <img className="skill-icon" src={icon} alt={skill} />
             <span>{skill}</span>
         </figure>
     )

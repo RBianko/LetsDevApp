@@ -7,7 +7,7 @@ import ProfileCard from '../../profile/profile-card'
 const ProjectCard = (props) => {
     const {
         title,
-        projectPicture,
+        picture,
         status,
         description,
         skills,
@@ -39,7 +39,7 @@ const ProjectCard = (props) => {
                         <span className="project-info__title">{title}</span>
                         <span className="project-info__status">{status}</span>
                     </div>
-                    <img className="project__picture" src={projectPicture} alt="project" />
+                    <img className="project__picture" src={picture} alt="project" />
                     <div className="project__info">
                         <div className="skills-list skills_project">
                             {skillsList}

@@ -5,6 +5,8 @@ import defaultIcon from '../../../img/users.svg'
 
 const ProfileCard = ({ user }) => {
     const { firstName, lastName, roles, profilePicture } = user
+    let rolesList = roles.join(', ')
+
     // const history = useHistory()
 
     // const goToUserPage = () => {
@@ -23,7 +25,7 @@ const ProfileCard = ({ user }) => {
                 <img className="profile__icon_small" src={profilePicture || defaultIcon} alt="profile" />
                 <div className="profile__info">
                     <span className="profile__info_name-small">{firstName} {lastName}</span>
-                    <span className="profile__info_role-small">{roles.join(', ')}</span>
+                    <span className="profile__info_role-small">{rolesList}</span>
                 </div>
             </div>
         </div>

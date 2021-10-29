@@ -26,10 +26,12 @@ const CreateProject = ({
     const rolesInput = React.createRef()
     const skillsInput = React.createRef()
     const descriptionInput = React.createRef()
+    const pictureUpload = React.createRef()
 
     const [title, setTitle] = useState('')
     const [status, setStatus] = useState('')
     const [description, setDescription] = useState('')
+    const [picture, setPicture] = useState(defaultProjectPicture)
     const [devs, setDevs] = useState([user])
     const [roles, setRoles] = useState([])
     const [skills, setSkills] = useState([])
@@ -45,6 +47,7 @@ const CreateProject = ({
         'roles': () => setRoles(rolesInput.current.value),
         'skillsStack': () => setSkills(skillsInput.current.value),
         'description': () => setDescription(descriptionInput.current.value),
+        'picture': () => setPicture(pictureUpload.current.value),
     }
 
     const onChangeHandler = target => {
@@ -55,6 +58,7 @@ const CreateProject = ({
         let project = {
             title,
             creator: user.userId,
+            picture,
             status,
             description,
             devs,
@@ -62,7 +66,7 @@ const CreateProject = ({
             skills
         }
         addProject(project)
-        addProjectId({ title, status })
+        addProjectId({ title, status, picture })
         clearClickHandler()
 
         history.push('/my-projects')
@@ -89,9 +93,9 @@ const CreateProject = ({
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
-                                <img className="profile-icon" src={defaultProjectPicture} alt="profile" />
+                                <img className="profile-icon" src={picture} alt="project" />
                                 <label className="picture-label" htmlFor="profilePicture">Project picture:</label>
-                                <input className="text-input btn" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
+                                <input className="text-input btn" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" ref={pictureUpload} onChange={() => onChangeHandler('picture')} />
                             </div>
                             <div className="profile__info">
                                 <div className="settings-field">

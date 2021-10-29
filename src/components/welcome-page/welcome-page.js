@@ -1,7 +1,9 @@
 import React from 'react'
+import './welcome-page.css'
+
 import Login from '../forms/login'
 import ArrowIcon from '../style-components/arrow-icon'
-import './welcome-page.css'
+import IconButton from './../style-components/icon-button';
 
 const WelcomePage = () => {
     return (
@@ -15,7 +17,12 @@ const WelcomePage = () => {
                     <p className="welcome-page__text">Fin<span className="highlight-letter">D</span> your zen</p>
                     <p className="welcome-page__text">G<span className="highlight-letter">e</span>t mo<span className="highlight-letter">v</span>ing</p>
                     <p className="welcome-page__text">Share<span className="highlight-letter">.</span></p>
-                    <label className="btn_get-started btn" htmlFor="modal-toggle_login">Get Started <ArrowIcon /></label>
+                    <IconButton
+                        className={'btn_get-started btn'}
+                        htmlFor={'modal-toggle_login'}
+                        text={'Get Started'}
+                        child={<ArrowIcon />}
+                    />
                 </div>
             </div>
         </>

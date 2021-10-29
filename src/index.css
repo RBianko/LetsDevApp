@@ -26,6 +26,7 @@ a {
   --background-color: #cccccc;
   --background-color-darken: #a0a0a0;
   --background-color-dark: rgb(65, 65, 65);
+  --background-color-mid-dark: rgb(94, 94, 94);
   --background-color-lighter: #eeeeee;
   --border-color: #9f9f9f;
   --transition-all: all 200ms ease-in-out, color 150ms ease;

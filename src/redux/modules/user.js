@@ -25,6 +25,7 @@ const initialState = {
     friends: [],
     skills: [],
     projects: [],
+    socials: [],
     login: () => { },
     logout: () => { }
 }

@@ -29,10 +29,8 @@ const SkillSelector = ({ skills, selectSkill, counter }) => {
                 list="skills"
                 value={skill || ''}
                 ref={skillOption}
-                onChange={() => onSkillChange()}>
-            </input>
+                onChange={() => onSkillChange()} />
             <datalist id="skills" >
-                <option hidden>Select one...</option>
                 {skillsOptions}
             </datalist>
         </div >

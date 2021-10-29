@@ -5,7 +5,7 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
         <option key={role} value={role}>{role}</option>
     ))
 
-    const [role, setRole] = useState(null)
+    const [role, setRole] = useState('')
 
     const roleOption = React.createRef()
 
@@ -28,7 +28,7 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
                 value={role}
                 ref={roleOption}
                 onChange={() => onRoleChange()}>
-                <option hidden>Select one...</option>
+                <option hidden value={''}>Select One...</option>
                 {rolesOptions}
             </select>
         </div >

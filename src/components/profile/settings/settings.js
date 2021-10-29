@@ -14,6 +14,14 @@ import { useHistory } from 'react-router-dom';
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
 import CountryDatalist from './country-datalist';
+import Button from './../../style-components/button';
+import IconButton from './../../style-components/icon-button';
+import Input from './../../style-components/input';
+import SocialLink from './../../style-components/social-link';
+import Icon from './../../style-components/icon/index';
+
+import vkIcon from '../../../img/vk.svg'
+
 
 const Settings = ({
     user,
@@ -27,7 +35,16 @@ const Settings = ({
     editRoles,
     editSkills
 }) => {
-
+    const {
+        firstName = '',
+        lastName = '',
+        city = '',
+        country = '',
+        bio = '',
+        roles,
+        skills,
+        profilePicture
+    } = user
     const history = useHistory()
 
     const firstNameInput = React.createRef()
@@ -38,15 +55,15 @@ const Settings = ({
     const rolesInput = React.createRef()
     const skillsInput = React.createRef()
 
-    const [firstName, setFirstName] = useState(user.firstName)
-    const [lastName, setLastName] = useState(user.lastName)
-    const [city, setCity] = useState(user.city)
-    const [country, setCountry] = useState(user.country)
-    const [bio, setBio] = useState(user.bio)
-    const [roles, setRoles] = useState(user.roles)
-    const [skills, setSkills] = useState(user.skills)
-    let rolesStackList = roles.join(', ')
-    let skillsStackList = skills.join(', ')
+    const [editedFirstName, setFirstName] = useState(firstName)
+    const [editedLastName, setLastName] = useState(lastName)
+    const [editedCity, setCity] = useState(city)
+    const [editedCountry, setCountry] = useState(country)
+    const [editedBio, setBio] = useState(bio)
+    const [editedRoles, setRoles] = useState([...roles])
+    const [editedSkills, setSkills] = useState([...skills])
+    let rolesStackList = editedRoles.join(', ')
+    let skillsStackList = editedSkills.join(', ')
 
     const event = {
         'firstName': () => setFirstName(firstNameInput.current.value),
@@ -63,25 +80,25 @@ const Settings = ({
     }
 
     const updateClickHandler = () => {
-        editFirstName(firstName)
-        editLastName(lastName)
-        editCity(city)
-        editCountry(country)
-        editBio(bio)
-        editRoles(roles)
-        editSkills(skills)
+        editFirstName(editedFirstName)
+        editLastName(editedLastName)
+        editCity(editedCity)
+        editCountry(editedCountry)
+        editBio(editedBio)
+        editRoles(editedRoles)
+        editSkills(editedSkills)
 
         history.push('/profile')
     }
 
     const cancelClickHandler = () => {
-        setFirstName(user.firstName)
-        setLastName(user.lastName)
-        setCity(user.city)
-        setCountry(user.country)
-        setBio(user.bio)
-        setRoles(user.roles)
-        setSkills(user.skills.join(', '))
+        setFirstName(firstName)
+        setLastName(lastName)
+        setCity(city)
+        setCountry(country)
+        setBio(bio)
+        setRoles(roles)
+        setSkills(skills)
     }
 
     return (
@@ -96,46 +113,71 @@ const Settings = ({
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
-                                <img className="profile-icon" src={user.profilePicture} alt="profile" />
+                                <img className="profile-icon" src={profilePicture} alt="profile" />
                                 <label className="picture-label" htmlFor="profilePicture">Profile picture:</label>
                                 <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
                             </div>
                             <div className="profile__info">
                                 <div className="settings-field">
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="firstname">First Name</label>
-                                        <input className="text-input" id="firstname" type="text" placeholder="First Name" value={firstName} ref={firstNameInput} onChange={() => onChangeHandler('firstName')} />
+                                        <Input id="firstname" type="text" placeholder="First Name" value={editedFirstName} ref={firstNameInput} onChange={() => onChangeHandler('firstName')} />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="lastName">Last Name</label>
-                                        <input className="text-input" id="lastName" type="text" placeholder="Last Name" value={lastName} ref={lastNameInput} onChange={() => onChangeHandler('lastName')} />
+                                        <Input id="lastName" type="text" placeholder="Last Name" value={editedLastName} ref={lastNameInput} onChange={() => onChangeHandler('lastName')} />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="city">City</label>
-                                        <input className="text-input" id="city" type="text" placeholder="City" value={city} ref={cityInput} onChange={() => onChangeHandler('city')} />
+                                        <Input id="city" type="text" placeholder="City" value={editedCity} ref={cityInput} onChange={() => onChangeHandler('city')} />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="country">Country</label>
-                                        <input className="text-input" autoComplete="on" placeholder="Country" list="country" value={country} ref={countryInput} onChange={() => onChangeHandler('country')} />
+                                        <input
+                                            autoComplete="on"
+                                            className="text-input"
+                                            id="skill"
+                                            type="text"
+                                            placeholder="Skill"
+                                            list="country"
+                                            value={editedCountry}
+                                            ref={countryInput}
+                                            onChange={() => onChangeHandler('country')} />
                                         <CountryDatalist />
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="roles">Roles</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="roles" type="text" placeholder="Roles" value={rolesStackList} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_roles">Edit</label>
+                                            <Input id="roles" type="text" disabled={true} placeholder="Roles" value={rolesStackList} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
+                                            <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_roles'} text={'Edit'} />
                                         </div>
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="skills">Skills</label>
                                         <div className="input__item">
-                                            <input className="text-input input_complex" disabled id="skills" type="text" placeholder="Skills" value={skillsStackList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_skills">Edit</label>
+                                            <Input id="skills" type="text" disabled={true} placeholder="Skills" value={skillsStackList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
+                                            <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Edit'} />
+                                        </div>
+                                    </div>
+
+                                    <div className="settings__item">
+                                        <label className="picture-label">add socials:</label>
+                                        <div className="settings-socials__list">
+                                            <div className="input__item">
+                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
+                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
+                                            </div>
+                                            <div className="input__item">
+                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
+                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
+                                            </div>
+                                            <div className="input__item">
+                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
+                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
+                                            </div>
+                                            <div className="input__item">
+                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
+                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
+                                            </div>
                                         </div>
                                     </div>
 
@@ -145,16 +187,12 @@ const Settings = ({
                         <div className="profile-content_body">
                             <div className="profile__description">
                                 <h3 className="description_title">Bio</h3>
-                                <textarea className="textarea-input" type="text" placeholder="Bio" value={bio} ref={bioInput} onChange={() => onChangeHandler('bio')} />
+                                <textarea className="textarea-input" type="text" placeholder="Bio" value={editedBio} ref={bioInput} onChange={() => onChangeHandler('bio')} />
                             </div>
                         </div>
                         <div className="settings__buttons">
-                            <button className="btn settings_btn" onClick={() => updateClickHandler()}>
-                                Update
-                            </button>
-                            <button className="btn settings_btn" onClick={() => cancelClickHandler()}>
-                                Cancel changes
-                            </button>
+                            <Button subClass="settings_btn" onClick={() => updateClickHandler()} text={'Update'} />
+                            <Button subClass="settings_btn" onClick={() => cancelClickHandler()} text={'Cancel changes'} />
                         </div>
                     </div>
                 </div>

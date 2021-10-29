@@ -12,8 +12,8 @@ const RolesForm = ({ roles, setRoles }) => {
 
     const onSelectHandler = (selectedRole) => {
         if (selectedRole) {
-            let newRole = !rolesList.some(role => role === selectedRole)
-            if (newRole) {
+            let newRole = rolesList.some(role => role === selectedRole)
+            if (!newRole) {
                 setRolesList([...rolesList, selectedRole])
             }
         }

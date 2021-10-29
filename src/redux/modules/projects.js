@@ -1,5 +1,3 @@
-import defaultProjectPicture from '../../img/project.svg'
-
 const ADD_PROJECT = `ADD_PROJECT`
 
 let PROJECT_ID = 0
@@ -8,7 +6,7 @@ let PROJECT_ID = 0
 //             id: null,
 //             creator: null,
 //             title: null,
-//             projectPicture: defaultProjectPicture,
+//             picture: defaultProjectPicture,
 //             status: null,
 //             description: null,
 //             skills: [],
@@ -55,8 +53,8 @@ const projectsReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PROJECT:
             payload.id = PROJECT_ID++
-            payload.projectPicture = payload.projectPicture || defaultProjectPicture
-            return { ...state, list: [...state.list, payload] }
+            let newList = [...state.list, payload]
+            return { ...state, list: newList }
         default:
             return state
     }

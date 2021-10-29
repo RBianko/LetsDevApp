@@ -1,7 +1,7 @@
 import React from 'react'
 import './header.css'
-import LoginBtn from '../login-btn/login-btn';
 import Logo from '../../style-components/logo';
+import IconButton from './../../style-components/icon-button';
 
 
 const Header = () => {
@@ -9,7 +9,11 @@ const Header = () => {
         <div className="header-wrapper">
             <div className="header">
                 <Logo />
-                <LoginBtn />
+                <IconButton
+                    className={'btn_login btn'}
+                    htmlFor={'modal-toggle_login'}
+                    text={'Login'}
+                />
             </div>
         </div>
     )
