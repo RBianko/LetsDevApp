@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import './settings.css'
+
 import {
     editFirstName,
     editLastName,
@@ -7,20 +10,25 @@ import {
     editCountry,
     editBio,
     editRoles,
-    editSkills
+    editSkills,
+    editSocialVk,
+    editSocialFacebook,
+    editSocialLinkedin,
+    editSocialGithub,
 } from '../../../redux/modules/user'
-import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
 import CountryDatalist from './country-datalist';
 import Button from './../../style-components/button';
 import IconButton from './../../style-components/icon-button';
 import Input from './../../style-components/input';
-import SocialLink from './../../style-components/social-link';
 import Icon from './../../style-components/icon/index';
 
 import vkIcon from '../../../img/vk.svg'
+import githubIcon from '../../../img/github.svg'
+import facebookIcon from '../../../img/facebook.svg'
+import linkedinIcon from '../../../img/linkedin.svg'
 
 
 const Settings = ({
@@ -33,7 +41,11 @@ const Settings = ({
     editCountry,
     editBio,
     editRoles,
-    editSkills
+    editSocialVk,
+    editSocialFacebook,
+    editSocialLinkedin,
+    editSocialGithub,
+    editSkills,
 }) => {
     const {
         firstName = '',
@@ -43,8 +55,17 @@ const Settings = ({
         bio = '',
         roles,
         skills,
-        profilePicture
+        profilePicture,
+        socials
     } = user
+
+    const {
+        vk = '',
+        facebook = '',
+        linkedin = '',
+        github = '',
+    } = socials
+
     const history = useHistory()
 
     const firstNameInput = React.createRef()
@@ -54,6 +75,10 @@ const Settings = ({
     const bioInput = React.createRef()
     const rolesInput = React.createRef()
     const skillsInput = React.createRef()
+    const vkInput = React.createRef()
+    const facebookInput = React.createRef()
+    const linkedinInput = React.createRef()
+    const githubInput = React.createRef()
 
     const [editedFirstName, setFirstName] = useState(firstName)
     const [editedLastName, setLastName] = useState(lastName)
@@ -62,6 +87,10 @@ const Settings = ({
     const [editedBio, setBio] = useState(bio)
     const [editedRoles, setRoles] = useState([...roles])
     const [editedSkills, setSkills] = useState([...skills])
+    const [editedVk, setVk] = useState(vk)
+    const [editedFacebook, setFacebook] = useState(facebook)
+    const [editedLinkedin, setLinkedin] = useState(linkedin)
+    const [editedGithub, setGithub] = useState(github)
     let rolesStackList = editedRoles.join(', ')
     let skillsStackList = editedSkills.join(', ')
 
@@ -73,6 +102,10 @@ const Settings = ({
         'bio': () => setBio(bioInput.current.value),
         'roles': () => setRoles(rolesInput.current.value),
         'skills': () => setSkills(skillsInput.current.value),
+        'vk': () => setVk(vkInput.current.value),
+        'facebook': () => setFacebook(facebookInput.current.value),
+        'linkedin': () => setLinkedin(linkedinInput.current.value),
+        'github': () => setGithub(githubInput.current.value),
     }
 
     const onChangeHandler = target => {
@@ -87,6 +120,10 @@ const Settings = ({
         editBio(editedBio)
         editRoles(editedRoles)
         editSkills(editedSkills)
+        editSocialVk(editedVk)
+        editSocialFacebook(editedFacebook)
+        editSocialLinkedin(editedLinkedin)
+        editSocialGithub(editedGithub)
 
         history.push('/profile')
     }
@@ -99,6 +136,10 @@ const Settings = ({
         setBio(bio)
         setRoles(roles)
         setSkills(skills)
+        setVk(socials.vk)
+        setFacebook(socials.facebook)
+        setLinkedin(socials.linkedin)
+        setGithub(socials.github)
     }
 
     return (
@@ -110,14 +151,15 @@ const Settings = ({
                     <div className="card__header">
                         settings.cfg
                     </div>
-                    <div className="card__content profile-content">
+                    <form className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={profilePicture} alt="profile" />
-                                <label className="picture-label" htmlFor="profilePicture">Profile picture:</label>
+                                <label className="title-label" htmlFor="profilePicture">Profile picture:</label>
                                 <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
                             </div>
                             <div className="profile__info">
+                                <label className="title-label" htmlFor="firstname">Edit Profile:</label>
                                 <div className="settings-field">
                                     <div className="settings__item">
                                         <Input id="firstname" type="text" placeholder="First Name" value={editedFirstName} ref={firstNameInput} onChange={() => onChangeHandler('firstName')} />
@@ -132,12 +174,13 @@ const Settings = ({
                                     </div>
 
                                     <div className="settings__item">
+                                        <label className="text-label" htmlFor="skill">Country</label>
                                         <input
                                             autoComplete="on"
                                             className="text-input"
                                             id="skill"
                                             type="text"
-                                            placeholder="Skill"
+                                            placeholder="Country"
                                             list="country"
                                             value={editedCountry}
                                             ref={countryInput}
@@ -158,29 +201,36 @@ const Settings = ({
                                             <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Edit'} />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <div className="settings__item">
-                                        <label className="picture-label">add socials:</label>
-                                        <div className="settings-socials__list">
-                                            <div className="input__item">
-                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
-                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
-                                            </div>
-                                            <div className="input__item">
-                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
-                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
-                                            </div>
-                                            <div className="input__item">
-                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
-                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
-                                            </div>
-                                            <div className="input__item">
-                                                <Icon className={'social-icon'} alt={'add-vk'} src={vkIcon} />
-                                                <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Add'} />
-                                            </div>
-                                        </div>
+                        <div className="settings__item">
+                            <label className="title-label" htmlFor="vk">Add socials:</label>
+                            <div className="settings-socials__list">
+                                <div className="settings__item">
+                                    <div className="input__item">
+                                        <Icon className={'social-icon social-icon_settings'} alt={'add-vk'} src={vkIcon} />
+                                        <Input id="vk" type="text" placeholder="Link" value={editedVk} ref={vkInput} onChange={() => onChangeHandler('vk')} />
                                     </div>
-
+                                </div>
+                                <div className="settings__item">
+                                    <div className="input__item">
+                                        <Icon className={'social-icon social-icon_settings'} alt={'add-facebook'} src={facebookIcon} />
+                                        <Input id="vk" type="text" placeholder="Link" value={editedFacebook} ref={facebookInput} onChange={() => onChangeHandler('facebook')} />
+                                    </div>
+                                </div>
+                                <div className="settings__item">
+                                    <div className="input__item">
+                                        <Icon className={'social-icon social-icon_settings'} alt={'add-linkedin'} src={linkedinIcon} />
+                                        <Input id="vk" type="text" placeholder="Link" value={editedLinkedin} ref={linkedinInput} onChange={() => onChangeHandler('linkedin')} />
+                                    </div>
+                                </div>
+                                <div className="settings__item">
+                                    <div className="input__item">
+                                        <Icon className={'social-icon social-icon_settings'} alt={'add-github'} src={githubIcon} />
+                                        <Input id="vk" type="text" placeholder="Link" value={editedGithub} ref={githubInput} onChange={() => onChangeHandler('github')} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +244,7 @@ const Settings = ({
                             <Button subClass="settings_btn" onClick={() => updateClickHandler()} text={'Update'} />
                             <Button subClass="settings_btn" onClick={() => cancelClickHandler()} text={'Cancel changes'} />
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>
@@ -210,6 +260,10 @@ export default connect(
         editCountry,
         editBio,
         editRoles,
-        editSkills
+        editSkills,
+        editSocialVk,
+        editSocialFacebook,
+        editSocialLinkedin,
+        editSocialGithub,
     }
 )(Settings)

@@ -14,6 +14,11 @@ const EDIT_COUNTRY = `EDIT_COUNTRY`
 const EDIT_BIO = `EDIT_BIO`
 const EDIT_ROLES = `EDIT_ROLES`
 const EDIT_SKILLS = `EDIT_SKILLS`
+const EDIT_SOCIALS_VK = `EDIT_SOCIALS_VK`
+const EDIT_SOCIALS_FACEBOOK = `EDIT_SOCIALS_FACEBOOK`
+const EDIT_SOCIALS_LINKEDIN = `EDIT_SOCIALS_LINKEDIN`
+const EDIT_SOCIALS_GITHUB = `EDIT_SOCIALS_GITHUB`
+
 const ADD_PROJECT_ID = `ADD_PROJECT_ID`
 
 const initialState = {
@@ -25,7 +30,7 @@ const initialState = {
     friends: [],
     skills: [],
     projects: [],
-    socials: [],
+    socials: {},
     login: () => { },
     logout: () => { }
 }
@@ -73,6 +78,14 @@ const userReduser = (state = initialState, { type, payload }) => {
             return { ...state, roles: payload }
         case EDIT_SKILLS:
             return { ...state, skills: payload }
+        case EDIT_SOCIALS_VK:
+            return { ...state, socials: { ...state.socials, vk: payload } }
+        case EDIT_SOCIALS_FACEBOOK:
+            return { ...state, socials: { ...state.socials, facebook: payload } }
+        case EDIT_SOCIALS_LINKEDIN:
+            return { ...state, socials: { ...state.socials, linkedin: payload } }
+        case EDIT_SOCIALS_GITHUB:
+            return { ...state, socials: { ...state.socials, github: payload } }
         case ADD_PROJECT_ID:
             return { ...state, projects: [...state.projects, payload] }
         default:
@@ -118,6 +131,23 @@ export const editRoles = (string) => ({
 export const editSkills = (array) => ({
     type: EDIT_SKILLS,
     payload: array
+})
+
+export const editSocialVk = (string) => ({
+    type: EDIT_SOCIALS_VK,
+    payload: string
+})
+export const editSocialFacebook = (string) => ({
+    type: EDIT_SOCIALS_FACEBOOK,
+    payload: string
+})
+export const editSocialLinkedin = (string) => ({
+    type: EDIT_SOCIALS_LINKEDIN,
+    payload: string
+})
+export const editSocialGithub = (string) => ({
+    type: EDIT_SOCIALS_GITHUB,
+    payload: string
 })
 
 export const addProjectId = (project) => ({

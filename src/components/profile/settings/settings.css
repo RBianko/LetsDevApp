@@ -47,7 +47,7 @@
   transform: translateY(-3px);
 }
 
-.picture-label {
+.title-label {
   text-align: center;
   font-size: 1rem;
   padding: 2px;
@@ -56,6 +56,6 @@
 
 .settings-socials__list {
   display: flex;
-  height: 40px;
+  flex-direction: column;
   width: 100%;
 }

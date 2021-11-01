@@ -25,7 +25,7 @@ const SocialLink = ({ media, link }) => {
 
     return (
         <div className="social-wrapper">
-            <a className="social__link" href={link}>
+            <a className="social__link" href={link} target="_blank" rel="noopener noreferrer">
                 <img className="social-icon" src={icon} alt={media} />
             </a>
         </div>

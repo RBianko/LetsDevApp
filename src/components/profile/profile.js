@@ -32,9 +32,13 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     const otherSkillsList = otherSkills.map(skill =>
         <OtherSkill key={skill} skill={skill} />)
 
-    const socialsList = socials.map(social =>
-        <SocialLink link={social.link} media={social.name} />
-    )
+    let socialsList = []
+    for (let key in socials) {
+        if (socials[key]) {
+            socialsList.push(<SocialLink link={socials[key]} media={key} />)
+        }
+    }
+
     const projectsList = projects.map((project, id) =>
         <ProjectCardSmall
             key={`${project.id}-${id}`}
@@ -48,6 +52,7 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
 
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">You have no contacts.</span>
 
     let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
     let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
@@ -67,15 +72,11 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
                             <div className="profile__picture">
                                 <img className="profile-icon" src={profilePicture} alt="profile" />
                                 <div className="profile__socials">
-                                    <span className="socials__title">Contact me:</span>
+                                    {socialsTitle}
                                     <div className="socials__list">
-                                        <SocialLink link="#" media="vk" />
-                                        <SocialLink link="#" media="facebook" />
-                                        <SocialLink link="#" media="linkedin" />
-                                        <SocialLink link="#" media="github" />
+                                        {socialsList}
                                     </div>
                                 </div>
-
                             </div>
                             <div className="profile__info">
                                 <p className="profile__info_name">{firstName} {lastName}</p>
@@ -92,7 +93,6 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
                                             {otherSkillsListContent}
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
