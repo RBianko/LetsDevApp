@@ -5,21 +5,24 @@ import './project-search.css'
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
 
-const ProjectSearch = ({ projects }) => {
+const ProjectSearch = ({ projects, skills }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
 
-    const projectsList = projects.filter(value => {
-        if (searchTerm === '') {
-            return value
-        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return value
-        } else {
-            return value
-        }
+    let projectsList = projects
+    if (searchTerm !== '') {
+        projectsList = projects.filter(value => {
+            if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return value
+            } else {
+                return null
+            }
+        })
+    }
 
-    }).map((project) =>
-        <ProjectCard key={project.id} project={project} />
+
+    let projectsListConent = projectsList.map((project) =>
+        <ProjectCard key={project.id} project={project} skills={skills} />
     )
 
     return (
@@ -38,11 +41,11 @@ const ProjectSearch = ({ projects }) => {
                     </div>
                 </div>
             </div>
-            {projectsList}
+            {projectsListConent}
         </div>
     )
 }
 
 export default connect(
-    (({ projects }) => ({ projects: projects.list }))
+    (({ projects, skills }) => ({ projects: projects.list, skills }))
 )(ProjectSearch)

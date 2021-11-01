@@ -30,7 +30,6 @@ import githubIcon from '../../../img/github.svg'
 import facebookIcon from '../../../img/facebook.svg'
 import linkedinIcon from '../../../img/linkedin.svg'
 
-
 const Settings = ({
     user,
     roles: rolesList,
@@ -151,7 +150,7 @@ const Settings = ({
                     <div className="card__header">
                         settings.cfg
                     </div>
-                    <form className="card__content profile-content">
+                    <div className="card__content profile-content">
                         <div className="profile-content_header">
                             <div className="profile__picture">
                                 <img className="profile-icon" src={profilePicture} alt="profile" />
@@ -244,7 +243,7 @@ const Settings = ({
                             <Button subClass="settings_btn" onClick={() => updateClickHandler()} text={'Update'} />
                             <Button subClass="settings_btn" onClick={() => cancelClickHandler()} text={'Cancel changes'} />
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </>

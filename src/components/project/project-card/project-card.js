@@ -3,8 +3,9 @@ import './project-card.css'
 
 import SkillIcon from '../../style-components/skills-icon'
 import ProfileCard from '../../profile/profile-card'
+import OtherSkill from './../../style-components/skills-icon/other-skill';
 
-const ProjectCard = (props) => {
+const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
     const {
         title,
         picture,
@@ -13,13 +14,19 @@ const ProjectCard = (props) => {
         skills,
         devs,
         roles
-    } = props.project
+    } = project
 
-    const skillsList = skills.map(skill =>
-        <SkillIcon
-            key={skill}
-            skill={skill} />
-    )
+    const globalSkills = skills.filter(skill =>
+        skillsGlobalStack.some(stack => stack === skill))
+
+    const otherSkills = skills.filter(skill =>
+        !skillsGlobalStack.some(stack => stack === skill))
+
+    const globalSkillsList = globalSkills.map(skill =>
+        <SkillIcon key={skill} skill={skill} />)
+
+    const otherSkillsList = otherSkills.map(skill =>
+        <OtherSkill key={skill} skill={skill} />)
 
     const devsList = devs.map(dev =>
         <ProfileCard
@@ -27,6 +34,11 @@ const ProjectCard = (props) => {
             user={dev}
         />
     )
+    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
+    let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+
+    let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
+    let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
     const needListString = roles.join(', ')
 
@@ -42,7 +54,16 @@ const ProjectCard = (props) => {
                     <img className="project__picture" src={picture} alt="project" />
                     <div className="project__info">
                         <div className="skills-list skills_project">
-                            {skillsList}
+                            {noSkillsString}
+                            <div className="skills-grid">
+                                {globalSkillsListContent}
+                            </div>
+                            <div className="skills-other">
+                                {otherSkillsTitle}
+                                <div className="skills-grid">
+                                    {otherSkillsListContent}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

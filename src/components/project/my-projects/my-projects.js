@@ -4,13 +4,13 @@ import './my-projects.css'
 import ProjectCard from '../project-card'
 import { connect } from 'react-redux'
 
-const MyProjects = ({ user, list }) => {
+const MyProjects = ({ user, list, skills }) => {
 
     const findProjects = list.map(project =>
         project.creator === user.userId ? project : null
     )
     const projectsList = findProjects.map(project =>
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard key={project.id} project={project} skills={skills} />
     )
 
     const noProjects = (<div>
@@ -27,5 +27,5 @@ const MyProjects = ({ user, list }) => {
 }
 
 export default connect(
-    ({ user, projects }) => ({ user, list: projects.list }),
+    ({ user, projects, skills }) => ({ user, list: projects.list, skills }),
 )(MyProjects)

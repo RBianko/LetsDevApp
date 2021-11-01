@@ -35,7 +35,7 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     let socialsList = []
     for (let key in socials) {
         if (socials[key]) {
-            socialsList.push(<SocialLink link={socials[key]} media={key} />)
+            socialsList.push(<SocialLink key={`${key}`} link={socials[key]} media={key} />)
         }
     }
 

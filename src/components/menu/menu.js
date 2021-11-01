@@ -6,7 +6,7 @@ import './menu.css'
 import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'
 import SearchIcon from '../../img/search.svg'
-import ChatIcon from '../../img/chat.svg'
+import FriendsIcon from '../../img/friends.svg'
 import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
@@ -52,19 +52,9 @@ const Menu = ({ user }) => {
                     </ul>
                 </li>
                 <li className="menu-icon icon_messages">
-                    <Icon className={'link-icon'} alt={'chat-menu'} src={ChatIcon} />
-                    <ul className="links__list links_messages">
-                        <li className="menu__link">
-                            <NavLink to="/messages">
-                                <span className="link__title">Messages</span>
-                            </NavLink>
-                        </li>
-                        <li className="menu__link">
-                            <NavLink to="/friend-list">
-                                <span className="link__title">Friends</span>
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <NavLink to="/friend-list">
+                        <Icon className={'link-icon'} alt={'chat-menu'} src={FriendsIcon} />
+                    </NavLink>
                 </li>
                 <li className="menu-icon icon_settings">
                     <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
