@@ -1,8 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './profile.css'
+
+import PropTypes from 'prop-types';
+import { UserPropTypes } from '../../redux/modules/user/prop-types';
+
 import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
-import { connect } from 'react-redux'
 import OtherSkill from '../style-components/skills-icon/other-skill'
 import SocialLink from './../style-components/social-link';
 
@@ -115,4 +119,11 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
     )
 }
 
-export default connect(({ user, skills }) => ({ user, skills }))(Profile)
+Profile.propTypes = {
+    user: UserPropTypes,
+    skills: PropTypes.arrayOf(PropTypes.string)
+}
+
+export default connect(
+    ({ user, skills }) => ({ user, skills })
+)(Profile)

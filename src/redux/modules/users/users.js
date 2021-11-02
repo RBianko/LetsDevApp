@@ -1,4 +1,6 @@
-const ADD_USER = `ADD_USER`
+import {
+    ADD_USER
+} from '../../action-types'
 
 const initialState = {
     list: []
@@ -22,10 +24,5 @@ const usersReduser = (state = initialState, { type, payload }) => {
             return state
     }
 }
-
-export const addUser = (user) => ({
-    type: ADD_USER,
-    payload: user
-})
 
 export default usersReduser

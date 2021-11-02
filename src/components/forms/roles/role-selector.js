@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { PropTypes } from 'prop-types';
 
 const RoleSelector = ({ roles, selectRole, counter }) => {
     const rolesOptions = roles.map(role => (
@@ -33,6 +34,12 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
             </select>
         </div >
     )
+}
+
+RoleSelector.propTypes = {
+    roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selectRole: PropTypes.func.isRequired,
+    counter: PropTypes.number.isRequired,
 }
 
 export default RoleSelector

@@ -1,4 +1,9 @@
-const GET_SKILLS = `GET_SKILLS`
+import {
+    GET_SKILLS
+} from '../../action-types'
+
+// PROP_TYPES
+// skills: PropTypes.arrayOf(PropTypes.string)
 
 const initialState = [
     'CSS',
@@ -24,9 +29,5 @@ const skillsReduser = (state = initialState, { type }) => {
             return state
     }
 }
-
-export const getSkills = () => ({
-    type: GET_SKILLS
-})
 
 export default skillsReduser

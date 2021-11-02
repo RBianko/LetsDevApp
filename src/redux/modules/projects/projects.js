@@ -1,7 +1,10 @@
-const ADD_PROJECT = `ADD_PROJECT`
+import {
+    ADD_PROJECT
+} from '../../action-types'
 
 let PROJECT_ID = 0
 
+// EMPTY_PROJECT
 //         {
 //             id: null,
 //             creator: null,
@@ -14,7 +17,7 @@ let PROJECT_ID = 0
 //             needList: [],
 //         }
 
-
+// EXAMPLE_PROJECT
 //         {
 //             id: 1,
 //             title: 'New Project',
@@ -59,13 +62,5 @@ const projectsReduser = (state = initialState, { type, payload }) => {
             return state
     }
 }
-
-export const addProject = (project) => ({
-    type: ADD_PROJECT,
-    payload: project
-})
-
-export const getId = () => PROJECT_ID
-
 
 export default projectsReduser

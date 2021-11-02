@@ -1,7 +1,7 @@
 import React from 'react'
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 // import { useHistory } from "react-router-dom";
 import './profile-card.css'
-import defaultIcon from '../../../img/users.svg'
 
 const ProfileCard = ({ user }) => {
     const { firstName, lastName, roles, profilePicture } = user
@@ -22,7 +22,7 @@ const ProfileCard = ({ user }) => {
                 user.info
             </div>
             <div className="card__content profile-content_small">
-                <img className="profile__icon_small" src={profilePicture || defaultIcon} alt="profile" />
+                <img className="profile__icon_small" src={profilePicture} alt="profile" />
                 <div className="profile__info">
                     <span className="profile__info_name-small">{firstName} {lastName}</span>
                     <span className="profile__info_role-small">{rolesList}</span>
@@ -30,6 +30,10 @@ const ProfileCard = ({ user }) => {
             </div>
         </div>
     )
+}
+
+ProfileCard.propTypes = {
+    user: UserPropTypes
 }
 
 export default ProfileCard

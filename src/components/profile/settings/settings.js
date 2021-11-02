@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 import './settings.css'
 
 import {
@@ -15,7 +17,7 @@ import {
     editSocialFacebook,
     editSocialLinkedin,
     editSocialGithub,
-} from '../../../redux/modules/user'
+} from '../../../redux/modules/user/actions'
 
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
@@ -29,6 +31,7 @@ import vkIcon from '../../../img/vk.svg'
 import githubIcon from '../../../img/github.svg'
 import facebookIcon from '../../../img/facebook.svg'
 import linkedinIcon from '../../../img/linkedin.svg'
+
 
 const Settings = ({
     user,
@@ -248,6 +251,23 @@ const Settings = ({
             </div>
         </>
     )
+}
+
+Settings.propTypes = {
+    user: UserPropTypes,
+    skills: PropTypes.arrayOf(PropTypes.string),
+    roles: PropTypes.arrayOf(PropTypes.string),
+    editFirstName: PropTypes.func,
+    editLastName: PropTypes.func,
+    editCity: PropTypes.func,
+    editCountry: PropTypes.func,
+    editBio: PropTypes.func,
+    editRoles: PropTypes.func,
+    editSkills: PropTypes.func,
+    editSocialVk: PropTypes.func,
+    editSocialFacebook: PropTypes.func,
+    editSocialLinkedin: PropTypes.func,
+    editSocialGithub: PropTypes.func,
 }
 
 export default connect(

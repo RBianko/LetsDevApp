@@ -3,6 +3,7 @@ import './roles.css'
 
 import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
+import { PropTypes } from 'prop-types';
 
 const RolesForm = ({ roles, setRoles }) => {
 
@@ -59,6 +60,11 @@ const RolesForm = ({ roles, setRoles }) => {
             </div>
         </>
     )
+}
+
+RolesForm.propTypes = {
+    roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+    setRoles: PropTypes.func.isRequired,
 }
 
 export default RolesForm

@@ -1,4 +1,9 @@
-const GET_ROLES = `GET_ROLES`
+import {
+    GET_ROLES
+} from '../../action-types'
+
+// PROP_TYPES
+// roles: PropTypes.arrayOf(PropTypes.string)
 
 const initialState = [
     'Frontend',
@@ -18,9 +23,5 @@ const rolesReduser = (state = initialState, { type, payload }) => {
             return state
     }
 }
-
-export const getRoles = () => ({
-    type: GET_ROLES
-})
 
 export default rolesReduser

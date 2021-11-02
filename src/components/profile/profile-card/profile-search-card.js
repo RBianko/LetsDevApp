@@ -2,6 +2,7 @@ import React from 'react'
 // import { useHistory } from "react-router-dom";
 import './profile-card.css'
 import defaultIcon from '../../../img/users.svg'
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 const ProfileSearchCard = ({ user }) => {
     const { firstName, lastName, roles, profilePicture } = user
@@ -31,6 +32,10 @@ const ProfileSearchCard = ({ user }) => {
             </div>
         </div>
     )
+}
+
+ProfileSearchCard.propTypes = {
+    user: UserPropTypes
 }
 
 export default ProfileSearchCard

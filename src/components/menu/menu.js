@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import './menu.css'
 
+import { UserPropTypes } from './../../redux/modules/user/prop-types';
+
 import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'
 import SearchIcon from '../../img/search.svg'
@@ -12,6 +14,7 @@ import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
 
 
+
 const Menu = ({ user }) => {
     return (
         <nav className="side-menu">
@@ -19,6 +22,11 @@ const Menu = ({ user }) => {
                 <li className="menu-icon">
                     <NavLink to="/profile">
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
+                    </NavLink>
+                </li>
+                <li className="menu-icon">
+                    <NavLink to="/friend-list">
+                        <Icon className={'link-icon'} alt={'chat-menu'} src={FriendsIcon} />
                     </NavLink>
                 </li>
                 <li className="menu-icon icon_project">
@@ -51,11 +59,6 @@ const Menu = ({ user }) => {
                         </li>
                     </ul>
                 </li>
-                <li className="menu-icon icon_messages">
-                    <NavLink to="/friend-list">
-                        <Icon className={'link-icon'} alt={'chat-menu'} src={FriendsIcon} />
-                    </NavLink>
-                </li>
                 <li className="menu-icon icon_settings">
                     <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
                     <ul className="links__list links_settings">
@@ -73,6 +76,10 @@ const Menu = ({ user }) => {
             </ul>
         </nav>
     )
+}
+
+Menu.propTypes = {
+    user: UserPropTypes
 }
 
 export default connect(({ user }) => ({ user }))(Menu)

@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from 'redux'
-import userReduser from './modules/user'
-import usersReduser from './modules/users'
-import projectsReduser from './modules/projects'
-import skillsReduser from './modules/skills'
-import rolesReduser from './modules/roles'
+import userReduser from './modules/user/user'
+import usersReduser from './modules/users/users'
+import projectsReduser from './modules/projects/projects'
+import skillsReduser from './modules/skills/skills'
+import rolesReduser from './modules/roles/roles'
 
 let redusers = combineReducers({
     user: userReduser,

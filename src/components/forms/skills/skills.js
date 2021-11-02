@@ -3,6 +3,7 @@ import './skills.css'
 
 import CloseIcon from '../../../img/xmark.svg'
 import SkillSelector from './skill-selector'
+import { PropTypes } from 'prop-types';
 
 const SkillsForm = ({ skills, setSkills }) => {
 
@@ -62,5 +63,11 @@ const SkillsForm = ({ skills, setSkills }) => {
         </>
     )
 }
+
+SkillsForm.propTypes = {
+    skills: PropTypes.arrayOf(PropTypes.string).isRequired,
+    setSkills: PropTypes.func.isRequired,
+}
+
 
 export default SkillsForm

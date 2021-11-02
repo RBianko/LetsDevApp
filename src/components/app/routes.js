@@ -6,13 +6,11 @@ import MyProjects from './../project/my-projects';
 import CreateProject from './../project/create-project';
 import ProjectSearch from './../search/projects-search';
 import DevsSearch from './../search/devs-search';
-import Messages from './../messages';
 import FriendList from './../friend-list';
 import Settings from './../profile/settings';
 import Header from './../welcome-page/header';
 import WelcomePage from './../welcome-page';
 import Footer from './../footer';
-import UserProfile from './../profile/user-profile';
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -35,9 +33,6 @@ export const useRoutes = isAuth => {
                     <Route path='/search-devs'>
                         <DevsSearch />
                     </Route>
-                    <Route path='/messages'>
-                        <Messages />
-                    </Route>
                     <Route path='/friend-list' >
                         <FriendList />
                     </Route>
@@ -47,7 +42,7 @@ export const useRoutes = isAuth => {
                     <Route
                         exact
                         path="/user/:id"
-                        component={UserProfile}
+                        component={Profile}
                     />
                     <Redirect to='/profile' />
                 </Switch>

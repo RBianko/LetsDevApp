@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { PropTypes } from 'prop-types';
 
 const SkillSelector = ({ skills, selectSkill, counter }) => {
     const skillsOptions = skills.map(skill => (
@@ -35,6 +36,12 @@ const SkillSelector = ({ skills, selectSkill, counter }) => {
             </datalist>
         </div >
     )
+}
+
+SkillSelector.propTypes = {
+    skills: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selectSkill: PropTypes.func.isRequired,
+    counter: PropTypes.number.isRequired,
 }
 
 export default SkillSelector

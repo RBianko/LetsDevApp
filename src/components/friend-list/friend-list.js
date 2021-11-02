@@ -1,8 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import './friend-list.css'
+
+import { PropTypes } from 'prop-types';
+
 import searchIcon from '../../img/search.svg'
 import ProfileCard from './../profile/profile-card';
+
 
 
 const FriendList = ({ friends }) => {
@@ -28,6 +32,10 @@ const FriendList = ({ friends }) => {
             {friendsList}
         </div>
     )
+}
+
+FriendList.propTypes = {
+    friends: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default connect(

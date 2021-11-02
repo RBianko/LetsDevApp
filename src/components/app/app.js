@@ -3,9 +3,10 @@ import './app.css';
 import { connect } from 'react-redux'
 import { useMemo, useEffect } from 'react'
 import { useAuth } from '../../hooks/auth.hook'
-import { setUser } from '../../redux/modules/user'
 import { useRoutes } from './routes'
-import { addUser } from './../../redux/modules/users';
+
+import { setUser } from '../../redux/modules/user/actions'
+import { addUser } from './../../redux/modules/users/actions';
 
 const App = ({ user, setUser, addUser }) => {
 
