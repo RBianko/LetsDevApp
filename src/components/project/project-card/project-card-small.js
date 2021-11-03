@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types';
 
 
 const ProjectCardSmall = ({ title, status, picture }) => {
@@ -14,6 +15,12 @@ const ProjectCardSmall = ({ title, status, picture }) => {
             </div>
         </div>
     )
+}
+
+ProjectCardSmall.propTypes = {
+    title: PropTypes.string,
+    status: PropTypes.string,
+    picture: PropTypes.string
 }
 
 export default ProjectCardSmall

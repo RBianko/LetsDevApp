@@ -20,7 +20,7 @@ const RolesForm = ({ roles, setRoles }) => {
         }
     }
 
-    let roleSelector = () => <RoleSelector key={counter} counter={counter} roles={roles} selectRole={onSelectHandler} />
+    let roleSelector = () => <RoleSelector key={`${counter}`} roles={roles} selectRole={onSelectHandler} />
     let [selectList, setSelectList] = useState([roleSelector()])
 
     const addClickHandler = () => {

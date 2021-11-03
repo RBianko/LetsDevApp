@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './my-projects.css'
 
 import ProjectCard from '../project-card'
-import { connect } from 'react-redux'
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import { PropTypes } from 'prop-types';
+
 
 const MyProjects = ({ user, list, skills }) => {
 
@@ -24,6 +27,12 @@ const MyProjects = ({ user, list, skills }) => {
             {projectsListContent}
         </div>
     )
+}
+
+MyProjects.propTypes = {
+    user: UserPropTypes,
+    skills: PropTypes.arrayOf(PropTypes.string),
+    list: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default connect(

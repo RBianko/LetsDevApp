@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux';
-
 import './devs-search.css'
+
 import searchIcon from '../../../img/search.svg'
 import ProfileSearchCard from '../../profile/profile-card/profile-search-card';
+import { PropTypes } from 'prop-types';
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 
 const DevsSearch = ({ users }) => {
@@ -34,6 +36,12 @@ const DevsSearch = ({ users }) => {
 
         </div>
     )
+}
+
+DevsSearch.propTypes = {
+    users: PropTypes.arrayOf(PropTypes.shape({
+        UserPropTypes
+    })),
 }
 
 export default connect(

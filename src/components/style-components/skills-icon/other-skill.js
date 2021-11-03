@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types';
 
 const OtherSkill = ({ skill }) => {
     return (
@@ -6,6 +7,10 @@ const OtherSkill = ({ skill }) => {
             <span>{skill}</span>
         </figure>
     )
+}
+
+OtherSkill.propTypes = {
+    skill: PropTypes.string
 }
 
 export default OtherSkill

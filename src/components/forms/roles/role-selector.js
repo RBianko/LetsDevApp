@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { PropTypes } from 'prop-types';
 
-const RoleSelector = ({ roles, selectRole, counter }) => {
+const RoleSelector = ({ roles, selectRole }) => {
     const rolesOptions = roles.map(role => (
         <option key={role} value={role}>{role}</option>
     ))
@@ -20,7 +20,7 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
 
     return (
         <div className="settings__item">
-            <label className="text-label">Role #{counter + 1}</label>
+            <label className="text-label">Role</label>
             <select
                 className="text-input"
                 id="role"
@@ -39,7 +39,6 @@ const RoleSelector = ({ roles, selectRole, counter }) => {
 RoleSelector.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string).isRequired,
     selectRole: PropTypes.func.isRequired,
-    counter: PropTypes.number.isRequired,
 }
 
 export default RoleSelector

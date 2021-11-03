@@ -4,6 +4,8 @@ import './project-card.css'
 import SkillIcon from '../../style-components/skills-icon'
 import ProfileCard from '../../profile/profile-card'
 import OtherSkill from './../../style-components/skills-icon/other-skill';
+import { PropTypes } from 'prop-types';
+import { ProjectsPropTypes } from './../../../redux/modules/projects/prop-types';
 
 const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
     const {
@@ -89,6 +91,12 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
             </div>
         </div>
     )
+}
+
+ProjectCard.propTypes = {
+    project: ProjectsPropTypes,
+    skills: PropTypes.arrayOf(PropTypes.string),
+
 }
 
 export default ProjectCard

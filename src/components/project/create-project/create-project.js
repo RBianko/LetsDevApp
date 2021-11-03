@@ -6,8 +6,10 @@ import './create-project.css'
 import defaultProjectPicture from '../../../img/project.svg'
 import SkillsForm from '../../forms/skills'
 import RolesForm from './../../forms/roles'
-import { addProject } from '../../../redux/modules/projects'
-import { addProjectId } from './../../../redux/modules/user'
+import { addProject } from '../../../redux/modules/projects/actions'
+import { addProjectId } from './../../../redux/modules/user/actions'
+import { PropTypes } from 'prop-types';
+import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 
 const CreateProject = ({
@@ -201,6 +203,15 @@ const CreateProject = ({
         </>
     )
 }
+
+CreateProject.propTypes = {
+    user: UserPropTypes,
+    skills: PropTypes.arrayOf(PropTypes.string),
+    roles: PropTypes.arrayOf(PropTypes.string),
+    addProject: PropTypes.func,
+    addProjectId: PropTypes.func,
+}
+
 
 export default connect(
     ({ user, skills, roles }) => ({ user, skills, roles }),

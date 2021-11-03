@@ -14,6 +14,7 @@ import golangIcon from '../../../img/golang.svg'
 import swiftIcon from '../../../img/swift.svg'
 import rubyIcon from '../../../img/ruby.svg'
 import sqlIcon from '../../../img/sql.png'
+import { PropTypes } from 'prop-types';
 
 const SkillIcon = ({ skill }) => {
 
@@ -46,6 +47,10 @@ const SkillIcon = ({ skill }) => {
             <span>{skill}</span>
         </figure>
     )
+}
+
+SkillIcon.propTypes = {
+    skill: PropTypes.string
 }
 
 export default SkillIcon

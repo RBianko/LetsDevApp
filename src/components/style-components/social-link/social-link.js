@@ -5,6 +5,7 @@ import facebook from '../../../img/facebook.svg'
 import github from '../../../img/github.svg'
 import linkedin from '../../../img/linkedin.svg'
 import vk from '../../../img/vk.svg'
+import { PropTypes } from 'prop-types';
 
 
 const SocialLink = ({ media, link }) => {
@@ -30,6 +31,11 @@ const SocialLink = ({ media, link }) => {
             </a>
         </div>
     )
+}
+
+SocialLink.propTypes = {
+    media: PropTypes.string,
+    link: PropTypes.string,
 }
 
 export default SocialLink

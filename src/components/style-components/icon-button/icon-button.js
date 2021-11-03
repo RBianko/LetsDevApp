@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from './../icon';
+import { PropTypes } from 'prop-types';
 
 const IconButton = ({ className, classNameIcon, htmlFor, alt, src, child = null, text = null }) => {
 
@@ -11,6 +12,16 @@ const IconButton = ({ className, classNameIcon, htmlFor, alt, src, child = null,
             {innerContent}
         </label>
     )
+}
+
+IconButton.propTypes = {
+    className: PropTypes.string,
+    classNameIcon: PropTypes.string,
+    htmlFor: PropTypes.string,
+    alt: PropTypes.string,
+    src: PropTypes.string,
+    child: PropTypes.string,
+    text: PropTypes.string,
 }
 
 export default IconButton

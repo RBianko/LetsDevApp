@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './project-search.css'
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
+import { PropTypes } from 'prop-types';
 
 const ProjectSearch = ({ projects, skills }) => {
 
@@ -44,6 +45,11 @@ const ProjectSearch = ({ projects, skills }) => {
             {projectsListConent}
         </div>
     )
+}
+
+ProjectSearch.propTypes = {
+    projects: PropTypes.arrayOf(PropTypes.object).isRequired,
+    skills: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default connect(
