@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import './devs-search.css'
 
@@ -6,12 +6,24 @@ import searchIcon from '../../../img/search.svg'
 import ProfileSearchCard from '../../profile/profile-card/profile-search-card';
 import { PropTypes } from 'prop-types';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import { follow, unfollow } from './../../../redux/modules/user/actions';
 
 
-const DevsSearch = ({ users }) => {
+const DevsSearch = ({ user, users }) => {
+
+    const [] = useState();
+    const isFollowed = false
+
+    const onFollowClick = (id) => {
+        follow(id)
+    }
+
+    const onUnfollowHandle = (id) => {
+
+    }
 
     const usersList = users.map((user) =>
-        <ProfileSearchCard key={user.userId} user={user} />
+        <ProfileSearchCard key={user.userId} user={user} followState={isFollowed} onFollowClick={onFollowClick} />
     )
 
     return (
@@ -39,11 +51,13 @@ const DevsSearch = ({ users }) => {
 }
 
 DevsSearch.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.shape({
-        UserPropTypes
-    })),
+    user: UserPropTypes,
+    users: PropTypes.arrayOf(PropTypes.shape({ UserPropTypes })),
+    follow: PropTypes.func,
+    unfollow: PropTypes.func,
 }
 
 export default connect(
-    (({ users }) => ({ users: users.list }))
+    (({ user, users }) => ({ user, users: users.list })),
+    (follow, unfollow)
 )(DevsSearch)

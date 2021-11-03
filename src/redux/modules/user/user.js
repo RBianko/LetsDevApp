@@ -12,6 +12,8 @@ import {
     EDIT_SOCIALS_LINKEDIN,
     EDIT_SOCIALS_GITHUB,
     ADD_PROJECT_ID,
+    FOLLOW,
+    UNFOLLOW,
 } from '../../action-types'
 import defaultProfilePicture from '../../../img/users.svg'
 
@@ -21,7 +23,10 @@ const initialState = {
     isLogedIn: false,
     profilePicture: defaultProfilePicture,
     roles: [],
-    friends: [],
+    follow: {
+        followers: [],
+        following: [],
+    },
     skills: [],
     projects: [],
     socials: {},
@@ -62,6 +67,13 @@ const userReduser = (state = initialState, { type, payload }) => {
             return { ...state, socials: { ...state.socials, github: payload } }
         case ADD_PROJECT_ID:
             return { ...state, projects: [...state.projects, payload] }
+        case FOLLOW:
+            return { ...state, follow: { ...state.follow, following: [...state.follow.following, payload] } }
+        case UNFOLLOW:
+            const userFollowing = state.user.follow.following
+            const userIdIndex = userFollowing.findIndex(id => id === payload)
+            const newUserFollowing = userFollowing.splice(userIdIndex, 1)
+            return { ...state, follow: { ...state.follow, following: [...newUserFollowing] } }
         default:
             return state
     }

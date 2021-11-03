@@ -11,7 +11,10 @@ export const UserPropTypes = PropTypes.shape({
     bio: PropTypes.string,
     profilePicture: PropTypes.string,
     roles: PropTypes.arrayOf(PropTypes.string),
-    friends: PropTypes.arrayOf(PropTypes.string),
+    follow: PropTypes.shape({
+        followers: PropTypes.arrayOf(PropTypes.string),
+        following: PropTypes.arrayOf(PropTypes.string),
+    }),
     skills: PropTypes.arrayOf(PropTypes.string),
     projects: PropTypes.arrayOf(PropTypes.string),
     socials: PropTypes.shape({

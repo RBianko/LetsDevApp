@@ -3,10 +3,17 @@ import React from 'react'
 import './profile-card.css'
 import defaultIcon from '../../../img/users.svg'
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import Button from './../../style-components/button';
 
-const ProfileSearchCard = ({ user }) => {
+const ProfileSearchCard = ({ user, followState, onFollowClick }) => {
+
     const { firstName, lastName, roles, profilePicture } = user
+    let buttonText = followState ? 'Unfollow' : 'Follow'
     let rolesList = roles.join(', ')
+
+    const onClickHandler = id => {
+        onFollowClick(id)
+    }
 
     // const history = useHistory()
 
@@ -28,7 +35,7 @@ const ProfileSearchCard = ({ user }) => {
                     <span className="profile__info_name_search">{firstName} {lastName}</span>
                     <span className="profile__info_role-small">{rolesList}</span>
                 </div>
-                <button className="btn btn_follow">Follow</button>
+                <Button subClass={'btn_follow'} onClick={() => onClickHandler(user.userId)} text={buttonText} />
             </div>
         </div>
     )
