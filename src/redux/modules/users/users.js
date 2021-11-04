@@ -1,5 +1,5 @@
 import {
-    ADD_USER
+    UPDATE_USERS
 } from '../../action-types'
 
 const initialState = {
@@ -34,7 +34,7 @@ const initialState = {
             roles: ["Backend"],
             follow: {
                 followers: [],
-                following: [],
+                following: ["616e71fbe25229d0d93bfd37"],
             },
             skills: ["HTML", "JS"],
             projects: [],
@@ -45,7 +45,7 @@ const initialState = {
 
 const usersReduser = (state = initialState, { type, payload }) => {
     switch (type) {
-        case ADD_USER:
+        case UPDATE_USERS:
             if (!payload.token || !payload.userId) {
                 return state
             }

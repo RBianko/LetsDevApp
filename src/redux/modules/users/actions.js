@@ -1,8 +1,8 @@
 import {
-    ADD_USER
+    UPDATE_USERS
 } from '../../action-types'
 
-export const addUser = (user) => ({
-    type: ADD_USER,
+export const updateUsers = (user) => ({
+    type: UPDATE_USERS,
     payload: user
 })

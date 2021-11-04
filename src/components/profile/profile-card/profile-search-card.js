@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux';
 // import { useHistory } from "react-router-dom";
 import './profile-card.css'
-import defaultIcon from '../../../img/users.svg'
+
+import { followToggle } from './../../../redux/modules/user/actions';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import defaultIcon from '../../../img/users.svg'
 import Button from './../../style-components/button';
 
-const ProfileSearchCard = ({ user, followState, onFollowClick }) => {
+const ProfileSearchCard = ({ user, followState, followToggle }) => {
 
     const { firstName, lastName, roles, profilePicture } = user
-    let buttonText = followState ? 'Unfollow' : 'Follow'
     let rolesList = roles.join(', ')
 
-    const onClickHandler = id => {
-        onFollowClick(id)
-    }
+    useEffect(() => {
+    }, [followState])
 
     // const history = useHistory()
 
@@ -35,7 +36,7 @@ const ProfileSearchCard = ({ user, followState, onFollowClick }) => {
                     <span className="profile__info_name_search">{firstName} {lastName}</span>
                     <span className="profile__info_role-small">{rolesList}</span>
                 </div>
-                <Button subClass={'btn_follow'} onClick={() => onClickHandler(user.userId)} text={buttonText} />
+                <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={followState} />
             </div>
         </div>
     )
@@ -45,4 +46,7 @@ ProfileSearchCard.propTypes = {
     user: UserPropTypes
 }
 
-export default ProfileSearchCard
+export default connect(
+    (() => ({})),
+    { followToggle }
+)(ProfileSearchCard)

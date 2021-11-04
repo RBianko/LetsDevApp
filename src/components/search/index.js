@@ -1,3 +1,3 @@
-import Search from './search'
+import SearchUsers from './search-users'
 
-export default Search
+export default SearchUsers

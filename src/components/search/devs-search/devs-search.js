@@ -1,31 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 import './devs-search.css'
 
 import searchIcon from '../../../img/search.svg'
-import ProfileSearchCard from '../../profile/profile-card/profile-search-card';
+import SearchUsers from '../search-users'
 import { PropTypes } from 'prop-types';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
-import { follow, unfollow } from './../../../redux/modules/user/actions';
 
 
-const DevsSearch = ({ user, users }) => {
-
-    const [] = useState();
-    const isFollowed = false
-
-    const onFollowClick = (id) => {
-        follow(id)
-    }
-
-    const onUnfollowHandle = (id) => {
-
-    }
-
-    const usersList = users.map((user) =>
-        <ProfileSearchCard key={user.userId} user={user} followState={isFollowed} onFollowClick={onFollowClick} />
-    )
-
+const DevsSearch = ({ user: currentUser, users }) => {
+    const usersList = users.filter(user => user.userId !== currentUser.userId)
     return (
         <div className='container'>
             <div className='card card_search'>
@@ -42,10 +26,7 @@ const DevsSearch = ({ user, users }) => {
                     </div>
                 </div>
             </div>
-            <div className="devs__search-grid">
-                {usersList}
-            </div>
-
+            <SearchUsers currentUser={currentUser} users={usersList} />
         </div>
     )
 }
@@ -58,6 +39,5 @@ DevsSearch.propTypes = {
 }
 
 export default connect(
-    (({ user, users }) => ({ user, users: users.list })),
-    (follow, unfollow)
+    (({ user, users }) => ({ user, users: users.list }))
 )(DevsSearch)

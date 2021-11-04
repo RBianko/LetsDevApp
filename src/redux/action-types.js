@@ -12,11 +12,10 @@ export const EDIT_SOCIALS_FACEBOOK = `EDIT_SOCIALS_FACEBOOK`
 export const EDIT_SOCIALS_LINKEDIN = `EDIT_SOCIALS_LINKEDIN`
 export const EDIT_SOCIALS_GITHUB = `EDIT_SOCIALS_GITHUB`
 export const ADD_PROJECT_ID = `ADD_PROJECT_ID`
-export const FOLLOW = `FOLLOW`
-export const UNFOLLOW = `UNFOLLOW`
+export const FOLLOW_TOGGLE = `FOLLOW_TOGGLE`
 
 // USERS reduser
-export const ADD_USER = `ADD_USER`
+export const UPDATE_USERS = `UPDATE_USERS`
 
 // PROJECTS reduser
 export const ADD_PROJECT = `ADD_PROJECT`

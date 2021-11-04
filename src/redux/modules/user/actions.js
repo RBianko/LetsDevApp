@@ -12,8 +12,7 @@ import {
     EDIT_SOCIALS_LINKEDIN,
     EDIT_SOCIALS_GITHUB,
     ADD_PROJECT_ID,
-    FOLLOW,
-    UNFOLLOW
+    FOLLOW_TOGGLE,
 } from '../../action-types'
 
 export const setUser = (user) => ({
@@ -78,12 +77,7 @@ export const addProjectId = (project) => ({
     payload: project
 })
 
-export const follow = (id) => ({
-    type: FOLLOW,
-    payload: id
-})
-
-export const unfollow = (id) => ({
-    type: UNFOLLOW,
+export const followToggle = (id) => ({
+    type: FOLLOW_TOGGLE,
     payload: id
 })
