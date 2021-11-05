@@ -50,11 +50,12 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
             <div className="card__content project-content">
                 <div className="project-content__header">
                     <div className="project__info">
+                        <img className="project__picture" src={picture} alt="project" />
+                    </div>
+                    <div className="project__info">
+
                         <span className="project-info__title">{title}</span>
                         <span className="project-info__status">{status}</span>
-                    </div>
-                    <img className="project__picture" src={picture} alt="project" />
-                    <div className="project__info">
                         <div className="skills-list skills_project">
                             {noSkillsString}
                             <div className="skills-grid">
