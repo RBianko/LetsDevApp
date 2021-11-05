@@ -12,6 +12,7 @@ import {
     EDIT_SOCIALS_LINKEDIN,
     EDIT_SOCIALS_GITHUB,
     ADD_PROJECT_ID,
+    FOLLOW_TOGGLE,
 } from '../../action-types'
 
 export const setUser = (user) => ({
@@ -74,4 +75,9 @@ export const editSocialGithub = (string) => ({
 export const addProjectId = (project) => ({
     type: ADD_PROJECT_ID,
     payload: project
+})
+
+export const followToggle = (id) => ({
+    type: FOLLOW_TOGGLE,
+    payload: id
 })

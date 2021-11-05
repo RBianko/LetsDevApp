@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import './devs-search.css'
 
 import searchIcon from '../../../img/search.svg'
-import ProfileSearchCard from '../../profile/profile-card/profile-search-card';
+import SearchUsers from '../search-users'
 import { PropTypes } from 'prop-types';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 
-const DevsSearch = ({ users }) => {
-
-    const usersList = users.map((user) =>
-        <ProfileSearchCard key={user.userId} user={user} />
-    )
-
+const DevsSearch = ({ user: currentUser, users }) => {
+    const usersList = users.filter(user => user.userId !== currentUser.userId)
     return (
         <div className='container'>
             <div className='card card_search'>
@@ -30,20 +26,18 @@ const DevsSearch = ({ users }) => {
                     </div>
                 </div>
             </div>
-            <div className="devs__search-grid">
-                {usersList}
-            </div>
-
+            <SearchUsers currentUser={currentUser} users={usersList} />
         </div>
     )
 }
 
 DevsSearch.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.shape({
-        UserPropTypes
-    })),
+    user: UserPropTypes,
+    users: PropTypes.arrayOf(PropTypes.shape({ UserPropTypes })),
+    follow: PropTypes.func,
+    unfollow: PropTypes.func,
 }
 
 export default connect(
-    (({ users }) => ({ users: users.list }))
+    (({ user, users }) => ({ user, users: users.list }))
 )(DevsSearch)

@@ -55,7 +55,10 @@
 
 .btn_follow {
   height: 45px;
-  padding: 3px 15px;
+  padding: 3px 10px;
+  max-width: 115px;
+  width: 100%;
+  font-size: 0.8em;
 }
 
 .profile__icon_search {

@@ -1,18 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import './friend-list.css'
+import './follow-list.css'
 
 import { PropTypes } from 'prop-types';
 
 import searchIcon from '../../img/search.svg'
-import ProfileCard from './../profile/profile-card';
+import SearchUsers from '../search';
 
+const FollowList = ({ user: currentUser, users }) => {
+    const { follow } = currentUser
 
-
-const FriendList = ({ friends }) => {
-    const friendsList = friends.map((user) =>
-        <ProfileCard key={user.id} user={user} />
+    const followers = follow.followers.map((followerId) =>
+        users.find(user => followerId === user.userId)
     )
+
+    const following = follow.following.map((followerId) =>
+        users.find(user => followerId === user.userId)
+    )
+
     return (
         <div className='container'>
             <div className='card card_search'>
@@ -29,15 +34,17 @@ const FriendList = ({ friends }) => {
                     </div>
                 </div>
             </div>
-            {friendsList}
+            <SearchUsers currentUser={currentUser} users={following} />
+            <SearchUsers currentUser={currentUser} users={followers} />
         </div>
     )
 }
 
-FriendList.propTypes = {
-    friends: PropTypes.arrayOf(PropTypes.string).isRequired
+FollowList.propTypes = {
+    user: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default connect(
-    (({ user }) => ({ friends: user.friends }))
-)(FriendList)
+    (({ user, users }) => ({ user, users: users.list }))
+)(FollowList)
