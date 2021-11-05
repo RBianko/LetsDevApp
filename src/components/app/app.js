@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './app.css';
 import { connect } from 'react-redux'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { useAuth } from '../../hooks/auth.hook'
 import { useRoutes } from './routes'
 
@@ -11,14 +11,13 @@ import { updateUsers } from './../../redux/modules/users/actions';
 const App = ({ user, setUser, updateUsers }) => {
 
     const { token, userId, login, logout } = useAuth()
-
     useMemo(() => {
         return setUser({ token, userId, login, logout })
-    }, [userId || token])
+    }, [userId, token])
 
-    useMemo(() => {
-        return updateUsers(user)
-    }, [user])
+    useEffect(() => {
+        updateUsers(user)
+    }, [user, token, userId])
 
     const routes = useRoutes(user.isLogedIn)
 

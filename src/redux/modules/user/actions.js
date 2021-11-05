@@ -72,9 +72,9 @@ export const editSocialGithub = (string) => ({
     payload: string
 })
 
-export const addProjectId = (project) => ({
+export const addProjectId = (id) => ({
     type: ADD_PROJECT_ID,
-    payload: project
+    payload: id
 })
 
 export const followToggle = (id) => ({

@@ -7,9 +7,9 @@ import SearchUsers from '../search-users'
 import { PropTypes } from 'prop-types';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
-
 const DevsSearch = ({ user: currentUser, users }) => {
     const usersList = users.filter(user => user.userId !== currentUser.userId)
+
     return (
         <div className='container'>
             <div className='card card_search'>
@@ -39,5 +39,5 @@ DevsSearch.propTypes = {
 }
 
 export default connect(
-    (({ user, users }) => ({ user, users: users.list }))
+    ({ user, users }) => ({ user, users: users.list })
 )(DevsSearch)

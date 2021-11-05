@@ -17,7 +17,6 @@
 .project-content {
   display: flex;
   flex-direction: column;
-  padding: 70px;
   align-items: center;
 }
 
@@ -39,7 +38,6 @@
   font-size: 3rem;
   line-height: 2.5rem;
   font-weight: 700;
-  text-align: center;
   transition: var(--transition-all);
 }
 
@@ -54,7 +52,6 @@
   font-size: 2rem;
   line-height: 2rem;
   font-weight: 400;
-  align-self: center;
 }
 
 .project-info__status_small {
@@ -84,7 +81,6 @@
 .project__info {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .project__info_small {
@@ -112,7 +108,7 @@
 }
 
 .skills_project {
-  justify-content: center;
+  margin-top: 4%;
 }
 
 .project__description {

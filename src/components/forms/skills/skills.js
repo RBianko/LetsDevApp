@@ -22,7 +22,7 @@ const SkillsForm = ({ skills, setSkills }) => {
 
 
 
-    let skillSelector = () => <SkillSelector key={counter} counter={counter} skills={skills} selectSkill={onSelectHandler} />
+    let skillSelector = () => <SkillSelector key={counter} skills={skills} selectSkill={onSelectHandler} />
     let [selectList, setSelectList] = useState([skillSelector()])
 
     const addClickHandler = () => {

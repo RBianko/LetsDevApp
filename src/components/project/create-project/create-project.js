@@ -67,8 +67,9 @@ const CreateProject = ({
             roles,
             skills
         }
+        const id = 'id'
         addProject(project)
-        addProjectId({ title, status, picture })
+        addProjectId(id)
         clearClickHandler()
 
         history.push('/my-projects')
@@ -210,10 +211,11 @@ CreateProject.propTypes = {
     roles: PropTypes.arrayOf(PropTypes.string),
     addProject: PropTypes.func,
     addProjectId: PropTypes.func,
+    id: PropTypes.number,
 }
 
 
 export default connect(
-    ({ user, skills, roles }) => ({ user, skills, roles }),
+    ({ user, skills, roles, projects }) => ({ user, skills, roles, id: projects.id }),
     { addProject, addProjectId }
 )(CreateProject)

@@ -7,11 +7,12 @@ import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 import { PropTypes } from 'prop-types';
 
 
-const MyProjects = ({ user, list, skills }) => {
+const MyProjects = ({ user, projects, skills }) => {
 
-    const findProjects = list.map(project =>
-        project.creator === user.userId ? project : null
+    const findProjects = user.projects.map(id =>
+        projects.find(project => project.id === id)
     )
+
     const projectsList = findProjects.map(project =>
         <ProjectCard key={project.id} project={project} skills={skills} />
     )
@@ -32,9 +33,9 @@ const MyProjects = ({ user, list, skills }) => {
 MyProjects.propTypes = {
     user: UserPropTypes,
     skills: PropTypes.arrayOf(PropTypes.string),
-    list: PropTypes.arrayOf(PropTypes.object),
+    projects: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default connect(
-    ({ user, projects, skills }) => ({ user, list: projects.list, skills }),
+    ({ user, projects, skills }) => ({ user, projects: projects.list, skills }),
 )(MyProjects)

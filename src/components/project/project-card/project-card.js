@@ -6,16 +6,17 @@ import ProfileCard from '../../profile/profile-card'
 import OtherSkill from './../../style-components/skills-icon/other-skill';
 import { PropTypes } from 'prop-types';
 import { ProjectsPropTypes } from './../../../redux/modules/projects/prop-types';
+import Button from './../../style-components/button';
 
-const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
+const ProjectCard = ({ project, skills: skillsGlobalStack, apply = null }) => {
     const {
         title,
-        picture,
+        projectPicture,
         status,
         description,
         skills,
         devs,
-        roles
+        needList
     } = project
 
     const globalSkills = skills.filter(skill =>
@@ -33,7 +34,8 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
     const devsList = devs.map(dev =>
         <ProfileCard
             key={dev.userId}
-            user={dev}
+            userId={dev.userId}
+            role={dev.role}
         />
     )
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
@@ -42,7 +44,9 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
     let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
     let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
-    const needListString = roles.join(', ')
+    const needListString = needList.join(', ')
+
+    const applyButton = apply ? <Button subClass={'apply-btn'} text={'Apply for Project'} onClick={() => { }} /> : null
 
     return (
         <div className="project__card card">
@@ -50,7 +54,7 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
             <div className="card__content project-content">
                 <div className="project-content__header">
                     <div className="project__info">
-                        <img className="project__picture" src={picture} alt="project" />
+                        <img className="project__picture" src={projectPicture} alt="project" />
                     </div>
                     <div className="project__info">
 
@@ -71,7 +75,6 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
                     </div>
                 </div>
                 <div className="project-content_body">
-
                     <div className="need-list">
                         <h3 className="need-list__title">We need</h3>
                         <span className="need-list__roles">
@@ -88,6 +91,7 @@ const ProjectCard = ({ project, skills: skillsGlobalStack }) => {
                             {devsList}
                         </div>
                     </div>
+                    {applyButton}
                 </div>
             </div>
         </div>

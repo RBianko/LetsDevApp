@@ -10,7 +10,7 @@ import ProjectCardSmall from '../project/project-card/project-card-small'
 import OtherSkill from '../style-components/skills-icon/other-skill'
 import SocialLink from './../style-components/social-link';
 
-const Profile = ({ user, skills: skillsGlobalStack }) => {
+const Profile = ({ user, skills: skillsGlobalStack, projects: projectsList }) => {
     const {
         firstName = "New",
         lastName = "User",
@@ -43,16 +43,18 @@ const Profile = ({ user, skills: skillsGlobalStack }) => {
         }
     }
 
-    const projectsList = projects.map((project, id) =>
+    const userProjects = projects.map(id =>
+        projectsList.find(poroject => poroject.id === id)
+    )
+
+    const userProjectsList = userProjects.map(project =>
         <ProjectCardSmall
-            key={`${project.id}-${id}`}
-            title={project.title}
-            status={project.status}
-            picture={project.picture}
+            key={project.id}
+            project={project}
         />
     )
 
-    let projectListContent = projectsList.length > 0 ? projectsList : <p>You have no Projects</p>
+    let projectListContent = userProjectsList.length > 0 ? userProjectsList : <p>You have no Projects</p>
 
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
@@ -125,5 +127,5 @@ Profile.propTypes = {
 }
 
 export default connect(
-    ({ user, skills }) => ({ user, skills })
+    ({ user, skills, projects }) => ({ user, skills, projects: projects.list })
 )(Profile)

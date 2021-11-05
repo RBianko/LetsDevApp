@@ -1,8 +1,7 @@
 import {
     ADD_PROJECT
 } from '../../action-types'
-
-let PROJECT_ID = 0
+import defaultProjectPicture from '../../../img/project.svg'
 
 // EMPTY_PROJECT
 //         {
@@ -17,47 +16,64 @@ let PROJECT_ID = 0
 //             needList: [],
 //         }
 
-// EXAMPLE_PROJECT
-//         {
-//             id: 1,
-//             title: 'New Project',
-//             projectPicture: defaultProjectPicture,
-//             status: 'Active',
-//             description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
-//             skills: ['CSS', 'HTML', 'JS', 'React'],
-//             devs: [
-//                 {
-//                     userId: 1,
-//                     firstName: 'John',
-//                     role: 'Frontend',
-//                     profilePicture: defaultProfilePicture
-//                 },
-//                 {
-//                     userId: 2,
-//                     firstName: 'Roman',
-//                     role: 'Frontend',
-//                     profilePicture: defaultProfilePicture
-//                 },
-//                 {
-//                     userId: 3,
-//                     firstName: 'Dave',
-//                     role: 'Backend',
-//                     profilePicture: defaultProfilePicture
-//                 },
-//             ],
-//             needList: ['Designer', 'Tester'],
-//         }
+
+let _PROJECT_ID = 102
 
 const initialState = {
-    list: []
+    id: _PROJECT_ID,
+    list: [
+        {
+            id: "100",
+            title: 'Project v1.29',
+            projectPicture: defaultProjectPicture,
+            status: 'Active',
+            description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
+            skills: ['CSS', 'HTML', 'JS', 'React', "redux", "Angular"],
+            devs: [
+                {
+                    userId: "616e71fbe25229d0d93bfd37",
+                    role: 'Frontend',
+                    creator: true
+                }
+            ],
+            needList: ['Designer', 'Tester'],
+        },
+        {
+            id: "101",
+            title: 'Dev free',
+            projectPicture: defaultProjectPicture,
+            status: 'Active',
+            description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
+            skills: ['CSS', 'HTML', 'JS', 'React', 'NoSQL', 'Java', 'Svelte'],
+            devs: [
+                {
+                    userId: "616e71fbe25229d0d93bfd37",
+                    role: 'Frontend',
+                    creator: true
+                },
+                {
+                    userId: "616e71fb12311233bfd37",
+                    role: 'Backend',
+                    creator: false
+                },
+                {
+                    userId: "611928392323293bfd37",
+                    role: 'Software',
+                    creator: false
+                },
+            ],
+            needList: ['Frontend', 'Backend', 'Software'],
+        },
+    ]
 }
 
 const projectsReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_PROJECT:
-            payload.id = PROJECT_ID++
+            payload.id = _PROJECT_ID.toString
             let newList = [...state.list, payload]
-            return { ...state, list: newList }
+            _PROJECT_ID++
+            return { ...state, list: newList, id: _PROJECT_ID }
         default:
             return state
     }

@@ -1,11 +1,12 @@
 import React from 'react'
-import { UserPropTypes } from './../../../redux/modules/user/prop-types';
-// import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux'
 import './profile-card.css'
 
-const ProfileCard = ({ user }) => {
-    const { firstName, lastName, roles, profilePicture } = user
-    let rolesList = roles.join(', ')
+import PropTypes from 'prop-types';
+// import { useHistory } from "react-router-dom";
+
+const ProfileCard = ({ userId, users, role }) => {
+    const { firstName, lastName, profilePicture } = users.find(user => user.userId === userId)
 
     // const history = useHistory()
 
@@ -25,7 +26,7 @@ const ProfileCard = ({ user }) => {
                 <img className="profile__icon_small" src={profilePicture} alt="profile" />
                 <div className="profile__info">
                     <span className="profile__info_name-small">{firstName} {lastName}</span>
-                    <span className="profile__info_role-small">{rolesList}</span>
+                    <span className="profile__info_role-small">{role}</span>
                 </div>
             </div>
         </div>
@@ -33,7 +34,11 @@ const ProfileCard = ({ user }) => {
 }
 
 ProfileCard.propTypes = {
-    user: UserPropTypes
+    userId: PropTypes.string.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    role: PropTypes.string,
 }
 
-export default ProfileCard
+export default connect(
+    ({ users }) => ({ users: users.list }),
+)(ProfileCard)

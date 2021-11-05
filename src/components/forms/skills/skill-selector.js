@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { PropTypes } from 'prop-types';
 
-const SkillSelector = ({ skills, selectSkill, counter }) => {
+const SkillSelector = ({ skills, selectSkill }) => {
     const skillsOptions = skills.map(skill => (
         <option key={skill} value={skill}>{skill}</option>
     ))
@@ -20,7 +20,7 @@ const SkillSelector = ({ skills, selectSkill, counter }) => {
 
     return (
         <div className="settings__item">
-            <label className="text-label">Skill #{counter + 1}</label>
+            <label className="text-label">Skill</label>
             <input
                 autoComplete="on"
                 className="text-input"
@@ -40,8 +40,7 @@ const SkillSelector = ({ skills, selectSkill, counter }) => {
 
 SkillSelector.propTypes = {
     skills: PropTypes.arrayOf(PropTypes.string).isRequired,
-    selectSkill: PropTypes.func.isRequired,
-    counter: PropTypes.number.isRequired,
+    selectSkill: PropTypes.func.isRequired
 }
 
 export default SkillSelector

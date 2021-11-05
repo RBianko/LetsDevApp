@@ -1,0 +1,10 @@
+.apply-btn {
+  font-size: 2rem;
+  margin-top: 3%;
+  box-shadow: 8px 8px 0 0 #000;
+}
+
+.apply-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 14px #000;
+}

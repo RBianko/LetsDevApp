@@ -10,21 +10,22 @@ const ProjectSearch = ({ projects, skills }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
 
-    let projectsList = projects
+    let projectsFilter = projects
     if (searchTerm !== '') {
-        projectsList = projects.filter(value => {
-            if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return value
+        projectsFilter = projects.filter(project => {
+            if (project.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return project
             } else {
                 return null
             }
         })
     }
 
-
-    let projectsListConent = projectsList.map((project) =>
-        <ProjectCard key={project.id} project={project} skills={skills} />
+    let projectsList = projectsFilter.map((project) =>
+        <ProjectCard key={project.id} project={project} skills={skills} apply={true} />
     )
+
+    let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
 
     return (
         <div className='container'>
@@ -42,7 +43,7 @@ const ProjectSearch = ({ projects, skills }) => {
                     </div>
                 </div>
             </div>
-            {projectsListConent}
+            {projectsListContent}
         </div>
     )
 }

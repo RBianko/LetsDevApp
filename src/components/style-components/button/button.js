@@ -1,4 +1,6 @@
 import React from 'react'
+import './button.css'
+
 import { PropTypes } from 'prop-types';
 
 const Button = ({ subClass, onClick, text, data = null }) =>

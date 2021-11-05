@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import './follow-list.css'
 
 import { PropTypes } from 'prop-types';
