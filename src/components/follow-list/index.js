@@ -1,3 +1,3 @@
-import FollowList from './follow-list'
+import FollowListContainer from './follow-list-container'
 
-export default FollowList
+export default FollowListContainer

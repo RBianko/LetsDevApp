@@ -16,6 +16,9 @@ import Button from '../style-components/button';
 
 
 const Menu = ({ user }) => {
+    const followersCounter = user.follow.followers.length;
+    const followingCounter = user.follow.following.length;
+
     return (
         <nav className="side-menu">
             <ul className="menu__icons">
@@ -24,10 +27,20 @@ const Menu = ({ user }) => {
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
                     </NavLink>
                 </li>
-                <li className="menu-icon">
-                    <NavLink to="/friend-list">
-                        <Icon className={'link-icon'} alt={'chat-menu'} src={FriendsIcon} />
-                    </NavLink>
+                <li className="menu-icon icon_follow">
+                    <Icon className={'link-icon'} alt={'follow-menu'} src={FriendsIcon} />
+                    <ul className="links__list links_follow">
+                        <li className="menu__link">
+                            <NavLink to="/follow/following">
+                                <span className="link__title">{followingCounter} Following</span>
+                            </NavLink>
+                        </li>
+                        <li className="menu__link">
+                            <NavLink to="/follow/followers">
+                                <span className="link__title">{followersCounter} Followers</span>
+                            </NavLink>
+                        </li>
+                    </ul>
                 </li>
                 <li className="menu-icon icon_project">
                     <Icon className={'link-icon'} alt={'project-menu'} src={ProjectIcon} />

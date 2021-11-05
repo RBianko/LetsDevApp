@@ -90,6 +90,9 @@
 .icon_search:hover .links_search {
   display: flex;
 }
+.icon_follow:hover .links_follow {
+  display: flex;
+}
 
 .btn_logout {
   font-size: 18px;

@@ -6,7 +6,7 @@ import MyProjects from './../project/my-projects';
 import CreateProject from './../project/create-project';
 import ProjectSearch from './../search/projects-search';
 import DevsSearch from './../search/devs-search';
-import FollowList from '../follow-list';
+import FollowListContainer from './../follow-list';
 import Settings from './../profile/settings';
 import Header from './../welcome-page/header';
 import WelcomePage from './../welcome-page';
@@ -33,8 +33,8 @@ export const useRoutes = isAuth => {
                     <Route path='/search-devs'>
                         <DevsSearch />
                     </Route>
-                    <Route path='/friend-list' >
-                        <FollowList />
+                    <Route path='/follow/' >
+                        <FollowListContainer />
                     </Route>
                     <Route path='/settings' >
                         <Settings />
