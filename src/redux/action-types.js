@@ -19,6 +19,12 @@ export const UPDATE_USERS = `UPDATE_USERS`
 
 // PROJECTS reduser
 export const ADD_PROJECT = `ADD_PROJECT`
+export const EDIT_NEED_LIST = `EDIT_NEED_LIST`
+export const EDIT_SKILLS_STACK = `EDIT_SKILLS_STACK`
+export const EDIT_DESCRIPTION = `EDIT_DESCRIPTION`
+export const EDIT_TITLE = `EDIT_TITLE`
+export const EDIT_STATUS = `EDIT_STATUS`
+export const APPLY_REQUEST = `APPLY_REQUEST`
 
 // ROELS reduser
 export const GET_ROLES = `GET_ROLES`

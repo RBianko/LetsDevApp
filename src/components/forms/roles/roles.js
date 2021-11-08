@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './roles.css'
 
 import CloseIcon from '../../../img/xmark.svg'
@@ -37,6 +37,10 @@ const RolesForm = ({ roles, setRoles }) => {
         setRolesList([])
         setSelectList([roleSelector()])
     }
+
+    useEffect(() => {
+        clearClickHandler()
+    }, [roles])
 
     return (
         <>

@@ -5,6 +5,7 @@
   box-shadow: 8px 8px 0 0 #000;
   display: flex;
   flex-direction: column;
+  margin-bottom: 3%;
 
   transition: var(--transition-all);
 }
@@ -31,6 +32,7 @@
   padding: calc(7% - 10px);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .profile-content_header {
   display: flex;

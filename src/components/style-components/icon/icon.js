@@ -1,5 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types';
+import './icon.css'
 
 const Icon = ({ className, alt, src }) => {
     return <img className={className} src={src} alt={alt} />

@@ -10,7 +10,7 @@ import Button from './../../style-components/button';
 
 const ProfileSearchCard = ({ user, followState, followToggle }) => {
 
-    const { firstName, lastName, roles, profilePicture } = user
+    const { firstName, lastName, city, country, roles, profilePicture } = user
     let rolesList = roles.join(', ')
 
     useEffect(() => {
@@ -34,6 +34,7 @@ const ProfileSearchCard = ({ user, followState, followToggle }) => {
                 <img className="profile__icon_search" src={profilePicture || defaultIcon} alt="profile" />
                 <div className="profile__info profile__info_search">
                     <span className="profile__info_name_search">{firstName} {lastName}</span>
+                    <p className="profile__info_sity">{city}, {country}</p>
                     <span className="profile__info_role-small">{rolesList}</span>
                 </div>
                 <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={followState} />

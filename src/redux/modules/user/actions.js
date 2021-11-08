@@ -45,9 +45,9 @@ export const editBio = (string) => ({
     payload: string
 })
 
-export const editRoles = (string) => ({
+export const editRoles = (array) => ({
     type: EDIT_ROLES,
-    payload: string
+    payload: array
 })
 
 export const editSkills = (array) => ({

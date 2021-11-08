@@ -27,6 +27,9 @@ export const useRoutes = isAuth => {
                     <Route path='/create-project' >
                         <CreateProject />
                     </Route>
+                    <Route path='/edit-project' >
+                        <CreateProject isEditing={true} />
+                    </Route>
                     <Route path='/search-projects' >
                         <ProjectSearch />
                     </Route>

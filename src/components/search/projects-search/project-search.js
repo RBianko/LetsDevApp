@@ -5,10 +5,19 @@ import './project-search.css'
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
 import { PropTypes } from 'prop-types';
+import RolesForm from './../../forms/roles';
+import { applyRequest } from './../../../redux/modules/projects/actions';
 
-const ProjectSearch = ({ projects, skills }) => {
+const ProjectSearch = ({ user, projects, skills, applyRequest }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
+    const [applyId, setApplyId] = useState("100")
+
+    const applyProject = projects.find(project => project.id === applyId)
+
+    const applyRoles = (roles) => {
+        applyRequest(applyId, user.userId, roles)
+    }
 
     let projectsFilter = projects
     if (searchTerm !== '') {
@@ -22,13 +31,14 @@ const ProjectSearch = ({ projects, skills }) => {
     }
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} skills={skills} apply={true} />
+        <ProjectCard key={project.id} project={project} skills={skills} apply={true} setApplyId={setApplyId} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
 
     return (
         <div className='container'>
+            <RolesForm setRoles={applyRoles} roles={applyProject.needList} />
             <div className='card card_search'>
                 <div className="card__header">
                     search.engine
@@ -54,5 +64,6 @@ ProjectSearch.propTypes = {
 }
 
 export default connect(
-    (({ projects, skills }) => ({ projects: projects.list, skills }))
+    ({ user, projects, skills }) => ({ user, projects: projects.list, skills }),
+    { applyRequest }
 )(ProjectSearch)

@@ -14,7 +14,7 @@ const MyProjects = ({ user, projects, skills }) => {
     )
 
     const projectsList = findProjects.map(project =>
-        <ProjectCard key={project.id} project={project} skills={skills} />
+        <ProjectCard key={project.id} project={project} skills={skills} edit={true} />
     )
 
     const noProjects = (<div>

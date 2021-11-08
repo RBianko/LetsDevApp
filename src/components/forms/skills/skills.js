@@ -20,8 +20,6 @@ const SkillsForm = ({ skills, setSkills }) => {
         }
     }
 
-
-
     let skillSelector = () => <SkillSelector key={counter} skills={skills} selectSkill={onSelectHandler} />
     let [selectList, setSelectList] = useState([skillSelector()])
 
@@ -37,6 +35,7 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     const clearClickHandler = () => {
         setSkillsList([])
+        setCounter(0)
         setSelectList([skillSelector()])
     }
 

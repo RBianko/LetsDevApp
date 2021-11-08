@@ -1,5 +1,5 @@
 .profile__card_small {
-  width: 20%;
+  max-width: 170px;
   margin-bottom: 3%;
   margin-right: 3%;
   height: 100%;
@@ -43,7 +43,6 @@
 }
 
 .profile__icon_small {
-  height: 30%;
   margin-bottom: 10px;
 }
 
