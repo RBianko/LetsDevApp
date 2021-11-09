@@ -5,7 +5,9 @@ import {
     EDIT_DESCRIPTION,
     EDIT_TITLE,
     EDIT_STATUS,
-    APPLY_REQUEST
+    APPLY_REQUEST,
+    APPROVE_REQUEST,
+    DECLINE_REQUEST,
 } from '../../action-types'
 import defaultProjectPicture from '../../../img/project.svg'
 
@@ -44,15 +46,17 @@ const initialState = {
             ],
             requests: [
                 {
+                    requestId: "0",
                     userId: "211928392323293bfd37",
-                    for: 'Frontend'
+                    forRole: 'UI-Designer'
                 },
                 {
+                    requestId: "1",
                     userId: "311928392323293bfd37",
-                    for: 'Frontend'
+                    forRole: 'Tester'
                 }
             ],
-            needList: ['Designer', 'Tester'],
+            needList: ['UI-Designer', 'Tester'],
         },
         {
             id: "101",
@@ -77,13 +81,15 @@ const initialState = {
                 },
             ],
             requests: [],
-            needList: ['Frontend', 'Backend', 'Software'],
+            needList: ['Tester', 'Tester', 'Frontend'],
         },
     ]
 }
 
 const projectsReduser = (state = initialState, { type, payload, id, userId }) => {
-    const projectId = state.list.findIndex(project => project.id === id)
+    let projectId = state.list.findIndex(project => project.id === id)
+    let project = state.list[projectId]
+
     switch (type) {
         case ADD_PROJECT:
             payload.id = _PROJECT_ID.toString()
@@ -91,27 +97,49 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
             _PROJECT_ID++
             return { ...state, list: newList, id: _PROJECT_ID }
         case EDIT_TITLE:
-            state.list[projectId].title = payload
+            project.title = payload
             return { ...state, list: [...state.list] }
         case EDIT_STATUS:
-            state.list[projectId].status = payload
+            project.status = payload
             return { ...state, list: [...state.list] }
         case EDIT_NEED_LIST:
-            state.list[projectId].needList = payload
+            project.needList = payload
             return { ...state, list: [...state.list] }
         case EDIT_SKILLS_STACK:
-            state.list[projectId].skills = payload
+            project.skills = payload
             return { ...state, list: [...state.list] }
         case EDIT_DESCRIPTION:
-            state.list[projectId].description = payload
+            project.description = payload
             return { ...state, list: [...state.list] }
         case APPLY_REQUEST:
             const newRequest = {
+                requestId: project.requests.length.toString(),
                 userId,
                 role: payload
             }
-            state.list[projectId].requests = { ...state.list[projectId].requests, newRequest }
+            state.list[projectId].requests.push(newRequest)
             return { ...state, list: [...state.list] }
+        case APPROVE_REQUEST:
+            let approveRequestId = project.requests.findIndex(request => request.id === payload.id)
+            project.requests.splice(approveRequestId, 1) //delete request
+
+            let roleId = project.needList.findIndex(role => role === payload.forRole)
+            project.needList.splice(roleId, 1) //delete needed role
+
+            let newDev = {
+                userId: payload.userId,
+                role: payload.forRole
+            }
+            project.devs.push(newDev) // add new dev
+
+            const updatedProject = { ...project }
+            state.list.splice(projectId, 1, updatedProject)
+
+            return { ...state, list: [...state.list] }
+        case DECLINE_REQUEST:
+            let declineRequestId = project.requests.findIndex(request => request.id === payload.id)
+            project.requests.splice(declineRequestId, 1) //delete request
+            return { ...state }
         default:
             return state
     }

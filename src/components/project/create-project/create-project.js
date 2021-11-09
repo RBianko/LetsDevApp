@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory, useLocation } from "react-router-dom"
 import { connect } from 'react-redux'
 import './create-project.css'
@@ -6,7 +6,7 @@ import './create-project.css'
 import defaultProjectPicture from '../../../img/project.svg'
 import SkillsForm from '../../forms/skills'
 import RolesForm from './../../forms/roles'
-import ProjectRequests from './project-requests';
+import ProjectRequests from './project-requests/project-requests';
 
 import {
     addProject,
@@ -38,6 +38,8 @@ const CreateProject = ({
 
     const history = useHistory()
     const { state: project } = useLocation()
+
+
     let currentProject = project || {
         title: '',
         projectPicture: defaultProjectPicture,
@@ -131,13 +133,13 @@ const CreateProject = ({
         setSkills(skills)
     }
 
-    const requests = isEditing ? <ProjectRequests project={project} /> : null
+    const requests = isEditing ? <ProjectRequests project={currentProject} /> : null
 
     return (
         <>
             <div className="container">
                 <SkillsForm setSkills={setSkills} skills={skillsList} />
-                <RolesForm setNeedList={setNeedList} roles={rolesList} />
+                <RolesForm setRoles={setNeedList} roles={rolesList} />
                 <div className="profile__card card">
                     <div className="card__header">
                         project.init

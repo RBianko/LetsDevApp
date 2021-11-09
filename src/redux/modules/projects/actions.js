@@ -5,7 +5,9 @@ import {
     EDIT_DESCRIPTION,
     EDIT_TITLE,
     EDIT_STATUS,
-    APPLY_REQUEST
+    APPLY_REQUEST,
+    APPROVE_REQUEST,
+    DECLINE_REQUEST,
 } from '../../action-types'
 
 
@@ -51,3 +53,14 @@ export const applyRequest = (id, userId, array) => ({
     userId
 })
 
+export const approveRequest = (id, request) => ({
+    type: APPROVE_REQUEST,
+    payload: request,
+    id
+})
+
+export const declineRequest = (id, request) => ({
+    type: DECLINE_REQUEST,
+    payload: request,
+    id
+})

@@ -25,6 +25,8 @@ export const EDIT_DESCRIPTION = `EDIT_DESCRIPTION`
 export const EDIT_TITLE = `EDIT_TITLE`
 export const EDIT_STATUS = `EDIT_STATUS`
 export const APPLY_REQUEST = `APPLY_REQUEST`
+export const APPROVE_REQUEST = `APPROVE_REQUEST`
+export const DECLINE_REQUEST = `DECLINE_REQUEST`
 
 // ROELS reduser
 export const GET_ROLES = `GET_ROLES`

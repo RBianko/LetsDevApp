@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 // import { useHistory } from "react-router-dom";
 
 const ProfileCard = ({ userId, users, role }) => {
-    const { firstName, lastName, profilePicture } = users.find(user => user.userId === userId)
+    const { firstName, lastName, profilePicture, roles } = users.find(user => user.userId === userId)
+    const displayedRole = role || roles[0]
 
     // const history = useHistory()
 
@@ -26,7 +27,7 @@ const ProfileCard = ({ userId, users, role }) => {
                 <img className="profile__icon_small" src={profilePicture} alt="profile" />
                 <div className="profile__info">
                     <span className="profile__info_name-small">{firstName} {lastName}</span>
-                    <span className="profile__info_role-small">{role}</span>
+                    <span className="profile__info_role-small">{displayedRole}</span>
                 </div>
             </div>
         </div>
