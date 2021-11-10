@@ -25,7 +25,7 @@ import defaultProjectPicture from '../../../img/project.svg'
 //         }
 
 
-let _PROJECT_ID = 102
+let _PROJECT_ID = 103
 
 const initialState = {
     id: _PROJECT_ID,
@@ -67,13 +67,13 @@ const initialState = {
             skills: ['CSS', 'HTML', 'JS', 'React', 'NoSQL', 'Java', 'Svelte'],
             devs: [
                 {
-                    userId: "616e71fbe25229d0d93bfd37",
-                    role: 'Frontend',
+                    userId: "616e71fb12311233bfd37",
+                    role: 'Backend',
                     creator: true
                 },
                 {
-                    userId: "616e71fb12311233bfd37",
-                    role: 'Backend',
+                    userId: "616e71fbe25229d0d93bfd37",
+                    role: 'Frontend',
                 },
                 {
                     userId: "611928392323293bfd37",
@@ -82,6 +82,27 @@ const initialState = {
             ],
             requests: [],
             needList: ['Tester', 'Tester', 'Frontend'],
+        },
+        {
+            id: "102",
+            title: 'Apply here!',
+            projectPicture: defaultProjectPicture,
+            status: 'Offline',
+            description: 'some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ',
+            skills: ['CSS', 'HTML', 'JS', 'React', 'NoSQL', 'Java', 'Svelte'],
+            devs: [
+                {
+                    userId: "616e71fb12311233bfd37",
+                    role: 'Backend',
+                    creator: true
+                },
+                {
+                    userId: "611928392323293bfd37",
+                    role: 'Software',
+                },
+            ],
+            requests: [],
+            needList: ['Frontend'],
         },
     ]
 }
@@ -134,7 +155,6 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
 
             const updatedProject = { ...project }
             state.list.splice(projectId, 1, updatedProject)
-
             return { ...state, list: [...state.list] }
         case DECLINE_REQUEST:
             let declineRequestId = project.requests.findIndex(request => request.id === payload.id)

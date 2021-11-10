@@ -4,7 +4,6 @@
 }
 
 .project__card_small {
-  width: 30%;
   margin-bottom: 3%;
   margin-right: 3%;
   cursor: crosshair;
@@ -104,7 +103,9 @@
 }
 
 .devs__list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 3%;
 }
 
 .skills_project {
@@ -125,8 +126,9 @@
 }
 
 .projects__list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  gap: 1%;
 }
 
 .project__card_small:hover {

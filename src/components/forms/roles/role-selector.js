@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { PropTypes } from 'prop-types';
 
-const RoleSelector = ({ roles, selectRole }) => {
-    const rolesOptions = roles.map(role => (
-        <option key={role} value={role}>{role}</option>
+const RoleSelector = ({ role, roles, selectRole, id }) => {
+    const rolesOptions = roles.map((role, id) => (
+        <option key={role + id} value={role}>{role}</option>
     ))
 
-    const [role, setRole] = useState('')
+    const [newRole, setNewRole] = useState(role || 'select')
 
     const roleOption = React.createRef()
 
     const onRoleChange = () => {
-        setRole(roleOption.current.value)
+        selectRole(roleOption.current.value, id)
     }
 
-    useEffect(() => {
-        selectRole(role)
-    }, [role, selectRole])
+    setNewRole(role)
 
     return (
         <div className="settings__item">
@@ -26,10 +24,10 @@ const RoleSelector = ({ roles, selectRole }) => {
                 id="role"
                 type="text"
                 placeholder="Role"
-                value={role}
+                value={newRole}
                 ref={roleOption}
                 onChange={() => onRoleChange()}>
-                <option hidden value={''}>Select One...</option>
+                <option hidden>Select One...</option>
                 {rolesOptions}
             </select>
         </div >

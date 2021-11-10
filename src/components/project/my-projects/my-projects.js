@@ -13,9 +13,10 @@ const MyProjects = ({ user, projects, skills }) => {
         projects.find(project => project.id === id)
     )
 
-    const projectsList = findProjects.map(project =>
-        <ProjectCard key={project.id} project={project} skills={skills} edit={true} />
-    )
+    const projectsList = findProjects.map(project => {
+        const dev = project.devs.find(dev => dev.userId === user.userId)
+        return <ProjectCard key={project.id} project={project} userId={user.userId} skills={skills} edit={dev.creator} />
+    })
 
     const noProjects = (<div>
         <h2>You have no projects yet.</h2>

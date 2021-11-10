@@ -41,11 +41,13 @@ const CreateProject = ({
 
 
     let currentProject = project || {
+        id: newProjectId,
         title: '',
         projectPicture: defaultProjectPicture,
         status: '',
         description: '',
         skills: [],
+        requests: [],
         devs: [
             {
                 userId: user.userId,
@@ -64,6 +66,7 @@ const CreateProject = ({
         description,
         skills,
         devs,
+        requests,
         needList
     } = currentProject
 
@@ -115,6 +118,7 @@ const CreateProject = ({
                 skills: newSkills,
                 needList: newNeedList,
                 projectPicture,
+                requests,
                 devs
             }
             addProject(currentProject)
@@ -133,13 +137,13 @@ const CreateProject = ({
         setSkills(skills)
     }
 
-    const requests = isEditing ? <ProjectRequests project={currentProject} /> : null
+    const requestslist = isEditing ? <ProjectRequests projectId={id} /> : null
 
     return (
         <>
             <div className="container">
-                <SkillsForm setSkills={setSkills} skills={skillsList} />
-                <RolesForm setRoles={setNeedList} roles={rolesList} />
+                <SkillsForm setSkills={setSkills} skills={skills} />
+                <RolesForm setRoles={setNeedList} roles={needList} />
                 <div className="profile__card card">
                     <div className="card__header">
                         project.init
@@ -249,7 +253,7 @@ const CreateProject = ({
                         </div>
                     </div>
                 </div>
-                {requests}
+                {requestslist}
             </div>
         </>
     )

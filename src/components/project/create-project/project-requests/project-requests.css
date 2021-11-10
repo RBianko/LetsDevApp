@@ -1,5 +1,7 @@
 .requests {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 7%;
 }
 
 .request__item {

@@ -5,9 +5,10 @@ import './profile-card.css'
 import PropTypes from 'prop-types';
 // import { useHistory } from "react-router-dom";
 
-const ProfileCard = ({ userId, users, role }) => {
+const ProfileCard = ({ userId, users, role, creator }) => {
     const { firstName, lastName, profilePicture, roles } = users.find(user => user.userId === userId)
     const displayedRole = role || roles[0]
+    const isCreator = creator ? <span title="Creator">&#9733;</span> : null
 
     // const history = useHistory()
 
@@ -21,11 +22,12 @@ const ProfileCard = ({ userId, users, role }) => {
     return (
         <div className="profile__card_small card">
             <div className="card__header card__header_small" onClick={() => { }}>
-                user.info
+                {isCreator} user.info
             </div>
             <div className="card__content profile-content_small">
                 <img className="profile__icon_small" src={profilePicture} alt="profile" />
-                <div className="profile__info">
+                <div className="profile__info profile__info_small">
+
                     <span className="profile__info_name-small">{firstName} {lastName}</span>
                     <span className="profile__info_role-small">{displayedRole}</span>
                 </div>

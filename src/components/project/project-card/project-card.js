@@ -11,7 +11,7 @@ import Icon from './../../style-components/icon/index';
 import editIcon from '../../../img/edit.svg'
 import IconButton from './../../style-components/icon-button/index';
 
-const ProjectCard = ({ project, skills: skillsGlobalStack, apply = false, edit = false, setApplyId }) => {
+const ProjectCard = ({ project, userId, skills: skillsGlobalStack, apply = false, edit = false, setApplyId }) => {
     const {
         id,
         title,
@@ -40,6 +40,7 @@ const ProjectCard = ({ project, skills: skillsGlobalStack, apply = false, edit =
             key={dev.userId}
             userId={dev.userId}
             role={dev.role}
+            creator={dev.creator}
         />
     )
 
@@ -50,8 +51,17 @@ const ProjectCard = ({ project, skills: skillsGlobalStack, apply = false, edit =
     let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
     const needListString = needList.join(', ')
+    const needListContent = needList.length > 0
+        ? <div className="need-list">
+            <h3 className="need-list__title">We need</h3>
+            <span className="need-list__roles">
+                {needListString}
+            </span>
+        </div>
+        : null
 
-    const applyButton = apply
+    const userInProject = devs.some(dev => dev.userId === userId)
+    const applyButton = apply && (needList.length > 0) && !userInProject
         ? <IconButton className={'btn apply-btn'} htmlFor={'modal-toggle_roles'} text={'Apply for Project'} onClick={setApplyId} data={id} />
         : null
 
@@ -60,7 +70,7 @@ const ProjectCard = ({ project, skills: skillsGlobalStack, apply = false, edit =
             pathname: "/edit-project",
             state: project
         }}>
-            <Icon className={'edit-icon'} alt={'Edit'} src={editIcon} />
+            <Icon className={'edit-icon'} alt={'Edit'} src={editIcon} title={'Edit project'} />
         </Link>
         : null
 
@@ -92,12 +102,7 @@ const ProjectCard = ({ project, skills: skillsGlobalStack, apply = false, edit =
                         </div>
                     </div>
                     <div className="project-content_body">
-                        <div className="need-list">
-                            <h3 className="need-list__title">We need</h3>
-                            <span className="need-list__roles">
-                                {needListString}
-                            </span>
-                        </div>
+                        {needListContent}
                         <div className="project__description">
                             <h3 className="description__title">Description</h3>
                             <p className="description__text">{description}</p>

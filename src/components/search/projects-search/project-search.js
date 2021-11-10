@@ -31,7 +31,7 @@ const ProjectSearch = ({ user, projects, skills, applyRequest }) => {
     }
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} skills={skills} apply={true} setApplyId={setApplyId} />
+        <ProjectCard key={project.id} project={project} userId={user.userId} skills={skills} apply={true} setApplyId={setApplyId} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
