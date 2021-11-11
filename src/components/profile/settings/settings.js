@@ -147,8 +147,8 @@ const Settings = ({
     return (
         <>
             <div className="container">
-                <SkillsForm setSkills={setSkills} skills={skillsList} />
-                <RolesForm setRoles={setRoles} roles={rolesList} />
+                <SkillsForm setSkills={setSkills} skills={skills} />
+                <RolesForm setRoles={setRoles} roles={roles} />
                 <div className="profile__card card">
                     <div className="card__header">
                         settings.cfg
