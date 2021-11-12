@@ -31,17 +31,21 @@ const initialState = {
     //     socials: {},
     //     login: () => { },
     //     logout: () => { }
+
+    userId: null,
+    token: null,
+    isLogedIn: false,
     profilePicture: '/static/media/users.86cb98ab.svg',
     roles: [
         'Frontend'
     ],
     follow: {
         followers: [
-            '611928392323293bfd37'
+            '1fake616e71fb12311233bfd37'
         ],
         following: [
-            '611928392323293bfd37',
-            '616e71fb12311233bfd37'
+            '3fake616e71fb12311233bfd37',
+            '4fake616e71fb12311233bfd37'
         ]
     },
     skills: [
@@ -75,12 +79,13 @@ const initialState = {
 const userReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_USER:
+            let loginState
             if (payload.token && payload.userId) {
-                state.isLogedIn = true
+                loginState = true
             } else {
-                state.isLogedIn = false
+                loginState = false
             }
-            return Object.assign(state, payload)
+            return { ...state, isLogedIn: loginState, token: payload.token, userId: payload.userId }
         case EDIT_FIRSTNAME:
             return { ...state, firstName: payload }
         case EDIT_LASTNAME:

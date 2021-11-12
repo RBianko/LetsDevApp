@@ -6,7 +6,6 @@ import ProjectCard from '../project-card'
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 import { PropTypes } from 'prop-types';
 
-
 const MyProjects = ({ user, projects, skills }) => {
 
     const findProjects = user.projects.map(id =>

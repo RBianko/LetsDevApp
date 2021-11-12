@@ -77,7 +77,12 @@ const ProjectCard = ({ project, userId, skills: skillsGlobalStack, apply = false
     return (
         <>
             <div className="project__card card">
-                <div className="card__header">project.info</div>
+                <Link to={{
+                    pathname: `/project/${id}`,
+                    state: { id }
+                }}>
+                    <div className="card__header">project.info</div>
+                </Link>
                 <div className="card__content project-content">
                     <div className="project-content__header">
                         <div className="project__info">

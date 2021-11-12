@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useLocation } from 'react-router-dom';
 import './profile.css'
 
 import PropTypes from 'prop-types';
@@ -10,7 +11,10 @@ import ProjectCardSmall from '../project/project-card/project-card-small'
 import OtherSkill from '../style-components/skills-icon/other-skill'
 import SocialLink from './../style-components/social-link';
 
-const Profile = ({ user, skills: skillsGlobalStack, projects: projectsList }) => {
+const Profile = ({ users, skills: skillsGlobalStack, projects: projectsList }) => {
+    let { state } = useLocation()
+    const user = users.find(user => user.userId === state.id)
+
     const {
         firstName = "New",
         lastName = "User",
@@ -127,5 +131,5 @@ Profile.propTypes = {
 }
 
 export default connect(
-    ({ user, skills, projects }) => ({ user, skills, projects: projects.list })
+    ({ users, skills, projects }) => ({ users: users.list, skills, projects: projects.list })
 )(Profile)

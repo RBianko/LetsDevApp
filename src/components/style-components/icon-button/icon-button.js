@@ -21,7 +21,10 @@ IconButton.propTypes = {
     htmlFor: PropTypes.string,
     alt: PropTypes.string,
     src: PropTypes.string,
-    child: PropTypes.string,
+    child: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
     text: PropTypes.string,
 }
 

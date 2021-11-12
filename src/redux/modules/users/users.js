@@ -5,9 +5,9 @@ import {
 const initialState = {
     list: [
         {
-            userId: "616e71fb12311233bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M!@#J)!@(J#ciLCJpYXQiOjE2MzU0OTA0MDQsImV4cCI6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
-            isLogedIn: true,
+            userId: "1fake616e71fb12311233bfd37",
+            token: "1fake616e71fb12311233bfd37.eyJ1c2VySWQiOiI2M!@#J)!@(J#ciLCJpYXQiOjE2MzU0OTA0MDQsImV4cCI6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            isLogedIn: false,
             firstName: "Dmitry",
             lastName: "Dimenko",
             city: "Minsk",
@@ -23,9 +23,9 @@ const initialState = {
             socials: { vk: "a8sd0a8shdjasd" },
         },
         {
-            userId: "611928392323293bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
-            isLogedIn: true,
+            userId: "2fake616e71fb12311233bfd37",
+            token: "2fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            isLogedIn: false,
             firstName: "Dave",
             lastName: "Sonneiko",
             city: "New York",
@@ -41,8 +41,8 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "111928392323293bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            userId: "3fake616e71fb12311233bfd37",
+            token: "3fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Singh",
             lastName: "Arham",
@@ -59,8 +59,8 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "211928392323293bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            userId: "4fake616e71fb12311233bfd37",
+            token: "4fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Lia",
             lastName: "Wolker",
@@ -77,8 +77,8 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "311928392323293bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            userId: "5fake616e71fb12311233bfd37",
+            token: "5fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Mike",
             lastName: "Nikolas",
@@ -95,8 +95,8 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "411928392323293bfd37",
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
+            userId: "6fake616e71fb12311233bfd37",
+            token: "6fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Lominson",
             lastName: "Dendi",
@@ -118,7 +118,7 @@ const initialState = {
 const usersReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case UPDATE_USERS:
-            if (!payload.token || !payload.userId) {
+            if (!payload.userId && !payload.token) {
                 return state
             }
             let newUser = Object.assign({}, payload)
@@ -126,9 +126,10 @@ const usersReduser = (state = initialState, { type, payload }) => {
             if (!registred) {
                 return { ...state, list: [...state.list, newUser] }
             }
-            let userIndex = state.list.findIndex(user => user.userId === newUser.userId)
-            state.list.splice(userIndex, 1, newUser)
-            return { ...state, list: [...state.list] }
+            let list = state.list.slice()
+            let userIndex = list.findIndex(user => user.userId === newUser.userId)
+            list.splice(userIndex, 1, newUser)
+            return { ...state, list: list }
         default:
             return state
     }

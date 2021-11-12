@@ -11,15 +11,19 @@ import Settings from './../profile/settings';
 import Header from './../welcome-page/header';
 import WelcomePage from './../welcome-page';
 import Footer from './../footer';
+import Project from '../project/project';
 
-export const useRoutes = isAuth => {
+export const useRoutes = (isAuth, id) => {
     if (isAuth) {
         return (
             <>
                 <Menu />
                 <Switch>
-                    <Route path='/profile'>
+                    <Route path='/profile/:id'>
                         <Profile />
+                    </Route>
+                    <Route path='/project/:id'>
+                        <Project />
                     </Route>
                     <Route path='/my-projects'>
                         <MyProjects />
@@ -42,12 +46,12 @@ export const useRoutes = isAuth => {
                     <Route path='/settings' >
                         <Settings />
                     </Route>
-                    <Route
-                        exact
-                        path="/user/:id"
-                        component={Profile}
+                    <Redirect to={{
+                        pathname: `/profile/${id}`,
+                        state: { id: id }
+                    }}
+
                     />
-                    <Redirect to='/profile' />
                 </Switch>
                 <Footer />
             </>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import './menu.css'
 
@@ -23,22 +23,25 @@ const Menu = ({ user }) => {
         <nav className="side-menu">
             <ul className="menu__icons">
                 <li className="menu-icon">
-                    <NavLink to="/profile">
+                    <Link to={{
+                        pathname: `/profile/${user.userId}`,
+                        state: { id: user.userId }
+                    }}>
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
-                    </NavLink>
+                    </Link>
                 </li>
                 <li className="menu-icon icon_follow">
                     <Icon className={'link-icon'} alt={'follow-menu'} src={FriendsIcon} />
                     <ul className="links__list links_follow">
                         <li className="menu__link">
-                            <NavLink to="/follow/following">
+                            <Link to="/follow/following">
                                 <span className="link__title">{followingCounter} Following</span>
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu__link">
-                            <NavLink to="/follow/followers">
+                            <Link to="/follow/followers">
                                 <span className="link__title">{followersCounter} Followers</span>
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </li>
@@ -46,14 +49,14 @@ const Menu = ({ user }) => {
                     <Icon className={'link-icon'} alt={'project-menu'} src={ProjectIcon} />
                     <ul className="links__list links_project">
                         <li className="menu__link">
-                            <NavLink to="/my-projects">
+                            <Link to="/my-projects">
                                 <span className="link__title">My Projects</span>
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu__link">
-                            <NavLink to="/create-project">
+                            <Link to="/create-project">
                                 <span className="link__title">Create Project</span>
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </li>
@@ -61,14 +64,14 @@ const Menu = ({ user }) => {
                     <Icon className={'link-icon'} alt={'search-menu'} src={SearchIcon} />
                     <ul className="links__list links_search">
                         <li className="menu__link">
-                            <NavLink to="/search-projects">
+                            <Link to="/search-projects">
                                 <span className="link__title">Search for Projects</span>
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu__link">
-                            <NavLink to="/search-devs">
+                            <Link to="/search-devs">
                                 <span className="link__title">Search for Dev's</span>
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </li>
@@ -76,9 +79,9 @@ const Menu = ({ user }) => {
                     <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
                     <ul className="links__list links_settings">
                         <li className="menu__link">
-                            <NavLink to="/settings">
+                            <Link to="/settings">
                                 <span className="link__title">Settings</span>
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="menu__link menu__link_logout">
                             <Button subClass="btn_logout" onClick={() => user.logout()} text={'Log Out'} />
