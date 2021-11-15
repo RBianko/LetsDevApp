@@ -28,7 +28,7 @@ const Project = () => {
 
     return (
         <div className="container">
-            <RolesForm roles={needList} setRoles={applyRoles} />
+            <RolesForm stack={needList} setRoles={applyRoles} />
             <ProjectCard key={id} project={project} userId={user.userId} skills={skills} apply={apply} edit={userInList && userInList.creator} />
         </div>
     )

@@ -6,7 +6,7 @@ import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
 import { PropTypes } from 'prop-types';
 
-const RolesForm = ({ roles: currentRoles, setRoles }) => {
+const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
     const { roles } = useSelector(({ roles }) => ({ roles }))
 
     let [rolesList, setRolesList] = useState(currentRoles)
@@ -26,7 +26,7 @@ const RolesForm = ({ roles: currentRoles, setRoles }) => {
     }
 
     let roleSelector = (role) =>
-        <RoleSelector key={`${counter}-${role}`} role={role} roles={roles} id={counter} selectRole={onSelectHandler} />
+        <RoleSelector key={`${counter}-${role}`} role={role} roles={stack || roles} id={counter} selectRole={onSelectHandler} />
 
 
     const initialSelectors = rolesList.map(role => roleSelector(role))
