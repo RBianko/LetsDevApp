@@ -1,23 +1,14 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import './project-search.css'
+
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
-import { PropTypes } from 'prop-types';
-import RolesForm from './../../forms/roles';
-import { applyRequest } from './../../../redux/modules/projects/actions';
 
-const ProjectSearch = ({ user, projects, applyRequest }) => {
 
+const ProjectSearch = () => {
+    const { projects } = useSelector(({ projects }) => ({ projects: projects.list }))
     const [searchTerm, setSearchTerm] = useState('')
-    const [applyId, setApplyId] = useState("100")
-
-    const applyProject = projects.find(project => project.id === applyId)
-
-    const applyRoles = (roles) => {
-        applyRequest(applyId, user.userId, roles)
-    }
 
     let projectsFilter = projects
     if (searchTerm !== '') {
@@ -31,17 +22,16 @@ const ProjectSearch = ({ user, projects, applyRequest }) => {
     }
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} userId={user.userId} apply={true} setApplyId={setApplyId} />
+        <ProjectCard key={project.id} project={project} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
 
     return (
         <div className='container'>
-            <RolesForm setRoles={applyRoles} roles={applyProject.needList} />
             <div className='card card_search'>
                 <div className="card__header">
-                    search.engine
+                    <div className="header__title">search.engine</div>
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
@@ -58,12 +48,4 @@ const ProjectSearch = ({ user, projects, applyRequest }) => {
     )
 }
 
-ProjectSearch.propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.object).isRequired,
-    skills: PropTypes.arrayOf(PropTypes.string),
-}
-
-export default connect(
-    ({ user, projects }) => ({ user, projects: projects.list }),
-    { applyRequest }
-)(ProjectSearch)
+export default ProjectSearch

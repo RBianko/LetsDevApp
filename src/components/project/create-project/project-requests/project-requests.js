@@ -31,7 +31,7 @@ const ProjectRequests = ({ projectId }) => {
     return (
         <div className="profile__card card">
             <div className="card__header">
-                requests.table
+                <div className="header__title">requests.table</div>
             </div>
             <div className="card__content">
                 <div className="requests">

@@ -151,7 +151,7 @@ const Settings = ({
                 <RolesForm setRoles={setRoles} roles={roles} />
                 <div className="profile__card card">
                     <div className="card__header">
-                        settings.cfg
+                        <div className="header__title">settings.cfg</div>
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">

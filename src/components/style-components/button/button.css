@@ -1,6 +1,7 @@
 .apply-btn {
+  max-width: 430px;
   font-size: 2rem;
-  margin-top: 3%;
+  margin-top: 10%;
   padding: 10px;
   box-shadow: 8px 5px 0 0 #000;
 }
@@ -8,4 +9,10 @@
 .apply-btn:hover {
   transform: translateY(-5px);
   box-shadow: 10px 11px #000;
+}
+
+.btn_follow {
+  padding: 3px 10px;
+  width: 100%;
+  font-size: 0.8em;
 }

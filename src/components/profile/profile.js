@@ -6,13 +6,12 @@ import './profile.css'
 import PropTypes from 'prop-types';
 import { UserPropTypes } from '../../redux/modules/user/prop-types';
 
-import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
-import OtherSkill from '../style-components/skills-icon/other-skill'
 import SocialLink from './../style-components/social-link';
 import Button from './../style-components/button';
 import { followToggle } from './../../redux/modules/user/actions';
 import getFollowState from '../../helpers/get-follow-state'
+import { useSkills } from './../../hooks/skills.hook';
 
 const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects: projectsList, followToggle }) => {
     let { state } = useLocation()
@@ -31,17 +30,12 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
         profilePicture
     } = user
 
-    const globalSkills = skills.filter(skill =>
-        skillsGlobalStack.some(stack => stack === skill))
+    const { global, other } = useSkills()
+    const globalSkillsList = global(skills)
+    const otherSkillsList = other(skills)
 
-    const otherSkills = skills.filter(skill =>
-        !skillsGlobalStack.some(stack => stack === skill))
-
-    const globalSkillsList = globalSkills.map(skill =>
-        <SkillIcon key={skill} skill={skill} />)
-
-    const otherSkillsList = otherSkills.map(skill =>
-        <OtherSkill key={skill} skill={skill} />)
+    let noSkillsString = otherSkillsList && otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
+    let otherSkillsTitle = otherSkillsList && otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     let socialsList = []
     for (let key in socials) {
@@ -63,12 +57,7 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
 
     let projectListContent = userProjectsList.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
-    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>{firstName} no selected skills</p> : null
-    let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
     let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
-
-    let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
-    let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
 
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
@@ -81,7 +70,7 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
             <div className="container">
                 <div className="profile__card card">
                     <div className="card__header">
-                        <div className="header__title">profile.info</div>
+                        <div className="header__title">profile.page</div>
                     </div>
 
                     <div className="card__content profile-content">
@@ -103,12 +92,12 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
                                 <div className="skills-list">
                                     {noSkillsString}
                                     <div className="skills-grid">
-                                        {globalSkillsListContent}
+                                        {globalSkillsList}
                                     </div>
                                     <div className="skills-other">
                                         {otherSkillsTitle}
                                         <div className="skills-grid">
-                                            {otherSkillsListContent}
+                                            {otherSkillsList}
                                         </div>
                                     </div>
                                 </div>

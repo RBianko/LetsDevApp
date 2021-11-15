@@ -146,7 +146,7 @@ const CreateProject = ({
                 <RolesForm setRoles={setNeedList} roles={needList} />
                 <div className="profile__card card">
                     <div className="card__header">
-                        project.init
+                        <div className="header__title">project.init</div>
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">

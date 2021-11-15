@@ -14,7 +14,7 @@ const DevsSearch = ({ user: currentUser, users }) => {
         <div className='container'>
             <div className='card card_search'>
                 <div className="card__header">
-                    search.engine
+                    <div className="header__title">search.engine</div>
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Devs Search</p>

@@ -75,7 +75,8 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
 }
 
 RolesForm.propTypes = {
-    roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+    roles: PropTypes.arrayOf(PropTypes.string),
+    stack: PropTypes.arrayOf(PropTypes.string),
     setRoles: PropTypes.func.isRequired,
 }
 

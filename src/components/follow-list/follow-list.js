@@ -12,7 +12,7 @@ const FollowList = ({ currentUser, users }) => {
         <div className='container'>
             <div className='card card_search'>
                 <div className="card__header">
-                    follow.list
+                    <div className="header__title">follow.list</div>
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Search</p>
