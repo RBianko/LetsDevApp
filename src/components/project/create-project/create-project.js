@@ -150,8 +150,8 @@ const CreateProject = ({
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
-                            <div className="profile__picture">
-                                <img className="profile-icon" src={newPicture} alt="project" />
+                            <div className="profile__contacts">
+                                <img className="profile-picture" src={newPicture} alt="project" />
                                 <label className="picture-label" htmlFor="profilePicture">Project picture:</label>
                                 <input className="text-input btn" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" ref={pictureUpload} onChange={() => onChangeHandler('picture')} />
                             </div>

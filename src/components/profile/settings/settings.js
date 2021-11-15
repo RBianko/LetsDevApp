@@ -155,8 +155,8 @@ const Settings = ({
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
-                            <div className="profile__picture">
-                                <img className="profile-icon" src={profilePicture} alt="profile" />
+                            <div className="profile__contacts">
+                                <img className="profile-picture" src={profilePicture} alt="profile" />
                                 <label className="title-label" htmlFor="profilePicture">Profile picture:</label>
                                 <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
                             </div>

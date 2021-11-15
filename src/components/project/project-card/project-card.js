@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './project-card.css'
 
@@ -7,11 +8,13 @@ import ProfileCard from '../../profile/profile-card'
 import OtherSkill from './../../style-components/skills-icon/other-skill';
 import { PropTypes } from 'prop-types';
 import { ProjectsPropTypes } from './../../../redux/modules/projects/prop-types';
-import Icon from './../../style-components/icon/index';
+import Icon from './../../style-components/icon';
 import editIcon from '../../../img/edit.svg'
-import IconButton from './../../style-components/icon-button/index';
+import IconButton from './../../style-components/icon-button';
+import CardHeader from './../../style-components/card-header';
 
-const ProjectCard = ({ project, userId, skills: skillsGlobalStack, apply = false, edit = false, setApplyId }) => {
+
+const ProjectCard = ({ project, userId, apply = false, edit = false, setApplyId }) => {
     const {
         id,
         title,
@@ -22,6 +25,7 @@ const ProjectCard = ({ project, userId, skills: skillsGlobalStack, apply = false
         devs,
         needList
     } = project
+    const { skills: skillsGlobalStack } = useSelector(({ skills }) => ({ skills }))
 
     const globalSkills = skills.filter(skill =>
         skillsGlobalStack.some(stack => stack === skill))
@@ -77,12 +81,7 @@ const ProjectCard = ({ project, userId, skills: skillsGlobalStack, apply = false
     return (
         <>
             <div className="project__card card">
-                <Link to={{
-                    pathname: `/project/${id}`,
-                    state: { id }
-                }}>
-                    <div className="card__header">project.info</div>
-                </Link>
+                <CardHeader id={id} title={'project.info'} path={'project'} />
                 <div className="card__content project-content">
                     <div className="project-content__header">
                         <div className="project__info">

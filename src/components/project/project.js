@@ -7,23 +7,20 @@ import { applyRequest } from '../../redux/modules/projects/actions';
 
 
 const Project = () => {
+    let { state } = useLocation()
     const { projects, user } = useSelector(({ projects, user }) => ({ projects: projects.list, user }))
     const dispatch = useDispatch()
 
-    let { state } = useLocation()
     const project = projects.find(project => project.id === state.id)
     const {
         id,
-        title,
-        projectPicture,
-        status,
-        description,
         skills,
         devs,
         needList
     } = project
 
-    const dev = devs.find(dev => dev.userId === user.userId)
+    const userInList = devs.find(dev => dev.userId === user.userId)
+    const apply = userInList ? false : true
 
     const applyRoles = (roles) => {
         dispatch(applyRequest(id, user.userId, roles))
@@ -32,7 +29,7 @@ const Project = () => {
     return (
         <div className="container">
             <RolesForm roles={needList} setRoles={applyRoles} />
-            <ProjectCard key={id} project={project} userId={user.userId} skills={skills} apply={!dev.creator} edit={dev.creator} />
+            <ProjectCard key={id} project={project} userId={user.userId} skills={skills} apply={apply} edit={userInList && userInList.creator} />
         </div>
     )
 }

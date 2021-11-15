@@ -10,17 +10,20 @@ import SkillIcon from '../style-components/skills-icon'
 import ProjectCardSmall from '../project/project-card/project-card-small'
 import OtherSkill from '../style-components/skills-icon/other-skill'
 import SocialLink from './../style-components/social-link';
+import Button from './../style-components/button';
+import { followToggle } from './../../redux/modules/user/actions';
+import getFollowState from '../../helpers/get-follow-state'
 
-const Profile = ({ users, skills: skillsGlobalStack, projects: projectsList }) => {
+const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects: projectsList, followToggle }) => {
     let { state } = useLocation()
     const user = users.find(user => user.userId === state.id)
-
     const {
-        firstName = "New",
-        lastName = "User",
+        userId,
+        firstName = "New User",
+        lastName = "",
         city = "City",
         country = "Country",
-        bio = "Something about me.",
+        bio = `Something about ${firstName}`,
         roles,
         projects,
         skills,
@@ -58,11 +61,11 @@ const Profile = ({ users, skills: skillsGlobalStack, projects: projectsList }) =
         />
     )
 
-    let projectListContent = userProjectsList.length > 0 ? userProjectsList : <p>You have no Projects</p>
+    let projectListContent = userProjectsList.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
-    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>You have no selected skills</p> : null
+    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>{firstName} no selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
-    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">You have no contacts.</span>
+    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
 
     let globalSkillsListContent = globalSkillsList.length > 0 ? globalSkillsList : null
     let otherSkillsListContent = otherSkillsList.length > 0 ? otherSkillsList : null
@@ -70,18 +73,23 @@ const Profile = ({ users, skills: skillsGlobalStack, projects: projectsList }) =
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
 
+    const currentUserProfile = currentUser.userId === userId
+    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={getFollowState(currentUser, user)} />
+
     return (
         <>
             <div className="container">
                 <div className="profile__card card">
                     <div className="card__header">
-                        profile.info
+                        <div className="header__title">profile.info</div>
                     </div>
+
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
-                            <div className="profile__picture">
-                                <img className="profile-icon" src={profilePicture} alt="profile" />
+                            <div className="profile__contacts">
+                                <img className="profile-picture" src={profilePicture} alt="profile" />
                                 <div className="profile__socials">
+                                    {followButton}
                                     {socialsTitle}
                                     <div className="socials__list">
                                         {socialsList}
@@ -131,5 +139,6 @@ Profile.propTypes = {
 }
 
 export default connect(
-    ({ users, skills, projects }) => ({ users: users.list, skills, projects: projects.list })
+    ({ user, users, skills, projects }) => ({ user, users: users.list, skills, projects: projects.list }),
+    { followToggle }
 )(Profile)

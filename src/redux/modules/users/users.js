@@ -19,7 +19,7 @@ const initialState = {
                 following: [],
             },
             skills: ["HTML", "CSS"],
-            projects: ["101"],
+            projects: ["102"],
             socials: { vk: "a8sd0a8shdjasd" },
         },
         {
@@ -37,7 +37,7 @@ const initialState = {
                 following: ["616e71fbe25229d0d93bfd37"],
             },
             skills: ["HTML", "JS"],
-            projects: ["101"],
+            projects: ["102"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
@@ -73,7 +73,7 @@ const initialState = {
                 following: [],
             },
             skills: ["CSS", "JavaScript", "C++"],
-            projects: [],
+            projects: ["101"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
@@ -91,7 +91,7 @@ const initialState = {
                 following: ["616e71fbe25229d0d93bfd37"],
             },
             skills: ["SQL", "NoSQL", "C#", "Java"],
-            projects: [],
+            projects: ["101"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {

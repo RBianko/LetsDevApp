@@ -85,7 +85,7 @@ const userReduser = (state = initialState, { type, payload }) => {
             } else {
                 loginState = false
             }
-            return { ...state, isLogedIn: loginState, token: payload.token, userId: payload.userId }
+            return { ...state, isLogedIn: loginState, token: payload.token, userId: payload.userId, login: payload.login, logout: payload.logout }
         case EDIT_FIRSTNAME:
             return { ...state, firstName: payload }
         case EDIT_LASTNAME:

@@ -14,20 +14,6 @@
   color: var(--highlight-color);
 }
 
-.card__header {
-  padding: 12px 20px;
-  border-bottom: 4px solid #000;
-  background-color: var(--background-color-darken);
-  font-weight: 900;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.card__header_small {
-  padding: 6px 10px;
-  font-size: 1.3rem;
-}
-
 .card__content {
   padding: calc(7% - 10px);
   display: flex;
@@ -45,14 +31,14 @@
   flex-basis: 60%;
 }
 
-.profile__picture {
+.profile__contacts {
   display: flex;
   width: 20%;
   margin-right: 3%;
   flex-direction: column;
 }
 
-.profile-icon {
+.profile-picture {
   width: 100%;
   margin-bottom: 3%;
 }

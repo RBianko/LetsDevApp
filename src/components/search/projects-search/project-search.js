@@ -8,7 +8,7 @@ import { PropTypes } from 'prop-types';
 import RolesForm from './../../forms/roles';
 import { applyRequest } from './../../../redux/modules/projects/actions';
 
-const ProjectSearch = ({ user, projects, skills, applyRequest }) => {
+const ProjectSearch = ({ user, projects, applyRequest }) => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [applyId, setApplyId] = useState("100")
@@ -31,7 +31,7 @@ const ProjectSearch = ({ user, projects, skills, applyRequest }) => {
     }
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} userId={user.userId} skills={skills} apply={true} setApplyId={setApplyId} />
+        <ProjectCard key={project.id} project={project} userId={user.userId} apply={true} setApplyId={setApplyId} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
@@ -64,6 +64,6 @@ ProjectSearch.propTypes = {
 }
 
 export default connect(
-    ({ user, projects, skills }) => ({ user, projects: projects.list, skills }),
+    ({ user, projects }) => ({ user, projects: projects.list }),
     { applyRequest }
 )(ProjectSearch)
