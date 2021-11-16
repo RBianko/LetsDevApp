@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import './project-search.css'
 
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
+import { getProjects } from './../../../redux/modules/projects/actions';
 
 
 const ProjectSearch = () => {
-    const { projects } = useSelector(({ projects }) => ({ projects: projects.list }))
+    const { projects, loadingPosts } = useSelector(({ projects }) => ({ projects: projects.list, loadingPosts: projects.loadingProjects }))
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getProjects());
+    }, []);
+
     const [searchTerm, setSearchTerm] = useState('')
 
     let projectsFilter = projects
@@ -35,6 +42,7 @@ const ProjectSearch = () => {
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
+                    {loadingPosts ? 'LOADING...' : null}
                     <div className="search">
                         <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
                         <button className="searchButton" type="submit">

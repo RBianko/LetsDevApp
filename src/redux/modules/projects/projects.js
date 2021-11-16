@@ -8,6 +8,12 @@ import {
     APPLY_REQUEST,
     APPROVE_REQUEST,
     DECLINE_REQUEST,
+    GET_PROJECTS,
+    GET_PROJECTS_SUCCESS,
+    GET_PROJECTS_FAIL,
+    GET_PROJECT_DETAILS,
+    GET_PROJECT_DETAILS_SUCCESS,
+    GET_PROJECT_DETAILS_FAIL,
 } from '../../action-types'
 import defaultProjectPicture from '../../../img/project.svg'
 
@@ -29,6 +35,10 @@ let _PROJECT_ID = 103
 
 const initialState = {
     id: _PROJECT_ID,
+    loadingProjects: false,
+    loadingProjectDetails: false,
+    error: { message: '' },
+    project: {},
     list: [
         {
             id: "100",
@@ -112,6 +122,36 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
     let project = state.list[projectId]
 
     switch (type) {
+        case GET_PROJECTS:
+            state = { ...state, loadingProjects: true };
+            break;
+        case GET_PROJECTS_SUCCESS:
+            state = { ...state, list: payload, loadingProjects: false };
+            break;
+        case GET_PROJECTS_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on GET_PROJECTS",
+                },
+                loadingProjects: false,
+            };
+            break;
+        case GET_PROJECT_DETAILS:
+            state = { ...state, loadingProjectDetails: true };
+            break;
+        case GET_PROJECT_DETAILS_SUCCESS:
+            state = { ...state, project: payload[0], loadingProjectDetails: false };
+            break;
+        case GET_PROJECT_DETAILS_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on GET_PROJECT_DETAILS",
+                },
+                loadingProjectDetails: false,
+            };
+            break;
         case ADD_PROJECT:
             payload.id = _PROJECT_ID.toString()
             let newList = [...state.list, payload]
@@ -161,8 +201,10 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
             project.requests.splice(declineRequestId, 1) //delete request
             return { ...state }
         default:
-            return state
+            state = { ...state }
+            break
     }
+    return state
 }
 
 export default projectsReduser

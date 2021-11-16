@@ -3,6 +3,8 @@ import {
 } from '../../action-types'
 
 const initialState = {
+    loadingUsers: false,
+    error: { message: '' },
     list: [
         {
             userId: "1fake616e71fb12311233bfd37",

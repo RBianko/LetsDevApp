@@ -8,9 +8,51 @@ import {
     APPLY_REQUEST,
     APPROVE_REQUEST,
     DECLINE_REQUEST,
+    GET_PROJECTS,
+    GET_PROJECTS_SUCCESS,
+    GET_PROJECTS_FAIL,
+    GET_PROJECT_DETAILS,
+    GET_PROJECT_DETAILS_SUCCESS,
+    GET_PROJECT_DETAILS_FAIL,
 } from '../../action-types'
 
 
+export const getProjects = () => ({
+    type: GET_PROJECTS
+})
+
+export const getProjectsSuccess = (projects) => {
+    return {
+        type: GET_PROJECTS_SUCCESS,
+        payload: projects
+    }
+}
+
+export const getProjectsFail = (error) => {
+    return {
+        type: GET_PROJECTS_FAIL,
+        payload: error
+    }
+}
+
+export const getProjectDetails = (id) => ({
+    type: GET_PROJECT_DETAILS,
+    payload: id
+})
+
+export const getProjectDetailsSuccess = (project) => {
+    return {
+        type: GET_PROJECT_DETAILS_SUCCESS,
+        payload: project
+    }
+}
+
+export const getProjectDetailsFail = (error) => {
+    return {
+        type: GET_PROJECT_DETAILS_FAIL,
+        payload: error
+    }
+}
 export const addProject = (project) => ({
     type: ADD_PROJECT,
     payload: project

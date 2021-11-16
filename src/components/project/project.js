@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,14 +9,20 @@ import IconButton from '../style-components/icon-button';
 import RolesForm from '../forms/roles';
 import { useSkills } from '../../hooks/skills.hook';
 import { applyRequest } from '../../redux/modules/projects/actions';
+import { getProjectDetails } from '../../redux/modules/projects/actions'
 
 
 const Project = () => {
     let { state } = useLocation()
-    const { projects, user } = useSelector(({ projects, user }) => ({ projects: projects.list, user }))
+    // const { projects, user } = useSelector(({ projects, user }) => ({ projects: projects.list, user }))
+    const { project, user } = useSelector(({ projects, user }) => ({ project: projects.project, user }))
     const dispatch = useDispatch()
 
-    const project = projects.find(project => project.id === state.id)
+    useEffect(() => {
+        dispatch(getProjectDetails(state.id));
+    }, [state.id]);
+
+    // const project = projects.find(project => project.id === state.id)
     const {
         id,
         title,
