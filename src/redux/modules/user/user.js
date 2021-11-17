@@ -32,9 +32,9 @@ const initialState = {
     //     login: () => { },
     //     logout: () => { }
 
-    userId: null,
-    token: null,
-    isLogedIn: false,
+    userId: '616e71fbe25229d0d93bfd37',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6I…yJogKr6xg',
+    isLogedIn: true,
     profilePicture: '/static/media/users.86cb98ab.svg',
     roles: [
         'Frontend'

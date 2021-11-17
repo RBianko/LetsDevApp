@@ -5,6 +5,49 @@ import {
 const initialState = {
     list: [
         {
+            userId: '616e71fbe25229d0d93bfd37',
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6I…yJogKr6xg',
+            isLogedIn: true,
+            profilePicture: '/static/media/users.86cb98ab.svg',
+            roles: [
+                'Frontend'
+            ],
+            follow: {
+                followers: [
+                    '1fake616e71fb12311233bfd37'
+                ],
+                following: [
+                    '3fake616e71fb12311233bfd37',
+                    '4fake616e71fb12311233bfd37'
+                ]
+            },
+            skills: [
+                'CSS',
+                'HTML',
+                'JS',
+                'React',
+                'redux',
+                'Flutter',
+                'Dart',
+                'С#'
+            ],
+            projects: [
+                '100',
+                '101'
+            ],
+            socials: {
+                vk: 'https://vk.com/ben9page',
+                facebook: 'https://facebook.com/helloworld',
+                linkedin: 'https://facebook.com/helloworld',
+                github: 'https://facebook.com/helloworld'
+            },
+            firstName: 'Roman',
+            lastName: 'Bianko',
+            city: 'Minsk',
+            country: 'Belarus',
+            bio: 'Just like pretty much everything else on the internet, your Instagram bio is all about making that impactful first impression. Most people only take a few seconds to scan bio and photos before deciding whether or not they should follow you. If your Instagram bio is enticing, they might decide to engage with your content or follow your account. If it isn’t, you might lose their interest… forever.'
+        },
+        {
             userId: "1fake616e71fb12311233bfd37",
             token: "1fake616e71fb12311233bfd37.eyJ1c2VySWQiOiI2M!@#J)!@(J#ciLCJpYXQiOjE2MzU0OTA0MDQsImV4cCI6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: false,
