@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost/5000'
-const authUrl = '/api/login/authorization'
-const regUrl = '/api/login/registration'
-const projectsUrl = '/api/projects'
-const usersUrl = '/api/users'
+const baseURL = 'http://localhost:4000/api'
+const authUrl = '/login/authorization'
+const regUrl = '/login/registration'
+const projectsUrl = '/projects'
+const usersUrl = '/users'
 
 const axiosApi = axios.create({
     baseURL
@@ -20,6 +20,7 @@ axiosApi.interceptors.response.use(
 )
 
 export async function get(url, config) {
+    console.log('axios.get', url)
     return await axiosApi
         .get(url, {
             ...config

@@ -59,8 +59,8 @@ const initialState = {
         'С#'
     ],
     projects: [
-        "100",
-        "101",
+        "6194c178b1599f90649a205b",
+        "6194c2dcb1599f90649a205f",
     ],
     socials: {
         vk: 'https://vk.com/ben9page',

@@ -8,7 +8,7 @@ import { getProjects } from './../../../redux/modules/projects/actions';
 
 
 const ProjectSearch = () => {
-    const { projects, loadingPosts } = useSelector(({ projects }) => ({ projects: projects.list, loadingPosts: projects.loadingProjects }))
+    const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const ProjectSearch = () => {
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
-                    {loadingPosts ? 'LOADING...' : null}
+                    {loadingProjects ? 'LOADING...' : null}
                     <div className="search">
                         <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
                         <button className="searchButton" type="submit">

@@ -1,20 +1,41 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import './profile.css'
-
-import PropTypes from 'prop-types';
-import { UserPropTypes } from '../../redux/modules/user/prop-types';
 
 import ProjectCardSmall from '../project/project-card/project-card-small'
 import SocialLink from './../style-components/social-link';
 import Button from './../style-components/button';
 import { followToggle } from './../../redux/modules/user/actions';
+import { getProjects } from './../../redux/modules/projects/actions';
+
 import getFollowState from '../../helpers/get-follow-state'
 import { useSkills } from './../../hooks/skills.hook';
 
-const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects: projectsList, followToggle }) => {
+const Profile = () => {
     let { state } = useLocation()
+    let dispatch = useDispatch()
+    dispatch(getProjects())
+
+    const {
+        currentUser,
+        users,
+        projectsList,
+        loadingProjects
+    } = useSelector(({
+        user,
+        users,
+        projects }) =>
+    ({
+        currentUser: user,
+        users: users.list,
+        projectsList: projects.list,
+        loadingProjects: projects.loadingProjects
+    }))
+
+    useEffect(() => dispatch(getProjects()), [projectsList])
+    console.log(projectsList)
+
     const user = users.find(user => user.userId === state.id)
     const {
         userId,
@@ -45,17 +66,16 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
     }
 
     const userProjects = projects.map(id =>
-        projectsList.find(poroject => poroject.id === id)
+        projectsList.find(poroject => poroject._id === id)
     )
 
     const userProjectsList = userProjects.map(project =>
         <ProjectCardSmall
-            key={project.id}
+            key={project._id}
             project={project}
-        />
-    )
+        />)
 
-    let projectListContent = userProjectsList.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
+    let projectListContent = userProjectsList.length > 0 ? (loadingProjects ? <span>LOADING...</span> : userProjectsList) : <p>{firstName} have no Projects yet.</p>
 
     let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
 
@@ -122,12 +142,4 @@ const Profile = ({ user: currentUser, users, skills: skillsGlobalStack, projects
     )
 }
 
-Profile.propTypes = {
-    user: UserPropTypes,
-    skills: PropTypes.arrayOf(PropTypes.string)
-}
-
-export default connect(
-    ({ user, users, skills, projects }) => ({ user, users: users.list, skills, projects: projects.list }),
-    { followToggle }
-)(Profile)
+export default Profile
