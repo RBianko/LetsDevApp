@@ -29,7 +29,7 @@ const ProjectSearch = () => {
     }
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard key={project._id} project={project} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
@@ -42,7 +42,6 @@ const ProjectSearch = () => {
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
-                    {loadingProjects ? 'LOADING...' : null}
                     <div className="search">
                         <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
                         <button className="searchButton" type="submit">
@@ -51,7 +50,7 @@ const ProjectSearch = () => {
                     </div>
                 </div>
             </div>
-            {projectsListContent}
+            {loadingProjects ? 'LOADING...' : projectsListContent}
         </div>
     )
 }

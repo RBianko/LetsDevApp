@@ -15,28 +15,14 @@ import { useSkills } from './../../hooks/skills.hook';
 const Profile = () => {
     let { state } = useLocation()
     let dispatch = useDispatch()
-    dispatch(getProjects())
+    useEffect(() => dispatch(getProjects()), [dispatch])
 
-    const {
-        currentUser,
-        users,
-        projectsList,
-        loadingProjects
-    } = useSelector(({
-        user,
-        users,
-        projects }) =>
-    ({
-        currentUser: user,
-        users: users.list,
-        projectsList: projects.list,
-        loadingProjects: projects.loadingProjects
-    }))
-
-    useEffect(() => dispatch(getProjects()), [projectsList])
-    console.log(projectsList)
+    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+    const currentUser = useSelector(state => state.user)
+    const users = useSelector(state => state.users.list)
 
     const user = users.find(user => user.userId === state.id)
+
     const {
         userId,
         firstName = "New User",
@@ -65,17 +51,22 @@ const Profile = () => {
         }
     }
 
-    const userProjects = projects.map(id =>
-        projectsList.find(poroject => poroject._id === id)
-    )
+    let userProjects = []
 
-    const userProjectsList = userProjects.map(project =>
+    if (!loadingProjects && projectsList.length > 0) {
+        userProjects = projects.map(id =>
+            projectsList.find(poroject => poroject._id === id)
+        )
+    }
+
+    const userProjectsList = userProjects.map(poroject =>
         <ProjectCardSmall
-            key={project._id}
-            project={project}
+            key={poroject._id}
+            project={poroject}
         />)
 
-    let projectListContent = userProjectsList.length > 0 ? (loadingProjects ? <span>LOADING...</span> : userProjectsList) : <p>{firstName} have no Projects yet.</p>
+
+    let projectListContent = projects.length > 0 ? (loadingProjects ? <span>LOADING...</span> : userProjectsList) : <p>{firstName} have no Projects yet.</p>
 
     let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
 

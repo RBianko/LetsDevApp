@@ -11,20 +11,22 @@ import { useSkills } from '../../hooks/skills.hook';
 import { applyRequest } from '../../redux/modules/projects/actions';
 import { getProjectDetails } from '../../redux/modules/projects/actions'
 
-
 const Project = () => {
     let { state } = useLocation()
-    // const { projects, user } = useSelector(({ projects, user }) => ({ projects: projects.list, user }))
-    const { project, user } = useSelector(({ projects, user }) => ({ project: projects.project, user }))
+    const { project, loadingProjectDetails } = useSelector((state) => state.projects);
+    const user = useSelector(state => state.user)
+    const { global, other } = useSkills()
     const dispatch = useDispatch()
+    // dispatch(getProjectDetails(state.id))
 
     useEffect(() => {
         dispatch(getProjectDetails(state.id));
-    }, [state.id]);
+    }, [dispatch, state.id]);
 
-    // const project = projects.find(project => project.id === state.id)
+    if (loadingProjectDetails) return <span>LOADING...</span>
+
     const {
-        id,
+        _id: id,
         title,
         projectPicture,
         status,
@@ -34,7 +36,7 @@ const Project = () => {
         needList
     } = project
 
-    const { global, other } = useSkills()
+
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 

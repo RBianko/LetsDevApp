@@ -7,7 +7,7 @@ import { useSkills } from './../../../hooks/skills.hook';
 
 const ProjectCard = ({ project }) => {
     const {
-        id,
+        _id: id,
         title,
         projectPicture,
         status,
