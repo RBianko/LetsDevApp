@@ -5,7 +5,7 @@ export const useRegistration = () => {
 
     const registration = async (form) => {
         try {
-            await request('/api/login/registration', 'POST', { ...form })
+            await request('http://localhost:4000/api/login/registration', 'POST', { ...form })
         } catch (error) { }
     }
 

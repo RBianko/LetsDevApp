@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.css'
 import CloseIcon from '../../../img/xmark.svg'
 
@@ -7,6 +7,8 @@ import SignUpForm from './sign-up/sign-up-form';
 import IconButton from './../../style-components/icon-button';
 
 const Login = () => {
+    let [activeForm, setActiveForm] = useState(true)
+
     return (
         <>
             <input id="modal-toggle_login" type="checkbox" />
@@ -20,8 +22,8 @@ const Login = () => {
                     src={CloseIcon}
                 />
                 <div className="tabs">
-                    <AuthForm />
-                    <SignUpForm />
+                    <AuthForm active={activeForm} setActive={setActiveForm} />
+                    <SignUpForm active={activeForm} setActive={setActiveForm} />
                 </div>
             </div>
         </>

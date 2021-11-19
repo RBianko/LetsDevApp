@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useAuthorization } from '../../../../server-api/authorization.js';
 
-const AuthForm = ({ user }) => {
+const AuthForm = ({ user, active, setActive }) => {
     const { authorization, loading } = useAuthorization()
 
     const [form, setForm] = useState({
         email: '', password: ''
     })
-
-    let [activeForm, setActiveForm] = useState(true)
 
     const onChangeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -22,12 +20,12 @@ const AuthForm = ({ user }) => {
 
     return (
         <>
-            <input className="radio" id="tab-1" name="tabs-name" type="radio" readOnly checked={activeForm} onClick={() => setActiveForm(activeForm = true)} />
-            <label className="table" htmlFor="tab-1">
-                <span className="tab-title">Login</span>
+            <input className="tab__radio" id="tab-1" type="radio" readOnly checked={active} onClick={() => setActive(true)} />
+            <label className="tab__radio-title" htmlFor="tab-1">
+                <span className="tab__title">Login</span>
             </label>
-            <div className="tabs-content">
-                <form className="tabs-content__form" action="">
+            <div className="tab-content">
+                <form className="tab-content__form" action="">
                     <input className="form-input" type="email" name="email" placeholder="Email" required onChange={onChangeHandler} />
                     <input className="form-input" type="password" name="password" placeholder="Password" required onChange={onChangeHandler} />
                     <button className="form-btn btn" onClick={loginHandler}>Login</button>
