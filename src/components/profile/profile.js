@@ -11,11 +11,12 @@ import { getProjects } from './../../redux/modules/projects/actions';
 
 import getFollowState from '../../helpers/get-follow-state'
 import { useSkills } from './../../hooks/skills.hook';
+import { LoaderComponent } from './../style-components/loader/loader';
 
 const Profile = () => {
     let { state } = useLocation()
     let dispatch = useDispatch()
-    useEffect(() => dispatch(getProjects()), [dispatch])
+    useEffect(() => dispatch(getProjects()), [dispatch, state])
 
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
     const currentUser = useSelector(state => state.user)
@@ -66,7 +67,7 @@ const Profile = () => {
         />)
 
 
-    let projectListContent = projects.length > 0 ? (loadingProjects ? <span>LOADING...</span> : userProjectsList) : <p>{firstName} have no Projects yet.</p>
+    let projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
     let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
 
@@ -76,60 +77,62 @@ const Profile = () => {
     const currentUserProfile = currentUser.userId === userId
     let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={getFollowState(currentUser, user)} />
 
-    return (
-        <>
-            <div className="container">
-                <div className="profile__card card">
-                    <div className="card__header">
-                        <div className="header__title">profile.page</div>
-                    </div>
 
-                    <div className="card__content profile-content">
-                        <div className="profile-content_header">
-                            <div className="profile__contacts">
-                                <img className="profile-picture" src={profilePicture} alt="profile" />
-                                <div className="profile__socials">
-                                    {followButton}
-                                    {socialsTitle}
-                                    <div className="socials__list">
-                                        {socialsList}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="profile__info">
-                                <p className="profile__info_name">{firstName} {lastName}</p>
-                                <p className="profile__info_sity">{profileLocation}</p>
-                                <p className="profile__info_role">{profileRoles}</p>
-                                <div className="skills-list">
-                                    {noSkillsString}
-                                    <div className="skills-grid">
-                                        {globalSkillsList}
-                                    </div>
-                                    <div className="skills-other">
-                                        {otherSkillsTitle}
-                                        <div className="skills-grid">
-                                            {otherSkillsList}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    const content = loadingProjects
+        ? <LoaderComponent />
+        : <div className="card__content profile-content">
+            <div className="profile-content_header">
+                <div className="profile__contacts">
+                    <img className="profile-picture" src={profilePicture} alt="profile" />
+                    <div className="profile__socials">
+                        {followButton}
+                        {socialsTitle}
+                        <div className="socials__list">
+                            {socialsList}
                         </div>
-                        <div className="profile-content_body">
-                            <div className="profile__description">
-                                <h3 className="description_title">Bio</h3>
-                                <p className="description_text">{bio}</p>
-                            </div>
-                            <div className="profile__projects">
-                                <h3 className="projects__title">Projects List</h3>
-                                <div className="projects__list">
-                                    {projectListContent}
-                                </div>
+                    </div>
+                </div>
+                <div className="profile__info">
+                    <p className="profile__info_name">{firstName} {lastName}</p>
+                    <p className="profile__info_sity">{profileLocation}</p>
+                    <p className="profile__info_role">{profileRoles}</p>
+                    <div className="skills-list">
+                        {noSkillsString}
+                        <div className="skills-grid">
+                            {globalSkillsList}
+                        </div>
+                        <div className="skills-other">
+                            {otherSkillsTitle}
+                            <div className="skills-grid">
+                                {otherSkillsList}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+            <div className="profile-content_body">
+                <div className="profile__description">
+                    <h3 className="description_title">Bio</h3>
+                    <p className="description_text">{bio}</p>
+                </div>
+                <div className="profile__projects">
+                    <h3 className="projects__title">Projects List</h3>
+                    <div className="projects__list">
+                        {projectListContent}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    return (
+        <div className="container">
+            <div className="profile__card card">
+                <div className="card__header">
+                    <div className="header__title">profile.page</div>
+                </div>
+                {content}
+            </div>
+        </div>
     )
 }
 

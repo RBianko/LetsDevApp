@@ -5,6 +5,7 @@ import './project-search.css'
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
 import { getProjects } from './../../../redux/modules/projects/actions';
+import { LoaderComponent } from './../../style-components/loader/loader';
 
 
 const ProjectSearch = () => {
@@ -50,7 +51,7 @@ const ProjectSearch = () => {
                     </div>
                 </div>
             </div>
-            {loadingProjects ? 'LOADING...' : projectsListContent}
+            {loadingProjects ? <LoaderComponent /> : projectsListContent}
         </div>
     )
 }

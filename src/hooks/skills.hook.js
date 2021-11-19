@@ -14,7 +14,7 @@ export const useSkills = () => {
         globalSkillsList = globalSkills.map(skill =>
             <SkillIcon key={skill} skill={skill} />)
 
-        return globalSkillsList.length > 0 ? globalSkillsList : null
+        return globalSkillsList.length > 0 ? globalSkillsList : []
     }
 
     const other = (skills) => {
@@ -23,7 +23,7 @@ export const useSkills = () => {
         otherSkillsList = otherSkills.map(skill =>
             <OtherSkill key={skill} skill={skill} />)
 
-        return otherSkillsList.length > 0 ? otherSkillsList : null
+        return otherSkillsList.length > 0 ? otherSkillsList : []
     }
 
     return { global, other }
