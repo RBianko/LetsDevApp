@@ -19,10 +19,10 @@ const FollowListContainer = ({ user: currentUser, users }) => {
 
     return (
         <>
-            <Route path='/follow/followers'>
+            <Route path='/followers'>
                 <FollowList currentUser={currentUser} users={followers} />
             </Route>
-            <Route path='/follow/following'>
+            <Route path='/following'>
                 <FollowList currentUser={currentUser} users={following} />
             </Route>
         </>

@@ -1,13 +1,16 @@
 import React from 'react'
 import ProfileCard from './../../../profile/profile-card/index';
 import Button from './../../../style-components/button/index';
+import { useSelector } from 'react-redux';
 
 const Request = ({ request, onApprove, onDecline }) => {
+    const { users } = useSelector(({ users }) => ({ users: users.list }))
     const { userId, forRole } = request
+    const user = users.find(user => user.userId === userId)
 
     return (
         <div className="request__item">
-            <ProfileCard userId={userId} />
+            <ProfileCard user={user} />
             <div className="request__info" >
                 <div className="info__title" >
                     <h3>Applied for:</h3>

@@ -209,7 +209,7 @@ const CreateProject = ({
                                                 value={needListString}
                                                 ref={rolesInput}
                                                 onChange={() => onChangeHandler('roles')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_roles">Edit</label>
+                                            <label className="btn input_btn" htmlFor="modal__toggle_roles">Edit</label>
                                         </div>
                                     </div>
 
@@ -224,7 +224,7 @@ const CreateProject = ({
                                                 value={skillsStackList}
                                                 ref={skillsInput}
                                                 onChange={() => onChangeHandler('skillsStack')} />
-                                            <label className="btn input_btn" htmlFor="modal-toggle_skills">Edit</label>
+                                            <label className="btn input_btn" htmlFor="modal__toggle_skills">Edit</label>
                                         </div>
                                     </div>
                                 </div>

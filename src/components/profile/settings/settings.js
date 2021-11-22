@@ -193,14 +193,14 @@ const Settings = ({
                                     <div className="settings__item">
                                         <div className="input__item">
                                             <Input id="roles" type="text" disabled={true} placeholder="Roles" value={rolesStackList} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
-                                            <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_roles'} text={'Edit'} />
+                                            <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_roles'} text={'Edit'} />
                                         </div>
                                     </div>
 
                                     <div className="settings__item">
                                         <div className="input__item">
                                             <Input id="skills" type="text" disabled={true} placeholder="Skills" value={skillsStackList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
-                                            <IconButton className={'btn input_btn'} htmlFor={'modal-toggle_skills'} text={'Edit'} />
+                                            <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_skills'} text={'Edit'} />
                                         </div>
                                     </div>
                                 </div>

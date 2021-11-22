@@ -11,7 +11,7 @@ const Header = () => {
                 <Logo />
                 <IconButton
                     className={'btn_login btn'}
-                    htmlFor={'modal-toggle_login'}
+                    htmlFor={'modal__toggle_login'}
                     text={'Login'}
                 />
             </div>

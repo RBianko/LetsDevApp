@@ -11,13 +11,13 @@ const Login = () => {
 
     return (
         <>
-            <input id="modal-toggle_login" type="checkbox" />
-            <div className="modal-backdrop_login" htmlFor="modal-toggle_login" />
+            <input id="modal__toggle_login" type="checkbox" />
+            <div className="modal-backdrop_login" htmlFor="modal__toggle_login" />
             <div className="modal-content_login">
                 <IconButton
                     className={'modal-close-btn'}
                     classNameIcon={'close-btn_icon'}
-                    htmlFor={'modal-toggle_login'}
+                    htmlFor={'modal__toggle_login'}
                     alt={'close'}
                     src={CloseIcon}
                 />

@@ -13,7 +13,7 @@ import { applyRequest } from '../../redux/modules/projects/actions';
 
 const Project = () => {
     let { state } = useLocation()
-    const { projects, user } = useSelector(({ projects, user }) => ({ projects: projects.list, user }))
+    const { projects, user, users } = useSelector(({ projects, user, users }) => ({ projects: projects.list, user, users: users.list }))
     const dispatch = useDispatch()
 
     const project = projects.find(project => project.id === state.id)
@@ -35,14 +35,15 @@ const Project = () => {
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    const devsList = devs.map(dev =>
-        <ProfileCard
+    const devsList = devs.map(dev => {
+        const user = users.find(user => user.userId === dev.userId)
+        return <ProfileCard
             key={dev.userId}
-            userId={dev.userId}
+            user={user}
             role={dev.role}
             creator={dev.creator}
         />
-    )
+    })
 
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
@@ -57,7 +58,7 @@ const Project = () => {
     const userInProject = devs.find(dev => dev.userId === user.userId)
 
     const applyButton = (needList.length > 0) && !userInProject
-        ? <IconButton className={'btn apply-btn'} htmlFor={'modal-toggle_roles'} text={'Apply for Project'} data={id} />
+        ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={id} />
         : null
 
     const editLink = userInProject && userInProject.creator

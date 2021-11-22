@@ -4,6 +4,7 @@ import './project-search.css'
 
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
+import IconButton from './../../style-components/icon-button/icon-button';
 
 
 const ProjectSearch = () => {
@@ -11,15 +12,14 @@ const ProjectSearch = () => {
     const [searchTerm, setSearchTerm] = useState('')
 
     let projectsFilter = projects
+
     if (searchTerm !== '') {
+        // eslint-disable-next-line array-callback-return
         projectsFilter = projects.filter(project => {
-            if (project.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+            if (project.title.toLowerCase().includes(searchTerm.toLowerCase()))
                 return project
-            } else {
-                return null
-            }
         })
-    }
+    } // TODO: make helper func
 
     let projectsList = projectsFilter.map((project) =>
         <ProjectCard key={project.id} project={project} />
@@ -37,9 +37,12 @@ const ProjectSearch = () => {
                     <p className="search__title">Projects Search</p>
                     <div className="search">
                         <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
-                        <button className="searchButton" type="submit">
-                            <img className="search-icon" src={searchIcon} alt="Search" />
-                        </button>
+                        <IconButton
+                            className={'searchButton'}
+                            classNameIcon={'search-icon'}
+                            alt={'Search'}
+                            src={searchIcon}
+                        />
                     </div>
                 </div>
             </div>

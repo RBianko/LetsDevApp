@@ -40,7 +40,10 @@ export const useRoutes = (isAuth, id) => {
                     <Route path='/search-devs'>
                         <DevsSearch />
                     </Route>
-                    <Route path='/follow/' >
+                    <Route path='/followers' >
+                        <FollowListContainer />
+                    </Route>
+                    <Route path='/following' >
                         <FollowListContainer />
                     </Route>
                     <Route path='/settings' >

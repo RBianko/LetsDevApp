@@ -1,7 +1,7 @@
-#modal-toggle_login,
-#modal-toggle_devs,
-#modal-toggle_skills,
-#modal-toggle_roles {
+#modal__toggle_login,
+#modal__toggle_devs,
+#modal__toggle_skills,
+#modal__toggle_roles {
   display: none;
 }
 
@@ -44,20 +44,20 @@
   transform: translateY(-125%);
 }
 
-#modal-toggle_login:checked ~ .modal-backdrop_login,
-#modal-toggle_roles:checked ~ .modal-backdrop_roles,
-#modal-toggle_devs:checked ~ .modal-backdrop_devs,
-#modal-toggle_skills:checked ~ .modal-backdrop_skills {
+#modal__toggle_login:checked ~ .modal-backdrop_login,
+#modal__toggle_roles:checked ~ .modal-backdrop_roles,
+#modal__toggle_devs:checked ~ .modal-backdrop_devs,
+#modal__toggle_skills:checked ~ .modal-backdrop_skills {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 998;
   transform: scale(10);
 }
 
-#modal-toggle_login:checked ~ .modal-content_login,
-#modal-toggle_roles:checked ~ .modal-content_roles,
-#modal-toggle_devs:checked ~ .modal-content_devs,
-#modal-toggle_skills:checked ~ .modal-content_skills {
+#modal__toggle_login:checked ~ .modal-content_login,
+#modal__toggle_roles:checked ~ .modal-content_roles,
+#modal__toggle_devs:checked ~ .modal-content_devs,
+#modal__toggle_skills:checked ~ .modal-content_skills {
   opacity: 1;
   background-color: var(--background-color-lighter);
   overflow-y: auto;

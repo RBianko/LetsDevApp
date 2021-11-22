@@ -34,12 +34,12 @@ const Menu = ({ user }) => {
                     <Icon className={'link-icon'} alt={'follow-menu'} src={FriendsIcon} />
                     <ul className="links__list links_follow">
                         <li className="menu__link">
-                            <Link to="/follow/following">
+                            <Link to="/following">
                                 <span className="link__title">{followingCounter} Following</span>
                             </Link>
                         </li>
                         <li className="menu__link">
-                            <Link to="/follow/followers">
+                            <Link to="/followers">
                                 <span className="link__title">{followersCounter} Followers</span>
                             </Link>
                         </li>

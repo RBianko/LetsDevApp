@@ -52,10 +52,10 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
 
     return (
         <>
-            <input id="modal-toggle_roles" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
-            <div className="modal-backdrop_roles" htmlFor="modal-toggle_roles" onClick={() => setIsChecked(!isChecked)} />
+            <input id="modal__toggle_roles" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
+            <div className="modal-backdrop_roles" htmlFor="modal__toggle_roles" onClick={() => setIsChecked(!isChecked)} />
             <div className="modal-content_roles">
-                <label className="modal-close-btn" htmlFor="modal-toggle_roles">
+                <label className="modal-close-btn" htmlFor="modal__toggle_roles">
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
                 <div className="modal-content__body">

@@ -20,26 +20,23 @@ const SkillIcon = ({ skill }) => {
 
     let icon = null
     let icons = {
-        'CSS': () => { return cssIcon },
-        'HTML': () => { return htmlIcon },
-        'JS': () => { return jsIcon },
-        'React': () => { return reactIcon },
-        'Python': () => { return pythonIcon },
-        'Java': () => { return javaIcon },
-        'C++': () => { return cPlusIcon },
-        'С#': () => { return cSharpIcon },
-        'R': () => { return rIcon },
-        'Go': () => { return golangIcon },
-        'Swift': () => { return swiftIcon },
-        'Ruby': () => { return rubyIcon },
-        'SQL': () => { return sqlIcon }
+        'CSS': cssIcon,
+        'HTML': htmlIcon,
+        'JS': jsIcon,
+        'React': reactIcon,
+        'Python': pythonIcon,
+        'Java': javaIcon,
+        'C++': cPlusIcon,
+        'С#': cSharpIcon,
+        'R': rIcon,
+        'Go': golangIcon,
+        'Swift': swiftIcon,
+        'Ruby': rubyIcon,
+        'SQL': sqlIcon
     }
 
-    if (icons[skill]) {
-        icon = icons[skill]()
-    } else {
-        return
-    }
+    if (icons[skill])
+        icon = icons[skill]
 
     return (
         <figure className="skill_wrapper">

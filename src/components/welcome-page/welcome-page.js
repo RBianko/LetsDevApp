@@ -19,7 +19,7 @@ const WelcomePage = () => {
                     <p className="welcome-page__text">Share<span className="highlight-letter">.</span></p>
                     <IconButton
                         className={'btn_get-started btn'}
-                        htmlFor={'modal-toggle_login'}
+                        htmlFor={'modal__toggle_login'}
                         text={'Get Started'}
                         child={<ArrowIcon />}
                     />

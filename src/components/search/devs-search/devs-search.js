@@ -6,6 +6,7 @@ import searchIcon from '../../../img/search.svg'
 import SearchUsers from '../search-users'
 import { PropTypes } from 'prop-types';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import IconButton from './../../style-components/icon-button/icon-button';
 
 const DevsSearch = ({ user: currentUser, users }) => {
     const usersList = users.filter(user => user.userId !== currentUser.userId)
@@ -20,9 +21,12 @@ const DevsSearch = ({ user: currentUser, users }) => {
                     <p className="search__title">Devs Search</p>
                     <div className="search">
                         <input className="search__input" type="text" placeholder="Type here" />
-                        <button className="searchButton" type="submit">
-                            <img className="search-icon" src={searchIcon} alt="Search" />
-                        </button>
+                        <IconButton
+                            className={'searchButton'}
+                            classNameIcon={'search-icon'}
+                            alt={'Search'}
+                            src={searchIcon}
+                        />
                     </div>
                 </div>
             </div>

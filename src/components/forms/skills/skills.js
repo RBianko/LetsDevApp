@@ -41,10 +41,10 @@ const SkillsForm = ({ skills, setSkills }) => {
 
     return (
         <>
-            <input id="modal-toggle_skills" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
-            <div className="modal-backdrop_skills" htmlFor="modal-toggle_skills" onClick={() => setIsChecked(!isChecked)} />
+            <input id="modal__toggle_skills" type="checkbox" onChange={(event) => setIsChecked(event.currentTarget.checked)} checked={isChecked} />
+            <div className="modal-backdrop_skills" htmlFor="modal__toggle_skills" onClick={() => setIsChecked(!isChecked)} />
             <div className="modal-content_skills">
-                <label className="modal-close-btn" htmlFor="modal-toggle_skills">
+                <label className="modal-close-btn" htmlFor="modal__toggle_skills">
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
                 <div className="modal-content__body">
