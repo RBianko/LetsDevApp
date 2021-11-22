@@ -1,18 +1,8 @@
 import {
     SET_USER,
-    EDIT_FIRSTNAME,
-    EDIT_LASTNAME,
-    EDIT_CITY,
-    EDIT_COUNTRY,
-    EDIT_BIO,
-    EDIT_ROLES,
-    EDIT_SKILLS,
-    EDIT_SOCIALS_VK,
-    EDIT_SOCIALS_FACEBOOK,
-    EDIT_SOCIALS_LINKEDIN,
-    EDIT_SOCIALS_GITHUB,
     ADD_PROJECT_ID,
     FOLLOW_TOGGLE,
+    UPDATE_USER_INFO
 } from '../../action-types'
 
 export const setUser = (user) => ({
@@ -20,56 +10,9 @@ export const setUser = (user) => ({
     payload: user
 })
 
-export const editFirstName = (string) => ({
-    type: EDIT_FIRSTNAME,
-    payload: string
-})
-
-export const editLastName = (string) => ({
-    type: EDIT_LASTNAME,
-    payload: string
-})
-
-export const editCity = (string) => ({
-    type: EDIT_CITY,
-    payload: string
-})
-
-export const editCountry = (string) => ({
-    type: EDIT_COUNTRY,
-    payload: string
-})
-
-export const editBio = (string) => ({
-    type: EDIT_BIO,
-    payload: string
-})
-
-export const editRoles = (array) => ({
-    type: EDIT_ROLES,
-    payload: array
-})
-
-export const editSkills = (array) => ({
-    type: EDIT_SKILLS,
-    payload: array
-})
-
-export const editSocialVk = (string) => ({
-    type: EDIT_SOCIALS_VK,
-    payload: string
-})
-export const editSocialFacebook = (string) => ({
-    type: EDIT_SOCIALS_FACEBOOK,
-    payload: string
-})
-export const editSocialLinkedin = (string) => ({
-    type: EDIT_SOCIALS_LINKEDIN,
-    payload: string
-})
-export const editSocialGithub = (string) => ({
-    type: EDIT_SOCIALS_GITHUB,
-    payload: string
+export const updateUserInfo = (user) => ({
+    type: UPDATE_USER_INFO,
+    payload: user
 })
 
 export const addProjectId = (id) => ({

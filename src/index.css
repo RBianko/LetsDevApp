@@ -42,9 +42,9 @@ a {
 }
 
 .loader-container {
-  width: 100%;
-  height: 100%;
-  margin-top: 25%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
   display: flex;
   justify-content: center;
   align-items: center;

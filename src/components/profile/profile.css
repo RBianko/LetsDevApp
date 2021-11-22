@@ -114,3 +114,7 @@
   transform: translateY(-2px);
   box-shadow: 9px 10px #000;
 }
+
+.profile__card {
+  min-height: 700px;
+}

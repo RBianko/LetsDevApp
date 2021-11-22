@@ -1,23 +1,9 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { PropTypes } from 'prop-types';
-import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 import './settings.css'
 
-import {
-    editFirstName,
-    editLastName,
-    editCity,
-    editCountry,
-    editBio,
-    editRoles,
-    editSkills,
-    editSocialVk,
-    editSocialFacebook,
-    editSocialLinkedin,
-    editSocialGithub,
-} from '../../../redux/modules/user/actions'
+import { updateUserInfo } from '../../../redux/modules/user/actions'
 
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
@@ -33,23 +19,12 @@ import facebookIcon from '../../../img/facebook.svg'
 import linkedinIcon from '../../../img/linkedin.svg'
 
 
-const Settings = ({
-    user,
-    roles: rolesList,
-    skills: skillsList,
-    editFirstName,
-    editLastName,
-    editCity,
-    editCountry,
-    editBio,
-    editRoles,
-    editSocialVk,
-    editSocialFacebook,
-    editSocialLinkedin,
-    editSocialGithub,
-    editSkills,
-}) => {
+const Settings = () => {
+    const { user } = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
     const {
+        userId,
         firstName = '',
         lastName = '',
         city = '',
@@ -93,8 +68,9 @@ const Settings = ({
     const [editedFacebook, setFacebook] = useState(facebook)
     const [editedLinkedin, setLinkedin] = useState(linkedin)
     const [editedGithub, setGithub] = useState(github)
-    let rolesStackList = editedRoles.join(', ')
-    let skillsStackList = editedSkills.join(', ')
+
+    let rolesString = editedRoles.join(', ')
+    let skillsString = editedSkills.join(', ')
 
     const event = {
         'firstName': () => setFirstName(firstNameInput.current.value),
@@ -115,18 +91,25 @@ const Settings = ({
     }
 
     const updateClickHandler = () => {
-        editFirstName(editedFirstName)
-        editLastName(editedLastName)
-        editCity(editedCity)
-        editCountry(editedCountry)
-        editBio(editedBio)
-        editRoles(editedRoles)
-        editSkills(editedSkills)
-        editSocialVk(editedVk)
-        editSocialFacebook(editedFacebook)
-        editSocialLinkedin(editedLinkedin)
-        editSocialGithub(editedGithub)
+        const editedUser = {
+            userId,
+            firstName: editedFirstName,
+            lastName: editedLastName,
+            city: editedCity,
+            country: editedCountry,
+            bio: editedBio,
+            roles: editedRoles,
+            skills: editedSkills,
+            // profilePicture:,
+            socials: {
+                vk: editedVk,
+                facebook: editedFacebook,
+                linkedin: editedLinkedin,
+                github: editedGithub
+            }
+        }
 
+        dispatch(updateUserInfo(editedUser))
         history.push('/profile')
     }
 
@@ -192,14 +175,14 @@ const Settings = ({
 
                                     <div className="settings__item">
                                         <div className="input__item">
-                                            <Input id="roles" type="text" disabled={true} placeholder="Roles" value={rolesStackList} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
+                                            <Input id="roles" type="text" disabled={true} placeholder="Roles" value={rolesString} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
                                             <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_roles'} text={'Edit'} />
                                         </div>
                                     </div>
 
                                     <div className="settings__item">
                                         <div className="input__item">
-                                            <Input id="skills" type="text" disabled={true} placeholder="Skills" value={skillsStackList} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
+                                            <Input id="skills" type="text" disabled={true} placeholder="Skills" value={skillsString} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
                                             <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_skills'} text={'Edit'} />
                                         </div>
                                     </div>
@@ -253,36 +236,4 @@ const Settings = ({
     )
 }
 
-Settings.propTypes = {
-    user: UserPropTypes,
-    skills: PropTypes.arrayOf(PropTypes.string),
-    roles: PropTypes.arrayOf(PropTypes.string),
-    editFirstName: PropTypes.func,
-    editLastName: PropTypes.func,
-    editCity: PropTypes.func,
-    editCountry: PropTypes.func,
-    editBio: PropTypes.func,
-    editRoles: PropTypes.func,
-    editSkills: PropTypes.func,
-    editSocialVk: PropTypes.func,
-    editSocialFacebook: PropTypes.func,
-    editSocialLinkedin: PropTypes.func,
-    editSocialGithub: PropTypes.func,
-}
-
-export default connect(
-    ({ user, roles, skills }) => ({ user, roles, skills }),
-    {
-        editFirstName,
-        editLastName,
-        editCity,
-        editCountry,
-        editBio,
-        editRoles,
-        editSkills,
-        editSocialVk,
-        editSocialFacebook,
-        editSocialLinkedin,
-        editSocialGithub,
-    }
-)(Settings)
+export default Settings

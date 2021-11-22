@@ -5,6 +5,7 @@ import './my-projects.css'
 import ProjectCard from '../project-card'
 import { useDispatch } from 'react-redux';
 import { getProjects } from './../../../redux/modules/projects/actions';
+import { LoaderComponent } from './../../style-components/loader/loader';
 
 
 const MyProjects = () => {
@@ -18,7 +19,7 @@ const MyProjects = () => {
 
     let findProjects = []
     let projectsList = []
-    let projectsListContent = loadingProjects ? <span>LOADING...</span> : <h2>You have no projects yet.</h2>
+    let projectsListContent = loadingProjects ? <LoaderComponent /> : <h2>You have no projects yet.</h2>
 
     if (!loadingProjects && projects.length > 0) {
         findProjects = user.projects.map(id =>
