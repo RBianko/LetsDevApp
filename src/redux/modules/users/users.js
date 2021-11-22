@@ -3,6 +3,8 @@ import {
 } from '../../action-types'
 
 const initialState = {
+    loadingUsers: false,
+    error: { message: '' },
     list: [
         {
             userId: "1fake616e71fb12311233bfd37",
@@ -19,7 +21,7 @@ const initialState = {
                 following: [],
             },
             skills: ["HTML", "CSS"],
-            projects: ["102"],
+            projects: ["6194c333b1599f90649a2061"],
             socials: { vk: "a8sd0a8shdjasd" },
         },
         {
@@ -37,7 +39,7 @@ const initialState = {
                 following: ["616e71fbe25229d0d93bfd37"],
             },
             skills: ["HTML", "JS"],
-            projects: ["102"],
+            projects: ["6194c333b1599f90649a2061"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
@@ -73,7 +75,7 @@ const initialState = {
                 following: [],
             },
             skills: ["CSS", "JavaScript", "C++"],
-            projects: ["101"],
+            projects: ["6194c2dcb1599f90649a205f"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
@@ -91,7 +93,7 @@ const initialState = {
                 following: ["616e71fbe25229d0d93bfd37"],
             },
             skills: ["SQL", "NoSQL", "C#", "Java"],
-            projects: ["101"],
+            projects: ["6194c2dcb1599f90649a205f"],
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {

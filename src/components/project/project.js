@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,26 +9,32 @@ import IconButton from '../style-components/icon-button';
 import RolesForm from '../forms/roles';
 import { useSkills } from '../../hooks/skills.hook';
 import { applyRequest } from '../../redux/modules/projects/actions';
-
+import { getProjectDetails } from '../../redux/modules/projects/actions'
+import LoaderComponent from '../style-components/loader/loader';
 
 const Project = () => {
     let { state } = useLocation()
-    const { projects, user, users } = useSelector(({ projects, user, users }) => ({ projects: projects.list, user, users: users.list }))
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getProjectDetails(state.id));
+    }, []);
+    // dispatch(getProjectDetails(state.id))
 
-    const project = projects.find(project => project.id === state.id)
+    const { project, loadingProjectDetails } = useSelector((state) => state.projects);
+    const { user, users } = useSelector(({ users, user }) => ({ user, users: users.list }))
+    const { global, other } = useSkills()
+
     const {
-        id,
-        title,
-        projectPicture,
-        status,
-        description,
-        skills,
-        devs,
-        needList
+        _id: id = null,
+        title = '',
+        projectPicture = '',
+        status = '',
+        description = '',
+        skills = [],
+        devs = [],
+        needList = []
     } = project
 
-    const { global, other } = useSkills()
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
@@ -72,55 +78,57 @@ const Project = () => {
 
     const applyRoles = (roles) => dispatch(applyRequest(id, user.userId, roles))
 
-    return (
-        <div className="container">
-            <RolesForm stack={needList} setRoles={applyRoles} />
-            <div className="project__card card">
-                <div className="card__header">
-                    <div className="header__title">project.page</div>
+    const content = loadingProjectDetails
+        ? <LoaderComponent />
+        : <div className="card__content project-content">
+            <div className="project-content__header">
+                <div className="project__info">
+                    <img className="project__picture" src={projectPicture} alt="project" />
                 </div>
-                <div className="card__content project-content">
-                    <div className="project-content__header">
-                        <div className="project__info">
-                            <img className="project__picture" src={projectPicture} alt="project" />
+                <div className="project__info">
+                    {editLink}
+                    <span className="project-info__title">{title}</span>
+                    <span className="project-info__status">{status}</span>
+                    <div className="skills-list skills_project">
+                        {noSkillsString}
+                        <div className="skills-grid">
+                            {globalSkillsList}
                         </div>
-                        <div className="project__info">
-                            {editLink}
-                            <span className="project-info__title">{title}</span>
-                            <span className="project-info__status">{status}</span>
-                            <div className="skills-list skills_project">
-                                {noSkillsString}
-                                <div className="skills-grid">
-                                    {globalSkillsList}
-                                </div>
-                                <div className="skills-other">
-                                    {otherSkillsTitle}
-                                    <div className="skills-grid">
-                                        {otherSkillsList}
-                                    </div>
-                                </div>
-                            </div>
-                            {applyButton}
-                        </div>
-                    </div>
-                    <div className="project-content_body">
-                        {needListContent}
-                        <div className="project__description">
-                            <h3 className="description__title">Description</h3>
-                            <p className="description__text">{description}</p>
-                        </div>
-                        <div className="project__devs">
-                            <h3 className="devs__title">Devs List</h3>
-                            <div className="devs__list">
-                                {devsList}
+                        <div className="skills-other">
+                            {otherSkillsTitle}
+                            <div className="skills-grid">
+                                {otherSkillsList}
                             </div>
                         </div>
-
                     </div>
+                    {applyButton}
                 </div>
             </div>
+            <div className="project-content_body">
+                {needListContent}
+                <div className="project__description">
+                    <h3 className="description__title">Description</h3>
+                    <p className="description__text">{description}</p>
+                </div>
+                <div className="project__devs">
+                    <h3 className="devs__title">Devs List</h3>
+                    <div className="devs__list">
+                        {devsList}
+                    </div>
+                </div>
+
+            </div>
         </div>
-    )
+
+    return <div className="container">
+        <RolesForm stack={needList} setRoles={applyRoles} />
+        <div className="project__card card">
+            <div className="card__header">
+                <div className="header__title">project.page</div>
+            </div>
+            {content}
+        </div>
+    </div>
 }
 
 export default Project

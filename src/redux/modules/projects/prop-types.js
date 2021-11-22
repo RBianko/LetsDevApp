@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 
 export const ProjectsPropTypes = PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     creator: PropTypes.string,
     title: PropTypes.string,
     picture: PropTypes.string,

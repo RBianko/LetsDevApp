@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import './project-search.css'
 
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
 import IconButton from './../../style-components/icon-button/icon-button';
+import { getProjects } from './../../../redux/modules/projects/actions';
+import { LoaderComponent } from './../../style-components/loader/loader';
 
 
 const ProjectSearch = () => {
-    const { projects } = useSelector(({ projects }) => ({ projects: projects.list }))
+    const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getProjects());
+    }, []);
+
     const [searchTerm, setSearchTerm] = useState('')
 
     let projectsFilter = projects
@@ -22,7 +30,7 @@ const ProjectSearch = () => {
     } // TODO: make helper func
 
     let projectsList = projectsFilter.map((project) =>
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard key={project._id} project={project} />
     )
 
     let projectsListContent = projectsList.length > 0 ? projectsList : <h3>No results found.</h3>
@@ -46,7 +54,7 @@ const ProjectSearch = () => {
                     </div>
                 </div>
             </div>
-            {projectsListContent}
+            {loadingProjects ? <LoaderComponent /> : projectsListContent}
         </div>
     )
 }
