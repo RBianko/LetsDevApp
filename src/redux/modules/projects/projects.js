@@ -119,11 +119,11 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
 
     switch (type) {
         case GET_PROJECTS:
-            state = { ...state, loadingProjects: true };
-            break;
+            state = { ...state, loadingProjects: true }
+            break
         case GET_PROJECTS_SUCCESS:
-            state = { ...state, list: payload, loadingProjects: false };
-            break;
+            state = { ...state, list: payload, loadingProjects: false }
+            break
         case GET_PROJECTS_FAIL:
             state = {
                 ...state,
@@ -131,14 +131,14 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
                     message: "Error on GET_PROJECTS",
                 },
                 loadingProjects: false,
-            };
-            break;
+            }
+            break
         case GET_PROJECT_DETAILS:
-            state = { ...state, loadingProjectDetails: true };
-            break;
+            state = { ...state, loadingProjectDetails: true }
+            break
         case GET_PROJECT_DETAILS_SUCCESS:
-            state = { ...state, project: payload, loadingProjectDetails: false };
-            break;
+            state = { ...state, project: payload, loadingProjectDetails: false }
+            break
         case GET_PROJECT_DETAILS_FAIL:
             state = {
                 ...state,
@@ -146,11 +146,8 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
                     message: "Error on GET_PROJECT_DETAILS",
                 },
                 loadingProjectDetails: false,
-            };
-            break;
-
-
-
+            }
+            break
         // case ADD_PROJECT:
         //     payload.id = _PROJECT_ID.toString()
         //     let newList = [...state.list, payload]
@@ -171,8 +168,6 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
         // case EDIT_DESCRIPTION:
         //     project.description = payload
         //     return { ...state, list: [...state.list] }
-
-
         case APPLY_REQUEST:
             const newRequest = {
                 requestId: project.requests.length.toString(),
@@ -180,7 +175,8 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
                 role: payload
             }
             state.list[projectId].requests.push(newRequest)
-            return { ...state, list: [...state.list] }
+            state = { ...state, list: [...state.list] }
+            break
         case APPROVE_REQUEST:
             let approveRequestId = project.requests.findIndex(request => request.id === payload.id)
             project.requests.splice(approveRequestId, 1) //delete request
@@ -196,11 +192,13 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
 
             const updatedProject = { ...project }
             state.list.splice(projectId, 1, updatedProject)
-            return { ...state, list: [...state.list] }
+            state = { ...state, list: [...state.list] }
+            break
         case DECLINE_REQUEST:
             let declineRequestId = project.requests.findIndex(request => request.id === payload.id)
             project.requests.splice(declineRequestId, 1) //delete request
-            return { ...state }
+            state = { ...state }
+            break
         default:
             state = { ...state }
             break

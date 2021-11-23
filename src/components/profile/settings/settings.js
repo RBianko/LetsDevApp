@@ -20,7 +20,7 @@ import linkedinIcon from '../../../img/linkedin.svg'
 
 
 const Settings = () => {
-    const { user } = useSelector(state => state.user)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const {

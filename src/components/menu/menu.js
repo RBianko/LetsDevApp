@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './menu.css'
 
-import { UserPropTypes } from './../../redux/modules/user/prop-types';
+import { getUsers } from '../../redux/modules/users/actions'
 
 import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'
@@ -13,9 +13,9 @@ import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
 
+const Menu = () => {
+    const user = useSelector(state => state.user)
 
-
-const Menu = ({ user }) => {
     const followersCounter = user.follow.followers.length;
     const followingCounter = user.follow.following.length;
 
@@ -94,8 +94,4 @@ const Menu = ({ user }) => {
     )
 }
 
-Menu.propTypes = {
-    user: UserPropTypes
-}
-
-export default connect(({ user }) => ({ user }))(Menu)
+export default Menu

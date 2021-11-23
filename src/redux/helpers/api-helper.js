@@ -1,10 +1,6 @@
 import axios from 'axios';
 
 const baseURL = 'http://localhost:4000/api'
-const authUrl = '/login/authorization'
-const regUrl = '/login/registration'
-const projectsUrl = '/projects'
-const usersUrl = '/users'
 
 const axiosApi = axios.create({
     baseURL

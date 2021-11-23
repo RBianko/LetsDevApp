@@ -1,10 +1,18 @@
 import {
-    UPDATE_USERS
+    UPDATE_USERS,
+    GET_USER,
+    GET_USER_SUCCESS,
+    GET_USER_FAIL,
+    GET_USERS,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAIL,
 } from '../../action-types'
 
 const initialState = {
+    loadingUser: false,
     loadingUsers: false,
     error: { message: '' },
+    user: {},
     list: [
         {
             userId: "1fake616e71fb12311233bfd37",
@@ -119,6 +127,36 @@ const initialState = {
 
 const usersReduser = (state = initialState, { type, payload }) => {
     switch (type) {
+        case GET_USER:
+            state = { ...state, loadingUser: true }
+            break
+        case GET_USER_SUCCESS:
+            state = { ...state, user: payload, loadingUser: false }
+            break
+        case GET_USER_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on GET_USER",
+                },
+                loadingUser: false,
+            }
+            break
+        case GET_USERS:
+            state = { ...state, loadingUsers: true }
+            break
+        case GET_USERS_SUCCESS:
+            state = { ...state, list: payload, loadingUsers: false }
+            break
+        case GET_USERS_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on GET_USER",
+                },
+                loadingUsers: false,
+            }
+            break
         case UPDATE_USERS:
             if (!payload.userId && !payload.token) {
                 return state
@@ -126,15 +164,18 @@ const usersReduser = (state = initialState, { type, payload }) => {
             let newUser = Object.assign({}, payload)
             let registred = state.list.some(user => user.userId === newUser.userId)
             if (!registred) {
-                return { ...state, list: [...state.list, newUser] }
+                state = { ...state, list: [...state.list, newUser] }
+            } else {
+                let list = state.list.slice()
+                let userIndex = list.findIndex(user => user.userId === newUser.userId)
+                list.splice(userIndex, 1, newUser)
+                state = { ...state, list: list }
             }
-            let list = state.list.slice()
-            let userIndex = list.findIndex(user => user.userId === newUser.userId)
-            list.splice(userIndex, 1, newUser)
-            return { ...state, list: list }
+            break
         default:
-            return state
+            state = { ...state }
     }
+    return state
 }
 
 export default usersReduser

@@ -8,6 +8,7 @@ import SocialLink from './../style-components/social-link';
 import Button from './../style-components/button';
 import { followToggle } from './../../redux/modules/user/actions';
 import { getProjects } from './../../redux/modules/projects/actions';
+import { getUser } from './../../redux/modules/users/actions';
 
 import getFollowState from '../../helpers/get-follow-state'
 import { useSkills } from './../../hooks/skills.hook';
@@ -16,11 +17,15 @@ import { LoaderComponent } from './../style-components/loader/loader';
 const Profile = () => {
     let { state } = useLocation()
     let dispatch = useDispatch()
-    useEffect(() => dispatch(getProjects()), [dispatch, state])
 
-    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
     const currentUser = useSelector(state => state.user)
+    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
     const users = useSelector(state => state.users.list)
+
+    useEffect(() => {
+        dispatch(getUser(state.id))
+        dispatch(getProjects())
+    }, [dispatch, state])
 
     const user = users.find(user => user.userId === state.id)
 
@@ -69,7 +74,7 @@ const Profile = () => {
 
     let projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
-    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">{firstName} have no contacts.</span>
+    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">No contacts</span>
 
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
