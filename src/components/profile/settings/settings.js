@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import './settings.css'
 
 import { updateUserInfo } from '../../../redux/modules/user/actions'
+import { getUser } from '../../../redux/modules/users/actions'
 
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
@@ -20,8 +21,12 @@ import linkedinIcon from '../../../img/linkedin.svg'
 
 
 const Settings = () => {
-    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUser(user._id))
+    }, [])
+
+    const user = useSelector(state => state.users.user)
 
     const {
         _id,
@@ -32,7 +37,7 @@ const Settings = () => {
         bio = '',
         roles,
         skills,
-        profilePicture,
+        profilePicture = "/static/media/users.86cb98ab.svg",
         socials
     } = user
 
@@ -100,7 +105,7 @@ const Settings = () => {
             bio: editedBio,
             roles: editedRoles,
             skills: editedSkills,
-            // profilePicture:,
+            profilePicture,
             socials: {
                 vk: editedVk,
                 facebook: editedFacebook,

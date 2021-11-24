@@ -1,14 +1,25 @@
-import React from 'react'
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import './devs-search.css'
 
 import searchIcon from '../../../img/search.svg'
 import SearchUsers from '../search-users'
-import { PropTypes } from 'prop-types';
-import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+import { getUser, getUsers } from './../../../redux/modules/users/actions';
 import IconButton from './../../style-components/icon-button/icon-button';
+import { LoaderComponent } from './../../style-components/loader/loader';
 
-const DevsSearch = ({ user: currentUser, users }) => {
+const DevsSearch = () => {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+
+    useEffect(() => {
+        dispatch(getUser(user._id))
+        dispatch(getUsers())
+    }, [dispatch, user._id])
+
+    const currentUser = useSelector(state => state.users.user)
+    const { users, loadingUsers } = useSelector(({ users }) => ({ users: users.list, loadingUsers: users.loadingUsers }))
+
     const usersList = users.filter(user => user._id !== currentUser._id)
 
     return (
@@ -30,18 +41,15 @@ const DevsSearch = ({ user: currentUser, users }) => {
                     </div>
                 </div>
             </div>
-            <SearchUsers currentUser={currentUser} users={usersList} />
+            {
+                loadingUsers
+                    ? <LoaderComponent />
+                    : <SearchUsers currentUser={currentUser} users={usersList} />
+            }
+
+
         </div>
     )
 }
 
-DevsSearch.propTypes = {
-    user: UserPropTypes,
-    users: PropTypes.arrayOf(PropTypes.shape({ UserPropTypes })),
-    follow: PropTypes.func,
-    unfollow: PropTypes.func,
-}
-
-export default connect(
-    ({ user, users }) => ({ user, users: users.list })
-)(DevsSearch)
+export default DevsSearch

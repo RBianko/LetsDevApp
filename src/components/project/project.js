@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,17 +11,19 @@ import { useSkills } from '../../hooks/skills.hook';
 import { applyRequest } from '../../redux/modules/projects/actions';
 import { getProjectDetails } from '../../redux/modules/projects/actions'
 import LoaderComponent from '../style-components/loader/loader';
+import { getUser } from './../../redux/modules/users/actions';
 
 const Project = () => {
     let { state } = useLocation()
     const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+    const devUser = useSelector(state => state.users.user)
+
     useEffect(() => {
         dispatch(getProjectDetails(state.id));
-    }, []);
-    // dispatch(getProjectDetails(state.id))
+    }, [dispatch, state.id]);
 
     const { project, loadingProjectDetails } = useSelector((state) => state.projects);
-    const { user, users } = useSelector(({ users, user }) => ({ user, users: users.list }))
     const { global, other } = useSkills()
 
     const {
@@ -41,11 +43,19 @@ const Project = () => {
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    const devsList = devs.map(dev => {
-        const user = users.find(user => user._id === dev._id)
+    const getDevUser = useCallback((id) => {
+        dispatch(getUser(id))
+    }, [dispatch, id])
+
+    const devsUsers = devs.map(dev => {
+        getDevUser(dev._id)
+        return devUser
+    })
+
+    const devsList = devsUsers.map(dev => {
         return <ProfileCard
             key={dev._id}
-            user={user}
+            user={dev}
             role={dev.role}
             creator={dev.creator}
         />

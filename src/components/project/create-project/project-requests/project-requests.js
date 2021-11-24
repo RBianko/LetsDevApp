@@ -29,7 +29,7 @@ const ProjectRequests = ({ projectId }) => {
     const requestsContent = requestsListMap.length > 0 ? requestsListMap : <h3 className="description__title">No requests yet.</h3>
 
     return (
-        <div className="profile__card card">
+        <div className="card">
             <div className="card__header">
                 <div className="header__title">requests.table</div>
             </div>

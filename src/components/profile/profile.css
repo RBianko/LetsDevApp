@@ -51,6 +51,7 @@
 
 .profile__info_sity {
   font-size: 1rem;
+  line-height: 1;
   font-weight: 300;
   color: var(--background-color-darken);
   margin-bottom: 10px;

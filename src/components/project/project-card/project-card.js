@@ -7,7 +7,7 @@ import { useSkills } from './../../../hooks/skills.hook';
 
 const ProjectCard = ({ project }) => {
     const {
-        _id: id,
+        _id,
         title,
         projectPicture,
         status,
@@ -36,7 +36,7 @@ const ProjectCard = ({ project }) => {
     return (
         <>
             <div className="project__card card">
-                <CardHeader id={id} title={'project.info'} path={'project'} />
+                <CardHeader id={_id} title={'project.info'} path={'project'} />
                 <div className="card__content project-content">
                     <div className="project-content__header">
                         <div className="project__info">

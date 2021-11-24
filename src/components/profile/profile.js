@@ -17,28 +17,27 @@ import { LoaderComponent } from './../style-components/loader/loader';
 const Profile = () => {
     let { state } = useLocation()
     let dispatch = useDispatch()
-
-    const currentUser = useSelector(state => state.user)
-    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
-    const user = useSelector(state => state.users.user)
-
     useEffect(() => {
         dispatch(getUser(state.id))
         dispatch(getProjects())
     }, [dispatch, state])
 
+    const currentUser = useSelector(state => state.user)
+    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+    const user = useSelector(state => state.users.user)
+
     const {
         _id,
-        firstName = "New User",
-        lastName = "",
-        city = "City",
-        country = "Country",
-        bio = `Something about ${firstName}`,
+        firstName,
+        lastName,
+        city,
+        country,
+        bio,
         roles = [],
         projects = [],
         skills = [],
-        socials = [],
-        profilePicture = "/static/media/users.86cb98ab.svg"
+        socials = {},
+        profilePicture,
     } = user
 
     const { global, other } = useSkills()
