@@ -46,7 +46,7 @@ const initialState = {
 //         skills: ["CSS", "HTML", "JS", "React", "redux", "Angular"],
 //         devs: [
 //             {
-//                 userId: "616e71fbe25229d0d93bfd37",
+//                 _id: "616e71fbe25229d0d93bfd37",
 //                 role: "Frontend",
 //                 creator: true
 //             }
@@ -54,12 +54,12 @@ const initialState = {
 //         requests: [
 //             {
 //                 requestId: "0",
-//                 userId: "1fake616e71fb12311233bfd37",
+//                 _id: "1fake616e71fb12311233bfd37",
 //                 forRole: "UI-Designer"
 //             },
 //             {
 //                 requestId: "1",
-//                 userId: "2fake616e71fb12311233bfd37",
+//                 _id: "2fake616e71fb12311233bfd37",
 //                 forRole: "Tester"
 //             }
 //         ],
@@ -74,16 +74,16 @@ const initialState = {
 //         skills: ["CSS", "HTML", "JS", "React", "NoSQL", "Java", "Svelte"],
 //         devs: [
 //             {
-//                 userId: "5fake616e71fb12311233bfd37",
+//                 _id: "5fake616e71fb12311233bfd37",
 //                 role: "Backend",
 //                 creator: true
 //             },
 //             {
-//                 userId: "616e71fbe25229d0d93bfd37",
+//                 _id: "616e71fbe25229d0d93bfd37",
 //                 role: "Frontend",
 //             },
 //             {
-//                 userId: "4fake616e71fb12311233bfd37",
+//                 _id: "4fake616e71fb12311233bfd37",
 //                 role: "Software",
 //             },
 //         ],
@@ -99,12 +99,12 @@ const initialState = {
 //         skills: ["CSS", "HTML", "JS", "React", "NoSQL", "Java", "Svelte"],
 //         devs: [
 //             {
-//                 userId: "1fake616e71fb12311233bfd37",
+//                 _id: "1fake616e71fb12311233bfd37",
 //                 role: "Backend",
 //                 creator: true
 //             },
 //             {
-//                 userId: "2fake616e71fb12311233bfd37",
+//                 _id: "2fake616e71fb12311233bfd37",
 //                 role: "Software",
 //             },
 //         ],
@@ -113,7 +113,7 @@ const initialState = {
 //     },
 // ]
 
-const projectsReduser = (state = initialState, { type, payload, id, userId }) => {
+const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
     let projectId = state.list.findIndex(project => project.id === id)
     let project = state.list[projectId]
 
@@ -171,7 +171,7 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
         case APPLY_REQUEST:
             const newRequest = {
                 requestId: project.requests.length.toString(),
-                userId,
+                _id,
                 role: payload
             }
             state.list[projectId].requests.push(newRequest)
@@ -185,7 +185,7 @@ const projectsReduser = (state = initialState, { type, payload, id, userId }) =>
             project.needList.splice(roleId, 1) //delete needed role
 
             let newDev = {
-                userId: payload.userId,
+                _id: payload._id,
                 role: payload.forRole
             }
             project.devs.push(newDev) // add new dev

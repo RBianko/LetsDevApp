@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const UsersPropTypes = PropTypes.arrayOf(PropTypes.shape({
-    userId: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired,
     isLogedIn: PropTypes.bool.isRequired,
     firstName: PropTypes.string,

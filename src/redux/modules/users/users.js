@@ -15,7 +15,7 @@ const initialState = {
     user: {},
     list: [
         {
-            userId: "1fake616e71fb12311233bfd37",
+            _id: "1fake616e71fb12311233bfd37",
             token: "1fake616e71fb12311233bfd37.eyJ1c2VySWQiOiI2M!@#J)!@(J#ciLCJpYXQiOjE2MzU0OTA0MDQsImV4cCI6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: false,
             firstName: "Dmitry",
@@ -33,7 +33,7 @@ const initialState = {
             socials: { vk: "a8sd0a8shdjasd" },
         },
         {
-            userId: "2fake616e71fb12311233bfd37",
+            _id: "2fake616e71fb12311233bfd37",
             token: "2fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: false,
             firstName: "Dave",
@@ -51,7 +51,7 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "3fake616e71fb12311233bfd37",
+            _id: "3fake616e71fb12311233bfd37",
             token: "3fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Singh",
@@ -69,7 +69,7 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "4fake616e71fb12311233bfd37",
+            _id: "4fake616e71fb12311233bfd37",
             token: "4fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Lia",
@@ -87,7 +87,7 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "5fake616e71fb12311233bfd37",
+            _id: "5fake616e71fb12311233bfd37",
             token: "5fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Mike",
@@ -105,7 +105,7 @@ const initialState = {
             socials: { facebook: "a8sd0a8shdjasd" },
         },
         {
-            userId: "6fake616e71fb12311233bfd37",
+            _id: "6fake616e71fb12311233bfd37",
             token: "6fake616e71fb12311233bfd37.1IJ!@)J#!_O@KE@!6MTYzNTQ5NDAwNH0.Zio5nYye_GVR9JalvEcZGXxR3pXj8CLXBgdBa2J49VA",
             isLogedIn: true,
             firstName: "Lominson",
@@ -131,7 +131,7 @@ const usersReduser = (state = initialState, { type, payload }) => {
             state = { ...state, loadingUser: true }
             break
         case GET_USER_SUCCESS:
-            state = { ...state, user: payload, loadingUser: false }
+            state = { ...state, user: payload[0], loadingUser: false }
             break
         case GET_USER_FAIL:
             state = {
@@ -158,16 +158,16 @@ const usersReduser = (state = initialState, { type, payload }) => {
             }
             break
         case UPDATE_USERS:
-            if (!payload.userId && !payload.token) {
+            if (!payload._id && !payload.token) {
                 return state
             }
             let newUser = Object.assign({}, payload)
-            let registred = state.list.some(user => user.userId === newUser.userId)
+            let registred = state.list.some(user => user._id === newUser._id)
             if (!registred) {
                 state = { ...state, list: [...state.list, newUser] }
             } else {
                 let list = state.list.slice()
-                let userIndex = list.findIndex(user => user.userId === newUser.userId)
+                let userIndex = list.findIndex(user => user._id === newUser._id)
                 list.splice(userIndex, 1, newUser)
                 state = { ...state, list: list }
             }

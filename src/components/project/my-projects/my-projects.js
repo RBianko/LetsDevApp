@@ -19,7 +19,7 @@ const MyProjects = () => {
 
     let findProjects = []
     let projectsList = []
-    let projectsListContent = loadingProjects ? <LoaderComponent /> : <h2>You have no projects yet.</h2>
+    let projectsListContent = loadingProjects ? <LoaderComponent /> : null
 
     if (!loadingProjects && projects.length > 0) {
         findProjects = user.projects.map(id =>
@@ -27,10 +27,10 @@ const MyProjects = () => {
         )
 
         projectsList = findProjects.map(project => {
-            const dev = project.devs.find(dev => dev.userId === user.userId)
-            return <ProjectCard key={project.id} project={project} userId={user.userId} skills={skills} edit={dev.creator} />
+            const dev = project.devs.find(dev => dev._id === user._id)
+            return <ProjectCard key={project.id} project={project} _id={user._id} skills={skills} edit={dev.creator} />
         })
-        projectsListContent = projectsList
+        projectsListContent = projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>
     }
 
     return (

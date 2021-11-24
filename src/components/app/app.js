@@ -6,30 +6,28 @@ import { useAuth } from '../../hooks/auth.hook'
 import { useRoutes } from './routes'
 
 import { setUser } from '../../redux/modules/user/actions'
-import { getUser, updateUsers } from './../../redux/modules/users/actions';
+import { getCurrentUser } from './../../redux/modules/user/actions';
 
 const App = () => {
-    const { token, userId, login, logout } = useAuth()
+    const { token, _id, login, logout } = useAuth()
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (userId && token) {
-            dispatch(setUser({ token, userId, login, logout }))
-        }
-    }, [userId, token])
+        dispatch(setUser({ token, _id, login, logout }))
+    }, [_id, token])
 
     useEffect(() => {
-        if (userId) {
-            dispatch(getUser(userId))
+        if (_id) {
+            dispatch(getCurrentUser(_id))
         }
-    }, [userId])
+    }, [_id])
 
     // useEffect(() => {
     //     dispatch(updateUsers(user))
     // }, [])
 
-    const routes = useRoutes(user.isLogedIn, user.userId)
+    const routes = useRoutes(user.isLogedIn, user._id)
 
     return routes
 }

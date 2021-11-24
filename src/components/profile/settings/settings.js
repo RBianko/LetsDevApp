@@ -24,7 +24,7 @@ const Settings = () => {
     const dispatch = useDispatch()
 
     const {
-        userId,
+        _id,
         firstName = '',
         lastName = '',
         city = '',
@@ -92,7 +92,7 @@ const Settings = () => {
 
     const updateClickHandler = () => {
         const editedUser = {
-            userId,
+            _id,
             firstName: editedFirstName,
             lastName: editedLastName,
             city: editedCity,

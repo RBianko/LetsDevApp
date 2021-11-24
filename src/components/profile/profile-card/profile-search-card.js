@@ -10,7 +10,7 @@ import Button from './../../style-components/button';
 import CardHeader from './../../style-components/card-header';
 
 const ProfileSearchCard = ({ user, followState, followToggle }) => {
-    const { userId, firstName, lastName, city, country, roles, profilePicture } = user
+    const { _id, firstName, lastName, city, country, roles, profilePicture } = user
     let rolesString = roles.join(', ')
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const ProfileSearchCard = ({ user, followState, followToggle }) => {
 
     return (
         <div className="profile__card_search card">
-            <CardHeader id={userId} title={'user.info'} path={'profile'} size="medium" />
+            <CardHeader id={_id} title={'user.info'} path={'profile'} size="medium" />
             <div className="card__content profile-content_search">
                 <img className="profile__icon_search" src={profilePicture || defaultIcon} alt="profile" />
                 <div className="profile__info profile__info_search">
@@ -28,7 +28,7 @@ const ProfileSearchCard = ({ user, followState, followToggle }) => {
                             <p className="profile__info_sity">{city}, {country}</p>
                             <span className="profile__info_role-small">{rolesString}</span>
                         </div>
-                        <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={followState} />
+                        <Button subClass={'btn_follow'} onClick={followToggle} data={user._id} text={followState} />
                     </div>
                 </div>
 

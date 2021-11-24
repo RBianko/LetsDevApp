@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 
 const Request = ({ request, onApprove, onDecline }) => {
     const { users } = useSelector(({ users }) => ({ users: users.list }))
-    const { userId, forRole } = request
-    const user = users.find(user => user.userId === userId)
+    const { _id, forRole } = request
+    const user = users.find(user => user._id === _id)
 
     return (
         <div className="request__item">

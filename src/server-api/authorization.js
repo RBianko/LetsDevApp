@@ -6,7 +6,7 @@ export const useAuthorization = () => {
     const authorization = async (form, user) => {
         try {
             const data = await request('http://localhost:4000/api/login/authorization', 'POST', { ...form })
-            user.login(data.token, data.userId)
+            user.login(data.token, data._id)
         } catch (error) { }
     }
 

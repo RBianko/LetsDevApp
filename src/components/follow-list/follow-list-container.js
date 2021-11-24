@@ -10,11 +10,11 @@ const FollowListContainer = ({ user: currentUser, users }) => {
     const { follow } = currentUser
 
     const followers = follow.followers.map((followerId) =>
-        users.find(user => followerId === user.userId)
+        users.find(user => followerId === user._id)
     )
 
     const following = follow.following.map((followerId) =>
-        users.find(user => followerId === user.userId)
+        users.find(user => followerId === user._id)
     )
 
     return (

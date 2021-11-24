@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import './menu.css'
@@ -24,8 +24,8 @@ const Menu = () => {
             <ul className="menu__icons">
                 <li className="menu-icon">
                     <Link to={{
-                        pathname: `/profile/${user.userId}`,
-                        state: { id: user.userId }
+                        pathname: `/profile/${user._id}`,
+                        state: { id: user._id }
                     }}>
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
                     </Link>

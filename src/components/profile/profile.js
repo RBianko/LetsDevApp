@@ -20,27 +20,25 @@ const Profile = () => {
 
     const currentUser = useSelector(state => state.user)
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
-    const users = useSelector(state => state.users.list)
+    const user = useSelector(state => state.users.user)
 
     useEffect(() => {
         dispatch(getUser(state.id))
         dispatch(getProjects())
     }, [dispatch, state])
 
-    const user = users.find(user => user.userId === state.id)
-
     const {
-        userId,
+        _id,
         firstName = "New User",
         lastName = "",
         city = "City",
         country = "Country",
         bio = `Something about ${firstName}`,
-        roles,
-        projects,
-        skills,
-        socials,
-        profilePicture
+        roles = [],
+        projects = [],
+        skills = [],
+        socials = [],
+        profilePicture = "/static/media/users.86cb98ab.svg"
     } = user
 
     const { global, other } = useSkills()
@@ -79,8 +77,8 @@ const Profile = () => {
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
 
-    const currentUserProfile = currentUser.userId === userId
-    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user.userId} text={getFollowState(currentUser, user)} />
+    const currentUserProfile = currentUser._id === _id
+    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user._id} text={getFollowState(currentUser, user)} />
 
 
     const content = loadingProjects

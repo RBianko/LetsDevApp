@@ -3,6 +3,11 @@ import {
     ADD_PROJECT_ID,
     FOLLOW_TOGGLE,
     UPDATE_USER_INFO,
+    UPDATE_USER_INFO_SUCCESS,
+    UPDATE_USER_INFO_FAIL,
+    GET_CURRENT_USER,
+    GET_CURRENT_USER_SUCCESS,
+    GET_CURRENT_USER_FAIL
 } from '../../action-types'
 
 
@@ -11,9 +16,34 @@ export const setUser = (user) => ({
     payload: user
 })
 
+export const getCurrentUser = (id) => ({
+    type: GET_CURRENT_USER,
+    payload: id
+})
+
+export const getCurrentUserSuccess = (user) => ({
+    type: GET_CURRENT_USER_SUCCESS,
+    payload: user
+})
+
+export const getCurrentUserFail = (error) => ({
+    type: GET_CURRENT_USER_FAIL,
+    payload: error
+})
+
 export const updateUserInfo = (user) => ({
     type: UPDATE_USER_INFO,
     payload: user
+})
+
+export const updateUserInfoSuccess = (user) => ({
+    type: UPDATE_USER_INFO_SUCCESS,
+    payload: user
+})
+
+export const updateUserInfoFail = (error) => ({
+    type: UPDATE_USER_INFO_FAIL,
+    payload: error
 })
 
 export const addProjectId = (id) => ({

@@ -2,12 +2,17 @@ import {
     SET_USER,
     ADD_PROJECT_ID,
     FOLLOW_TOGGLE,
+    GET_CURRENT_USER,
+    GET_CURRENT_USER_SUCCESS,
+    GET_CURRENT_USER_FAIL,
     UPDATE_USER_INFO,
+    UPDATE_USER_INFO_SUCCESS,
+    UPDATE_USER_INFO_FAIL,
 } from "../../action-types"
 // import defaultProfilePicture from "../../../img/users.svg"
 
 const JSONuser = {
-    "userId": "616e71fbe25229d0d93bfd37",
+    "_id": "616e71fbe25229d0d93bfd37",
     "isLogedIn": false,
     "profilePicture": "/static/media/users.86cb98ab.svg",
     "roles": [
@@ -50,24 +55,28 @@ const JSONuser = {
 }
 
 const initialState = {
-    loadingUser: false,
-    userId: null,
+    _id: null,
+    loadingCurrentUser: false,
     token: null,
     isLogedIn: false,
+    profilePicture: "/static/media/users.86cb98ab.svg",
+    roles: [],
+    follow: {
+        followers: [],
+        following: [],
+    },
+    skills: [],
+    projects: [],
+    socials: {},
+    login: () => { },
+    logout: () => { },
 
-    // profilePicture: "/static/media/users.86cb98ab.svg",
-    // roles: [],
-    // follow: {
-    //     followers: [],
-    //     following: [],
-    // },
-    // skills: [],
-    // projects: [],
-    // socials: {},
-    // login: () => { },
-    // logout: () => { }
+    firstName: null,
+    lastName: null,
+    city: null,
+    country: null,
 
-    // userId: null,
+    // _id: null,
     // token: null,
     // isLogedIn: false,
     // profilePicture: "/static/media/users.86cb98ab.svg",
@@ -114,15 +123,42 @@ const userReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_USER:
             let loginState
-            if (payload.token && payload.userId) {
+            if (payload.token && payload._id) {
                 loginState = true
             } else {
                 loginState = false
             }
-            state = { ...state, isLogedIn: loginState, token: payload.token, userId: payload.userId, login: payload.login, logout: payload.logout }
+            state = { ...state, isLogedIn: loginState, token: payload.token, _id: payload._id, login: payload.login, logout: payload.logout }
+            break
+        case GET_CURRENT_USER:
+            state = { ...state, loadingCurrentUser: true }
+            break
+        case GET_CURRENT_USER_SUCCESS:
+            state = { ...state, ...payload[0], loadingCurrentUser: false }
+            break
+        case GET_CURRENT_USER_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on GET_USER",
+                },
+                loadingCurrentUser: false,
+            }
             break
         case UPDATE_USER_INFO:
-            state = { ...state, ...payload }
+            state = { ...state, loadingCurrentUser: true }
+            break
+        case UPDATE_USER_INFO_SUCCESS:
+            state = { ...state, loadingCurrentUser: false }
+            break
+        case UPDATE_USER_INFO_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on UPDATE_USER_INFO",
+                },
+                loadingCurrentUser: false,
+            }
             break
         case ADD_PROJECT_ID:
             state = { ...state, projects: [...state.projects, payload] }

@@ -9,8 +9,9 @@ import {
 } from '../../action-types'
 
 
-export const getUser = () => ({
-    type: GET_USER
+export const getUser = (id) => ({
+    type: GET_USER,
+    payload: id
 })
 
 export const getUserSuccess = (user) => ({

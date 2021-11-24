@@ -6,7 +6,7 @@ import ProfileSearchCard from '../profile/profile-card/profile-search-card';
 
 const SearchUsers = ({ currentUser, users }) => {
     const usersList = users.map((user) => {
-        return <ProfileSearchCard key={user.userId} user={user} followState={getFollowState(currentUser, user)} />
+        return <ProfileSearchCard key={user._id} user={user} followState={getFollowState(currentUser, user)} />
     })
 
     return (

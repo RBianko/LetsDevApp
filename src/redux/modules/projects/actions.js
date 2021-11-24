@@ -88,11 +88,11 @@ export const editSkillsStack = (array, id) => ({
     id
 })
 
-export const applyRequest = (id, userId, array) => ({
+export const applyRequest = (id, _id, array) => ({
     type: APPLY_REQUEST,
     payload: array,
     id,
-    userId
+    _id
 })
 
 export const approveRequest = (id, request) => ({

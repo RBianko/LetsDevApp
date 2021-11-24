@@ -9,7 +9,7 @@ export const ProjectsPropTypes = PropTypes.shape({
     description: PropTypes.string,
     skills: PropTypes.arrayOf(PropTypes.string),
     devs: PropTypes.arrayOf(PropTypes.shape({
-        userId: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
         firstName: PropTypes.string,
         role: PropTypes.string,
         profilePicture: PropTypes.string

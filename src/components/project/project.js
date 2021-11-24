@@ -42,9 +42,9 @@ const Project = () => {
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     const devsList = devs.map(dev => {
-        const user = users.find(user => user.userId === dev.userId)
+        const user = users.find(user => user._id === dev._id)
         return <ProfileCard
-            key={dev.userId}
+            key={dev._id}
             user={user}
             role={dev.role}
             creator={dev.creator}
@@ -61,7 +61,7 @@ const Project = () => {
         </div>
         : null
 
-    const userInProject = devs.find(dev => dev.userId === user.userId)
+    const userInProject = devs.find(dev => dev._id === user._id)
 
     const applyButton = (needList.length > 0) && !userInProject
         ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={id} />
@@ -76,7 +76,7 @@ const Project = () => {
         </Link>
         : null
 
-    const applyRoles = (roles) => dispatch(applyRequest(id, user.userId, roles))
+    const applyRoles = (roles) => dispatch(applyRequest(id, user._id, roles))
 
     const content = loadingProjectDetails
         ? <LoaderComponent />

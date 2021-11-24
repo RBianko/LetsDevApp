@@ -50,7 +50,7 @@ const CreateProject = ({
         requests: [],
         devs: [
             {
-                userId: user.userId,
+                _id: user._id,
                 role: user.roles[0],
                 creator: true
             }
@@ -84,7 +84,7 @@ const CreateProject = ({
     const [newNeedList, setNeedList] = useState(needList)
     const [newSkills, setSkills] = useState(skills)
 
-    let devsList = devs.map(dev => users.list.find(user => dev.userId === user.userId))
+    let devsList = devs.map(dev => users.list.find(user => dev._id === user._id))
     let devsListString = devsList.map((dev, id) => `${dev.firstName}: ${devs[id].role}`).join(', ')
 
     let needListString = newNeedList.join(', ')

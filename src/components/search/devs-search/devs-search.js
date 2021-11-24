@@ -9,7 +9,7 @@ import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 import IconButton from './../../style-components/icon-button/icon-button';
 
 const DevsSearch = ({ user: currentUser, users }) => {
-    const usersList = users.filter(user => user.userId !== currentUser.userId)
+    const usersList = users.filter(user => user._id !== currentUser._id)
 
     return (
         <div className='container'>
