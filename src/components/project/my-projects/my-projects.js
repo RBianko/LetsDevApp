@@ -10,7 +10,7 @@ import { LoaderComponent } from './../../style-components/loader/loader';
 
 const MyProjects = () => {
     let dispatch = useDispatch()
-    useEffect(() => dispatch(getProjects()), [])
+    useEffect(() => dispatch(getProjects()), [dispatch])
 
     const { list: projects, loadingProjects } = useSelector((state) => state.projects);
     const user = useSelector(state => state.user)

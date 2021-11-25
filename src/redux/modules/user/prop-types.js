@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 
 export const UserPropTypes = PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired,
-    isLogedIn: PropTypes.bool.isRequired,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     city: PropTypes.string,

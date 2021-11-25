@@ -26,7 +26,7 @@ const Settings = () => {
         dispatch(getUser(user._id))
     }, [])
 
-    const user = useSelector(state => state.users.user)
+    const user = useSelector(state => state.user)
 
     const {
         _id,

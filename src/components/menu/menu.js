@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './menu.css'
-
-import { getUsers } from '../../redux/modules/users/actions'
 
 import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'

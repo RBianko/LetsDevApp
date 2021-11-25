@@ -1,19 +1,19 @@
 import {
-    ADD_PROJECT,
-    EDIT_NEED_LIST,
-    EDIT_SKILLS_STACK,
-    EDIT_DESCRIPTION,
-    EDIT_TITLE,
-    EDIT_STATUS,
-    APPLY_REQUEST,
-    APPROVE_REQUEST,
-    DECLINE_REQUEST,
     GET_PROJECTS,
     GET_PROJECTS_SUCCESS,
     GET_PROJECTS_FAIL,
     GET_PROJECT_DETAILS,
     GET_PROJECT_DETAILS_SUCCESS,
     GET_PROJECT_DETAILS_FAIL,
+    ADD_PROJECT,
+    ADD_PROJECT_SUCCESS,
+    ADD_PROJECT_FAIL,
+    UPDATE_PROJECT,
+    UPDATE_PROJECT_SUCCESS,
+    UPDATE_PROJECT_FAIL,
+    APPLY_REQUEST,
+    APPROVE_REQUEST,
+    DECLINE_REQUEST,
 } from '../../action-types'
 
 
@@ -21,71 +21,55 @@ export const getProjects = () => ({
     type: GET_PROJECTS
 })
 
-export const getProjectsSuccess = (projects) => {
-    return {
-        type: GET_PROJECTS_SUCCESS,
-        payload: projects
-    }
-}
+export const getProjectsSuccess = (projects) => ({
+    type: GET_PROJECTS_SUCCESS,
+    payload: projects
+})
 
-export const getProjectsFail = (error) => {
-    return {
-        type: GET_PROJECTS_FAIL,
-        payload: error
-    }
-}
+export const getProjectsFail = (error) => ({
+    type: GET_PROJECTS_FAIL,
+    payload: error
+})
 
 export const getProjectDetails = (id) => ({
     type: GET_PROJECT_DETAILS,
     payload: id
 })
 
-export const getProjectDetailsSuccess = (project) => {
-    return {
-        type: GET_PROJECT_DETAILS_SUCCESS,
-        payload: project
-    }
-}
-
-export const getProjectDetailsFail = (error) => {
-    return {
-        type: GET_PROJECT_DETAILS_FAIL,
-        payload: error
-    }
-}
-export const addProject = (project) => ({
-    type: ADD_PROJECT,
+export const getProjectDetailsSuccess = (project) => ({
+    type: GET_PROJECT_DETAILS_SUCCESS,
     payload: project
 })
 
-export const editTitle = (string, id) => ({
-    type: EDIT_TITLE,
-    payload: string,
-    id
+export const getProjectDetailsFail = (error) => ({
+    type: GET_PROJECT_DETAILS_FAIL,
+    payload: error
 })
 
-export const editStatus = (string, id) => ({
-    type: EDIT_STATUS,
-    payload: string,
-    id
+export const addProject = () => ({
+    type: ADD_PROJECT,
 })
 
-export const editDescription = (string, id) => ({
-    type: EDIT_DESCRIPTION,
-    payload: string,
-    id
+export const addProjectSuccess = () => ({
+    type: ADD_PROJECT_SUCCESS,
 })
 
-export const editNeedList = (array, id) => ({
-    type: EDIT_NEED_LIST,
-    payload: array,
-    id
+export const addProjectFail = (error) => ({
+    type: ADD_PROJECT_FAIL,
+    payload: error
 })
 
-export const editSkillsStack = (array, id) => ({
-    type: EDIT_SKILLS_STACK,
-    payload: array,
-    id
+export const updateProject = () => ({
+    type: UPDATE_PROJECT,
+})
+
+export const updateProjectSuccess = () => ({
+    type: UPDATE_PROJECT_SUCCESS,
+})
+
+export const updateProjectFail = (error) => ({
+    type: UPDATE_PROJECT_FAIL,
+    payload: error
 })
 
 export const applyRequest = (id, _id, array) => ({

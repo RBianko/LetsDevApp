@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory, useLocation } from "react-router-dom"
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './create-project.css'
 
 import defaultProjectPicture from '../../../img/project.svg'
@@ -8,40 +8,20 @@ import SkillsForm from '../../forms/skills'
 import RolesForm from './../../forms/roles'
 import ProjectRequests from './project-requests/project-requests';
 
-import {
-    addProject,
-    editTitle,
-    editStatus,
-    editDescription,
-    editNeedList,
-    editSkillsStack,
-} from '../../../redux/modules/projects/actions'
-import { addProjectId } from './../../../redux/modules/user/actions'
+import { addProject, updateProject } from '../../../redux/modules/projects/actions'
+import { getUsers } from '../../../redux/modules/users/actions'
 import { PropTypes } from 'prop-types';
-import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 const CreateProject = ({
-    user,
-    users,
-    skills: skillsList,
-    roles: rolesList,
-    addProject,
-    addProjectId,
-    editTitle,
-    editStatus,
-    editDescription,
-    editNeedList,
-    editSkillsStack,
-    newProjectId,
     isEditing = false
 }) => {
-
     const history = useHistory()
+    const dispatch = useDispatch()
     const { state: project } = useLocation()
 
+    const currentUser = useSelector(state => state.user)
 
     let currentProject = project || {
-        id: newProjectId,
         title: '',
         projectPicture: defaultProjectPicture,
         status: '',
@@ -50,8 +30,8 @@ const CreateProject = ({
         requests: [],
         devs: [
             {
-                _id: user._id,
-                role: user.roles[0],
+                _id: currentUser._id,
+                role: currentUser.roles[0],
                 creator: true
             }
         ],
@@ -59,7 +39,6 @@ const CreateProject = ({
     }
 
     const {
-        id,
         title,
         projectPicture,
         status,
@@ -69,6 +48,11 @@ const CreateProject = ({
         requests,
         needList
     } = currentProject
+
+    const ids = requests.map(request => request._id)
+    console.log(ids)
+    if (isEditing) dispatch(getUsers(ids))
+
 
     const titleInput = React.createRef()
     const statusInput = React.createRef()
@@ -83,9 +67,6 @@ const CreateProject = ({
     const [newPicture, setPicture] = useState(projectPicture)
     const [newNeedList, setNeedList] = useState(needList)
     const [newSkills, setSkills] = useState(skills)
-
-    let devsList = devs.map(dev => users.list.find(user => dev._id === user._id))
-    let devsListString = devsList.map((dev, id) => `${dev.firstName}: ${devs[id].role}`).join(', ')
 
     let needListString = newNeedList.join(', ')
     let skillsStackList = newSkills.join(', ')
@@ -104,26 +85,22 @@ const CreateProject = ({
     }
 
     const submitClickHandler = () => {
+        currentProject = {
+            title: newTitle,
+            status: newStatus,
+            description: newDescription,
+            skills: newSkills,
+            needList: newNeedList,
+            projectPicture,
+            requests,
+            devs
+        }
+
         if (isEditing) {
-            editTitle(newTitle, id)
-            editStatus(newStatus, id)
-            editDescription(newDescription, id)
-            editNeedList(newNeedList, id)
-            editSkillsStack(newSkills, id)
+            dispatch(updateProject(currentProject))
         } else {
-            currentProject = {
-                title: newTitle,
-                status: newStatus,
-                description: newDescription,
-                skills: newSkills,
-                needList: newNeedList,
-                projectPicture,
-                requests,
-                devs
-            }
-            addProject(currentProject)
-            addProjectId(newProjectId.toString())
-            clearClickHandler()
+            dispatch(addProject(currentProject))
+            // addProjectId(newProjectId.toString()) // TODO:
         }
 
         history.push('/my-projects')
@@ -137,7 +114,8 @@ const CreateProject = ({
         setSkills(skills)
     }
 
-    const requestslist = isEditing ? <ProjectRequests projectId={id} /> : null
+
+    let requestslist = isEditing ? <ProjectRequests /> : null
 
     return (
         <>
@@ -186,16 +164,6 @@ const CreateProject = ({
                                             <option value="Done">Done</option>
                                             <option value="Planned">Planned</option>
                                         </select>
-                                    </div>
-
-                                    <div className="settings__item">
-                                        <label className="text-label" htmlFor="devs">Devs</label>
-                                        <input
-                                            className="text-input" disabled
-                                            id="devs"
-                                            type="text"
-                                            placeholder="Devs"
-                                            value={devsListString} />
                                     </div>
 
                                     <div className="settings__item">
@@ -260,24 +228,8 @@ const CreateProject = ({
 }
 
 CreateProject.propTypes = {
-    user: UserPropTypes,
-    skills: PropTypes.arrayOf(PropTypes.string),
-    roles: PropTypes.arrayOf(PropTypes.string),
-    addProject: PropTypes.func,
-    addProjectId: PropTypes.func,
-    id: PropTypes.number,
+    isEditing: PropTypes.bool,
 }
 
 
-export default connect(
-    ({ user, users, skills, roles, projects }) => ({ user, users, skills, roles, newProjectId: projects.id }),
-    {
-        addProject,
-        addProjectId,
-        editTitle,
-        editStatus,
-        editDescription,
-        editNeedList,
-        editSkillsStack,
-    }
-)(CreateProject)
+export default CreateProject

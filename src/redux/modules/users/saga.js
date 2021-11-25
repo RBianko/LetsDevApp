@@ -11,9 +11,9 @@ import {
 
 import { getUser, getUsers } from '../../helpers/backend-helper'
 
-function* onGetUsers() {
+function* onGetUsers({ payload: ids }) {
     try {
-        const response = yield call(getUsers)
+        const response = yield call(getUsers, ids)
         yield put(getUsersSuccess(response))
     } catch (error) {
         yield put(getUsersFail(error.response))

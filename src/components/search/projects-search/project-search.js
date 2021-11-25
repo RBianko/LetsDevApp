@@ -15,7 +15,7 @@ const ProjectSearch = () => {
 
     useEffect(() => {
         dispatch(getProjects());
-    }, []);
+    }, [dispatch]);
 
     const [searchTerm, setSearchTerm] = useState('')
 

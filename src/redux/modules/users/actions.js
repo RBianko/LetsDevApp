@@ -24,8 +24,9 @@ export const getUserFail = (error) => ({
     payload: error
 })
 
-export const getUsers = () => ({
-    type: GET_USERS
+export const getUsers = (ids) => ({
+    type: GET_USERS,
+    payload: ids
 })
 
 export const getUsersSuccess = (users) => ({

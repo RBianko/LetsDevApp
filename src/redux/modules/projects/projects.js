@@ -1,33 +1,20 @@
 import {
-    ADD_PROJECT,
-    EDIT_NEED_LIST,
-    EDIT_SKILLS_STACK,
-    EDIT_DESCRIPTION,
-    EDIT_TITLE,
-    EDIT_STATUS,
-    APPLY_REQUEST,
-    APPROVE_REQUEST,
-    DECLINE_REQUEST,
     GET_PROJECTS,
     GET_PROJECTS_SUCCESS,
     GET_PROJECTS_FAIL,
     GET_PROJECT_DETAILS,
     GET_PROJECT_DETAILS_SUCCESS,
     GET_PROJECT_DETAILS_FAIL,
+    ADD_PROJECT,
+    ADD_PROJECT_SUCCESS,
+    ADD_PROJECT_FAIL,
+    UPDATE_PROJECT,
+    UPDATE_PROJECT_SUCCESS,
+    UPDATE_PROJECT_FAIL,
+    APPLY_REQUEST,
+    APPROVE_REQUEST,
+    DECLINE_REQUEST,
 } from "../../action-types"
-
-// EMPTY_PROJECT
-//         {
-//             id: null,
-//             creator: null,
-//             title: null,
-//             picture: defaultProjectPicture,
-//             status: null,
-//             description: null,
-//             skills: [],
-//             devs: [],
-//             needList: [],
-//         }
 
 const initialState = {
     loadingProjects: false,
@@ -37,81 +24,33 @@ const initialState = {
     list: []
 }
 
-// list: [
-//     {
-//         title: "Project v1.29",
-//         projectPicture: defaultProjectPicture,
-//         status: "Active",
-//         description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
-//         skills: ["CSS", "HTML", "JS", "React", "redux", "Angular"],
-//         devs: [
-//             {
-//                 _id: "616e71fbe25229d0d93bfd37",
-//                 role: "Frontend",
-//                 creator: true
-//             }
-//         ],
-//         requests: [
-//             {
-//                 requestId: "0",
-//                 _id: "1fake616e71fb12311233bfd37",
-//                 forRole: "UI-Designer"
-//             },
-//             {
-//                 requestId: "1",
-//                 _id: "2fake616e71fb12311233bfd37",
-//                 forRole: "Tester"
-//             }
-//         ],
-//         needList: ["UI-Designer", "Tester"],
-//     },
-//     {
-//         id: "101",
-//         title: "Dev free",
-//         projectPicture: defaultProjectPicture,
-//         status: "Active",
-//         description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
-//         skills: ["CSS", "HTML", "JS", "React", "NoSQL", "Java", "Svelte"],
-//         devs: [
-//             {
-//                 _id: "5fake616e71fb12311233bfd37",
-//                 role: "Backend",
-//                 creator: true
-//             },
-//             {
-//                 _id: "616e71fbe25229d0d93bfd37",
-//                 role: "Frontend",
-//             },
-//             {
-//                 _id: "4fake616e71fb12311233bfd37",
-//                 role: "Software",
-//             },
-//         ],
-//         requests: [],
-//         needList: ["Tester", "Tester", "Frontend"],
-//     },
-//     {
-//         id: "102",
-//         title: "Apply here!",
-//         projectPicture: defaultProjectPicture,
-//         status: "Offline",
-//         description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
-//         skills: ["CSS", "HTML", "JS", "React", "NoSQL", "Java", "Svelte"],
-//         devs: [
-//             {
-//                 _id: "1fake616e71fb12311233bfd37",
-//                 role: "Backend",
-//                 creator: true
-//             },
-//             {
-//                 _id: "2fake616e71fb12311233bfd37",
-//                 role: "Software",
-//             },
-//         ],
-//         requests: [],
-//         needList: ["Frontend"],
-//     },
-// ]
+// {
+//     title: "Project v1.29",
+//     projectPicture: defaultProjectPicture,
+//     status: "Active",
+//     description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
+//     skills: ["CSS", "HTML", "JS", "React", "redux", "Angular"],
+//     devs: [
+//         {
+//             _id: "616e71fbe25229d0d93bfd37",
+//             role: "Frontend",
+//             creator: true
+//         }
+//     ],
+//     requests: [
+//         {
+//             requestId: "0",
+//             _id: "1fake616e71fb12311233bfd37",
+//             forRole: "UI-Designer"
+//         },
+//         {
+//             requestId: "1",
+//             _id: "2fake616e71fb12311233bfd37",
+//             forRole: "Tester"
+//         }
+//     ],
+//     needList: ["UI-Designer", "Tester"],
+// }
 
 const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
     let projectId = state.list.findIndex(project => project.id === id)
@@ -148,26 +87,39 @@ const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
                 loadingProjectDetails: false,
             }
             break
-        // case ADD_PROJECT:
-        //     payload.id = _PROJECT_ID.toString()
-        //     let newList = [...state.list, payload]
-        //     _PROJECT_ID++
-        //     return { ...state, list: newList, id: _PROJECT_ID }
-        // case EDIT_TITLE:
-        //     project.title = payload
-        //     return { ...state, list: [...state.list] }
-        // case EDIT_STATUS:
-        //     project.status = payload
-        //     return { ...state, list: [...state.list] }
-        // case EDIT_NEED_LIST:
-        //     project.needList = payload
-        //     return { ...state, list: [...state.list] }
-        // case EDIT_SKILLS_STACK:
-        //     project.skills = payload
-        //     return { ...state, list: [...state.list] }
-        // case EDIT_DESCRIPTION:
-        //     project.description = payload
-        //     return { ...state, list: [...state.list] }
+
+        case ADD_PROJECT:
+            state = { ...state, loadingProjectDetails: true }
+            break
+        case ADD_PROJECT_SUCCESS:
+            state = { ...state, loadingProjectDetails: false }
+            break
+        case ADD_PROJECT_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on ADD_PROJECT",
+                },
+                loadingProjectDetails: false,
+            }
+            break
+
+        case UPDATE_PROJECT:
+            state = { ...state, loadingProjectDetails: true }
+            break
+        case UPDATE_PROJECT_SUCCESS:
+            state = { ...state, loadingProjectDetails: false }
+            break
+        case UPDATE_PROJECT_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on UPDATE_PROJECT",
+                },
+                loadingProjectDetails: false,
+            }
+            break
+
         case APPLY_REQUEST:
             const newRequest = {
                 requestId: project.requests.length.toString(),

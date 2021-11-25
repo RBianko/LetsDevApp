@@ -4,7 +4,7 @@ import Button from './../../../style-components/button/index';
 import { useSelector } from 'react-redux';
 
 const Request = ({ request, onApprove, onDecline }) => {
-    const { users } = useSelector(({ users }) => ({ users: users.list }))
+    const users = useSelector(state => state.users.list)
     const { _id, forRole } = request
     const user = users.find(user => user._id === _id)
 

@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './project-requests.css'
 
 import { approveRequest, declineRequest } from '../../../../redux/modules/projects/actions';
+import { getUsers } from '../../../../redux/modules/users/actions';
 import Request from './request';
 
-const ProjectRequests = ({ projectId }) => {
+const ProjectRequests = () => {
     const dispatch = useDispatch()
-    const { projects } = useSelector(({ projects }) => ({ projects: projects.list }))
-
-    const project = projects.find(project => project.id === projectId);
-    const { id, requests } = project;
+    const { id, requests } = useSelector(state => state.projects.project)
 
     const onApprove = useCallback((request) =>
         dispatch(approveRequest(id, request)),

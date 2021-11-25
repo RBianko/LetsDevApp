@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,23 +11,21 @@ import { useSkills } from '../../hooks/skills.hook';
 import { applyRequest } from '../../redux/modules/projects/actions';
 import { getProjectDetails } from '../../redux/modules/projects/actions'
 import LoaderComponent from '../style-components/loader/loader';
-import { getUser } from './../../redux/modules/users/actions';
+import { getUsers } from './../../redux/modules/users/actions';
 
 const Project = () => {
     let { state } = useLocation()
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
-    const devUser = useSelector(state => state.users.user)
+    const { global, other } = useSkills()
 
     useEffect(() => {
         dispatch(getProjectDetails(state.id));
     }, [dispatch, state.id]);
 
-    const { project, loadingProjectDetails } = useSelector((state) => state.projects);
-    const { global, other } = useSkills()
+    const user = useSelector(state => state.user)
 
+    const { project, loadingProjectDetails } = useSelector((state) => state.projects);
     const {
-        _id: id = null,
         title = '',
         projectPicture = '',
         status = '',
@@ -37,22 +35,19 @@ const Project = () => {
         needList = []
     } = project
 
+    useEffect(() => {
+        if (devs.length > 0) dispatch(getUsers([...devs].map(dev => dev._id)))
+    }, [devs, dispatch]);
+
+    const usersDevs = useSelector(state => state.users.list)
+
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    const getDevUser = useCallback((id) => {
-        dispatch(getUser(id))
-    }, [dispatch, id])
-
-    const devsUsers = devs.map(dev => {
-        getDevUser(dev._id)
-        return devUser
-    })
-
-    const devsList = devsUsers.map(dev => {
+    const devsList = usersDevs.map(dev => {
         return <ProfileCard
             key={dev._id}
             user={dev}
@@ -74,7 +69,7 @@ const Project = () => {
     const userInProject = devs.find(dev => dev._id === user._id)
 
     const applyButton = (needList.length > 0) && !userInProject
-        ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={id} />
+        ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={state.id} />
         : null
 
     const editLink = userInProject && userInProject.creator
@@ -86,7 +81,7 @@ const Project = () => {
         </Link>
         : null
 
-    const applyRoles = (roles) => dispatch(applyRequest(id, user._id, roles))
+    const applyRoles = (roles) => dispatch(applyRequest(state.id, user._id, roles))
 
     const content = loadingProjectDetails
         ? <LoaderComponent />
