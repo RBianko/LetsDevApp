@@ -50,3 +50,10 @@ export const updateUserInfo = (user) =>
             user
         }
     })
+
+export const followToggle = (ids) =>
+    put(url.FOLLOW_TOGGLE, {
+        params: {
+            ids
+        }
+    })

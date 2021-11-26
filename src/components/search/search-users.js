@@ -6,7 +6,7 @@ import ProfileSearchCard from '../profile/profile-card/profile-search-card';
 
 const SearchUsers = ({ currentUser, users }) => {
     const usersList = users.map((user) => {
-        return <ProfileSearchCard key={user._id} user={user} followState={getFollowState(currentUser, user)} />
+        return <ProfileSearchCard key={user._id} user={user} currentUser={currentUser} followState={getFollowState(currentUser, user)} />
     })
 
     const usersListContent = usersList?.length > 0 ? usersList : <h3>No results found.</h3>

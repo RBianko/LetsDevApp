@@ -2,6 +2,8 @@ import {
     SET_USER,
     ADD_PROJECT_ID,
     FOLLOW_TOGGLE,
+    FOLLOW_TOGGLE_SUCCESS,
+    FOLLOW_TOGGLE_FAIL,
     UPDATE_USER_INFO,
     UPDATE_USER_INFO_SUCCESS,
     UPDATE_USER_INFO_FAIL,
@@ -51,7 +53,16 @@ export const addProjectId = (id) => ({
     payload: id
 })
 
-export const followToggle = (id) => ({
+export const followToggle = (ids) => ({
     type: FOLLOW_TOGGLE,
-    payload: id
+    payload: ids
+})
+
+export const followToggleSuccess = () => ({
+    type: FOLLOW_TOGGLE_SUCCESS
+})
+
+export const followToggleFail = (error) => ({
+    type: FOLLOW_TOGGLE_FAIL,
+    payload: error
 })

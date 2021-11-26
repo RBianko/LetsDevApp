@@ -2,6 +2,8 @@ import {
     SET_USER,
     ADD_PROJECT_ID,
     FOLLOW_TOGGLE,
+    FOLLOW_TOGGLE_SUCCESS,
+    FOLLOW_TOGGLE_FAIL,
     GET_CURRENT_USER,
     GET_CURRENT_USER_SUCCESS,
     GET_CURRENT_USER_FAIL,
@@ -57,6 +59,7 @@ const JSONuser = {
 const initialState = {
     _id: null,
     loadingCurrentUser: false,
+    followToggleLoading: false,
     token: null,
     isLogedIn: false,
     login: () => { },
@@ -125,14 +128,18 @@ const userReduser = (state = initialState, { type, payload }) => {
             state = { ...state, projects: [...state.projects, payload] }
             break
         case FOLLOW_TOGGLE:
-            const isFollowed = state.follow.following.some(id => id === payload)
-            if (isFollowed) {
-                const userFollowingList = state.follow.following
-                const userIdIndex = userFollowingList.findIndex(id => id === payload)
-                userFollowingList.splice(userIdIndex, 1)
-                state = { ...state, follow: { ...state.follow, following: [...userFollowingList] } } //unfollow
-            } else {
-                state = { ...state, follow: { ...state.follow, following: [...state.follow.following, payload] } } //follow
+            state = { ...state, followToggleLoading: true }
+            break
+        case FOLLOW_TOGGLE_SUCCESS:
+            state = { ...state, followToggleLoading: false }
+            break
+        case FOLLOW_TOGGLE_FAIL:
+            state = {
+                ...state,
+                error: {
+                    message: "Error on FOLLOW_TOGGLE",
+                },
+                followToggleLoading: false,
             }
             break
         default:

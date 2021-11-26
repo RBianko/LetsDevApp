@@ -9,7 +9,7 @@ import defaultIcon from '../../../img/users.svg'
 import Button from './../../style-components/button';
 import CardHeader from './../../style-components/card-header';
 
-const ProfileSearchCard = ({ user, followState, followToggle }) => {
+const ProfileSearchCard = ({ user, currentUser, followState, followToggle }) => {
     const { _id, firstName, lastName, city, country, roles, profilePicture } = user
     let rolesString = roles.join(', ')
 
@@ -28,7 +28,7 @@ const ProfileSearchCard = ({ user, followState, followToggle }) => {
                             <p className="profile__info_sity">{city}, {country}</p>
                             <span className="profile__info_role-small">{rolesString}</span>
                         </div>
-                        <Button subClass={'btn_follow'} onClick={followToggle} data={user._id} text={followState} />
+                        <Button subClass={'btn_follow'} onClick={followToggle} data={{ followerId: currentUser._id, followingId: user._id }} text={followState} />
                     </div>
                 </div>
 
