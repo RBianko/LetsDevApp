@@ -1,6 +1,11 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
 
-import { GET_PROJECTS, GET_PROJECT_DETAILS, UPDATE_PROJECT } from '../../action-types'
+import {
+    GET_PROJECTS,
+    GET_PROJECT_DETAILS,
+    UPDATE_PROJECT,
+    ADD_PROJECT
+} from '../../action-types'
 
 import {
     getProjectsSuccess,
@@ -9,9 +14,16 @@ import {
     getProjectDetailsFail,
     updateProjectSuccess,
     updateProjectFail,
+    addProjectSuccess,
+    addProjectFail,
 } from './actions'
 
-import { getProjects, getProjectDetails, updateProject } from '../../helpers/backend-helper'
+import {
+    getProjects,
+    getProjectDetails,
+    updateProject,
+    addProject
+} from '../../helpers/backend-helper'
 
 function* onGetProjects({ payload: ids }) {
     try {
@@ -40,10 +52,20 @@ function* onUpdateProject({ payload: project }) {
     }
 }
 
+function* onAddProject({ payload: project }) {
+    try {
+        const response = yield call(addProject, project)
+        yield put(addProjectSuccess(response))
+    } catch (error) {
+        yield put(addProjectFail(error.response))
+    }
+}
+
 function* ProjectsSaga() {
     yield takeLatest(GET_PROJECTS, onGetProjects)
     yield takeLatest(GET_PROJECT_DETAILS, onGetProjectDetails)
     yield takeLatest(UPDATE_PROJECT, onUpdateProject)
+    yield takeLatest(ADD_PROJECT, onAddProject)
 }
 
 export default ProjectsSaga

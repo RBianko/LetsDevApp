@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './project-requests.css'
 
 import { approveRequest, declineRequest } from '../../../../redux/modules/projects/actions';
-import { getUsers } from '../../../../redux/modules/users/actions';
 import Request from './request';
 
 const ProjectRequests = () => {

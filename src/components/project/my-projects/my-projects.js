@@ -5,30 +5,29 @@ import './my-projects.css'
 import ProjectCard from '../project-card'
 import { useDispatch } from 'react-redux';
 import { getProjects } from './../../../redux/modules/projects/actions';
+import { getUser } from './../../../redux/modules/users/actions';
 import { LoaderComponent } from './../../style-components/loader/loader';
 
 
 const MyProjects = () => {
-    let dispatch = useDispatch()
-    useEffect(() => dispatch(getProjects()), [dispatch])
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.user)
+    useEffect(() => dispatch(getUser(currentUser._id)), [dispatch, currentUser._id])
 
+    const { user, loadingUser } = useSelector(state => state.users)
+    useEffect(() => {
+        if (!loadingUser) {
+            dispatch(getProjects(user.projects))
+        }
+    }, [])
     const { list: projects, loadingProjects } = useSelector((state) => state.projects);
-    const user = useSelector(state => state.user)
-    const skills = useSelector(state => state.skills)
-    console.log(projects)
 
-    let findProjects = []
     let projectsList = []
-    let projectsListContent = loadingProjects ? <LoaderComponent /> : null
+    let projectsListContent = loadingProjects || loadingUser ? <LoaderComponent /> : null
 
     if (!loadingProjects && projects.length > 0) {
-        findProjects = user.projects.map(id =>
-            projects.find(poroject => poroject._id === id)
-        )
-
-        projectsList = findProjects.map(project => {
-            const dev = project.devs.find(dev => dev._id === user._id)
-            return <ProjectCard key={project.id} project={project} _id={user._id} skills={skills} edit={dev.creator} />
+        projectsList = projects.map(project => {
+            return <ProjectCard key={project._id} project={project} />
         })
         projectsListContent = projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>
     }

@@ -6,6 +6,10 @@ import CardHeader from './../../style-components/card-header';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
 
 const ProfileCard = ({ user, role, creator }) => {
+    if (!user) {
+        return null
+    }
+
     const { _id, firstName, lastName, roles, profilePicture } = user
     const displayedRole = role || roles[0]
     const isCreator = creator ? <span title="Creator">&#9733;user.info</span> : "user.info"

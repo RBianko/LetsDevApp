@@ -19,13 +19,10 @@ const Profile = () => {
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(getUser(state.id))
-        dispatch(getProjects())
     }, [dispatch, state])
 
     const currentUser = useSelector(state => state.user)
-    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
-    const user = useSelector(state => state.users.user)
-
+    const { user, loadingUser } = useSelector(state => state.users)
     const {
         _id,
         firstName,
@@ -39,6 +36,13 @@ const Profile = () => {
         socials = {},
         profilePicture,
     } = user
+
+    useEffect(() => {
+        if (!loadingUser && projects.length > 0) {
+            dispatch(getProjects(projects))
+        }
+    }, [dispatch, loadingUser, projects])
+    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
 
     const { global, other } = useSkills()
     const globalSkillsList = global(skills)
@@ -55,19 +59,18 @@ const Profile = () => {
     }
 
     let userProjects = []
+    let userProjectsList = []
 
-    if (!loadingProjects && projectsList.length > 0) {
+    if (!loadingProjects && !loadingUser && projectsList.length === projects.length) {
         userProjects = projects.map(id =>
-            projectsList.find(poroject => poroject._id === id)
+            projectsList.find(projects => projects._id === id)
         )
+        userProjectsList = userProjects.map(projects =>
+            <ProjectCardSmall
+                key={projects._id}
+                project={projects}
+            />)
     }
-
-    const userProjectsList = userProjects.map(poroject =>
-        <ProjectCardSmall
-            key={poroject._id}
-            project={poroject}
-        />)
-
 
     let projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
@@ -80,7 +83,7 @@ const Profile = () => {
     let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user._id} text={getFollowState(currentUser, user)} />
 
 
-    const content = loadingProjects
+    const content = loadingUser || loadingProjects
         ? <LoaderComponent />
         : <div className="card__content profile-content">
             <div className="profile-content_header">

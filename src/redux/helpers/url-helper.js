@@ -1,7 +1,8 @@
 //Projects
 export const GET_PROJECTS = '/projects/list'
 export const GET_PROJECT_DETAILS = '/projects/'
-export const UPDATE_PROJECT = '/project/update/'
+export const UPDATE_PROJECT = '/projects/update/'
+export const ADD_PROJECT = '/projects/create'
 
 //Users
 export const GET_USER = '/users/'

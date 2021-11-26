@@ -46,8 +46,6 @@ const DevsSearch = () => {
                     ? <LoaderComponent />
                     : <SearchUsers currentUser={currentUser} users={usersList} />
             }
-
-
         </div>
     )
 }

@@ -39,7 +39,7 @@ const Project = () => {
         if (devs.length > 0) dispatch(getUsers([...devs].map(dev => dev._id)))
     }, [devs, dispatch]);
 
-    const usersDevs = useSelector(state => state.users.list)
+    const { list: users, loadingUsers } = useSelector(state => state.users)
 
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
@@ -47,7 +47,7 @@ const Project = () => {
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    const devsList = usersDevs.map(dev => {
+    const devsList = users.map(dev => {
         return <ProfileCard
             key={dev._id}
             user={dev}
@@ -56,6 +56,7 @@ const Project = () => {
         />
     })
 
+    let descriptionContent = description ? description : <span>No description yet.</span>
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
         ? <div className="need-list">
@@ -83,9 +84,9 @@ const Project = () => {
 
     const applyRoles = (roles) => dispatch(applyRequest(state.id, user._id, roles))
 
-    const content = loadingProjectDetails
+    const content = loadingProjectDetails || loadingUsers
         ? <LoaderComponent />
-        : <div className="card__content project-content">
+        : <>
             <div className="project-content__header">
                 <div className="project__info">
                     <img className="project__picture" src={projectPicture} alt="project" />
@@ -113,7 +114,7 @@ const Project = () => {
                 {needListContent}
                 <div className="project__description">
                     <h3 className="description__title">Description</h3>
-                    <p className="description__text">{description}</p>
+                    <p className="description__text">{descriptionContent}</p>
                 </div>
                 <div className="project__devs">
                     <h3 className="devs__title">Devs List</h3>
@@ -121,9 +122,8 @@ const Project = () => {
                         {devsList}
                     </div>
                 </div>
-
             </div>
-        </div>
+        </>
 
     return <div className="container">
         <RolesForm stack={needList} setRoles={applyRoles} />
@@ -131,7 +131,10 @@ const Project = () => {
             <div className="card__header">
                 <div className="header__title">project.page</div>
             </div>
-            {content}
+            <div className="card__content project-content">
+                {content}
+            </div>
+
         </div>
     </div>
 }

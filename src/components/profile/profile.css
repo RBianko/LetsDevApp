@@ -116,6 +116,7 @@
   box-shadow: 9px 10px #000;
 }
 
-.profile__card {
+.profile__card,
+.project__card {
   min-height: 700px;
 }

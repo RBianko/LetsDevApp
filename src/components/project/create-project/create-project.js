@@ -50,8 +50,10 @@ const CreateProject = ({
     } = currentProject
 
     const ids = requests.map(request => request._id)
-    console.log(ids)
-    if (isEditing) dispatch(getUsers(ids))
+    useEffect(() => {
+        if (isEditing) dispatch(getUsers(ids))
+    }, [])
+
 
 
     const titleInput = React.createRef()
@@ -95,12 +97,10 @@ const CreateProject = ({
             requests,
             devs
         }
-
         if (isEditing) {
             dispatch(updateProject(currentProject))
         } else {
             dispatch(addProject(currentProject))
-            // addProjectId(newProjectId.toString()) // TODO:
         }
 
         history.push('/my-projects')
@@ -113,7 +113,6 @@ const CreateProject = ({
         setNeedList(needList)
         setSkills(skills)
     }
-
 
     let requestslist = isEditing ? <ProjectRequests /> : null
 

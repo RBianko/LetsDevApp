@@ -33,6 +33,8 @@ const ProjectCard = ({ project }) => {
         </div>
         : null
 
+    let descriptionContent = description ? description : <span>No description yet.</span>
+
     return (
         <>
             <div className="project__card card">
@@ -63,7 +65,7 @@ const ProjectCard = ({ project }) => {
                         {needListContent}
                         <div className="project__description">
                             <h3 className="description__title">Description</h3>
-                            <p className="description__text">{description}</p>
+                            <p className="description__text">{descriptionContent}</p>
                         </div>
                     </div>
                 </div>

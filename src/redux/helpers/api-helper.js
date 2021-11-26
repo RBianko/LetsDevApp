@@ -32,3 +32,12 @@ export async function put(url, config) {
         })
         .then((response) => response.data)
 }
+
+export async function post(url, config) {
+    console.log('axios.post', url)
+    return await axiosApi
+        .post(url, {
+            ...config
+        })
+        .then((response) => response.data)
+}

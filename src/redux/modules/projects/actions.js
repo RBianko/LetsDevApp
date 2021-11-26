@@ -17,8 +17,9 @@ import {
 } from '../../action-types'
 
 
-export const getProjects = () => ({
-    type: GET_PROJECTS
+export const getProjects = (ids) => ({
+    type: GET_PROJECTS,
+    payload: ids
 })
 
 export const getProjectsSuccess = (projects) => ({
@@ -46,8 +47,9 @@ export const getProjectDetailsFail = (error) => ({
     payload: error
 })
 
-export const addProject = () => ({
+export const addProject = (project) => ({
     type: ADD_PROJECT,
+    payload: project
 })
 
 export const addProjectSuccess = () => ({
