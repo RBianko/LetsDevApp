@@ -32,6 +32,9 @@ export const getUsers = (ids) =>
         params: { ids }
     })
 
+export const getAllUsers = () =>
+    get(url.GET_ALL_USERS, {})
+
 
 export const getUser = (id) =>
     get(url.GET_USER, {

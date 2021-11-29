@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import './menu.css'
@@ -12,18 +12,19 @@ import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
 
 const Menu = () => {
-    const user = useSelector(state => state.user)
+    const { _id, follow, logout } = useSelector(state => state.user)
+    useEffect(() => { }, [follow])
 
-    const followersCounter = user.follow.followers.length;
-    const followingCounter = user.follow.following.length;
+    const followersCounter = follow.followers.length;
+    const followingCounter = follow.following.length;
 
     return (
         <nav className="side-menu">
             <ul className="menu__icons">
                 <li className="menu-icon">
                     <Link to={{
-                        pathname: `/profile/${user._id}`,
-                        state: { id: user._id }
+                        pathname: `/profile/${_id}`,
+                        state: { id: _id }
                     }}>
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
                     </Link>
@@ -82,7 +83,7 @@ const Menu = () => {
                             </Link>
                         </li>
                         <li className="menu__link menu__link_logout">
-                            <Button subClass="btn_logout" onClick={() => user.logout()} text={'Log Out'} />
+                            <Button subClass="btn_logout" onClick={() => logout()} text={'Log Out'} />
                         </li>
                     </ul>
                 </li>

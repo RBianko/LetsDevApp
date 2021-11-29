@@ -1,13 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './follow-list.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
-import { PropTypes } from 'prop-types';
-
+import { getUser, getUsers } from './../../redux/modules/users/actions';
 import searchIcon from '../../img/search.svg'
 import SearchUsers from '../search';
 import IconButton from './../style-components/icon-button/icon-button';
+import { LoaderComponent } from './../style-components/loader/loader';
 
-const FollowList = ({ currentUser, users }) => {
+const FollowList = () => {
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const { _id, loadingUser } = useSelector(state => state.user)
+    useEffect(() => dispatch(getUser(_id)), [_id, dispatch])
+    const currentUser = useSelector(state => state.users.user)
+    const { follow } = currentUser
+
+    useEffect(() => {
+        if (!loadingUser) {
+            if (location.pathname === '/followers')
+                dispatch(getUsers(follow.followers))
+
+            if (location.pathname === '/following')
+                dispatch(getUsers(follow.following))
+        }
+    }, [dispatch, follow.followers, follow.following, loadingUser, location.pathname]);
+    const { list: users, loadingUsers } = useSelector(state => state.users)
+
+    const content = loadingUsers || loadingUser
+        ? <LoaderComponent />
+        : <SearchUsers currentUser={currentUser} users={users} />
 
     return (
         <div className='container'>
@@ -28,14 +51,9 @@ const FollowList = ({ currentUser, users }) => {
                     </div>
                 </div>
             </div>
-            <SearchUsers currentUser={currentUser} users={users} />
+            {content}
         </div>
     )
-}
-
-FollowList.propTypes = {
-    currentUser: PropTypes.object.isRequired,
-    users: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default FollowList

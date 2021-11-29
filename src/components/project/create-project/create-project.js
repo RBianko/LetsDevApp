@@ -35,6 +35,7 @@ const CreateProject = ({
                 creator: true
             }
         ],
+
         needList: []
     }
 
@@ -52,6 +53,7 @@ const CreateProject = ({
     const ids = requests.map(request => request._id)
     useEffect(() => {
         if (isEditing) dispatch(getUsers(ids))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

@@ -4,6 +4,7 @@ import {
     GET_USER_SUCCESS,
     GET_USER_FAIL,
     GET_USERS,
+    GET_ALL_USERS,
     GET_USERS_SUCCESS,
     GET_USERS_FAIL,
 } from '../../action-types'
@@ -27,6 +28,10 @@ export const getUserFail = (error) => ({
 export const getUsers = (ids) => ({
     type: GET_USERS,
     payload: ids
+})
+
+export const getAllUsers = () => ({
+    type: GET_ALL_USERS
 })
 
 export const getUsersSuccess = (users) => ({

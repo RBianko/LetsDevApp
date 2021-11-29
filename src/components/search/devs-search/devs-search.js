@@ -4,7 +4,7 @@ import './devs-search.css'
 
 import searchIcon from '../../../img/search.svg'
 import SearchUsers from '../search-users'
-import { getUser, getUsers } from './../../../redux/modules/users/actions';
+import { getUser, getAllUsers } from './../../../redux/modules/users/actions';
 import IconButton from './../../style-components/icon-button/icon-button';
 import { LoaderComponent } from './../../style-components/loader/loader';
 
@@ -14,7 +14,7 @@ const DevsSearch = () => {
 
     useEffect(() => {
         dispatch(getUser(user._id))
-        dispatch(getUsers())
+        dispatch(getAllUsers([]))
     }, [dispatch, user._id])
 
     const currentUser = useSelector(state => state.users.user)

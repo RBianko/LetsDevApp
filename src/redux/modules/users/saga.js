@@ -1,6 +1,6 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
 
-import { GET_USER, GET_USERS } from '../../action-types'
+import { GET_USER, GET_USERS, GET_ALL_USERS } from '../../action-types'
 
 import {
     getUserSuccess,
@@ -9,11 +9,20 @@ import {
     getUsersFail,
 } from '../users/actions'
 
-import { getUser, getUsers } from '../../helpers/backend-helper'
+import { getUser, getUsers, getAllUsers } from '../../helpers/backend-helper'
 
 function* onGetUsers({ payload: ids }) {
     try {
         const response = yield call(getUsers, ids)
+        yield put(getUsersSuccess(response))
+    } catch (error) {
+        yield put(getUsersFail(error.response))
+    }
+}
+
+function* onGetAllUsers() {
+    try {
+        const response = yield call(getAllUsers)
         yield put(getUsersSuccess(response))
     } catch (error) {
         yield put(getUsersFail(error.response))
@@ -32,6 +41,7 @@ function* onGetUser({ payload: id }) {
 function* UsersSaga() {
     yield takeLatest(GET_USER, onGetUser)
     yield takeLatest(GET_USERS, onGetUsers)
+    yield takeLatest(GET_ALL_USERS, onGetAllUsers)
 }
 
 export default UsersSaga

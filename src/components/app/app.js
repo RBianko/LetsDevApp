@@ -10,12 +10,12 @@ import { getCurrentUser } from './../../redux/modules/user/actions';
 
 const App = () => {
     const { token, _id, login, logout } = useAuth()
-    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(setUser({ token, _id, login, logout }))
-    }, [_id, token])
+    }, [_id, token, dispatch])
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         if (_id) {

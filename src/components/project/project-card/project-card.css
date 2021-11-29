@@ -132,3 +132,7 @@
   transform: translateY(-2px);
   box-shadow: 9px 10px #000;
 }
+
+.project__description {
+  margin-bottom: 3%;
+}

@@ -4,6 +4,7 @@ import {
     GET_USER_SUCCESS,
     GET_USER_FAIL,
     GET_USERS,
+    GET_ALL_USERS,
     GET_USERS_SUCCESS,
     GET_USERS_FAIL,
 } from '../../action-types'
@@ -144,6 +145,9 @@ const usersReduser = (state = initialState, { type, payload }) => {
             }
             break
         case GET_USERS:
+            state = { ...state, loadingUsers: true }
+            break
+        case GET_ALL_USERS:
             state = { ...state, loadingUsers: true }
             break
         case GET_USERS_SUCCESS:

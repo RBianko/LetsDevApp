@@ -22,11 +22,10 @@ import linkedinIcon from '../../../img/linkedin.svg'
 
 const Settings = () => {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
     useEffect(() => {
         dispatch(getUser(user._id))
-    }, [])
-
-    const user = useSelector(state => state.user)
+    }, [dispatch, user._id])
 
     const {
         _id,

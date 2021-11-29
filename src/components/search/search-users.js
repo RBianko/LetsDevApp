@@ -4,7 +4,7 @@ import './search.css'
 import getFollowState from '../../helpers/get-follow-state';
 import ProfileSearchCard from '../profile/profile-card/profile-search-card';
 
-const SearchUsers = ({ currentUser, users }) => {
+const SearchUsers = ({ currentUser, users = [] }) => {
     const usersList = users.map((user) => {
         return <ProfileSearchCard key={user._id} user={user} currentUser={currentUser} followState={getFollowState(currentUser, user)} />
     })

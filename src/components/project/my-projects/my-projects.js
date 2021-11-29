@@ -19,6 +19,7 @@ const MyProjects = () => {
         if (!loadingUser) {
             dispatch(getProjects(user.projects))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const { list: projects, loadingProjects } = useSelector((state) => state.projects);
 
