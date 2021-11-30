@@ -23,7 +23,7 @@ const CreateProject = ({
 
     let currentProject = project || {
         title: '',
-        projectPicture: defaultProjectPicture,
+        picture: defaultProjectPicture,
         status: '',
         description: '',
         skills: [],
@@ -40,8 +40,9 @@ const CreateProject = ({
     }
 
     const {
+        _id = project?._id || null,
         title,
-        projectPicture,
+        picture,
         status,
         description,
         skills,
@@ -56,8 +57,6 @@ const CreateProject = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-
     const titleInput = React.createRef()
     const statusInput = React.createRef()
     const rolesInput = React.createRef()
@@ -68,7 +67,7 @@ const CreateProject = ({
     const [newTitle, setTitle] = useState(title)
     const [newStatus, setStatus] = useState(status)
     const [newDescription, setDescription] = useState(description)
-    const [newPicture, setPicture] = useState(projectPicture)
+    const [newPicture, setPicture] = useState(picture)
     const [newNeedList, setNeedList] = useState(needList)
     const [newSkills, setSkills] = useState(skills)
 
@@ -90,12 +89,13 @@ const CreateProject = ({
 
     const submitClickHandler = () => {
         currentProject = {
+            _id,
             title: newTitle,
             status: newStatus,
             description: newDescription,
             skills: newSkills,
             needList: newNeedList,
-            projectPicture,
+            picture,
             requests,
             devs
         }

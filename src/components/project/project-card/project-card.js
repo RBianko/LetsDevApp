@@ -9,7 +9,7 @@ const ProjectCard = ({ project }) => {
     const {
         _id,
         title,
-        projectPicture,
+        picture,
         status,
         description,
         skills,
@@ -42,7 +42,7 @@ const ProjectCard = ({ project }) => {
                 <div className="card__content project-content">
                     <div className="project-content__header">
                         <div className="project__info">
-                            <img className="project__picture" src={projectPicture} alt="project" />
+                            <img className="project__picture" src={picture} alt="project" />
                         </div>
                         <div className="project__info">
                             <span className="project-info__title">{title}</span>

@@ -26,7 +26,7 @@ const initialState = {
 
 // {
 //     title: "Project v1.29",
-//     projectPicture: defaultProjectPicture,
+//     picture: defaultProjectPicture,
 //     status: "Active",
 //     description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
 //     skills: ["CSS", "HTML", "JS", "React", "redux", "Angular"],
@@ -119,36 +119,13 @@ const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
                 loadingProjectDetails: false,
             }
             break
-
         case APPLY_REQUEST:
-            const newRequest = {
-                requestId: project.requests.length.toString(),
-                _id,
-                role: payload
-            }
-            state.list[projectId].requests.push(newRequest)
-            state = { ...state, list: [...state.list] }
+            state = { ...state }
             break
         case APPROVE_REQUEST:
-            let approveRequestId = project.requests.findIndex(request => request.id === payload.id)
-            project.requests.splice(approveRequestId, 1) //delete request
-
-            let roleId = project.needList.findIndex(role => role === payload.forRole)
-            project.needList.splice(roleId, 1) //delete needed role
-
-            let newDev = {
-                _id: payload._id,
-                role: payload.forRole
-            }
-            project.devs.push(newDev) // add new dev
-
-            const updatedProject = { ...project }
-            state.list.splice(projectId, 1, updatedProject)
-            state = { ...state, list: [...state.list] }
+            state = { ...state }
             break
         case DECLINE_REQUEST:
-            let declineRequestId = project.requests.findIndex(request => request.id === payload.id)
-            project.requests.splice(declineRequestId, 1) //delete request
             state = { ...state }
             break
         default:

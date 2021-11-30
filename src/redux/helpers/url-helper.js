@@ -1,8 +1,11 @@
 //Projects
 export const GET_PROJECTS = '/projects/list'
 export const GET_PROJECT_DETAILS = '/projects/'
-export const UPDATE_PROJECT = '/projects/update/'
+export const UPDATE_PROJECT = '/projects/update'
 export const ADD_PROJECT = '/projects/create'
+export const APPROVE_REQUEST = '/projects/approve'
+export const DECLINE_REQUEST = '/projects/decline'
+export const APPLY_REQUEST = '/projects/apply'
 
 //Users
 export const GET_USER = '/users/'

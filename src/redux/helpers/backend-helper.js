@@ -20,11 +20,22 @@ export const addProject = (project) =>
 
 export const updateProject = (project) =>
     put(url.UPDATE_PROJECT, {
-        params: {
-            id: project._id,
-            project
-        }
+        params: { project }
     })
+
+export const applyRequest = (request) =>
+    put(url.APPLY_REQUEST, {
+        params: { request }
+    })
+export const approveRequest = (request) =>
+    put(url.APPROVE_REQUEST, {
+        params: { request }
+    })
+export const declineRequest = (request) =>
+    put(url.DECLINE_REQUEST, {
+        params: { request }
+    })
+
 
 //USERS
 export const getUsers = (ids) =>
@@ -48,15 +59,10 @@ export const getCurrentUser = (id) =>
 
 export const updateUserInfo = (user) =>
     put(url.UPDATE_USER_INFO, {
-        params: {
-            id: user._id,
-            user
-        }
+        params: { user }
     })
 
 export const followToggle = (ids) =>
     put(url.FOLLOW_TOGGLE, {
-        params: {
-            ids
-        }
+        params: { ids }
     })

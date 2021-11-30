@@ -8,15 +8,15 @@ import Request from './request';
 
 const ProjectRequests = () => {
     const dispatch = useDispatch()
-    const { id, requests } = useSelector(state => state.projects.project)
+    const { _id, requests } = useSelector(state => state.projects.project)
 
     const onApprove = useCallback((request) =>
-        dispatch(approveRequest(id, request)),
+        dispatch(approveRequest(_id, request)),
         [dispatch]
     )
 
     const onDecline = useCallback((request) =>
-        dispatch(declineRequest(id, request)),
+        dispatch(declineRequest(_id, request)),
         [dispatch]
     )
 

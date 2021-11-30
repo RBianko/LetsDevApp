@@ -14,6 +14,8 @@ import {
     APPLY_REQUEST,
     APPROVE_REQUEST,
     DECLINE_REQUEST,
+    REQUEST_SUCCESS,
+    REQUEST_FAIL,
 } from '../../action-types'
 
 
@@ -61,8 +63,9 @@ export const addProjectFail = (error) => ({
     payload: error
 })
 
-export const updateProject = () => ({
+export const updateProject = (project) => ({
     type: UPDATE_PROJECT,
+    payload: project
 })
 
 export const updateProjectSuccess = () => ({
@@ -76,19 +79,36 @@ export const updateProjectFail = (error) => ({
 
 export const applyRequest = (id, _id, array) => ({
     type: APPLY_REQUEST,
-    payload: array,
-    id,
-    _id
+    payload: {
+        projectId: id,
+        userId: _id,
+        forRole: array
+    }
 })
 
 export const approveRequest = (id, request) => ({
     type: APPROVE_REQUEST,
-    payload: request,
-    id
+    payload: {
+        projectId: id,
+        requestId: request.requestId,
+        forRole: request.forRole,
+        userId: request._id
+    }
 })
 
 export const declineRequest = (id, request) => ({
     type: DECLINE_REQUEST,
-    payload: request,
-    id
+    payload: {
+        projectId: id,
+        requestId: request.requestId
+    }
+})
+
+export const requestSuccess = () => ({
+    type: REQUEST_SUCCESS,
+})
+
+export const requestFail = (error) => ({
+    type: REQUEST_FAIL,
+    payload: error
 })

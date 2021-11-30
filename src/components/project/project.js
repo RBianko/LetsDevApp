@@ -27,7 +27,7 @@ const Project = () => {
     const { project, loadingProjectDetails } = useSelector((state) => state.projects);
     const {
         title = '',
-        projectPicture = '',
+        picture = '',
         status = '',
         description = '',
         skills = [],
@@ -89,7 +89,7 @@ const Project = () => {
         : <>
             <div className="project-content__header">
                 <div className="project__info">
-                    <img className="project__picture" src={projectPicture} alt="project" />
+                    <img className="project__picture" src={picture} alt="project" />
                 </div>
                 <div className="project__info">
                     {editLink}
