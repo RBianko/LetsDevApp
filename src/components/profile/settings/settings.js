@@ -19,13 +19,15 @@ import githubIcon from '../../../img/github.svg'
 import facebookIcon from '../../../img/facebook.svg'
 import linkedinIcon from '../../../img/linkedin.svg'
 
-
 const Settings = () => {
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const currentUser = useSelector(state => state.user)
+
     useEffect(() => {
-        dispatch(getUser(user._id))
-    }, [dispatch, user._id])
+        dispatch(getUser(currentUser._id))
+    }, [dispatch, currentUser._id])
+
+    const user = useSelector(state => state.users.user)
 
     const {
         _id,

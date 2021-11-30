@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import './profile.css'
@@ -79,8 +79,17 @@ const Profile = () => {
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
 
+
+
+    const [followState, setFollowState] = useState('Follow')
+    const onFollowToggle = () => {
+        dispatch(followToggle({ followerId: currentUser._id, followingId: user._id }))
+    }
+
+    useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, user])
+
     const currentUserProfile = currentUser._id === _id
-    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={followToggle} data={user._id} text={getFollowState(currentUser, user)} />
+    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
 
 
     const content = loadingUser || loadingProjects

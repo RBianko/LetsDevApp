@@ -52,9 +52,7 @@ export const useRoutes = (isAuth, id) => {
                     <Redirect to={{
                         pathname: `/profile/${id}`,
                         state: { id: id }
-                    }}
-
-                    />
+                    }} />
                 </Switch>
                 <Footer />
             </>

@@ -131,7 +131,14 @@ const userReduser = (state = initialState, { type, payload }) => {
             state = { ...state, followToggleLoading: true }
             break
         case FOLLOW_TOGGLE_SUCCESS:
-            state = { ...state, followToggleLoading: false }
+            const isFollowed = state.follow.following.some(id => id === payload)
+            if (isFollowed) {
+                const userFollowingList = state.follow.following
+                const userIdIndex = userFollowingList.findIndex(id => id === payload)
+                userFollowingList.splice(userIdIndex, 1)
+                return { ...state, follow: { ...state.follow, following: [...userFollowingList] } } //unfollow
+            }
+            state = { ...state, followToggleLoading: false, follow: { ...state.follow, following: [...state.follow.following, payload] } } //follow
             break
         case FOLLOW_TOGGLE_FAIL:
             state = {

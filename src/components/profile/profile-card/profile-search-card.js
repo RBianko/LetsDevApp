@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { connect, useSelector } from 'react-redux';
 import './profile-card.css'
 
 import { followToggle } from './../../../redux/modules/user/actions';
@@ -9,12 +9,17 @@ import defaultIcon from '../../../img/users.svg'
 import Button from './../../style-components/button';
 import CardHeader from './../../style-components/card-header';
 
-const ProfileSearchCard = ({ user, currentUser, followState, followToggle }) => {
+const ProfileSearchCard = ({ user, followStates, followToggle, getFollowState }) => {
     const { _id, firstName, lastName, city, country, roles, profilePicture } = user
+    const currentUser = useSelector(state => state.user)
+    const [followState, setFollowState] = useState(followStates)
     let rolesString = roles.join(', ')
 
-    useEffect(() => {
-    }, [followState])
+    const onFollowToggle = () => {
+        followToggle({ followerId: currentUser._id, followingId: user._id })
+    }
+
+    useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, getFollowState, user])
 
     return (
         <div className="profile__card_search card">
@@ -28,7 +33,7 @@ const ProfileSearchCard = ({ user, currentUser, followState, followToggle }) => 
                             <p className="profile__info_sity">{city}, {country}</p>
                             <span className="profile__info_role-small">{rolesString}</span>
                         </div>
-                        <Button subClass={'btn_follow'} onClick={followToggle} data={{ followerId: currentUser._id, followingId: user._id }} text={followState} />
+                        <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
                     </div>
                 </div>
 

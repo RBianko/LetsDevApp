@@ -58,8 +58,9 @@ export const followToggle = (ids) => ({
     payload: ids
 })
 
-export const followToggleSuccess = () => ({
-    type: FOLLOW_TOGGLE_SUCCESS
+export const followToggleSuccess = (id) => ({
+    type: FOLLOW_TOGGLE_SUCCESS,
+    payload: id
 })
 
 export const followToggleFail = (error) => ({
