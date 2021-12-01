@@ -77,12 +77,12 @@ export const updateProjectFail = (error) => ({
     payload: error
 })
 
-export const applyRequest = (id, _id, array) => ({
+export const applyRequest = (id, _id, role) => ({
     type: APPLY_REQUEST,
     payload: {
         projectId: id,
         userId: _id,
-        forRole: array
+        forRole: role
     }
 })
 

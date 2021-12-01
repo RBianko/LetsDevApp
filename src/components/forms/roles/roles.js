@@ -6,7 +6,7 @@ import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
 import { PropTypes } from 'prop-types';
 
-const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
+const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply = true }) => {
     const { roles } = useSelector(({ roles }) => ({ roles }))
 
     let [rolesList, setRolesList] = useState(currentRoles)
@@ -28,7 +28,6 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
     let roleSelector = (role) =>
         <RoleSelector key={`${counter}-${role}`} role={role} roles={stack || roles} id={counter} selectRole={onSelectHandler} />
 
-
     const initialSelectors = rolesList.map(role => roleSelector(role))
 
     let [selectList, setSelectList] = useState(initialSelectors)
@@ -38,17 +37,20 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
         setSelectList([...selectList, roleSelector('')])
     }
 
-
     const submitClickHandler = () => {
-        setRoles(rolesList)
+        if (rolesList.length > 0) {
+            setRoles(rolesList)
+        }
         setIsChecked(!isChecked)
     }
 
     const clearClickHandler = () => {
         setCounter(-1)
         setRolesList([])
-        setSelectList([])
+        setSelectList([roleSelector('')])
     }
+
+    useEffect(() => { if (!multiply) setSelectList([roleSelector('')]) }, [stack])
 
     return (
         <>
@@ -62,7 +64,7 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles }) => {
                     <h3 className="modal-title">Roles Selection</h3>
                     <div className="modal__select">
                         {selectList}
-                        <button className="btn modal-btn" onClick={addClickHandler}>Add more</button>
+                        {multiply ? <button className="btn modal-btn" onClick={addClickHandler}>Add more</button> : null}
                     </div>
                     <div className="modal__buttons">
                         <button className="modal-btn btn" onClick={submitClickHandler}>Submit</button>

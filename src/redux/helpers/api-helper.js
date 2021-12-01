@@ -25,7 +25,7 @@ export async function get(url, config) {
 }
 
 export async function put(url, config) {
-    console.log('axios.post', url)
+    console.log('axios.put', url)
     return await axiosApi
         .put(url, {
             ...config

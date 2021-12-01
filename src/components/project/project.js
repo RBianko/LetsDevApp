@@ -47,12 +47,13 @@ const Project = () => {
     let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    const devsList = users.map(dev => {
+    const creator = devs.find(user => user.creator)
+    const devsList = users.map((dev, id) => {
         return <ProfileCard
             key={dev._id}
             user={dev}
-            role={dev.role}
-            creator={dev.creator}
+            role={devs[id]?.role}
+            creator={dev._id === creator?._id}
         />
     })
 
@@ -82,7 +83,7 @@ const Project = () => {
         </Link>
         : null
 
-    const applyRoles = (roles) => dispatch(applyRequest(state.id, user._id, roles))
+    const applyRoles = (role) => dispatch(applyRequest(state.id, user._id, role[0].toString()))
 
     const content = loadingProjectDetails || loadingUsers
         ? <LoaderComponent />
@@ -126,7 +127,7 @@ const Project = () => {
         </>
 
     return <div className="container">
-        <RolesForm stack={needList} setRoles={applyRoles} />
+        <RolesForm stack={needList} setRoles={applyRoles} multiply={false} />
         <div className="project__card card">
             <div className="card__header">
                 <div className="header__title">project.page</div>
