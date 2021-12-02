@@ -8,6 +8,10 @@ export const getProjects = (ids) =>
         params: { ids }
     })
 
+export const getAllProjects = () =>
+    get(url.GET_ALL_PROJECTS, {})
+
+
 export const getProjectDetails = (id) =>
     get(url.GET_PROJECT_DETAILS, {
         params: { id }

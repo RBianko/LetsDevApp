@@ -19,7 +19,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-content: center;
+  justify-content: center;
 }
+
 .profile-content_header {
   display: flex;
   align-items: center;
@@ -118,5 +121,5 @@
 
 .profile__card,
 .project__card {
-  min-height: 700px;
+  min-height: 600px;
 }

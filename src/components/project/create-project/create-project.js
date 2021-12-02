@@ -12,9 +12,7 @@ import { addProject, updateProject } from '../../../redux/modules/projects/actio
 import { getUsers } from '../../../redux/modules/users/actions'
 import { PropTypes } from 'prop-types';
 
-const CreateProject = ({
-    isEditing = false
-}) => {
+const CreateProject = ({ isEditing = false }) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const { state: project } = useLocation()
@@ -26,6 +24,7 @@ const CreateProject = ({
         picture: defaultProjectPicture,
         status: '',
         description: '',
+        link: '',
         skills: [],
         requests: [],
         devs: [
@@ -45,6 +44,7 @@ const CreateProject = ({
         picture,
         status,
         description,
+        link,
         skills,
         devs,
         requests,
@@ -62,11 +62,13 @@ const CreateProject = ({
     const rolesInput = React.createRef()
     const skillsInput = React.createRef()
     const descriptionInput = React.createRef()
+    const linkInput = React.createRef()
     const pictureUpload = React.createRef()
 
     const [newTitle, setTitle] = useState(title)
     const [newStatus, setStatus] = useState(status)
     const [newDescription, setDescription] = useState(description)
+    const [newLink, setLink] = useState(link)
     const [newPicture, setPicture] = useState(picture)
     const [newNeedList, setNeedList] = useState(needList)
     const [newSkills, setSkills] = useState(skills)
@@ -80,6 +82,7 @@ const CreateProject = ({
         'roles': () => setNeedList(rolesInput.current.value),
         'skillsStack': () => setSkills(skillsInput.current.value),
         'description': () => setDescription(descriptionInput.current.value),
+        'link': () => setLink(linkInput.current.value),
         'picture': () => setPicture(pictureUpload.current.value),
     }
 
@@ -93,6 +96,7 @@ const CreateProject = ({
             title: newTitle,
             status: newStatus,
             description: newDescription,
+            link: newLink,
             skills: newSkills,
             needList: newNeedList,
             picture,
@@ -112,6 +116,7 @@ const CreateProject = ({
         setTitle(title)
         setStatus(status)
         setDescription(description)
+        setLink(link)
         setNeedList(needList)
         setSkills(skills)
     }
@@ -195,6 +200,18 @@ const CreateProject = ({
                                                 onChange={() => onChangeHandler('skillsStack')} />
                                             <label className="btn input_btn" htmlFor="modal__toggle_skills">Edit</label>
                                         </div>
+                                    </div>
+
+                                    <div className="settings__item">
+                                        <label className="text-label" htmlFor="link">Link to Project (GitHub, Telegram, Facebook etc.)</label>
+                                        <input
+                                            className="text-input"
+                                            id="link"
+                                            type="text"
+                                            placeholder="Link"
+                                            value={newLink}
+                                            ref={linkInput}
+                                            onChange={() => onChangeHandler('link')} />
                                     </div>
                                 </div>
                             </div>

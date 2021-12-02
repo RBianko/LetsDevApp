@@ -12,17 +12,15 @@ const SocialLink = ({ media, link }) => {
 
     let icon = null
     let icons = {
-        'facebook': () => { return facebook },
-        'github': () => { return github },
-        'linkedin': () => { return linkedin },
-        'vk': () => { return vk }
+        'facebook': facebook,
+        'github': github,
+        'linkedin': linkedin,
+        'vk': vk
     }
 
     if (icons[media]) {
-        icon = icons[media]()
-    } else {
-        return
-    }
+        icon = icons[media]
+    } else return
 
     return (
         <div className="social-wrapper">

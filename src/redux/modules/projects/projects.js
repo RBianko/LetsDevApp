@@ -1,5 +1,6 @@
 import {
     GET_PROJECTS,
+    GET_ALL_PROJECTS,
     GET_PROJECTS_SUCCESS,
     GET_PROJECTS_FAIL,
     GET_PROJECT_DETAILS,
@@ -58,6 +59,9 @@ const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
 
     switch (type) {
         case GET_PROJECTS:
+            state = { ...state, loadingProjects: true }
+            break
+        case GET_ALL_PROJECTS:
             state = { ...state, loadingProjects: true }
             break
         case GET_PROJECTS_SUCCESS:

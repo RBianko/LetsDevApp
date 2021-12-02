@@ -1,5 +1,6 @@
 //Projects
 export const GET_PROJECTS = '/projects/list'
+export const GET_ALL_PROJECTS = '/projects/all'
 export const GET_PROJECT_DETAILS = '/projects/'
 export const UPDATE_PROJECT = '/projects/update'
 export const ADD_PROJECT = '/projects/create'

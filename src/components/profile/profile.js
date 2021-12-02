@@ -94,7 +94,7 @@ const Profile = () => {
 
     const content = loadingUser || loadingProjects
         ? <LoaderComponent />
-        : <div className="card__content profile-content">
+        : <>
             <div className="profile-content_header">
                 <div className="profile__contacts">
                     <img className="profile-picture" src={profilePicture} alt="profile" />
@@ -136,7 +136,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
 
     return (
         <div className="container">
@@ -144,7 +144,9 @@ const Profile = () => {
                 <div className="card__header">
                     <div className="header__title">profile.page</div>
                 </div>
-                {content}
+                <div className="card__content profile-content">
+                    {content}
+                </div>
             </div>
         </div>
     )

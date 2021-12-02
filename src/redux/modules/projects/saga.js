@@ -2,6 +2,7 @@ import { takeLatest, put, call } from 'redux-saga/effects'
 
 import {
     GET_PROJECTS,
+    GET_ALL_PROJECTS,
     GET_PROJECT_DETAILS,
     UPDATE_PROJECT,
     ADD_PROJECT,
@@ -25,6 +26,7 @@ import {
 
 import {
     getProjects,
+    getAllProjects,
     getProjectDetails,
     updateProject,
     addProject,
@@ -36,6 +38,15 @@ import {
 function* onGetProjects({ payload: ids }) {
     try {
         const response = yield call(getProjects, ids)
+        yield put(getProjectsSuccess(response))
+    } catch (error) {
+        yield put(getProjectsFail(error.response))
+    }
+}
+
+function* onGetAllProjects() {
+    try {
+        const response = yield call(getAllProjects)
         yield put(getProjectsSuccess(response))
     } catch (error) {
         yield put(getProjectsFail(error.response))
@@ -99,6 +110,7 @@ function* onDeclineRequest({ payload: request }) {
 
 function* ProjectsSaga() {
     yield takeLatest(GET_PROJECTS, onGetProjects)
+    yield takeLatest(GET_ALL_PROJECTS, onGetAllProjects)
     yield takeLatest(GET_PROJECT_DETAILS, onGetProjectDetails)
     yield takeLatest(UPDATE_PROJECT, onUpdateProject)
     yield takeLatest(ADD_PROJECT, onAddProject)

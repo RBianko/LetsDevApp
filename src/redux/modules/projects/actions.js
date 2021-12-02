@@ -1,5 +1,6 @@
 import {
     GET_PROJECTS,
+    GET_ALL_PROJECTS,
     GET_PROJECTS_SUCCESS,
     GET_PROJECTS_FAIL,
     GET_PROJECT_DETAILS,
@@ -22,6 +23,11 @@ import {
 export const getProjects = (ids) => ({
     type: GET_PROJECTS,
     payload: ids
+})
+
+export const getAllProjects = (page) => ({
+    type: GET_ALL_PROJECTS,
+    payload: page
 })
 
 export const getProjectsSuccess = (projects) => ({

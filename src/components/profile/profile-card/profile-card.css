@@ -86,3 +86,7 @@
   flex-direction: column;
   flex-basis: 200%;
 }
+
+.description__text {
+  margin-bottom: 1%;
+}

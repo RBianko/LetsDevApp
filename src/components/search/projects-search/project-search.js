@@ -5,7 +5,7 @@ import './project-search.css'
 import searchIcon from '../../../img/search.svg'
 import ProjectCard from './../../project/project-card';
 import IconButton from './../../style-components/icon-button/icon-button';
-import { getProjects } from './../../../redux/modules/projects/actions';
+import { getAllProjects } from './../../../redux/modules/projects/actions';
 import { LoaderComponent } from './../../style-components/loader/loader';
 
 
@@ -14,7 +14,7 @@ const ProjectSearch = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getProjects());
+        dispatch(getAllProjects());
     }, [dispatch]);
 
     const [searchTerm, setSearchTerm] = useState('')
@@ -44,13 +44,45 @@ const ProjectSearch = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
                     <div className="search">
-                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
+                        <div className="settings__item">
+                            <label className="text-label" htmlFor="skill">By Name</label>
+                            <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
+                        </div>
                         <IconButton
                             className={'searchButton'}
                             classNameIcon={'search-icon'}
                             alt={'Search'}
                             src={searchIcon}
                         />
+                    </div>
+
+                    <div className="settings__item">
+                        <label className="text-label" htmlFor="status">Status</label>
+                        <select
+                            className="text-input"
+                            id="status"
+                            type="text"
+                            placeholder="Status"
+                            value={''}
+                            onChange={() => { }}>
+                            <option hidden>Select one...</option>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Active">Active</option>
+                            <option value="Done">Done</option>
+                            <option value="Planned">Planned</option>
+                        </select>
+                        <label className="text-label" htmlFor="role">Need roles</label>
+                        <div className="input__item">
+                            <input
+                                className="text-input input_complex" disabled
+                                id="role"
+                                type="text"
+                                placeholder="Roles"
+                                value={''}
+                                onChange={() => { }} />
+                            <label className="btn input_btn" htmlFor="modal__toggle_roles">Edit</label>
+                        </div>
                     </div>
                 </div>
             </div>

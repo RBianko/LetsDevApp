@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import './my-projects.css'
 
+import searchIcon from '../../../img/search.svg'
 import ProjectCard from '../project-card'
 import { useDispatch } from 'react-redux';
 import { getProjects } from './../../../redux/modules/projects/actions';
 import { getUser } from './../../../redux/modules/users/actions';
 import { LoaderComponent } from './../../style-components/loader/loader';
+import IconButton from './../../style-components/icon-button/index';
 
 
 const MyProjects = () => {
@@ -35,6 +37,23 @@ const MyProjects = () => {
 
     return (
         <div className="container">
+            <div className='card card_search'>
+                <div className="card__header">
+                    <div className="header__title">search.engine</div>
+                </div>
+                <div className="card__content card__content-search">
+                    <p className="search__title">Projects Search</p>
+                    <div className="search">
+                        <input className="search__input" type="text" placeholder="Type here" onChange={() => { }} />
+                        <IconButton
+                            className={'searchButton'}
+                            classNameIcon={'search-icon'}
+                            alt={'Search'}
+                            src={searchIcon}
+                        />
+                    </div>
+                </div>
+            </div>
             {projectsListContent}
         </div>
     )

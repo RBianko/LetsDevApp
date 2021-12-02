@@ -12,6 +12,8 @@ import { applyRequest } from '../../redux/modules/projects/actions';
 import { getProjectDetails } from '../../redux/modules/projects/actions'
 import LoaderComponent from '../style-components/loader/loader';
 import { getUsers } from './../../redux/modules/users/actions';
+import linkIcon from '../../img/link.svg'
+
 
 const Project = () => {
     let { state } = useLocation()
@@ -30,6 +32,7 @@ const Project = () => {
         picture = '',
         status = '',
         description = '',
+        link = '',
         skills = [],
         devs = [],
         needList = []
@@ -85,6 +88,22 @@ const Project = () => {
 
     const applyRoles = (role) => dispatch(applyRequest(state.id, user._id, role[0].toString()))
 
+    const domainName = (link) => {
+        const pattern = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)/
+        if (link.length > 0) {
+            return pattern.exec(link)[1]
+        } else return null
+    }
+    const shortLink = domainName(link)
+    const linkContent = shortLink
+        ? <a className="social__link" href={link} target="_blank" rel="noopener noreferrer">
+            <div className="link-wrapper">
+                <img className="link-icon" src={linkIcon} alt="link" />
+            </div>
+            <span className="short-link__text">{shortLink}</span>
+        </a>
+        : null
+
     const content = loadingProjectDetails || loadingUsers
         ? <LoaderComponent />
         : <>
@@ -114,9 +133,13 @@ const Project = () => {
             <div className="project-content_body">
                 {needListContent}
                 <div className="project__description">
-                    <h3 className="description__title">Description</h3>
+                    <div className="socials__list" >
+                        <h3 className="description__title">Description</h3>
+                        {linkContent}
+                    </div>
                     <p className="description__text">{descriptionContent}</p>
                 </div>
+
                 <div className="project__devs">
                     <h3 className="devs__title">Devs List</h3>
                     <div className="devs__list">
