@@ -51,11 +51,12 @@ const Project = () => {
     let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     const creator = devs.find(user => user.creator)
-    const devsList = users.map((dev, id) => {
+    const getRole = (id) => devs.find(dev => dev._id === id)?.role
+    const devsList = users.map(dev => {
         return <ProfileCard
             key={dev._id}
             user={dev}
-            role={devs[id]?.role}
+            role={getRole(dev._id)}
             creator={dev._id === creator?._id}
         />
     })
@@ -89,7 +90,7 @@ const Project = () => {
     const applyRoles = (role) => dispatch(applyRequest(state.id, user._id, role[0].toString()))
 
     const domainName = (link) => {
-        const pattern = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)/
+        const pattern = /^(?:https?:\/\/)?(?:[^@\\/\n]+@)?(?:www\.)?([^:\\/?\n]+)/
         if (link.length > 0) {
             return pattern.exec(link)[1]
         } else return null

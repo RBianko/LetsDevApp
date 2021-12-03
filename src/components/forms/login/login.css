@@ -196,7 +196,7 @@
 .tab__radio:checked + .tab__radio-title {
   color: #fff;
   background: var(--highlight-color);
-  cursor: auto;
+  cursor: pointer;
   box-shadow: 2px 1px #000;
   transform: translatey(-1px);
 }

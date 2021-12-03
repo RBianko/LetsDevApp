@@ -13,7 +13,6 @@ import { getUser } from './../../redux/modules/users/actions';
 import getFollowState from '../../helpers/get-follow-state'
 import { useSkills } from './../../hooks/skills.hook';
 import { LoaderComponent } from './../style-components/loader/loader';
-import { toast } from 'react-toastify';
 
 const Profile = () => {
     let { state } = useLocation()

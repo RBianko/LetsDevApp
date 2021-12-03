@@ -44,9 +44,22 @@ const MyProjects = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
                     <div className="search">
-                        <input className="search__input" type="text" placeholder="Type here" onChange={() => { }} />
+                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { }} />
+                        <select
+                            className="search__select"
+                            id="status"
+                            type="text"
+                            placeholder="Status"
+                            value={''}
+                            onChange={() => { }}>
+                            <option hidden>Search by...</option>
+                            <option value="Online">Title</option>
+                            <option value="Offline">Need list</option>
+                            <option value="Active">Skills</option>
+                            <option value="Done">Status</option>
+                        </select>
                         <IconButton
-                            className={'searchButton'}
+                            className={'search__button'}
                             classNameIcon={'search-icon'}
                             alt={'Search'}
                             src={searchIcon}

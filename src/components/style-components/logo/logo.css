@@ -5,7 +5,6 @@
   font-size: 3.1rem;
   font-weight: 900;
   color: #000;
-  transform: rotate(30deg);
   margin-top: 12px;
 
   transition: var(--transition-all);
@@ -13,11 +12,12 @@
 
 .logo-L {
   display: block;
-  margin-right: -13px;
+  margin-right: 1px;
 }
 
 .logo-D {
   display: block;
+  font-size: 20px;
   margin-top: -10px;
 }
 

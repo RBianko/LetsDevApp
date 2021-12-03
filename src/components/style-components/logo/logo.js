@@ -4,8 +4,8 @@ import './logo.css'
 const Logo = () => {
     return (
         <a className="logo" href="#main">
-            <span className="logo-L">L</span>
-            <span className="logo-D">D</span>
+            <span className="logo-L">Lets</span>
+            <span className="logo-D">Dev</span>
         </a>
     )
 }

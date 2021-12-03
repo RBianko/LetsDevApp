@@ -41,9 +41,21 @@ const FollowList = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Search</p>
                     <div className="search">
-                        <input className="search__input" type="text" placeholder="Type here" />
+                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { }} />
+                        <select
+                            className="search__select"
+                            id="status"
+                            type="text"
+                            placeholder="Status"
+                            value={''}
+                            onChange={() => { }}>
+                            <option hidden>Search by...</option>
+                            <option value="Online">Name</option>
+                            <option value="Offline">Roles</option>
+                            <option value="Active">Skills</option>
+                        </select>
                         <IconButton
-                            className={'searchButton'}
+                            className={'search__button'}
                             classNameIcon={'search-icon'}
                             alt={'Search'}
                             src={searchIcon}

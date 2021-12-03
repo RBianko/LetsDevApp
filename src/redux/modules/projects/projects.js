@@ -53,10 +53,7 @@ const initialState = {
 //     needList: ["UI-Designer", "Tester"],
 // }
 
-const projectsReduser = (state = initialState, { type, payload, id, _id }) => {
-    let projectId = state.list.findIndex(project => project.id === id)
-    let project = state.list[projectId]
-
+const projectsReduser = (state = initialState, { type, payload, id }) => {
     switch (type) {
         case GET_PROJECTS:
             state = { ...state, loadingProjects: true }

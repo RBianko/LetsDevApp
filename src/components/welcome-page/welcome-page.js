@@ -11,7 +11,7 @@ const WelcomePage = () => {
             <div className="container container_welcome-page">
                 <div className="welcome-page">
                     <Login />
-                    <h1 className="welcome-page__title">We<span className="highlight-letter">L</span>come!</h1>
+                    <h1 className="welcome-page__title">Hello Wor<span className="highlight-letter">L</span>d!</h1>
                     <p className="welcome-page__text">Cod<span className="highlight-letter">e</span> with friends</p>
                     <p className="welcome-page__text">Boos<span className="highlight-letter">t</span> your skill<span className="highlight-letter">'s</span></p>
                     <p className="welcome-page__text">Fin<span className="highlight-letter">D</span> your zen</p>
