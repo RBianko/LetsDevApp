@@ -12,11 +12,13 @@ import Header from './../welcome-page/header';
 import WelcomePage from './../welcome-page';
 import Footer from './../footer';
 import Project from '../project/project';
+import { ToastContainer } from 'react-toastify';
 
 export const useRoutes = (isAuth, id) => {
     if (isAuth) {
         return (
             <>
+                <ToastContainer />
                 <Menu />
                 <Switch>
                     <Route path='/profile/:id'>
@@ -60,13 +62,17 @@ export const useRoutes = (isAuth, id) => {
     }
 
     return (
-        <Switch>
-            <Route path='/welcome' >
-                <Header />
-                <WelcomePage />
-                <Footer />
-            </Route>
-            <Redirect to='/welcome' />
-        </Switch>
+        <>
+            <ToastContainer />
+            <Switch>
+                <Route path='/welcome' >
+                    <Header />
+                    <WelcomePage />
+                    <Footer />
+                </Route>
+                <Redirect to='/welcome' />
+            </Switch>
+        </>
+
     )
 }

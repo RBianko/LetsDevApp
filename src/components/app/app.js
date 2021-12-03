@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './app.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useAuth } from '../../hooks/auth.hook'

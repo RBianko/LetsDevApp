@@ -1,9 +1,10 @@
 import { useState, useCallback } from 'react'
+import { toast } from 'react-toastify';
 
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+    const request = useCallback(async (url, method = 'GET', body = null, headers = {}, successTitle) => {
         setLoading(true)
         try {
             if (body) {
@@ -19,12 +20,13 @@ export const useHttp = () => {
             }
 
             setLoading(false)
-
+            toast.success(successTitle)
             return data
 
         } catch (error) {
             setLoading(false)
             setError(error.message)
+            toast.error(error.message)
             throw error
         }
     }, [])

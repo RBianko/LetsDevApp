@@ -1,42 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './skills.css'
 
 import CloseIcon from '../../../img/xmark.svg'
 import SkillSelector from './skill-selector'
 import { PropTypes } from 'prop-types';
+import { useSelector } from 'react-redux';
 
-const SkillsForm = ({ skills, setSkills }) => {
+const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
+    const skills = useSelector(state => state.skills)
 
-    let [skillsList, setSkillsList] = useState([])
-    let [counter, setCounter] = useState(0)
+    let [skillsList, setSkillsList] = useState(currentSkills)
     let [isChecked, setIsChecked] = useState(false)
 
-    const onSelectHandler = (selectedSkill) => {
+    const onSelectHandler = (selectedSkill, id) => {
+        let newSkillsList = [...skillsList]
         if (selectedSkill) {
-            let newSkill = !skillsList.some(skill => skill === selectedSkill)
-            if (newSkill) {
-                setSkillsList([...skillsList, selectedSkill])
+            if (id < skillsList.length) {
+                newSkillsList.splice(id, 1, selectedSkill)
+            } else {
+                newSkillsList.push(selectedSkill)
             }
+            setSkillsList([...newSkillsList])
         }
     }
 
-    let skillSelector = () => <SkillSelector key={counter} skills={skills} selectSkill={onSelectHandler} />
-    let [selectList, setSelectList] = useState([skillSelector()])
+    let skillSelector = (skill, id) =>
+        <SkillSelector key={`${id}-${skill}`} skill={skill} skills={skills} id={id} selectSkill={onSelectHandler} />
+
+    const initialSelectors = skillsList.map((skill, id) => skillSelector(skill, id))
+
+    let [selectList, setSelectList] = useState(initialSelectors)
+    let [counter, setCounter] = useState(initialSelectors.length)
 
     const addClickHandler = () => {
-        setCounter(++counter)
-        setSelectList([...selectList, skillSelector()])
+        setSelectList([...selectList, skillSelector('', counter)])
+        setCounter((counter) => counter + 1)
     }
 
     const submitClickHandler = () => {
-        setSkills(skillsList)
+        if (skillsList.length > 0) {
+            setSkills(skillsList)
+        }
         setIsChecked(!isChecked)
     }
 
     const clearClickHandler = () => {
+        setCounter((counter) => counter = 1)
         setSkillsList([])
-        setCounter(0)
-        setSelectList([skillSelector()])
+        setSelectList([skillSelector('', 0)])
     }
 
     return (

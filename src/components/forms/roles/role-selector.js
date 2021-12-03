@@ -24,7 +24,7 @@ const RoleSelector = ({ role, roles, selectRole, id }) => {
                 <option hidden defaultValue={''}>Select One...</option>
                 {rolesOptions}
             </select>
-        </div >
+        </div>
     )
 }
 

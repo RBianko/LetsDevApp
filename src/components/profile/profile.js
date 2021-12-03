@@ -13,6 +13,7 @@ import { getUser } from './../../redux/modules/users/actions';
 import getFollowState from '../../helpers/get-follow-state'
 import { useSkills } from './../../hooks/skills.hook';
 import { LoaderComponent } from './../style-components/loader/loader';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
     let { state } = useLocation()
@@ -79,8 +80,6 @@ const Profile = () => {
     let profileLocation = `${city}, ${country}`
     let profileRoles = roles.join(', ')
 
-
-
     const [followState, setFollowState] = useState('Follow')
     const onFollowToggle = () => {
         dispatch(followToggle({ followerId: currentUser._id, followingId: user._id }))
@@ -90,7 +89,6 @@ const Profile = () => {
 
     const currentUserProfile = currentUser._id === _id
     let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
-
 
     const content = loadingUser || loadingProjects
         ? <LoaderComponent />

@@ -115,6 +115,7 @@ const Project = () => {
                     {editLink}
                     <span className="project-info__title">{title}</span>
                     <span className="project-info__status">{status}</span>
+                    {linkContent}
                     <div className="skills-list skills_project">
                         {noSkillsString}
                         <div className="skills-grid">
@@ -135,7 +136,6 @@ const Project = () => {
                 <div className="project__description">
                     <div className="socials__list" >
                         <h3 className="description__title">Description</h3>
-                        {linkContent}
                     </div>
                     <p className="description__text">{descriptionContent}</p>
                 </div>

@@ -11,6 +11,8 @@ import {
     GET_CURRENT_USER_SUCCESS,
     GET_CURRENT_USER_FAIL
 } from '../../action-types'
+import { toast } from 'react-toastify';
+
 
 
 export const setUser = (user) => ({
@@ -38,20 +40,21 @@ export const updateUserInfo = (user) => ({
     payload: user
 })
 
-export const updateUserInfoSuccess = (user) => ({
-    type: UPDATE_USER_INFO_SUCCESS,
-    payload: user
-})
+export const updateUserInfoSuccess = (user) => {
+    toast.success("Profile Updated!")
+    return {
+        type: UPDATE_USER_INFO_SUCCESS,
+        payload: user
+    }
+}
 
-export const updateUserInfoFail = (error) => ({
-    type: UPDATE_USER_INFO_FAIL,
-    payload: error
-})
-
-export const addProjectId = (id) => ({
-    type: ADD_PROJECT_ID,
-    payload: id
-})
+export const updateUserInfoFail = (error) => {
+    toast.error(error)
+    return {
+        type: UPDATE_USER_INFO_FAIL,
+        payload: error
+    }
+}
 
 export const followToggle = (ids) => ({
     type: FOLLOW_TOGGLE,

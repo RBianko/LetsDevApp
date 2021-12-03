@@ -9,6 +9,7 @@ import { getAllProjects } from './../../../redux/modules/projects/actions';
 import { LoaderComponent } from './../../style-components/loader/loader';
 
 
+
 const ProjectSearch = () => {
     const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))
     const dispatch = useDispatch()
@@ -44,48 +45,30 @@ const ProjectSearch = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Projects Search</p>
                     <div className="search">
-                        <div className="settings__item">
-                            <label className="text-label" htmlFor="skill">By Name</label>
-                            <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
-                        </div>
-                        <IconButton
-                            className={'searchButton'}
-                            classNameIcon={'search-icon'}
-                            alt={'Search'}
-                            src={searchIcon}
-                        />
-                    </div>
-
-                    <div className="settings__item">
-                        <label className="text-label" htmlFor="status">Status</label>
+                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { setSearchTerm(e.target.value) }} />
                         <select
-                            className="text-input"
+                            className="search__select"
                             id="status"
                             type="text"
                             placeholder="Status"
                             value={''}
                             onChange={() => { }}>
-                            <option hidden>Select one...</option>
-                            <option value="Online">Online</option>
-                            <option value="Offline">Offline</option>
-                            <option value="Active">Active</option>
-                            <option value="Done">Done</option>
-                            <option value="Planned">Planned</option>
+                            <option hidden>Search by...</option>
+                            <option value="Online">Title</option>
+                            <option value="Offline">Need list</option>
+                            <option value="Active">Skills</option>
+                            <option value="Done">Status</option>
                         </select>
-                        <label className="text-label" htmlFor="role">Need roles</label>
-                        <div className="input__item">
-                            <input
-                                className="text-input input_complex" disabled
-                                id="role"
-                                type="text"
-                                placeholder="Roles"
-                                value={''}
-                                onChange={() => { }} />
-                            <label className="btn input_btn" htmlFor="modal__toggle_roles">Edit</label>
-                        </div>
+                        <IconButton
+                            className={'search__button'}
+                            classNameIcon={'search-icon'}
+                            alt={'Search'}
+                            src={searchIcon}
+                        />
                     </div>
                 </div>
             </div>
+
             {loadingProjects ? <LoaderComponent /> : projectsListContent}
         </div>
     )

@@ -10,10 +10,10 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
     const { roles } = useSelector(({ roles }) => ({ roles }))
 
     let [rolesList, setRolesList] = useState(currentRoles)
-    let [counter, setCounter] = useState(0)
     let [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedRole, id) => {
+        console.log(selectedRole, id)
         let newRolesList = [...rolesList]
         if (selectedRole) {
             if (id < rolesList.length) {
@@ -25,16 +25,17 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
         }
     }
 
-    let roleSelector = (role) =>
-        <RoleSelector key={`${counter}-${role}`} role={role} roles={stack || roles} id={counter} selectRole={onSelectHandler} />
+    let roleSelector = (role, id) =>
+        <RoleSelector key={`${id}-${role}`} role={role} roles={stack || roles} id={id} selectRole={onSelectHandler} />
 
-    const initialSelectors = rolesList.map(role => roleSelector(role))
+    const initialSelectors = rolesList.map((role, id) => roleSelector(role, id))
 
     let [selectList, setSelectList] = useState(initialSelectors)
-    useEffect(() => setCounter((counter) => counter + 1), [selectList])
+    let [counter, setCounter] = useState(initialSelectors.length)
 
     const addClickHandler = () => {
-        setSelectList([...selectList, roleSelector('')])
+        setSelectList([...selectList, roleSelector('', counter)])
+        setCounter((counter) => counter + 1)
     }
 
     const submitClickHandler = () => {
@@ -45,9 +46,9 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
     }
 
     const clearClickHandler = () => {
-        setCounter(-1)
+        setCounter((counter) => counter = 1)
         setRolesList([])
-        setSelectList([roleSelector('')])
+        setSelectList([roleSelector('', 0)])
     }
 
     useEffect(() => { if (!multiply) setSelectList([roleSelector('')]) }, [stack])

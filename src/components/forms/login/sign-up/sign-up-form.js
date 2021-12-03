@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import { useRegistration } from '../../../../server-api/registration';
+import { useSelector } from 'react-redux';
 
 
 const SignUpForm = ({ active, setActive }) => {
     const { registration, loading } = useRegistration()
+    const user = useSelector(state => state.user)
 
     const [form, setForm] = useState({
-        email: '', password: ''
+        email: '', password: '', repeatPassword: ''
     })
 
     const onChangeHandler = event => {
@@ -15,7 +18,12 @@ const SignUpForm = ({ active, setActive }) => {
 
     const signUpHandler = (e) => {
         e.preventDefault();
-        registration(form)
+        if (form.password === form.repeatPassword) {
+            registration(form, user)
+        } else {
+            toast.error('Passwords doesnt match!')
+        }
+
     }
 
     return (
@@ -28,7 +36,8 @@ const SignUpForm = ({ active, setActive }) => {
                 <form className="tab-content__form" action="">
                     <input className="form-input" type="email" name="email" placeholder="Email" required onChange={onChangeHandler} />
                     <input className="form-input" type="password" name="password" placeholder="Password" required onChange={onChangeHandler} />
-                    <button className="form-btn btn" disabled={loading} onClick={signUpHandler}>Sign Up</button>
+                    <input className="form-input" type="password" name="repeatPassword" placeholder="Repeat password" required onChange={onChangeHandler} />
+                    <button className="form-btn btn" type="submit" disabled={loading} onClick={signUpHandler}>Sign Up</button>
                 </form>
             </div>
         </>

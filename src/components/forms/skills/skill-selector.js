@@ -1,22 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types'
 
-const SkillSelector = ({ skills, selectSkill }) => {
+const SkillSelector = ({ skill, skills, selectSkill, id }) => {
+    const [newSkill, setNewSkill] = useState(skill)
+
     const skillsOptions = skills.map(skill => (
         <option key={skill} value={skill}>{skill}</option>
     ))
 
-    const [skill, setSkill] = useState(null)
-
-    const skillOption = React.createRef()
-
-    const onSkillChange = () => {
-        setSkill(skillOption.current.value)
-    }
-
-    useEffect(() => {
-        selectSkill(skill)
-    }, [skill, selectSkill])
+    useEffect(() => selectSkill(newSkill, id), [newSkill])
 
     return (
         <div className="settings__item">
@@ -28,13 +21,12 @@ const SkillSelector = ({ skills, selectSkill }) => {
                 type="text"
                 placeholder="Skill"
                 list="skills"
-                value={skill || ''}
-                ref={skillOption}
-                onChange={() => onSkillChange()} />
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)} />
             <datalist id="skills" >
                 {skillsOptions}
             </datalist>
-        </div >
+        </div>
     )
 }
 

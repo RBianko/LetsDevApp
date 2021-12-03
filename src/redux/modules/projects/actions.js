@@ -18,7 +18,7 @@ import {
     REQUEST_SUCCESS,
     REQUEST_FAIL,
 } from '../../action-types'
-
+import { toast } from 'react-toastify';
 
 export const getProjects = (ids) => ({
     type: GET_PROJECTS,
@@ -60,37 +60,52 @@ export const addProject = (project) => ({
     payload: project
 })
 
-export const addProjectSuccess = () => ({
-    type: ADD_PROJECT_SUCCESS,
-})
+export const addProjectSuccess = () => {
+    toast.success("Project have created!")
+    return {
+        type: ADD_PROJECT_SUCCESS
+    }
+}
 
-export const addProjectFail = (error) => ({
-    type: ADD_PROJECT_FAIL,
-    payload: error
-})
+export const addProjectFail = (error) => {
+    toast.error(error)
+    return {
+        type: ADD_PROJECT_FAIL,
+        payload: error
+    }
+}
 
 export const updateProject = (project) => ({
     type: UPDATE_PROJECT,
     payload: project
 })
 
-export const updateProjectSuccess = () => ({
-    type: UPDATE_PROJECT_SUCCESS,
-})
-
-export const updateProjectFail = (error) => ({
-    type: UPDATE_PROJECT_FAIL,
-    payload: error
-})
-
-export const applyRequest = (id, _id, role) => ({
-    type: APPLY_REQUEST,
-    payload: {
-        projectId: id,
-        userId: _id,
-        forRole: role
+export const updateProjectSuccess = () => {
+    toast.success("Project updated!")
+    return {
+        type: UPDATE_PROJECT_SUCCESS,
     }
-})
+}
+
+export const updateProjectFail = (error) => {
+    toast.error(error)
+    return {
+        type: UPDATE_PROJECT_FAIL,
+        payload: error
+    }
+}
+
+export const applyRequest = (id, _id, role) => {
+    toast.success("Apply request sent!")
+    return {
+        type: APPLY_REQUEST,
+        payload: {
+            projectId: id,
+            userId: _id,
+            forRole: role
+        }
+    }
+}
 
 export const approveRequest = (id, request) => ({
     type: APPROVE_REQUEST,

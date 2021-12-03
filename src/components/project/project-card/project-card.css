@@ -127,7 +127,7 @@
 .projects__list {
   display: grid;
   grid-template-columns: repeat(3, 33%);
-  gap: 1%;
+  gap: 10px;
 }
 
 .project__card_small:hover {

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import { useAuthorization } from '../../../../server-api/authorization.js';
+import { useSelector } from 'react-redux';
 
-const AuthForm = ({ user, active, setActive }) => {
+const AuthForm = ({ active, setActive }) => {
     const { authorization, loading } = useAuthorization()
+    const user = useSelector(state => state.user)
 
     const [form, setForm] = useState({
         email: '', password: ''
@@ -43,6 +44,4 @@ const AuthForm = ({ user, active, setActive }) => {
     )
 }
 
-export default connect(
-    ({ user }) => ({ user })
-)(AuthForm)
+export default AuthForm

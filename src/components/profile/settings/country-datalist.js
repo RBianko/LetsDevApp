@@ -259,7 +259,7 @@ const CountryDatalist = () => {
     return (
         <datalist id="country" >
             {countryList}
-        </datalist >
+        </datalist>
     )
 }
 
