@@ -22,7 +22,6 @@ export const useHttp = () => {
             setLoading(false)
             toast.success(successTitle)
             return data
-
         } catch (error) {
             setLoading(false)
             setError(error.message)

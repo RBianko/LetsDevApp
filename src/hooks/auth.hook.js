@@ -20,7 +20,7 @@ export const useAuth = () => {
         setToken(null)
         setUserId(null)
         localStorage.removeItem(storageName)
-        history.push('/')
+        // history.push('/')
     }, [])
 
     useEffect(() => {
