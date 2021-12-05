@@ -41,3 +41,12 @@ export async function post(url, config) {
         })
         .then((response) => response.data)
 }
+
+export async function deleted(url, config) {
+    console.log('axios.delete', url)
+    return await axiosApi
+        .delete(url, {
+            ...config
+        })
+        .then((response) => response.data)
+}

@@ -13,6 +13,7 @@ import WelcomePage from './../welcome-page';
 import Footer from './../footer';
 import Project from '../project/project';
 import { ToastContainer } from 'react-toastify';
+import ProjectRequests from './../project/create-project/project-requests/project-requests';
 
 export const useRoutes = (isAuth, id) => {
     if (isAuth) {
@@ -50,6 +51,9 @@ export const useRoutes = (isAuth, id) => {
                     </Route>
                     <Route path='/settings' >
                         <Settings />
+                    </Route>
+                    <Route path='/requests' >
+                        <ProjectRequests />
                     </Route>
                     <Redirect to={{
                         pathname: `/profile/${id}`,

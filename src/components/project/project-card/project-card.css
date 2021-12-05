@@ -138,3 +138,40 @@
 .project__description {
   margin-bottom: 3%;
 }
+
+.project__creator-links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.creator-link__icon {
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 10px;
+  transition: var(--transition-all);
+}
+
+.notification-counter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  line-height: 0;
+  font-weight: bold;
+  bottom: 80px;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  background: var(--highlight-color);
+  border-radius: 50%;
+}
+
+.creator-link__icon:hover {
+  transform: translateX(3px);
+}

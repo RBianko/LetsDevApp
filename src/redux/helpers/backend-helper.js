@@ -1,4 +1,4 @@
-import { get, put, post } from './api-helper'
+import { get, put, post, deleted } from './api-helper'
 import * as url from './url-helper'
 
 
@@ -25,6 +25,11 @@ export const addProject = (project) =>
 export const updateProject = (project) =>
     put(url.UPDATE_PROJECT, {
         params: { project }
+    })
+
+export const deleteProject = (id) =>
+    deleted(url.DELETE_PROJECT, {
+        params: { id }
     })
 
 export const applyRequest = (request) =>

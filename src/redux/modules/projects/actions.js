@@ -17,6 +17,9 @@ import {
     DECLINE_REQUEST,
     REQUEST_SUCCESS,
     REQUEST_FAIL,
+    DELETE_PROJECT,
+    DELETE_PROJECT_SUCCESS,
+    DELETE_PROJECT_FAIL,
 } from '../../action-types'
 import { toast } from 'react-toastify';
 
@@ -61,7 +64,7 @@ export const addProject = (project) => ({
 })
 
 export const addProjectSuccess = () => {
-    toast.success("Project have created!")
+    toast.success("Project created!")
     return {
         type: ADD_PROJECT_SUCCESS
     }
@@ -94,6 +97,27 @@ export const updateProjectFail = (error) => {
         payload: error
     }
 }
+
+export const deleteProject = (id) => ({
+    type: DELETE_PROJECT,
+    payload: id
+})
+
+export const deleteProjectSuccess = () => {
+    toast.info("Project deleted!")
+    return {
+        type: DELETE_PROJECT_SUCCESS,
+    }
+}
+
+export const deleteProjectFail = (error) => {
+    toast.error(error)
+    return {
+        type: DELETE_PROJECT_FAIL,
+        payload: error
+    }
+}
+
 
 export const applyRequest = (id, _id, role) => {
     toast.success("Apply request sent!")

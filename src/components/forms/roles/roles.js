@@ -13,7 +13,6 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
     let [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedRole, id) => {
-        console.log(selectedRole, id)
         let newRolesList = [...rolesList]
         if (selectedRole) {
             if (id < rolesList.length) {

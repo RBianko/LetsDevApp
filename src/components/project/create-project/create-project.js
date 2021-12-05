@@ -51,12 +51,6 @@ const CreateProject = ({ isEditing = false }) => {
         needList
     } = currentProject
 
-    const ids = requests.map(request => request._id)
-    useEffect(() => {
-        if (isEditing) dispatch(getUsers(ids))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     const titleInput = React.createRef()
     const statusInput = React.createRef()
     const rolesInput = React.createRef()
@@ -121,7 +115,6 @@ const CreateProject = ({ isEditing = false }) => {
         setSkills(skills)
     }
 
-    let requestslist = isEditing ? <ProjectRequests /> : null
 
     return (
         <>
@@ -239,7 +232,6 @@ const CreateProject = ({ isEditing = false }) => {
                         </div>
                     </div>
                 </div>
-                {requestslist}
             </div>
         </>
     )

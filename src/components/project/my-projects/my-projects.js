@@ -32,8 +32,8 @@ const MyProjects = () => {
         projectsList = projects.map(project => {
             return <ProjectCard key={project._id} project={project} />
         })
-        projectsListContent = projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>
     }
+    projectsListContent = projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>
 
     return (
         <div className="container">

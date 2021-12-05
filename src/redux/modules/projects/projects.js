@@ -25,34 +25,6 @@ const initialState = {
     list: []
 }
 
-// {
-//     title: "Project v1.29",
-//     picture: defaultProjectPicture,
-//     status: "Active",
-//     description: "some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps some info asdkaps ",
-//     skills: ["CSS", "HTML", "JS", "React", "redux", "Angular"],
-//     devs: [
-//         {
-//             _id: "616e71fbe25229d0d93bfd37",
-//             role: "Frontend",
-//             creator: true
-//         }
-//     ],
-//     requests: [
-//         {
-//             requestId: "0",
-//             _id: "1fake616e71fb12311233bfd37",
-//             forRole: "UI-Designer"
-//         },
-//         {
-//             requestId: "1",
-//             _id: "2fake616e71fb12311233bfd37",
-//             forRole: "Tester"
-//         }
-//     ],
-//     needList: ["UI-Designer", "Tester"],
-// }
-
 const projectsReduser = (state = initialState, { type, payload, id }) => {
     switch (type) {
         case GET_PROJECTS:

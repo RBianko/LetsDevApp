@@ -22,6 +22,8 @@ const Profile = () => {
     }, [dispatch, state])
 
     const currentUser = useSelector(state => state.user)
+    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+
     const { user, loadingUser } = useSelector(state => state.users)
     const {
         _id,
@@ -41,8 +43,7 @@ const Profile = () => {
         if (!loadingUser && projects.length > 0) {
             dispatch(getProjects(projects))
         }
-    }, [dispatch, loadingUser, projects])
-    const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+    }, [loadingUser])
 
     const { global, other } = useSkills()
     const globalSkillsList = global(skills)
@@ -58,16 +59,11 @@ const Profile = () => {
         }
     }
 
-    let userProjects = []
     let userProjectsList = []
-
-    if (!loadingProjects && !loadingUser && projectsList.length === projects.length) {
-        userProjects = projects.map(id =>
-            projectsList.find(projects => projects._id === id)
-        )
-        userProjectsList = userProjects.map(projects =>
+    if (!loadingProjects && !loadingUser) {
+        userProjectsList = projectsList.map(projects =>
             <ProjectCardSmall
-                key={projects._id}
+                key={projects?._id}
                 project={projects}
             />)
     }

@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProfileCard from '../profile/profile-card'
 import Icon from '../style-components/icon';
 import editIcon from '../../img/edit.svg'
+import deleteIcon from '../../img/delete.svg'
+import requestsIcon from '../../img/request.svg'
 import IconButton from '../style-components/icon-button';
 import RolesForm from '../forms/roles';
 import { useSkills } from '../../hooks/skills.hook';
@@ -13,6 +15,7 @@ import { getProjectDetails } from '../../redux/modules/projects/actions'
 import LoaderComponent from '../style-components/loader/loader';
 import { getUsers } from './../../redux/modules/users/actions';
 import linkIcon from '../../img/link.svg'
+import ConfirmForm from '../forms/cofirm/confirm-form';
 
 
 const Project = () => {
@@ -35,7 +38,8 @@ const Project = () => {
         link = '',
         skills = [],
         devs = [],
-        needList = []
+        needList = [],
+        requests = []
     } = project
 
     useEffect(() => {
@@ -73,18 +77,32 @@ const Project = () => {
         : null
 
     const userInProject = devs.find(dev => dev._id === user._id)
+    const isCreator = userInProject && userInProject.creator
 
     const applyButton = (needList.length > 0) && !userInProject
         ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={state.id} />
         : null
 
-    const editLink = userInProject && userInProject.creator
-        ? <Link to={{
-            pathname: "/edit-project",
-            state: project
-        }}>
-            <Icon className={'edit-icon'} alt={'Edit'} src={editIcon} title={'Edit project'} />
-        </Link>
+    const links = isCreator
+        ? <div className="project__creator-links">
+            <Link to={{ pathname: "/edit-project", state: project }}>
+                <Icon className={'creator-link__icon'} alt={'Edit'} src={editIcon} title={'Edit project'} />
+            </Link>
+            {requests.length > 0
+                ?
+                <Link to={{ pathname: "/requests", state: project }}>
+                    <Icon className={'creator-link__icon'} alt={'Requests'} src={requestsIcon} title={'Requests for project'} />
+                    <span className={'notification-counter'}>{requests.length}</span>
+                </Link>
+                : null}
+            <IconButton
+                className={'delete-btn'}
+                classNameIcon={'arrow_icon'}
+                htmlFor={'modal__toggle_confirm'}
+                child={<Icon className={'creator-link__icon'} alt={'Edit'} src={deleteIcon} title={'Edit project'} />}
+                data={state.id}
+            />
+        </div>
         : null
 
     const applyRoles = (role) => dispatch(applyRequest(state.id, user._id, role[0].toString()))
@@ -105,7 +123,7 @@ const Project = () => {
         </a>
         : null
 
-    const content = loadingProjectDetails || loadingUsers
+    const projectContent = loadingProjectDetails || loadingUsers
         ? <LoaderComponent />
         : <>
             <div className="project-content__header">
@@ -113,7 +131,7 @@ const Project = () => {
                     <img className="project__picture" src={picture} alt="project" />
                 </div>
                 <div className="project__info">
-                    {editLink}
+                    {links}
                     <span className="project-info__title">{title}</span>
                     <span className="project-info__status">{status}</span>
                     {linkContent}
@@ -152,14 +170,14 @@ const Project = () => {
 
     return <div className="container">
         <RolesForm stack={needList} setRoles={applyRoles} multiply={false} />
+        <ConfirmForm id={state.id} />
         <div className="project__card card">
             <div className="card__header">
                 <div className="header__title">project.page</div>
             </div>
             <div className="card__content project-content">
-                {content}
+                {projectContent}
             </div>
-
         </div>
     </div>
 }

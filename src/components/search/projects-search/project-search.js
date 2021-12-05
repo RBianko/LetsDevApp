@@ -8,8 +8,6 @@ import IconButton from './../../style-components/icon-button/icon-button';
 import { getAllProjects } from './../../../redux/modules/projects/actions';
 import { LoaderComponent } from './../../style-components/loader/loader';
 
-
-
 const ProjectSearch = () => {
     const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))
     const dispatch = useDispatch()

@@ -1,7 +1,8 @@
 #modal__toggle_login,
 #modal__toggle_devs,
 #modal__toggle_skills,
-#modal__toggle_roles {
+#modal__toggle_roles,
+#modal__toggle_confirm {
   display: none;
 }
 
@@ -9,10 +10,12 @@
 .modal-content_skills,
 .modal-content_devs,
 .modal-content_login,
+.modal-content_confirm,
 .modal-backdrop_roles,
 .modal-backdrop_skills,
 .modal-backdrop_devs,
-.modal-backdrop_login {
+.modal-backdrop_login,
+.modal-backdrop_confirm {
   opacity: 0;
   position: fixed;
   z-index: -1;
@@ -27,7 +30,8 @@
 .modal-content_roles,
 .modal-content_skills,
 .modal-content_devs,
-.modal-content_login {
+.modal-content_login,
+.modal-content_confirm {
   top: 0;
   bottom: 0;
   margin: auto;
@@ -46,6 +50,7 @@
 #modal__toggle_login:checked ~ .modal-backdrop_login,
 #modal__toggle_roles:checked ~ .modal-backdrop_roles,
 #modal__toggle_devs:checked ~ .modal-backdrop_devs,
+#modal__toggle_confirm:checked ~ .modal-backdrop_confirm,
 #modal__toggle_skills:checked ~ .modal-backdrop_skills {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.6);
@@ -56,6 +61,7 @@
 #modal__toggle_login:checked ~ .modal-content_login,
 #modal__toggle_roles:checked ~ .modal-content_roles,
 #modal__toggle_devs:checked ~ .modal-content_devs,
+#modal__toggle_confirm:checked ~ .modal-content_confirm,
 #modal__toggle_skills:checked ~ .modal-content_skills {
   opacity: 1;
   background-color: var(--background-color-lighter);
@@ -105,6 +111,7 @@
 
 .modal-backdrop_login,
 .modal-backdrop_devs,
+.modal-backdrop_confirm,
 .modal-backdrop_skills,
 .modal-backdrop_roles {
   left: 0;
@@ -287,4 +294,13 @@
   pointer-events: auto;
   cursor: auto;
   visibility: visible;
+}
+
+.modal-content_confirm {
+  padding: 20px 50px 30px 50px;
+}
+
+.header__title_confirm {
+  font-size: 26px;
+  margin-bottom: 20px;
 }

@@ -4,8 +4,9 @@ import {
     GET_PROJECTS,
     GET_ALL_PROJECTS,
     GET_PROJECT_DETAILS,
-    UPDATE_PROJECT,
     ADD_PROJECT,
+    UPDATE_PROJECT,
+    DELETE_PROJECT,
     APPLY_REQUEST,
     APPROVE_REQUEST,
     DECLINE_REQUEST
@@ -18,6 +19,8 @@ import {
     getProjectDetailsFail,
     updateProjectSuccess,
     updateProjectFail,
+    deleteProjectSuccess,
+    deleteProjectFail,
     addProjectSuccess,
     addProjectFail,
     requestSuccess,
@@ -29,6 +32,7 @@ import {
     getAllProjects,
     getProjectDetails,
     updateProject,
+    deleteProject,
     addProject,
     applyRequest,
     approveRequest,
@@ -68,6 +72,15 @@ function* onUpdateProject({ payload: project }) {
         yield put(updateProjectSuccess(response))
     } catch (error) {
         yield put(updateProjectFail(error.response))
+    }
+}
+
+function* onDeleteProject({ payload: id }) {
+    try {
+        const response = yield call(deleteProject, id)
+        yield put(deleteProjectSuccess(response))
+    } catch (error) {
+        yield put(deleteProjectFail(error.response))
     }
 }
 
@@ -113,6 +126,7 @@ function* ProjectsSaga() {
     yield takeLatest(GET_ALL_PROJECTS, onGetAllProjects)
     yield takeLatest(GET_PROJECT_DETAILS, onGetProjectDetails)
     yield takeLatest(UPDATE_PROJECT, onUpdateProject)
+    yield takeLatest(DELETE_PROJECT, onDeleteProject)
     yield takeLatest(ADD_PROJECT, onAddProject)
     yield takeLatest(APPLY_REQUEST, onApplyRequest)
     yield takeLatest(APPROVE_REQUEST, onApproveRequest)
