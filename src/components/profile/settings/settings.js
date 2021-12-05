@@ -116,7 +116,7 @@ const Settings = () => {
         }
 
         dispatch(updateUserInfo(editedUser))
-        history.push('/profile')
+        history.push(`/profile/${_id}`)
     }
 
     const cancelClickHandler = () => {

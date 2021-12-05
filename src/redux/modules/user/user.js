@@ -86,12 +86,7 @@ const initialState = {
 const userReduser = (state = initialState, { type, payload }) => {
     switch (type) {
         case SET_USER:
-            let loginState
-            if (payload.token && payload._id) {
-                loginState = true
-            } else {
-                loginState = false
-            }
+            const loginState = !!(payload.token && payload._id)
             state = { ...state, isLogedIn: loginState, token: payload.token, _id: payload._id, login: payload.login, logout: payload.logout }
             break
         case GET_CURRENT_USER:

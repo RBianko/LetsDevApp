@@ -13,24 +13,31 @@ const ProjectSearch = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAllProjects());
-    }, [dispatch]);
+        dispatch(getAllProjects())
+    }, [dispatch])
 
     const [searchTerm, setSearchTerm] = useState('')
+    const [searchBy, setSearchBy] = useState('title')
 
     let projectsFilter = projects
-
-    if (searchTerm !== '') {
-        // eslint-disable-next-line array-callback-return
-        projectsFilter = projects.filter(project => {
-            if (project.title.toLowerCase().includes(searchTerm.toLowerCase()))
-                return project
-        })
-    } // TODO: make helper func
-
     let projectsList = projectsFilter.map((project) =>
         <ProjectCard key={project._id} project={project} />
     )
+
+    const onSearchHandler = () => {
+        switch (searchBy) {
+            case 'title':
+                break;
+            case 'need':
+                break;
+            case 'skills':
+                break;
+            case 'status':
+                break;
+            default:
+                break;
+        }
+    }
 
     let projectsListContent = projectsList?.length > 0 ? projectsList : <h3>No results found.</h3>
 
@@ -49,24 +56,23 @@ const ProjectSearch = () => {
                             id="status"
                             type="text"
                             placeholder="Status"
-                            value={''}
-                            onChange={() => { }}>
+                            onChange={(e) => { setSearchBy(e.target.value) }}>
                             <option hidden>Search by...</option>
-                            <option value="Online">Title</option>
-                            <option value="Offline">Need list</option>
-                            <option value="Active">Skills</option>
-                            <option value="Done">Status</option>
+                            <option value="title">Title</option>
+                            <option value="need">Need list</option>
+                            <option value="skills">Skills</option>
+                            <option value="status">Status</option>
                         </select>
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}
                             alt={'Search'}
                             src={searchIcon}
+                            onPress={onSearchHandler}
                         />
                     </div>
                 </div>
             </div>
-
             {loadingProjects ? <LoaderComponent /> : projectsListContent}
         </div>
     )
