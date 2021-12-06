@@ -196,7 +196,7 @@ const CreateProject = ({ isEditing = false }) => {
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="link">Link to Project (GitHub, Telegram, Facebook etc.)</label>
+                                        <label className="text-label" htmlFor="link">Link to Project</label>
                                         <input
                                             className="text-input"
                                             id="link"

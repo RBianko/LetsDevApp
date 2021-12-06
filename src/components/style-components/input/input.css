@@ -50,3 +50,10 @@
   width: 100%;
   height: 40px;
 }
+
+.social-input__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}

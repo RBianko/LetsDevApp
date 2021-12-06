@@ -7,7 +7,7 @@ import jsIcon from '../../../img/js.svg'
 import reactIcon from '../../../img/react.svg'
 import pythonIcon from '../../../img/python.svg'
 import javaIcon from '../../../img/java.svg'
-import cPlusIcon from '../../../img/c++.svg'
+import cPlusIcon from '../../../img/c-plus.svg'
 import cSharpIcon from '../../../img/c-sharp.svg'
 import rIcon from '../../../img/r.png'
 import golangIcon from '../../../img/golang.svg'
@@ -27,7 +27,7 @@ const SkillIcon = ({ skill }) => {
         'Python': pythonIcon,
         'Java': javaIcon,
         'C++': cPlusIcon,
-        'С#': cSharpIcon,
+        'C#': cSharpIcon,
         'R': rIcon,
         'Go': golangIcon,
         'Swift': swiftIcon,

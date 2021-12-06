@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   cursor: default;
+  text-align: center;
 }
 
 .container_welcome-page {

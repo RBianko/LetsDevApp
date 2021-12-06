@@ -43,7 +43,7 @@ const ProjectRequests = () => {
                 <div className="header__title">requests.table</div>
             </div>
             <div className="card__content">
-                <div className="requests">
+                <div className="devs__list">
                     {requestsContent}
                 </div>
             </div>

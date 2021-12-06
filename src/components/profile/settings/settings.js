@@ -200,25 +200,25 @@ const Settings = () => {
                             <label className="title-label" htmlFor="vk">Add socials:</label>
                             <div className="settings-socials__list">
                                 <div className="settings__item">
-                                    <div className="input__item">
+                                    <div className="social-input__item">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-vk'} src={vkIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedVk} ref={vkInput} onChange={() => onChangeHandler('vk')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="input__item">
+                                    <div className="social-input__item">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-facebook'} src={facebookIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedFacebook} ref={facebookInput} onChange={() => onChangeHandler('facebook')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="input__item">
+                                    <div className="social-input__item">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-linkedin'} src={linkedinIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedLinkedin} ref={linkedinInput} onChange={() => onChangeHandler('linkedin')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="input__item">
+                                    <div className="social-input__item">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-github'} src={githubIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedGithub} ref={githubInput} onChange={() => onChangeHandler('github')} />
                                     </div>

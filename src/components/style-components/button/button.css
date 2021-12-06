@@ -13,6 +13,7 @@
 
 .btn_follow {
   padding: 3px 10px;
+  white-space: nowrap;
   width: 100%;
   font-size: 0.8em;
 }

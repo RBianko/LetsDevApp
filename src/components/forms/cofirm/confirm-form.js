@@ -21,7 +21,7 @@ const ConfirmForm = ({ id }) => {
             <div className="modal-backdrop_confirm" htmlFor="modal__toggle_confirm" />
             <div className="modal-content_confirm">
                 <h4 className="header__title_confirm">You sure you want to delete the Project?</h4>
-                <div className="settings__buttons">
+                <div className="modal__buttons">
                     <Button subClass="input_btn" onClick={() => onDeleteProject()} text={'Yes'} />
                     <IconButton
                         className={'btn input_btn'}

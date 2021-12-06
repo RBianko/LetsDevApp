@@ -117,7 +117,7 @@ const Project = () => {
     const linkContent = shortLink
         ? <a className="social__link" href={link} target="_blank" rel="noopener noreferrer">
             <div className="link-wrapper">
-                <img className="link-icon" src={linkIcon} alt="link" />
+                <img className="link-icon link-icon_small" src={linkIcon} alt="link" />
             </div>
             <span className="short-link__text">{shortLink}</span>
         </a>
