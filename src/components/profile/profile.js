@@ -16,13 +16,12 @@ import { LoaderComponent } from './../style-components/loader/loader';
 
 const Profile = () => {
     let { state } = useLocation()
-    let dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getUser(state.id))
-    }, [dispatch, state])
-
     const currentUser = useSelector(state => state.user)
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+    let dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUser(state?.id || currentUser._id))
+    }, [dispatch, state])
 
     const { user, loadingUser } = useSelector(state => state.users)
     const {

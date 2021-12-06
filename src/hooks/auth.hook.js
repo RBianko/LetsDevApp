@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom"
 
 const storageName = 'userData'
 export const useAuth = () => {
-    const history = useHistory()
     const [token, setToken] = useState(null)
     const [_id, setUserId] = useState(null)
 
@@ -20,7 +19,6 @@ export const useAuth = () => {
         setToken(null)
         setUserId(null)
         localStorage.removeItem(storageName)
-        // history.push('/')
     }, [])
 
     useEffect(() => {

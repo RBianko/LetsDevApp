@@ -63,7 +63,6 @@ const App = () => {
             <Footer />
         </Suspense>
     )
-
 }
 
 export default App

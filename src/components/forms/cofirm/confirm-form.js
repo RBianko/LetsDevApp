@@ -10,9 +10,8 @@ const ConfirmForm = ({ id }) => {
     const history = useHistory()
 
     const onDeleteProject = () => {
-        console.log('delete ', id)
         dispatch(deleteProject(id))
-        history.push('/')
+        history.push('/my-projects')
     }
 
     return (
