@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useCallback, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
 
 const storageName = 'userData'
 export const useAuth = () => {

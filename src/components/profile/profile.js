@@ -18,9 +18,11 @@ const Profile = () => {
     let { state } = useLocation()
     const currentUser = useSelector(state => state.user)
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
+
     let dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getUser(state?.id || currentUser._id))
+        const id = state?.id || currentUser._id
+        dispatch(getUser(id))
     }, [dispatch, state])
 
     const { user, loadingUser } = useSelector(state => state.users)
@@ -48,8 +50,8 @@ const Profile = () => {
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    let noSkillsString = otherSkillsList && otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
-    let otherSkillsTitle = otherSkillsList && otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    let noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>No selected skills</p> : null
+    let otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     let socialsList = []
     for (let key in socials) {
