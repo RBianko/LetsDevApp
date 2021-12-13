@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import './app.css';
-import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { useEffect } from 'react'
@@ -20,6 +18,9 @@ import Header from './../welcome-page/header/index'
 import WelcomePage from './../welcome-page/welcome-page'
 import Footer from './../footer/index'
 import NoFoundComponent from './../welcome-page/welcome-page'
+
+import './app.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {

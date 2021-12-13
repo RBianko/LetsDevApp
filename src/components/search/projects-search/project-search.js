@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import './project-search.css'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getAllProjects } from './../../../redux/modules/projects/actions'
+
+import ProjectCard from './../../project/project-card'
+import IconButton from './../../style-components/icon-button'
+import { LoaderComponent } from './../../style-components/loader/loader'
 
 import searchIcon from '../../../img/search.svg'
-import ProjectCard from './../../project/project-card';
-import IconButton from './../../style-components/icon-button/icon-button';
-import { getAllProjects } from './../../../redux/modules/projects/actions';
-import { LoaderComponent } from './../../style-components/loader/loader';
+import './project-search.css'
+
 
 const ProjectSearch = () => {
     const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))

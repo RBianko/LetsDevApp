@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { LoaderComponent } from './../../style-components/loader/loader';
+
 import Profile from './../../profile/profile';
 import Project from './../../project/project';
 import MyProjects from './../../project/my-projects/my-projects';

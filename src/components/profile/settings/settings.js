@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import './settings.css'
 
 import { updateUserInfo } from '../../../redux/modules/user/actions'
 import { getUser } from '../../../redux/modules/users/actions'
 
 import SkillsForm from './../../forms/skills';
 import RolesForm from './../../forms/roles';
-import CountryDatalist from './country-datalist';
+import CountriesDatalist from './countries-datalist';
 import Button from './../../style-components/button';
 import IconButton from './../../style-components/icon-button';
 import Input from './../../style-components/input';
@@ -18,6 +17,7 @@ import vkIcon from '../../../img/vk.svg'
 import githubIcon from '../../../img/github.svg'
 import facebookIcon from '../../../img/facebook.svg'
 import linkedinIcon from '../../../img/linkedin.svg'
+import './settings.css'
 
 const Settings = () => {
     const dispatch = useDispatch()
@@ -172,11 +172,11 @@ const Settings = () => {
                                             id="skill"
                                             type="text"
                                             placeholder="Country"
-                                            list="country"
+                                            list="countries"
                                             value={editedCountry}
                                             ref={countryInput}
                                             onChange={() => onChangeHandler('country')} />
-                                        <CountryDatalist />
+                                        <CountriesDatalist />
                                     </div>
 
                                     <div className="settings__item">

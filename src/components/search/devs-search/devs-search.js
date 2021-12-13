@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import './devs-search.css'
+
+import { getUser, getAllUsers } from './../../../redux/modules/users/actions'
+
+import SearchUsers from '../search-users'
+import IconButton from './../../style-components/icon-button/icon-button'
+import { LoaderComponent } from './../../style-components/loader/loader'
 
 import searchIcon from '../../../img/search.svg'
-import SearchUsers from '../search-users'
-import { getUser, getAllUsers } from './../../../redux/modules/users/actions';
-import IconButton from './../../style-components/icon-button/icon-button';
-import { LoaderComponent } from './../../style-components/loader/loader';
+import './devs-search.css'
+
 
 const DevsSearch = () => {
     const dispatch = useDispatch()

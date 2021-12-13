@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import './my-projects.css'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getProjects } from './../../../redux/modules/projects/actions'
+import { getUser } from './../../../redux/modules/users/actions'
+
+import { LoaderComponent } from './../../style-components/loader/loader'
+import IconButton from './../../style-components/icon-button'
+import ProjectCard from '../project-card'
 
 import searchIcon from '../../../img/search.svg'
-import ProjectCard from '../project-card'
-import { useDispatch } from 'react-redux';
-import { getProjects } from './../../../redux/modules/projects/actions';
-import { getUser } from './../../../redux/modules/users/actions';
-import { LoaderComponent } from './../../style-components/loader/loader';
-import IconButton from './../../style-components/icon-button/index';
+import './my-projects.css'
+
 
 
 const MyProjects = () => {

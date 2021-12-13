@@ -1,18 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom';
-import './profile.css'
+import { useLocation } from 'react-router-dom'
+
+import { followToggle } from './../../redux/modules/user/actions'
+import { getProjects } from './../../redux/modules/projects/actions'
+import { getUser } from './../../redux/modules/users/actions'
+import getFollowState from '../../helpers/get-follow-state'
+import { useSkills } from './../../hooks/skills.hook'
 
 import ProjectCardSmall from '../project/project-card/project-card-small'
-import SocialLink from './../style-components/social-link';
-import Button from './../style-components/button';
-import { followToggle } from './../../redux/modules/user/actions';
-import { getProjects } from './../../redux/modules/projects/actions';
-import { getUser } from './../../redux/modules/users/actions';
+import SocialLink from './../style-components/social-link'
+import Button from './../style-components/button'
+import { LoaderComponent } from './../style-components/loader/loader'
 
-import getFollowState from '../../helpers/get-follow-state'
-import { useSkills } from './../../hooks/skills.hook';
-import { LoaderComponent } from './../style-components/loader/loader';
+import './profile.css'
+
 
 const Profile = () => {
     let { state } = useLocation()

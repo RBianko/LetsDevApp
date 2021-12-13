@@ -1,7 +1,9 @@
 import React from 'react'
-import './header.css'
+
 import Logo from '../../style-components/logo';
 import IconButton from './../../style-components/icon-button';
+
+import './header.css'
 
 
 const Header = () => {

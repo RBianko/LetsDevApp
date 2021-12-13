@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react'
-import './input.css'
 import { PropTypes } from 'prop-types';
+
+import './input.css'
+
 
 const Input = forwardRef(({ type, id, placeholder, value, onChange, list, disabled }, ref) => {
     return (

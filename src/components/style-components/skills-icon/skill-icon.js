@@ -1,5 +1,5 @@
 import React from 'react'
-import './skill-icon.css'
+import { PropTypes } from 'prop-types';
 
 import cssIcon from '../../../img/css3.svg'
 import htmlIcon from '../../../img/html5.svg'
@@ -14,7 +14,8 @@ import golangIcon from '../../../img/golang.svg'
 import swiftIcon from '../../../img/swift.svg'
 import rubyIcon from '../../../img/ruby.svg'
 import sqlIcon from '../../../img/sql.png'
-import { PropTypes } from 'prop-types';
+import './skill-icon.css'
+
 
 const SkillIcon = ({ skill }) => {
 

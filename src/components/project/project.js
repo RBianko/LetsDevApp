@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 
+import { useSkills } from '../../hooks/skills.hook'
+import { applyRequest } from '../../redux/modules/projects/actions'
+import { getProjectDetails } from '../../redux/modules/projects/actions'
+import { getUsers } from './../../redux/modules/users/actions'
+
+import ConfirmForm from '../forms/cofirm/confirm-form'
+import LoaderComponent from '../style-components/loader/loader'
 import ProfileCard from '../profile/profile-card'
-import Icon from '../style-components/icon';
+import IconButton from '../style-components/icon-button'
+import RolesForm from '../forms/roles'
+import Icon from '../style-components/icon'
+
 import editIcon from '../../img/edit.svg'
 import deleteIcon from '../../img/delete.svg'
 import requestsIcon from '../../img/request.svg'
-import IconButton from '../style-components/icon-button';
-import RolesForm from '../forms/roles';
-import { useSkills } from '../../hooks/skills.hook';
-import { applyRequest } from '../../redux/modules/projects/actions';
-import { getProjectDetails } from '../../redux/modules/projects/actions'
-import LoaderComponent from '../style-components/loader/loader';
-import { getUsers } from './../../redux/modules/users/actions';
 import linkIcon from '../../img/link.svg'
-import ConfirmForm from '../forms/cofirm/confirm-form';
 
 
 const Project = () => {

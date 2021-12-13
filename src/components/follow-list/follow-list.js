@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './follow-list.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -8,6 +7,8 @@ import searchIcon from '../../img/search.svg'
 import SearchUsers from '../search';
 import IconButton from './../style-components/icon-button/icon-button';
 import { LoaderComponent } from './../style-components/loader/loader';
+
+import './follow-list.css'
 
 const FollowList = () => {
     const dispatch = useDispatch()

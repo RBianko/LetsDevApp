@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './login.css'
-import CloseIcon from '../../../img/xmark.svg'
+import AuthForm from './auth/auth-form'
+import SignUpForm from './sign-up/sign-up-form'
+import IconButton from './../../style-components/icon-button'
 
-import AuthForm from './auth/auth-form';
-import SignUpForm from './sign-up/sign-up-form';
-import IconButton from './../../style-components/icon-button';
+import CloseIcon from '../../../img/xmark.svg'
+import './login.css'
 
 const Login = () => {
     let [activeForm, setActiveForm] = useState(true)

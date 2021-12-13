@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { connect, useSelector } from 'react-redux';
-import './profile-card.css'
+import { connect, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { followToggle } from './../../../redux/modules/user/actions';
-import { UserPropTypes } from './../../../redux/modules/user/prop-types';
-import PropTypes from 'prop-types';
+import { followToggle } from './../../../redux/modules/user/actions'
+import { UserPropTypes } from './../../../redux/modules/user/prop-types'
+import Button from './../../style-components/button'
+import CardHeader from './../../style-components/card-header'
+
 import defaultIcon from '../../../img/users.svg'
-import Button from './../../style-components/button';
-import CardHeader from './../../style-components/card-header';
+import './profile-card.css'
 
 const ProfileSearchCard = ({ user, followStates, followToggle, getFollowState }) => {
     const { _id, firstName, lastName, city, country, roles, profilePicture } = user

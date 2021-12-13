@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import './menu.css'
 
 import Icon from './../style-components/icon';
 import ProfileIcon from '../../img/user.svg'
@@ -10,6 +9,8 @@ import FriendsIcon from '../../img/friends.svg'
 import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
+
+import './menu.css'
 
 const Menu = () => {
     const { _id, follow, logout } = useSelector(state => state.user)

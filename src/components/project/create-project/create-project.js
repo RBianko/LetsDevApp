@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useHistory, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
-import './create-project.css'
-
-import defaultProjectPicture from '../../../img/project.svg'
-import SkillsForm from '../../forms/skills'
-import RolesForm from './../../forms/roles'
-import ProjectRequests from './project-requests/project-requests';
+import { PropTypes } from 'prop-types'
 
 import { addProject, updateProject } from '../../../redux/modules/projects/actions'
-import { getUsers } from '../../../redux/modules/users/actions'
-import { PropTypes } from 'prop-types';
+
+import SkillsForm from '../../forms/skills'
+import RolesForm from './../../forms/roles'
+
+import defaultProjectPicture from '../../../img/project.svg'
+import './create-project.css'
+
 
 const CreateProject = ({ isEditing = false }) => {
     const history = useHistory()

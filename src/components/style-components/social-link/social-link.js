@@ -1,11 +1,11 @@
 import React from 'react'
-import './social-link.css'
+import { PropTypes } from 'prop-types';
 
 import facebook from '../../../img/facebook.svg'
 import github from '../../../img/github.svg'
 import linkedin from '../../../img/linkedin.svg'
 import vk from '../../../img/vk.svg'
-import { PropTypes } from 'prop-types';
+import './social-link.css'
 
 
 const SocialLink = ({ media, link }) => {

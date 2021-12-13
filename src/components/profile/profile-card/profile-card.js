@@ -1,9 +1,10 @@
 import React from 'react'
-import './profile-card.css'
-
 import PropTypes from 'prop-types';
+
 import CardHeader from './../../style-components/card-header';
 import { UserPropTypes } from './../../../redux/modules/user/prop-types';
+
+import './profile-card.css'
 
 const ProfileCard = ({ user, role, creator }) => {
     if (!user) {

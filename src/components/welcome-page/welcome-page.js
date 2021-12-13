@@ -1,9 +1,11 @@
 import React from 'react'
-import './welcome-page.css'
 
 import Login from '../forms/login'
 import ArrowIcon from '../style-components/arrow-icon'
 import IconButton from './../style-components/icon-button';
+
+import './welcome-page.css'
+
 
 const WelcomePage = () => {
     return (

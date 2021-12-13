@@ -1,8 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
 import Button from '../../style-components/button'
-import IconButton from './../../style-components/icon-button';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import IconButton from './../../style-components/icon-button'
 import { deleteProject } from '../../../redux/modules/projects/actions'
 
 const ConfirmForm = ({ id }) => {

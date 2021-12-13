@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import ProfileCard from './../../../profile/profile-card/index';
-import Button from './../../../style-components/button/index';
 import { useSelector } from 'react-redux';
+
+import ProfileCard from './../../../profile/profile-card'
+import Button from './../../../style-components/button'
 
 const Request = ({ request, onApprove, onDecline }) => {
     const users = useSelector(state => state.users.list)

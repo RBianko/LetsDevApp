@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
-import { useRegistration } from '../../../../server-api/registration';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify'
+
+import { useRegistration } from '../../../../server-api/registration';
 
 
 const SignUpForm = ({ active, setActive }) => {
