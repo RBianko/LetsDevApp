@@ -3,10 +3,10 @@ import {
     Redirect
 } from 'react-router-dom'
 
-function PrivateRoute({ children, isAuthenticated, ...rest }) {
+function PrivateRoute({ children, isAuthenticated, ...routeProps }) {
     return (
         <Route
-            {...rest}
+            {...routeProps}
             render={
                 ({ location }) => (
                     isAuthenticated

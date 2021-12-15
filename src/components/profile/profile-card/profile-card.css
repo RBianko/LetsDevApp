@@ -4,8 +4,9 @@
   box-shadow: 5px 7px #000;
 }
 
-.profile__card_small + .profile__card_small {
-  margin-left: 5%;
+.profile__card_small,
+.request__item {
+  margin-right: 5%;
 }
 
 .profile__info {

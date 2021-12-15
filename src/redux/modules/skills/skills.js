@@ -2,9 +2,6 @@ import {
     GET_SKILLS
 } from '../../action-types'
 
-// PROP_TYPES
-// skills: PropTypes.arrayOf(PropTypes.string)
-
 const initialState = [
     'CSS',
     'JS',

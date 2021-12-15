@@ -12,7 +12,7 @@ import FollowListContainer from './../../follow-list/index';
 import Settings from './../../profile/settings/settings';
 import ProjectRequests from './../../project/create-project/project-requests/project-requests';
 
-const ProtectedRoutes = ({ id }) => (
+const ProtectedRoutes = ({ userId }) => (
     <Switch>
         <Suspense
             fallback={<LoaderComponent />}
@@ -51,8 +51,8 @@ const ProtectedRoutes = ({ id }) => (
                 <ProjectRequests />
             </Route>
             <Redirect to={{
-                pathname: `/profile/${id}`,
-                state: { id: id }
+                pathname: `/profile/${userId}`,
+                state: { id: userId }
             }} />
         </Suspense>
     </Switch>

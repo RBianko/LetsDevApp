@@ -119,22 +119,22 @@ export const deleteProjectFail = (error) => {
 }
 
 
-export const applyRequest = (id, _id, role) => {
+export const applyRequest = (projectId, userId, role) => {
     toast.success("Apply request sent!")
     return {
         type: APPLY_REQUEST,
         payload: {
-            projectId: id,
-            userId: _id,
+            projectId,
+            userId,
             forRole: role
         }
     }
 }
 
-export const approveRequest = (id, request) => ({
+export const approveRequest = (projectId, request) => ({
     type: APPROVE_REQUEST,
     payload: {
-        projectId: id,
+        projectId,
         requestId: request.requestId,
         forRole: request.forRole,
         userId: request._id

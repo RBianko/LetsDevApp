@@ -25,18 +25,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const { token, _id, login, logout } = useAuth()
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(setUser({ token, _id, login, logout }))
-    }, [_id, token, dispatch])
-    const user = useSelector(state => state.user)
-
-    useEffect(() => {
         if (_id) {
             dispatch(getCurrentUser(_id))
         }
-    }, [_id])
+    }, [_id, token, dispatch])
 
     return (
         <Suspense fallback={<LoaderComponent />}>
@@ -54,7 +51,7 @@ const App = () => {
                     isAuthenticated={user.isLogedIn}
                 >
                     <Menu />
-                    <ProtectedRoutes id={user._id} />
+                    <ProtectedRoutes userId={user._id} />
                 </PrivateRoute>
                 <Redirect to="/welcome" />
                 <Route path="*">
