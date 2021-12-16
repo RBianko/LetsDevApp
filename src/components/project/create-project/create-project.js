@@ -7,6 +7,7 @@ import { addProject, updateProject } from '../../../redux/modules/projects/actio
 
 import SkillsForm from '../../forms/skills'
 import RolesForm from './../../forms/roles'
+import Button from './../../style-components/button';
 
 import defaultProjectPicture from '../../../img/project.svg'
 import './create-project.css'
@@ -223,12 +224,8 @@ const CreateProject = ({ isEditing = false }) => {
                             </div>
                         </div>
                         <div className="settings__buttons">
-                            <button className="btn settings_btn" onClick={submitClickHandler}>
-                                Submit
-                            </button>
-                            <button className="btn settings_btn" onClick={clearClickHandler}>
-                                Clear
-                            </button>
+                            <Button subClass="settings_btn" onClick={submitClickHandler} text={'Submit'} />
+                            <Button subClass="settings_btn" onClick={clearClickHandler} text={'Clear'} />
                         </div>
                     </div>
                 </div>

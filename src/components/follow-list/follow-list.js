@@ -51,9 +51,9 @@ const FollowList = () => {
                             value={''}
                             onChange={() => { }}>
                             <option hidden>Search by...</option>
-                            <option value="Online">Name</option>
-                            <option value="Offline">Roles</option>
-                            <option value="Active">Skills</option>
+                            <option value="Name">Name</option>
+                            <option value="Roles">Roles</option>
+                            <option value="Skills">Skills</option>
                         </select>
                         <IconButton
                             className={'search__button'}

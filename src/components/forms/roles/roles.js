@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import './roles.css'
+
+import Button from './../../style-components/button';
 
 import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
 import { PropTypes } from 'prop-types';
+import './roles.css'
 
 const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply = true }) => {
     const { roles } = useSelector(({ roles }) => ({ roles }))
@@ -65,11 +67,13 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
                     <h3 className="modal-title">Roles Selection</h3>
                     <div className="modal__select">
                         {selectList}
-                        {multiply ? <button className="btn modal-btn" onClick={addClickHandler}>Add more</button> : null}
+                        {multiply
+                            ? <Button subClass="modal-btn" onClick={addClickHandler} text={'Add more'} />
+                            : null}
                     </div>
                     <div className="modal__buttons">
-                        <button className="modal-btn btn" onClick={submitClickHandler}>Submit</button>
-                        <button className="modal-btn btn" onClick={clearClickHandler}>Clear</button>
+                        <Button subClass="modal-btn" onClick={submitClickHandler} text={'Submit'} />
+                        <Button subClass="modal-btn" onClick={clearClickHandler} text={'Clear'} />
                     </div>
                 </div>
             </div>

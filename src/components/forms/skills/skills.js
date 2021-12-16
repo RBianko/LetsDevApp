@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import './skills.css'
-
-import CloseIcon from '../../../img/xmark.svg'
-import SkillSelector from './skill-selector'
+import React, { useState } from 'react'
 import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
+
+import SkillSelector from './skill-selector'
+import Button from './../../style-components/button';
+
+import CloseIcon from '../../../img/xmark.svg'
+import './skills.css'
 
 const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
     const skills = useSelector(state => state.skills)
@@ -62,11 +64,11 @@ const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
                     <h3 className="modal-title">Skills Selection</h3>
                     <div className="modal__select">
                         {selectList}
-                        <button className="btn modal-btn" onClick={addClickHandler}>Add more</button>
+                        <Button subClass="modal-btn" onClick={addClickHandler} text={'Add more'} />
                     </div>
                     <div className="modal__buttons">
-                        <button className="modal-btn btn" onClick={submitClickHandler}>Submit</button>
-                        <button className="modal-btn btn" onClick={clearClickHandler}>Clear</button>
+                        <Button subClass="modal-btn" onClick={submitClickHandler} text={'Submit'} />
+                        <Button subClass="modal-btn" onClick={clearClickHandler} text={'Clear'} />
                     </div>
                 </div>
             </div>

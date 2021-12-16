@@ -2,15 +2,16 @@ import { Suspense } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { LoaderComponent } from './../../style-components/loader/loader';
 
-import Profile from './../../profile/profile';
-import Project from './../../project/project';
-import MyProjects from './../../project/my-projects/my-projects';
-import CreateProject from './../../project/create-project/index';
-import ProjectSearch from './../../search/projects-search/project-search';
-import DevsSearch from './../../search/devs-search/index';
-import FollowListContainer from './../../follow-list/index';
-import Settings from './../../profile/settings/settings';
-import ProjectRequests from './../../project/create-project/project-requests/project-requests';
+import Profile from './../../profile';
+import Project from './../../project';
+import MyProjects from './../../project/my-projects';
+import CreateProject from './../../project/create-project';
+import ProjectSearch from './../../search/projects-search';
+import DevsSearch from './../../search/devs-search';
+import FollowListContainer from './../../follow-list';
+import Settings from './../../profile/settings';
+import ProjectRequests from './../../project/create-project/project-requests';
+import FollowList from './../../follow-list';
 
 const ProtectedRoutes = ({ userId }) => (
     <Switch>
@@ -49,6 +50,12 @@ const ProtectedRoutes = ({ userId }) => (
             </Route>
             <Route path='/requests' >
                 <ProjectRequests />
+            </Route>
+            <Route path='/followers'>
+                <FollowList />
+            </Route>
+            <Route path='/following'>
+                <FollowList />
             </Route>
             <Redirect to={{
                 pathname: `/profile/${userId}`,

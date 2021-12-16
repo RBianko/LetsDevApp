@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useAuthorization } from '../../../../server-api/authorization.js';
 import { useSelector } from 'react-redux';
 
+import Button from './../../../style-components/button';
+
 const AuthForm = ({ active, setActive }) => {
-    const { authorization, loading } = useAuthorization()
+    const { authorization } = useAuthorization()
     const user = useSelector(state => state.user)
 
     const [form, setForm] = useState({
@@ -29,14 +31,14 @@ const AuthForm = ({ active, setActive }) => {
                 <form className="tab-content__form" action="">
                     <input className="form-input" type="email" name="email" placeholder="Email" required onChange={onChangeHandler} />
                     <input className="form-input" type="password" name="password" placeholder="Password" required onChange={onChangeHandler} />
-                    <button className="form-btn btn" onClick={loginHandler}>Login</button>
+                    <Button subClass="form-btn" onClick={loginHandler} text={'Login'} />
                 </form>
                 <form className="forgot-password" action="">
                     <input id="forgot-password-toggle" type="checkbox" />
                     <label className="forgot-password__link" htmlFor="forgot-password-toggle">forgot password?</label>
                     <div className="forgot-password-content">
                         <input className="form-input form-input_forgot" type="email" placeholder="Enter your email" required />
-                        <button className="form-btn_go btn" disabled={loading} type="submit">Submit</button>
+                        <Button subClass="form-btn_go" text={'Submit'} />
                     </div>
                 </form>
             </div>

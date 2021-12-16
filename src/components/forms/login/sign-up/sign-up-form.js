@@ -4,9 +4,11 @@ import { toast } from 'react-toastify'
 
 import { useRegistration } from '../../../../server-api/registration';
 
+import Button from './../../../style-components/button';
+
 
 const SignUpForm = ({ active, setActive }) => {
-    const { registration, loading } = useRegistration()
+    const { registration } = useRegistration()
     const user = useSelector(state => state.user)
 
     const [form, setForm] = useState({
@@ -38,7 +40,7 @@ const SignUpForm = ({ active, setActive }) => {
                     <input className="form-input" type="email" name="email" placeholder="Email" required onChange={onChangeHandler} />
                     <input className="form-input" type="password" name="password" placeholder="Password" required onChange={onChangeHandler} />
                     <input className="form-input" type="password" name="repeatPassword" placeholder="Repeat password" required onChange={onChangeHandler} />
-                    <button className="form-btn btn" type="submit" disabled={loading} onClick={signUpHandler}>Sign Up</button>
+                    <Button subClass="form-btn" onClick={signUpHandler} text={'Sign Up'} />
                 </form>
             </div>
         </>

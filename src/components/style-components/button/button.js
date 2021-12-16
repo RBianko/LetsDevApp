@@ -5,7 +5,7 @@ import './button.css'
 
 
 const Button = ({ subClass = '', onClick, text, data = null }) =>
-    <button className={`btn ${subClass}`} onClick={() => onClick(data)}>
+    <button className={`btn ${subClass}`} onClick={(e) => onClick(data || e)}>
         {text}
     </button>
 
