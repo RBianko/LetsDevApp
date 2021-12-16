@@ -25,13 +25,10 @@ const Project = () => {
     const dispatch = useDispatch()
     const { global, other } = useSkills()
 
-    useEffect(() => {
-        dispatch(getProjectDetails(state.id));
-    }, [dispatch, state.id]);
-
     const user = useSelector(state => state.user)
-
     const { project, loadingProjectDetails } = useSelector((state) => state.projects);
+    const { list: users, loadingUsers } = useSelector(state => state.users)
+
     const {
         title = '',
         picture = '',
@@ -45,10 +42,13 @@ const Project = () => {
     } = project
 
     useEffect(() => {
+        dispatch(getProjectDetails(state.id));
+    }, [dispatch, state.id]);
+
+    useEffect(() => {
         if (devs.length > 0) dispatch(getUsers([...devs].map(dev => dev._id)))
     }, [devs, dispatch]);
 
-    const { list: users, loadingUsers } = useSelector(state => state.users)
 
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
