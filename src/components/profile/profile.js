@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { forIn } from 'lodash'
 
 import { followToggle } from './../../redux/modules/user/actions'
 import { getProjects } from './../../redux/modules/projects/actions'
@@ -62,11 +63,9 @@ const Profile = () => {
     const otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     const socialsList = []
-    for (const key in socials) {
-        if (socials[key]) {
-            socialsList.push(<SocialLink key={`${key}`} link={socials[key]} media={key} />)
-        }
-    }
+    forIn(socials, (value, key) => {
+        socialsList.push(<SocialLink key={key} link={value} media={key} />)
+    })
 
     let userProjectsList = []
     if (!loadingProjects && !loadingUser && projectsList.length) {
