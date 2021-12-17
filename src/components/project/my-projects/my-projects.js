@@ -12,30 +12,30 @@ import searchIcon from '../../../img/search.svg'
 import './my-projects.css'
 
 
-
 const MyProjects = () => {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
-    useEffect(() => dispatch(getUser(currentUser._id)), [dispatch, currentUser._id])
-
     const { user, loadingUser } = useSelector(state => state.users)
+    const { list: projects, loadingProjects } = useSelector((state) => state.projects);
+
+    useEffect(() => dispatch(getUser(currentUser._id)), [dispatch, currentUser._id])
     useEffect(() => {
         if (!loadingUser) {
             dispatch(getProjects(user.projects))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    const { list: projects, loadingProjects } = useSelector((state) => state.projects);
 
     let projectsList = []
-    let projectsListContent = loadingProjects || loadingUser ? <LoaderComponent /> : null
-
     if (!loadingProjects && projects.length > 0) {
         projectsList = projects.map(project => {
             return <ProjectCard key={project._id} project={project} />
         })
     }
-    projectsListContent = projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>
+
+    const projectsListContent = loadingProjects || loadingUser
+        ? <LoaderComponent />
+        : (projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>)
 
     return (
         <div className="container">
@@ -55,10 +55,10 @@ const MyProjects = () => {
                             value={''}
                             onChange={() => { }}>
                             <option hidden>Search by...</option>
-                            <option value="Online">Title</option>
-                            <option value="Offline">Need list</option>
-                            <option value="Active">Skills</option>
-                            <option value="Done">Status</option>
+                            <option value="Title">Title</option>
+                            <option value="Need">Need list</option>
+                            <option value="Skills">Skills</option>
+                            <option value="Status">Status</option>
                         </select>
                         <IconButton
                             className={'search__button'}

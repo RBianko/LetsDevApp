@@ -8,7 +8,6 @@ import MyProjects from './../../project/my-projects';
 import CreateProject from './../../project/create-project';
 import ProjectSearch from './../../search/projects-search';
 import DevsSearch from './../../search/devs-search';
-import FollowListContainer from './../../follow-list';
 import Settings from './../../profile/settings';
 import ProjectRequests from './../../project/create-project/project-requests';
 import FollowList from './../../follow-list';
@@ -38,12 +37,6 @@ const ProtectedRoutes = ({ userId }) => (
             </Route>
             <Route path='/search-devs'>
                 <DevsSearch />
-            </Route>
-            <Route path='/followers' >
-                <FollowListContainer />
-            </Route>
-            <Route path='/following' >
-                <FollowListContainer />
             </Route>
             <Route path='/settings' >
                 <Settings />

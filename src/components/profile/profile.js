@@ -18,16 +18,13 @@ import './profile.css'
 
 
 const Profile = () => {
-    let { state } = useLocation()
+    const { state } = useLocation()
+    const dispatch = useDispatch()
+
+    const [followState, setFollowState] = useState('Follow')
+
     const currentUser = useSelector(state => state.user)
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
-
-    let dispatch = useDispatch()
-    useEffect(() => {
-        const id = state?.id || currentUser._id
-        dispatch(getUser(id))
-    }, [dispatch, state])
-
     const { user, loadingUser } = useSelector(state => state.users)
     const {
         _id,
@@ -44,50 +41,55 @@ const Profile = () => {
     } = user
 
     useEffect(() => {
+        const id = state?.id || currentUser._id
+        dispatch(getUser(id))
+    }, [dispatch, state])
+
+    useEffect(() => {
         if (!loadingUser && projects.length > 0) {
             dispatch(getProjects(projects))
         }
     }, [loadingUser])
 
+    useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, user])
+
+
     const { global, other } = useSkills()
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    let noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>No selected skills</p> : null
-    let otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    const noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>No selected skills</p> : null
+    const otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
-    let socialsList = []
-    for (let key in socials) {
+    const socialsList = []
+    for (const key in socials) {
         if (socials[key]) {
             socialsList.push(<SocialLink key={`${key}`} link={socials[key]} media={key} />)
         }
     }
 
     let userProjectsList = []
-    if (!loadingProjects && !loadingUser) {
-        userProjectsList = projectsList.map(projects =>
+    if (!loadingProjects && !loadingUser && projectsList.length) {
+        userProjectsList = projectsList.map(project =>
             <ProjectCardSmall
-                key={projects?._id}
-                project={projects}
+                key={project._id}
+                project={project}
             />)
     }
 
-    let projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
+    const projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
 
-    let socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">No contacts</span>
+    const socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">No contacts</span>
 
-    let profileLocation = `${city}, ${country}`
-    let profileRoles = roles.join(', ')
+    const profileLocation = `${city}, ${country}`
+    const profileRoles = roles.join(', ')
 
-    const [followState, setFollowState] = useState('Follow')
     const onFollowToggle = () => {
         dispatch(followToggle({ followerId: currentUser._id, followingId: user._id }))
     }
 
-    useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, user])
-
     const currentUserProfile = currentUser._id === _id
-    let followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
+    const followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
 
     const content = loadingUser || loadingProjects
         ? <LoaderComponent />

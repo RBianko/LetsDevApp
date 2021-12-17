@@ -4,12 +4,11 @@ import { PropTypes } from 'prop-types'
 
 const SkillSelector = ({ skill, skills, selectSkill, id }) => {
     const [newSkill, setNewSkill] = useState(skill)
+    useEffect(() => selectSkill(newSkill, id), [newSkill])
 
     const skillsOptions = skills.map(skill => (
         <option key={skill} value={skill}>{skill}</option>
     ))
-
-    useEffect(() => selectSkill(newSkill, id), [newSkill])
 
     return (
         <div className="settings__item">

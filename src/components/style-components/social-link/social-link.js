@@ -11,7 +11,7 @@ import './social-link.css'
 const SocialLink = ({ media, link }) => {
 
     let icon = null
-    let icons = {
+    const icons = {
         'facebook': facebook,
         'github': github,
         'linkedin': linkedin,

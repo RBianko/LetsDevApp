@@ -11,11 +11,11 @@ import './skills.css'
 const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
     const skills = useSelector(state => state.skills)
 
-    let [skillsList, setSkillsList] = useState(currentSkills)
-    let [isChecked, setIsChecked] = useState(false)
+    const [skillsList, setSkillsList] = useState(currentSkills)
+    const [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedSkill, id) => {
-        let newSkillsList = [...skillsList]
+        const newSkillsList = [...skillsList]
         if (selectedSkill) {
             if (id < skillsList.length) {
                 newSkillsList.splice(id, 1, selectedSkill)
@@ -26,13 +26,13 @@ const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
         }
     }
 
-    let skillSelector = (skill, id) =>
+    const skillSelector = (skill, id) =>
         <SkillSelector key={`${id}-${skill}`} skill={skill} skills={skills} id={id} selectSkill={onSelectHandler} />
 
     const initialSelectors = skillsList.map((skill, id) => skillSelector(skill, id))
 
-    let [selectList, setSelectList] = useState(initialSelectors)
-    let [counter, setCounter] = useState(initialSelectors.length)
+    const [selectList, setSelectList] = useState(initialSelectors)
+    const [counter, setCounter] = useState(initialSelectors.length)
 
     const addClickHandler = () => {
         setSelectList([...selectList, skillSelector('', counter)])

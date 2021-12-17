@@ -16,10 +16,11 @@ const ProjectRequests = () => {
     const { _id, requests } = useSelector(state => state.projects.project)
     const { loadingUsers } = useSelector(state => state.users)
 
-    const ids = requests.map(request => request._id)
     useEffect(() => {
         dispatch(getUsers(ids))
     }, [])
+
+    const ids = requests.map(request => request._id)
 
     const onApprove = useCallback((request) =>
         dispatch(approveRequest(_id, request)),

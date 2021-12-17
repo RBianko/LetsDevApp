@@ -21,7 +21,7 @@ import linkIcon from '../../img/link.svg'
 
 
 const Project = () => {
-    let { state } = useLocation()
+    const { state } = useLocation()
     const dispatch = useDispatch()
     const { global, other } = useSkills()
 
@@ -53,8 +53,8 @@ const Project = () => {
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
-    let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
+    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     const creator = devs.find(user => user.creator)
     const getRole = (id) => devs.find(dev => dev._id === id)?.role
@@ -67,7 +67,7 @@ const Project = () => {
         />
     })
 
-    let descriptionContent = description ? description : <span>No description yet.</span>
+    const descriptionContent = description ? description : <span>No description yet.</span>
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
         ? <div className="need-list">

@@ -20,8 +20,8 @@ const ProjectCard = ({ project }) => {
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    let noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
-    let otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
+    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
 
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
@@ -33,7 +33,7 @@ const ProjectCard = ({ project }) => {
         </div>
         : null
 
-    let descriptionContent = description ? description : <span>No description yet.</span>
+    const descriptionContent = description ? description : <span>No description yet.</span>
 
     return (
         <>

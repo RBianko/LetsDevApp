@@ -57,13 +57,13 @@ const usersReduser = (state = initialState, { type, payload }) => {
             if (!payload._id && !payload.token) {
                 return state
             }
-            let newUser = Object.assign({}, payload)
-            let registred = state.list.some(user => user._id === newUser._id)
+            const newUser = Object.assign({}, payload)
+            const registred = state.list.some(user => user._id === newUser._id)
             if (!registred) {
                 state = { ...state, list: [...state.list, newUser] }
             } else {
-                let list = state.list.slice()
-                let userIndex = list.findIndex(user => user._id === newUser._id)
+                const list = state.list.slice()
+                const userIndex = list.findIndex(user => user._id === newUser._id)
                 list.splice(userIndex, 1, newUser)
                 state = { ...state, list: list }
             }

@@ -7,7 +7,7 @@ import CloseIcon from '../../../img/xmark.svg'
 import './login.css'
 
 const Login = () => {
-    let [activeForm, setActiveForm] = useState(true)
+    const [activeForm, setActiveForm] = useState(true)
 
     return (
         <>

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { useRegistration } from '../../../../server-api/registration';
 
 import Button from './../../../style-components/button';
+import FormInput from './../../../style-components/input/form-input';
 
 
 const SignUpForm = ({ active, setActive }) => {
@@ -24,7 +25,7 @@ const SignUpForm = ({ active, setActive }) => {
         if (form.password === form.repeatPassword) {
             registration(form, user)
         } else {
-            toast.error('Passwords doesnt match!')
+            toast.error(`Passwords don't match!`)
         }
 
     }
@@ -37,9 +38,9 @@ const SignUpForm = ({ active, setActive }) => {
             </label>
             <div className="tab-content">
                 <form className="tab-content__form" action="">
-                    <input className="form-input" type="email" name="email" placeholder="Email" required onChange={onChangeHandler} />
-                    <input className="form-input" type="password" name="password" placeholder="Password" required onChange={onChangeHandler} />
-                    <input className="form-input" type="password" name="repeatPassword" placeholder="Repeat password" required onChange={onChangeHandler} />
+                    <FormInput type={'email'} name={'email'} placeholder={'Email'} onChange={onChangeHandler} />
+                    <FormInput type={'password'} name={'password'} placeholder={'Password'} onChange={onChangeHandler} />
+                    <FormInput type={'password'} name={'repeatPassword'} placeholder={'Repeat password'} onChange={onChangeHandler} />
                     <Button subClass="form-btn" onClick={signUpHandler} text={'Sign Up'} />
                 </form>
             </div>

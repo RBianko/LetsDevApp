@@ -275,7 +275,7 @@ a {
     right: 10px !important;
   }
 
-  .input__item {
+  .settings__field {
     flex-direction: column !important;
     margin-bottom: 40px;
   }

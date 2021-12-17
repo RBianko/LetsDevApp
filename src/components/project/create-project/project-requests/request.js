@@ -9,19 +9,19 @@ const Request = ({ request, onApprove, onDecline }) => {
     const { _id, forRole } = request
     const user = users.find(user => user._id === _id)
 
-    const [processed, setProcessed] = useState(null)
+    const [processed, setProcessed] = useState([false])
 
     const onApproveClick = () => {
         onApprove(request)
-        setProcessed(<span className="processed-request">&#10004; Approved</span>)
+        setProcessed([true, '\u2714', 'Approved'])
     }
 
     const onDeclineClick = () => {
         onDecline(request)
-        setProcessed(<span className="processed-request">&#10006; Declined</span>)
+        setProcessed([true, '\u2718', 'Declined'])
     }
 
-    const buttons = processed ? null :
+    const buttons = processed[0] ? null :
         <>
             <Button subClass="settings_btn" onClick={() => onApproveClick()} text={'Approve'} />
             <Button subClass="settings_btn" onClick={() => onDeclineClick()} text={'Decline'} />
@@ -36,7 +36,7 @@ const Request = ({ request, onApprove, onDecline }) => {
                     <span className="profile__info_role-small">{forRole}</span>
                 </div>
                 <div className="info__buttons" >
-                    {processed}
+                    <span className="processed-request">{processed[1]} {processed[2]}</span>
                     {buttons}
                 </div>
             </div>

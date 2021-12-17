@@ -22,12 +22,11 @@ import './settings.css'
 const Settings = () => {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
+    const user = useSelector(state => state.users.user)
 
     useEffect(() => {
         dispatch(getUser(currentUser._id))
     }, [dispatch, currentUser._id])
-
-    const user = useSelector(state => state.users.user)
 
     const {
         _id,
@@ -75,8 +74,8 @@ const Settings = () => {
     const [editedLinkedin, setLinkedin] = useState(linkedin)
     const [editedGithub, setGithub] = useState(github)
 
-    let rolesString = editedRoles.join(', ')
-    let skillsString = editedSkills.join(', ')
+    const rolesString = editedRoles.join(', ')
+    const skillsString = editedSkills.join(', ')
 
     const event = {
         'firstName': () => setFirstName(firstNameInput.current.value),
@@ -180,14 +179,14 @@ const Settings = () => {
                                     </div>
 
                                     <div className="settings__item">
-                                        <div className="input__item">
+                                        <div className="settings__field">
                                             <Input id="roles" type="text" disabled={true} placeholder="Roles" value={rolesString} ref={rolesInput} onChange={() => onChangeHandler('roles')} />
                                             <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_roles'} text={'Edit'} />
                                         </div>
                                     </div>
 
                                     <div className="settings__item">
-                                        <div className="input__item">
+                                        <div className="settings__field">
                                             <Input id="skills" type="text" disabled={true} placeholder="Skills" value={skillsString} ref={skillsInput} onChange={() => onChangeHandler('skills')} />
                                             <IconButton className={'btn input_btn'} htmlFor={'modal__toggle_skills'} text={'Edit'} />
                                         </div>
@@ -200,25 +199,25 @@ const Settings = () => {
                             <label className="title-label" htmlFor="vk">Add socials:</label>
                             <div className="settings-socials__list">
                                 <div className="settings__item">
-                                    <div className="social-input__item">
+                                    <div className="social-settings__field">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-vk'} src={vkIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedVk} ref={vkInput} onChange={() => onChangeHandler('vk')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="social-input__item">
+                                    <div className="social-settings__field">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-facebook'} src={facebookIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedFacebook} ref={facebookInput} onChange={() => onChangeHandler('facebook')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="social-input__item">
+                                    <div className="social-settings__field">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-linkedin'} src={linkedinIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedLinkedin} ref={linkedinInput} onChange={() => onChangeHandler('linkedin')} />
                                     </div>
                                 </div>
                                 <div className="settings__item">
-                                    <div className="social-input__item">
+                                    <div className="social-settings__field">
                                         <Icon className={'social-icon social-icon_settings'} alt={'add-github'} src={githubIcon} />
                                         <Input id="vk" type="text" placeholder="Link" value={editedGithub} ref={githubInput} onChange={() => onChangeHandler('github')} />
                                     </div>

@@ -4,12 +4,11 @@ import { PropTypes } from 'prop-types';
 
 const RoleSelector = ({ role, roles, selectRole, id }) => {
     const [newRole, setNewRole] = useState(role)
+    useEffect(() => selectRole(newRole, id), [newRole])
 
     const rolesOptions = roles.map((role, id) => (
         <option key={role + id} value={role}>{role}</option>
     ))
-
-    useEffect(() => selectRole(newRole, id), [newRole])
 
     return (
         <div className="settings__item">

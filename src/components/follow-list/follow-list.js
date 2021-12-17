@@ -3,21 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { getUser, getUsers } from './../../redux/modules/users/actions';
-import searchIcon from '../../img/search.svg'
+
 import SearchUsers from '../search';
 import IconButton from './../style-components/icon-button/icon-button';
+import SearchInput from './../style-components/input/search-input';
 import { LoaderComponent } from './../style-components/loader/loader';
 
+import searchIcon from '../../img/search.svg'
 import './follow-list.css'
 
 const FollowList = () => {
     const dispatch = useDispatch()
     const location = useLocation()
+
+    const { list: users, loadingUsers } = useSelector(state => state.users)
     const { _id, loadingUser } = useSelector(state => state.user)
-    useEffect(() => dispatch(getUser(_id)), [_id, dispatch])
     const currentUser = useSelector(state => state.users.user)
     const { follow } = currentUser
 
+    useEffect(() => dispatch(getUser(_id)), [_id, dispatch])
     useEffect(() => {
         if (!loadingUser) {
             if (location.pathname === '/followers')
@@ -27,11 +31,12 @@ const FollowList = () => {
                 dispatch(getUsers(follow.following))
         }
     }, [dispatch, follow.followers, follow.following, loadingUser, location.pathname]);
-    const { list: users, loadingUsers } = useSelector(state => state.users)
 
     const content = loadingUsers || loadingUser
         ? <LoaderComponent />
         : <SearchUsers currentUser={currentUser} users={users} />
+
+    const searchOptions = ['Name', 'Roles', 'Skills']
 
     return (
         <div className='container'>
@@ -42,19 +47,7 @@ const FollowList = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Search</p>
                     <div className="search">
-                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { }} />
-                        <select
-                            className="search__select"
-                            id="status"
-                            type="text"
-                            placeholder="Status"
-                            value={''}
-                            onChange={() => { }}>
-                            <option hidden>Search by...</option>
-                            <option value="Name">Name</option>
-                            <option value="Roles">Roles</option>
-                            <option value="Skills">Skills</option>
-                        </select>
+                        <SearchInput onInputChange={() => { }} onSelectChange={() => { }} options={searchOptions} />
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}

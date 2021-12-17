@@ -11,6 +11,7 @@ import Button from './../../style-components/button';
 
 import defaultProjectPicture from '../../../img/project.svg'
 import './create-project.css'
+import Input from './../../style-components/input/index';
 
 
 const CreateProject = ({ isEditing = false }) => {
@@ -20,7 +21,7 @@ const CreateProject = ({ isEditing = false }) => {
 
     const currentUser = useSelector(state => state.user)
 
-    let currentProject = project || {
+    const currentProject = project || {
         title: '',
         picture: defaultProjectPicture,
         status: '',
@@ -35,7 +36,6 @@ const CreateProject = ({ isEditing = false }) => {
                 creator: true
             }
         ],
-
         needList: []
     }
 
@@ -68,8 +68,8 @@ const CreateProject = ({ isEditing = false }) => {
     const [newNeedList, setNeedList] = useState(needList)
     const [newSkills, setSkills] = useState(skills)
 
-    let needListString = newNeedList.join(', ')
-    let skillsStackList = newSkills.join(', ')
+    const needListString = newNeedList.join(', ')
+    const skillsStackList = newSkills.join(', ')
 
     const event = {
         'title': () => setTitle(titleInput.current.value),
@@ -86,7 +86,7 @@ const CreateProject = ({ isEditing = false }) => {
     }
 
     const submitClickHandler = () => {
-        currentProject = {
+        const result = {
             _id,
             title: newTitle,
             status: newStatus,
@@ -98,10 +98,11 @@ const CreateProject = ({ isEditing = false }) => {
             requests,
             devs
         }
+
         if (isEditing) {
-            dispatch(updateProject(currentProject))
+            dispatch(updateProject(result))
         } else {
-            dispatch(addProject(currentProject))
+            dispatch(addProject(result))
         }
 
         history.push('/my-projects')
@@ -136,15 +137,7 @@ const CreateProject = ({ isEditing = false }) => {
                             <div className="profile__info">
                                 <div className="settings-field">
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="title">Title</label>
-                                        <input
-                                            className="text-input"
-                                            id="title"
-                                            type="text"
-                                            placeholder="Title"
-                                            value={newTitle}
-                                            ref={titleInput}
-                                            onChange={() => onChangeHandler('title')} />
+                                        <Input id="title" type="text" placeholder="Title" value={newTitle} ref={titleInput} onChange={() => onChangeHandler('title')} />
                                     </div>
 
                                     <div className="settings__item">
@@ -168,7 +161,7 @@ const CreateProject = ({ isEditing = false }) => {
 
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="role">Need roles</label>
-                                        <div className="input__item">
+                                        <div className="settings__field">
                                             <input
                                                 className="text-input input_complex" disabled
                                                 id="role"
@@ -183,7 +176,7 @@ const CreateProject = ({ isEditing = false }) => {
 
                                     <div className="settings__item">
                                         <label className="text-label" htmlFor="skills">Technical stack</label>
-                                        <div className="input__item">
+                                        <div className="settings__field">
                                             <input
                                                 className="text-input input_complex" disabled
                                                 id="skills"
@@ -197,15 +190,7 @@ const CreateProject = ({ isEditing = false }) => {
                                     </div>
 
                                     <div className="settings__item">
-                                        <label className="text-label" htmlFor="link">Link to Project</label>
-                                        <input
-                                            className="text-input"
-                                            id="link"
-                                            type="text"
-                                            placeholder="Link"
-                                            value={newLink}
-                                            ref={linkInput}
-                                            onChange={() => onChangeHandler('link')} />
+                                        <Input id="link" type="text" placeholder="Link to Project" value={newLink} ref={linkInput} onChange={() => onChangeHandler('link')} />
                                     </div>
                                 </div>
                             </div>

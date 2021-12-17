@@ -20,7 +20,7 @@ import './skill-icon.css'
 const SkillIcon = ({ skill }) => {
 
     let icon = null
-    let icons = {
+    const icons = {
         'CSS': cssIcon,
         'HTML': htmlIcon,
         'JS': jsIcon,
