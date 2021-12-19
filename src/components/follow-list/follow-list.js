@@ -9,12 +9,15 @@ import IconButton from './../style-components/icon-button/icon-button';
 import SearchInput from './../style-components/input/search-input';
 import { LoaderComponent } from './../style-components/loader/loader';
 
+import locale from '../../locale/en';
+
 import searchIcon from '../../img/search.svg'
 import './follow-list.css'
 
 const FollowList = () => {
     const dispatch = useDispatch()
     const location = useLocation()
+    const { header, placeholder } = locale.translation
 
     const { list: users, loadingUsers } = useSelector(state => state.users)
     const { _id, loadingUser } = useSelector(state => state.user)
@@ -36,13 +39,13 @@ const FollowList = () => {
         ? <LoaderComponent />
         : <SearchUsers currentUser={currentUser} users={users} />
 
-    const searchOptions = ['Name', 'Roles', 'Skills']
+    const searchOptions = [placeholder.name, placeholder.roles, placeholder.skills]
 
     return (
         <div className='container'>
             <div className='card card_search'>
                 <div className="card__header">
-                    <div className="header__title">follow.list</div>
+                    <div className="header__title">{header.followList}</div>
                 </div>
                 <div className="card__content card__content-search">
                     <p className="search__title">Search</p>

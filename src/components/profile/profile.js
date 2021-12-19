@@ -15,12 +15,15 @@ import SocialLink from './../style-components/social-link'
 import Button from './../style-components/button'
 import { LoaderComponent } from './../style-components/loader/loader'
 
+import locale from '../../locale/en'
+
 import './profile.css'
 
 
 const Profile = () => {
     const { state } = useLocation()
     const dispatch = useDispatch()
+    const { header, text } = locale.translation
 
     const [followState, setFollowState] = useState('Follow')
 
@@ -59,8 +62,8 @@ const Profile = () => {
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    const noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>No selected skills</p> : null
-    const otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    const noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>{text.noSelectedSkills}</p> : null
+    const otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
 
     const socialsList = []
     forIn(socials, (value, key) => {
@@ -76,9 +79,9 @@ const Profile = () => {
             />)
     }
 
-    const projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} have no Projects yet.</p>
+    const projectListContent = projects.length > 0 ? userProjectsList : <p>{firstName} {text.haveNoProjects}</p>
 
-    const socialsTitle = socialsList.length > 0 ? <span className="socials__title">Contact me:</span> : <span className="socials__title">No contacts</span>
+    const socialsTitle = socialsList.length > 0 ? <span className="socials__title">{text.contactMe}</span> : <span className="socials__title">No contacts</span>
 
     const profileLocation = `${city}, ${country}`
     const profileRoles = roles.join(', ')
@@ -124,11 +127,11 @@ const Profile = () => {
             </div>
             <div className="profile-content_body">
                 <div className="profile__description">
-                    <h3 className="description_title">Bio</h3>
+                    <h3 className="description_title">{text.bio}</h3>
                     <p className="description_text">{bio}</p>
                 </div>
                 <div className="profile__projects">
-                    <h3 className="projects__title">Projects List</h3>
+                    <h3 className="projects__title">{text.projectsList}</h3>
                     <div className="projects__list">
                         {projectListContent}
                     </div>
@@ -140,7 +143,7 @@ const Profile = () => {
         <div className="container">
             <div className="profile__card card">
                 <div className="card__header">
-                    <div className="header__title">profile.page</div>
+                    <div className="header__title">{header.profilePage}</div>
                 </div>
                 <div className="card__content profile-content">
                     {content}

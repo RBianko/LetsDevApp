@@ -14,6 +14,8 @@ import IconButton from '../style-components/icon-button'
 import RolesForm from '../forms/roles'
 import Icon from '../style-components/icon'
 
+import locale from '../../locale/en'
+
 import editIcon from '../../img/edit.svg'
 import deleteIcon from '../../img/delete.svg'
 import requestsIcon from '../../img/request.svg'
@@ -24,6 +26,11 @@ const Project = () => {
     const { state } = useLocation()
     const dispatch = useDispatch()
     const { global, other } = useSkills()
+    const { placeholder, text, header, button, tooltip } = locale.translation
+
+    useEffect(() => {
+        dispatch(getProjectDetails(state.id));
+    }, [dispatch, state.id]);
 
     const user = useSelector(state => state.user)
     const { project, loadingProjectDetails } = useSelector((state) => state.projects);
@@ -42,19 +49,14 @@ const Project = () => {
     } = project
 
     useEffect(() => {
-        dispatch(getProjectDetails(state.id));
-    }, [dispatch, state.id]);
-
-    useEffect(() => {
         if (devs.length > 0) dispatch(getUsers([...devs].map(dev => dev._id)))
     }, [devs, dispatch]);
-
 
     const globalSkillsList = global(skills)
     const otherSkillsList = other(skills)
 
-    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>No selected skills</p> : null
-    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">Other Technologies:</span> : null
+    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>{text.noSelectedSkills}</p> : null
+    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
 
     const creator = devs.find(user => user.creator)
     const getRole = (id) => devs.find(dev => dev._id === id)?.role
@@ -67,11 +69,11 @@ const Project = () => {
         />
     })
 
-    const descriptionContent = description ? description : <span>No description yet.</span>
+    const descriptionContent = description ? description : <span>{text.noDescription}</span>
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
         ? <div className="need-list">
-            <h3 className="need-list__title">We need</h3>
+            <h3 className="need-list__title">{text.weNeed}</h3>
             <span className="need-list__roles">
                 {needListString}
             </span>
@@ -82,18 +84,18 @@ const Project = () => {
     const isCreator = userInProject && userInProject.creator
 
     const applyButton = (needList.length > 0) && !userInProject
-        ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={'Apply for Project'} data={state.id} />
+        ? <IconButton className={'btn apply-btn'} htmlFor={'modal__toggle_roles'} text={button.applyForProject} data={state.id} />
         : null
 
     const links = isCreator
         ? <div className="project__creator-links">
             <Link to={{ pathname: "/edit-project", state: project }}>
-                <Icon className={'creator-link__icon'} alt={'Edit'} src={editIcon} title={'Edit project'} />
+                <Icon className={'creator-link__icon'} alt={'Edit'} src={editIcon} title={tooltip.editProject} />
             </Link>
             {requests.length > 0
                 ?
                 <Link to={{ pathname: "/requests", state: project }}>
-                    <Icon className={'creator-link__icon'} alt={'Requests'} src={requestsIcon} title={'Requests for project'} />
+                    <Icon className={'creator-link__icon'} alt={'Requests'} src={requestsIcon} title={tooltip.requestsForProject} />
                     <span className={'notification-counter'}>{requests.length}</span>
                 </Link>
                 : null}
@@ -101,7 +103,7 @@ const Project = () => {
                 className={'delete-btn'}
                 classNameIcon={'arrow_icon'}
                 htmlFor={'modal__toggle_confirm'}
-                child={<Icon className={'creator-link__icon'} alt={'Edit'} src={deleteIcon} title={'Edit project'} />}
+                child={<Icon className={'creator-link__icon'} alt={'Delete'} src={deleteIcon} title={tooltip.deleteProject} />}
                 data={state.id}
             />
         </div>
@@ -115,6 +117,7 @@ const Project = () => {
             return pattern.exec(link)[1]
         } else return null
     }
+
     const shortLink = domainName(link)
     const linkContent = shortLink
         ? <a className="social__link" href={link} target="_blank" rel="noopener noreferrer">
@@ -156,13 +159,13 @@ const Project = () => {
                 {needListContent}
                 <div className="project__description">
                     <div className="socials__list" >
-                        <h3 className="description__title">Description</h3>
+                        <h3 className="description__title">{placeholder.description}</h3>
                     </div>
                     <p className="description__text">{descriptionContent}</p>
                 </div>
 
                 <div className="project__devs">
-                    <h3 className="devs__title">Devs List</h3>
+                    <h3 className="devs__title">{text.devsList}</h3>
                     <div className="devs__list">
                         {devsList}
                     </div>
@@ -175,7 +178,7 @@ const Project = () => {
         <ConfirmForm id={state.id} />
         <div className="project__card card">
             <div className="card__header">
-                <div className="header__title">project.page</div>
+                <div className="header__title">{header.projectPage}</div>
             </div>
             <div className="card__content project-content">
                 {projectContent}

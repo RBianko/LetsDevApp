@@ -7,6 +7,9 @@ import { getUser } from './../../../redux/modules/users/actions'
 import { LoaderComponent } from './../../style-components/loader/loader'
 import IconButton from './../../style-components/icon-button'
 import ProjectCard from '../project-card'
+import SearchInput from './../../style-components/input/search-input';
+
+import locale from '../../../locale/en'
 
 import searchIcon from '../../../img/search.svg'
 import './my-projects.css'
@@ -17,6 +20,7 @@ const MyProjects = () => {
     const currentUser = useSelector(state => state.user)
     const { user, loadingUser } = useSelector(state => state.users)
     const { list: projects, loadingProjects } = useSelector((state) => state.projects);
+    const { placeholder, text, header } = locale.translation
 
     useEffect(() => dispatch(getUser(currentUser._id)), [dispatch, currentUser._id])
     useEffect(() => {
@@ -35,31 +39,20 @@ const MyProjects = () => {
 
     const projectsListContent = loadingProjects || loadingUser
         ? <LoaderComponent />
-        : (projectsList.length > 0 ? projectsList : <h2>You have no projects yet.</h2>)
+        : (projectsList.length > 0 ? projectsList : <h2>{text.youHaveNoProjects}</h2>)
+
+    const searchOptions = [placeholder.title, placeholder.needRoles, placeholder.skills, placeholder.status]
 
     return (
         <div className="container">
             <div className='card card_search'>
                 <div className="card__header">
-                    <div className="header__title">search.engine</div>
+                    <div className="header__title">{header.searchEngine}</div>
                 </div>
                 <div className="card__content card__content-search">
-                    <p className="search__title">Projects Search</p>
+                    <p className="search__title">{text.projectSearch}</p>
                     <div className="search">
-                        <input className="search__input" type="text" placeholder="Type here" onChange={e => { }} />
-                        <select
-                            className="search__select"
-                            id="status"
-                            type="text"
-                            placeholder="Status"
-                            value={''}
-                            onChange={() => { }}>
-                            <option hidden>Search by...</option>
-                            <option value="Title">Title</option>
-                            <option value="Need">Need list</option>
-                            <option value="Skills">Skills</option>
-                            <option value="Status">Status</option>
-                        </select>
+                        <SearchInput onInputChange={() => { }} onSelectChange={() => { }} options={searchOptions} />
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}

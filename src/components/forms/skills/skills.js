@@ -5,11 +5,14 @@ import { useSelector } from 'react-redux';
 import SkillSelector from './skill-selector'
 import Button from './../../style-components/button';
 
+import locale from '../../../locale/en'
+
 import CloseIcon from '../../../img/xmark.svg'
 import './skills.css'
 
 const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
     const skills = useSelector(state => state.skills)
+    const { text, button } = locale.translation
 
     const [skillsList, setSkillsList] = useState(currentSkills)
     const [isChecked, setIsChecked] = useState(false)
@@ -61,14 +64,14 @@ const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
                 <div className="modal-content__body">
-                    <h3 className="modal-title">Skills Selection</h3>
+                    <h3 className="modal-title">{text.skillSelection}</h3>
                     <div className="modal__select">
                         {selectList}
-                        <Button subClass="modal-btn" onClick={addClickHandler} text={'Add more'} />
+                        <Button subClass="modal-btn" onClick={addClickHandler} text={button.addMore} />
                     </div>
                     <div className="modal__buttons">
-                        <Button subClass="modal-btn" onClick={submitClickHandler} text={'Submit'} />
-                        <Button subClass="modal-btn" onClick={clearClickHandler} text={'Clear'} />
+                        <Button subClass="modal-btn" onClick={submitClickHandler} text={button.submit} />
+                        <Button subClass="modal-btn" onClick={clearClickHandler} text={button.clear} />
                     </div>
                 </div>
             </div>

@@ -7,10 +7,15 @@ import Button from './../../style-components/button';
 import CloseIcon from '../../../img/xmark.svg'
 import RoleSelector from './role-selector'
 import { PropTypes } from 'prop-types';
+
+import locale from '../../../locale/en'
+
 import './roles.css'
 
 const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply = true }) => {
     const { roles } = useSelector(({ roles }) => ({ roles }))
+    const { text, button } = locale.translation
+
 
     const [rolesList, setRolesList] = useState(currentRoles)
     const [isChecked, setIsChecked] = useState(false)
@@ -64,16 +69,16 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
                     <img className="close-btn_icon" src={CloseIcon} alt="close" />
                 </label>
                 <div className="modal-content__body">
-                    <h3 className="modal-title">Roles Selection</h3>
+                    <h3 className="modal-title">{text.roleSelection}</h3>
                     <div className="modal__select">
                         {selectList}
                         {multiply
-                            ? <Button subClass="modal-btn" onClick={addClickHandler} text={'Add more'} />
+                            ? <Button subClass="modal-btn" onClick={addClickHandler} text={button.addMore} />
                             : null}
                     </div>
                     <div className="modal__buttons">
-                        <Button subClass="modal-btn" onClick={submitClickHandler} text={'Submit'} />
-                        <Button subClass="modal-btn" onClick={clearClickHandler} text={'Clear'} />
+                        <Button subClass="modal-btn" onClick={submitClickHandler} text={button.submit} />
+                        <Button subClass="modal-btn" onClick={clearClickHandler} text={button.clear} />
                     </div>
                 </div>
             </div>

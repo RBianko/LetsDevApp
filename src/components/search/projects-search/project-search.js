@@ -8,6 +8,8 @@ import IconButton from './../../style-components/icon-button'
 import { LoaderComponent } from './../../style-components/loader/loader'
 import SearchInput from './../../style-components/input/search-input';
 
+import locale from '../../../locale/en'
+
 import searchIcon from '../../../img/search.svg'
 import './project-search.css'
 
@@ -15,6 +17,7 @@ import './project-search.css'
 const ProjectSearch = () => {
     const { projects, loadingProjects } = useSelector(({ projects }) => ({ projects: projects.list, loadingProjects: projects.loadingProjects }))
     const dispatch = useDispatch()
+    const { placeholder, header, text } = locale.translation
 
     const [inputTerm, setInputTerm] = useState('')
 
@@ -38,16 +41,16 @@ const ProjectSearch = () => {
     )
 
     const projectsListContent = projectsList?.length > 0 ? projectsList : <h3>No results found.</h3>
-    const searchOptions = ['Title', 'Needs', 'Skills', 'Status']
+    const searchOptions = [placeholder.title, placeholder.needRoles, placeholder.skills, placeholder.status]
 
     return (
         <div className='container'>
             <div className='card card_search'>
                 <div className="card__header">
-                    <div className="header__title">search.engine</div>
+                    <div className="header__title">{header.searchEngine}</div>
                 </div>
                 <div className="card__content card__content-search">
-                    <p className="search__title">Projects Search</p>
+                    <p className="search__title">{text.projectSearch}</p>
                     <div className="search">
                         <SearchInput onInputChange={setInputTerm} onSelectChange={() => { }} options={searchOptions} />
                         <IconButton

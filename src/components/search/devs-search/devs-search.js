@@ -8,6 +8,8 @@ import SearchInput from './../../style-components/input/search-input'
 import IconButton from './../../style-components/icon-button/icon-button'
 import { LoaderComponent } from './../../style-components/loader/loader'
 
+import locale from '../../../locale/en'
+
 import searchIcon from '../../../img/search.svg'
 import './devs-search.css'
 
@@ -15,6 +17,7 @@ import './devs-search.css'
 const DevsSearch = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const { header, text, placeholder } = locale.translation
 
     useEffect(() => {
         dispatch(getUser(user._id))
@@ -25,16 +28,16 @@ const DevsSearch = () => {
     const { users, loadingUsers } = useSelector(({ users }) => ({ users: users.list, loadingUsers: users.loadingUsers }))
 
     const usersList = users.filter(user => user._id !== currentUser._id)
-    const searchOptions = ['Name', 'Roles', 'Skills']
+    const searchOptions = [placeholder.name, placeholder.roles, placeholder.skills]
 
     return (
         <div className='container'>
             <div className='card card_search'>
                 <div className="card__header">
-                    <div className="header__title">search.engine</div>
+                    <div className="header__title">{header.searchEngine}</div>
                 </div>
                 <div className="card__content card__content-search">
-                    <p className="search__title">Devs Search</p>
+                    <p className="search__title">{text.devsSearch}</p>
                     <div className="search">
                         <SearchInput onInputChange={() => { }} onSelectChange={() => { }} options={searchOptions} />
                         <IconButton

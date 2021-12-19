@@ -22,6 +22,8 @@ import {
     DELETE_PROJECT_FAIL,
 } from '../../action-types'
 import { toast } from 'react-toastify';
+import locale from '../../../locale/en'
+const { notification } = locale.translation
 
 export const getProjects = (ids) => ({
     type: GET_PROJECTS,
@@ -64,7 +66,7 @@ export const addProject = (project) => ({
 })
 
 export const addProjectSuccess = () => {
-    toast.success("Project created!")
+    toast.success(notification.projectCreated)
     return {
         type: ADD_PROJECT_SUCCESS
     }
@@ -84,7 +86,7 @@ export const updateProject = (project) => ({
 })
 
 export const updateProjectSuccess = () => {
-    toast.success("Project updated!")
+    toast.success(notification.projectUpdated)
     return {
         type: UPDATE_PROJECT_SUCCESS,
     }
@@ -104,7 +106,7 @@ export const deleteProject = (id) => ({
 })
 
 export const deleteProjectSuccess = () => {
-    toast.info("Project deleted!")
+    toast.info(notification.projectDeleted)
     return {
         type: DELETE_PROJECT_SUCCESS,
     }
@@ -120,7 +122,7 @@ export const deleteProjectFail = (error) => {
 
 
 export const applyRequest = (projectId, userId, role) => {
-    toast.success("Apply request sent!")
+    toast.success(notification.applyRequestSent)
     return {
         type: APPLY_REQUEST,
         payload: {

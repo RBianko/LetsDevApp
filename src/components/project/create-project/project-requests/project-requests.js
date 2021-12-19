@@ -8,6 +8,8 @@ import { getUsers } from './../../../../redux/modules/users/actions'
 import Request from './request'
 import { LoaderComponent } from './../../../style-components/loader/loader'
 
+import locale from '../../../../locale/en'
+
 import './project-requests.css'
 
 
@@ -35,7 +37,7 @@ const ProjectRequests = () => {
     const requestsListMap = requests.map(request =>
         <Request key={request.requestId} request={request} onApprove={onApprove} onDecline={onDecline} />)
 
-    const requestsContent = requestsListMap.length > 0 ? requestsListMap : <h3 className="description__title">No requests yet.</h3>
+    const requestsContent = requestsListMap.length > 0 ? requestsListMap : <h3 className="description__title">{locale.translation.text.noRequests}</h3>
 
 
     const content = loadingUsers
@@ -43,7 +45,7 @@ const ProjectRequests = () => {
         :
         <>
             <div className="card__header">
-                <div className="header__title">requests.table</div>
+                <div className="header__title">{locale.translation.header.requests}</div>
             </div>
             <div className="card__content">
                 <div className="devs__list">

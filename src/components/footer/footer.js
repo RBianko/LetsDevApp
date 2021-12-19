@@ -1,10 +1,11 @@
 import React from 'react'
+import locale from '../../locale/en'
 import './footer.css'
 
 const Footer = () => {
     return (
         <footer className="footer-wrapper">
-            ©2021 JazzTeam. All rights reserved. Made by roman.bianko.jazzteam@gamil.com
+            {locale.translation.text.footer}
         </footer>
     )
 }

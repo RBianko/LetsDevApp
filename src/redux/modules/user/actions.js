@@ -11,7 +11,8 @@ import {
     GET_CURRENT_USER_FAIL
 } from '../../action-types'
 import { toast } from 'react-toastify';
-
+import locale from '../../../locale/en'
+const { notification } = locale.translation
 
 
 export const setUser = (user) => ({
@@ -40,7 +41,7 @@ export const updateUserInfo = (user) => ({
 })
 
 export const updateUserInfoSuccess = (user) => {
-    toast.success("Profile Updated!")
+    toast.success(notification.profileUpdated)
     return {
         type: UPDATE_USER_INFO_SUCCESS,
         payload: user

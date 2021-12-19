@@ -10,11 +10,13 @@ import SettingsIcon from '../../img/settings.svg'
 import ProjectIcon from '../../img/project.svg'
 import Button from '../style-components/button';
 
+import locale from '../../locale/en'
 import './menu.css'
 
 const Menu = () => {
     const { _id, follow, logout } = useSelector(state => state.user)
     useEffect(() => { }, [follow])
+    const { menu, button } = locale.translation
 
     const followersCounter = follow.followers.length;
     const followingCounter = follow.following.length;
@@ -35,12 +37,12 @@ const Menu = () => {
                     <ul className="links__list links_follow">
                         <li className="menu__link">
                             <Link to="/following">
-                                <span className="link__title">{followingCounter} Following</span>
+                                <span className="link__title">{followingCounter} {menu.followers}</span>
                             </Link>
                         </li>
                         <li className="menu__link">
                             <Link to="/followers">
-                                <span className="link__title">{followersCounter} Followers</span>
+                                <span className="link__title">{followersCounter} {menu.followers}</span>
                             </Link>
                         </li>
                     </ul>
@@ -50,12 +52,12 @@ const Menu = () => {
                     <ul className="links__list links_project">
                         <li className="menu__link">
                             <Link to="/my-projects">
-                                <span className="link__title">My Projects</span>
+                                <span className="link__title">{menu.myProjects}</span>
                             </Link>
                         </li>
                         <li className="menu__link">
                             <Link to="/create-project">
-                                <span className="link__title">Create Project</span>
+                                <span className="link__title">{menu.createProject}</span>
                             </Link>
                         </li>
                     </ul>
@@ -65,12 +67,12 @@ const Menu = () => {
                     <ul className="links__list links_search">
                         <li className="menu__link">
                             <Link to="/search-projects">
-                                <span className="link__title">Search for Projects</span>
+                                <span className="link__title">{menu.searchForProjects}</span>
                             </Link>
                         </li>
                         <li className="menu__link">
                             <Link to="/search-devs">
-                                <span className="link__title">Search for Dev's</span>
+                                <span className="link__title">{menu.searchForDevs}</span>
                             </Link>
                         </li>
                     </ul>
@@ -80,11 +82,11 @@ const Menu = () => {
                     <ul className="links__list links_settings">
                         <li className="menu__link">
                             <Link to="/settings">
-                                <span className="link__title">Settings</span>
+                                <span className="link__title">{menu.settings}</span>
                             </Link>
                         </li>
                         <li className="menu__link menu__link_logout">
-                            <Button subClass="btn_logout" onClick={() => logout()} text={'Log Out'} />
+                            <Button subClass="btn_logout" onClick={() => logout()} text={button.logout} />
                         </li>
                     </ul>
                 </li>

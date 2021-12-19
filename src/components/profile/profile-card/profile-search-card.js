@@ -7,12 +7,15 @@ import { UserPropTypes } from './../../../redux/modules/user/prop-types'
 import Button from './../../style-components/button'
 import CardHeader from './../../style-components/card-header'
 
+import locale from '../../../locale/en'
+
 import defaultIcon from '../../../img/users.svg'
 import './profile-card.css'
 
 const ProfileSearchCard = ({ user, followStates, followToggle, getFollowState }) => {
     const [followState, setFollowState] = useState(followStates)
     const currentUser = useSelector(state => state.user)
+    const { header } = locale.translation
 
     useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, getFollowState, user])
 
@@ -25,7 +28,7 @@ const ProfileSearchCard = ({ user, followStates, followToggle, getFollowState })
 
     return (
         <div className="profile__card_search card">
-            <CardHeader id={_id} title={'user.info'} path={'profile'} size="medium" />
+            <CardHeader id={_id} title={header.userInfo} path={'profile'} size="medium" />
             <div className="card__content profile-content_search">
                 <img className="profile__icon_search" src={profilePicture || defaultIcon} alt="profile" />
                 <div className="profile__info profile__info_search">
