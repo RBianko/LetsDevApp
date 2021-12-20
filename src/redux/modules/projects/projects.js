@@ -49,7 +49,7 @@ const projectsReduser = (state = initialState, { type, payload, id }) => {
             state = { ...state, loadingProjectDetails: true }
             break
         case GET_PROJECT_DETAILS_SUCCESS:
-            state = { ...state, project: payload, loadingProjectDetails: false }
+            state = { ...state, project: payload[0], loadingProjectDetails: false }
             break
         case GET_PROJECT_DETAILS_FAIL:
             state = {

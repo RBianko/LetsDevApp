@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -13,11 +13,15 @@ import locale from '../../locale/en';
 
 import searchIcon from '../../img/search.svg'
 import './follow-list.css'
+import { searchFilter } from './../search/helper/search-filter';
 
 const FollowList = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const { header, placeholder } = locale.translation
+
+    const [inputTerm, setInputTerm] = useState('')
+    const [selectorTerm, setSelectorTerm] = useState('firstName')
 
     const { list: users, loadingUsers } = useSelector(state => state.users)
     const { _id, loadingUser } = useSelector(state => state.user)
@@ -35,11 +39,13 @@ const FollowList = () => {
         }
     }, [dispatch, follow.followers, follow.following, loadingUser, location.pathname]);
 
+    let usersFilter = searchFilter(users, selectorTerm, inputTerm)
+
     const content = loadingUsers || loadingUser
         ? <LoaderComponent />
-        : <SearchUsers currentUser={currentUser} users={users} />
+        : <SearchUsers currentUser={currentUser} users={usersFilter} />
 
-    const searchOptions = [placeholder.name, placeholder.roles, placeholder.skills]
+    const searchOptions = { 'firstName': placeholder.name, 'roles': placeholder.roles, 'skills': placeholder.skills }
 
     return (
         <div className='container'>
@@ -50,7 +56,7 @@ const FollowList = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">Search</p>
                     <div className="search">
-                        <SearchInput onInputChange={() => { }} onSelectChange={() => { }} options={searchOptions} />
+                        <SearchInput onInputChange={setInputTerm} onSelectChange={setSelectorTerm} options={searchOptions} />
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}

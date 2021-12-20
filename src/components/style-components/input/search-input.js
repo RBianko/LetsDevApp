@@ -1,11 +1,14 @@
 import React from 'react'
+import { forIn } from 'lodash'
 import locale from '../../../locale/en'
 
 const SearchInput = ({ onInputChange, onSelectChange, options }) => {
     const { placeholder } = locale.translation
-    const optionsList = options.map(option =>
-        <option key={option} value={option.toLowerCase()}>{option}</option>
-    )
+
+    let optionsList = []
+    forIn(options, (value, key) => {
+        optionsList.push(<option key={key} value={key}>{value}</option>)
+    })
 
     return <>
         <input className="search__input" type="text" placeholder={placeholder.typeHere} onChange={(e) => onInputChange(e.target.value)} />

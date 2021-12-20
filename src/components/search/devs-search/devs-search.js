@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
+import { searchFilter } from '../helper/search-filter';
 import { getUser, getAllUsers } from './../../../redux/modules/users/actions'
 
 import SearchUsers from '../search-users'
@@ -19,6 +20,9 @@ const DevsSearch = () => {
     const user = useSelector(state => state.user)
     const { header, text, placeholder } = locale.translation
 
+    const [inputTerm, setInputTerm] = useState('')
+    const [selectorTerm, setSelectorTerm] = useState('firstName')
+
     useEffect(() => {
         dispatch(getUser(user._id))
         dispatch(getAllUsers([]))
@@ -27,8 +31,10 @@ const DevsSearch = () => {
     const currentUser = useSelector(state => state.users.user)
     const { users, loadingUsers } = useSelector(({ users }) => ({ users: users.list, loadingUsers: users.loadingUsers }))
 
-    const usersList = users.filter(user => user._id !== currentUser._id)
-    const searchOptions = [placeholder.name, placeholder.roles, placeholder.skills]
+    let usersFilter = searchFilter(users, selectorTerm, inputTerm)
+
+    const usersList = usersFilter.filter(user => user._id !== currentUser._id)
+    const searchOptions = { 'firstName': placeholder.name, 'roles': placeholder.roles, 'skills': placeholder.skills }
 
     return (
         <div className='container'>
@@ -39,7 +45,7 @@ const DevsSearch = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">{text.devsSearch}</p>
                     <div className="search">
-                        <SearchInput onInputChange={() => { }} onSelectChange={() => { }} options={searchOptions} />
+                        <SearchInput onInputChange={setInputTerm} onSelectChange={setSelectorTerm} options={searchOptions} />
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}

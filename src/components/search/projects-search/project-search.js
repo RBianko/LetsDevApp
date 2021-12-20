@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { searchFilter } from '../helper/search-filter';
 import { getAllProjects } from './../../../redux/modules/projects/actions'
 
 import ProjectCard from './../../project/project-card'
@@ -20,28 +21,20 @@ const ProjectSearch = () => {
     const { placeholder, header, text } = locale.translation
 
     const [inputTerm, setInputTerm] = useState('')
+    const [selectorTerm, setSelectorTerm] = useState('title')
 
     useEffect(() => {
         dispatch(getAllProjects());
     }, [dispatch]);
 
+    let projectsFilter = searchFilter(projects, selectorTerm, inputTerm)
 
-    let projectsFilter = projects
-
-    if (inputTerm !== '') {
-        // eslint-disable-next-line array-callback-return
-        projectsFilter = projects.filter(project => {
-            if (project.title.toLowerCase().includes(inputTerm.toLowerCase()))
-                return project
-        })
-    } // TODO: make helper func
-
-    let projectsList = projectsFilter.map((project) =>
+    let projectsList = projectsFilter.map(project =>
         <ProjectCard key={project._id} project={project} />
     )
 
-    const projectsListContent = projectsList?.length > 0 ? projectsList : <h3>No results found.</h3>
-    const searchOptions = [placeholder.title, placeholder.needRoles, placeholder.skills, placeholder.status]
+    const projectsListContent = projectsList?.length > 0 ? projectsList : <h3>{text.noResultsFound}</h3>
+    const searchOptions = { 'title': placeholder.title, 'needList': placeholder.needList, 'skills': placeholder.skills, 'status': placeholder.status }
 
     return (
         <div className='container'>
@@ -52,7 +45,7 @@ const ProjectSearch = () => {
                 <div className="card__content card__content-search">
                     <p className="search__title">{text.projectSearch}</p>
                     <div className="search">
-                        <SearchInput onInputChange={setInputTerm} onSelectChange={() => { }} options={searchOptions} />
+                        <SearchInput onInputChange={setInputTerm} onSelectChange={setSelectorTerm} options={searchOptions} />
                         <IconButton
                             className={'search__button'}
                             classNameIcon={'search-icon'}
