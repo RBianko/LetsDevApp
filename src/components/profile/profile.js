@@ -67,7 +67,8 @@ const Profile = () => {
 
     const socialsList = []
     forIn(socials, (value, key) => {
-        socialsList.push(<SocialLink key={key} link={value} media={key} />)
+        if (value && value !== '')
+            socialsList.push(<SocialLink key={key} link={value} media={key} />)
     })
 
     let userProjectsList = []
