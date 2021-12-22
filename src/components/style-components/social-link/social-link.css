@@ -1,7 +1,7 @@
 .social-icon,
 .link-icon {
   width: 100%;
-  min-width: 38px;
+  min-width: 42px;
   border-radius: 8px;
   transition: var(--transition-all);
 }

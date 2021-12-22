@@ -19,13 +19,13 @@ const ProjectCard = ({ project }) => {
         needList
     } = project
 
-    const { global, other } = useSkills()
-    const globalSkillsList = global(skills)
-    const otherSkillsList = other(skills)
+    const { defaultSkills, customSkills } = useSkills()
+    const defaultSkillsList = defaultSkills(skills)
+    const customSkillsList = customSkills(skills)
     const { placeholder, text, header } = locale.translation
 
-    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>{text.noSelectedSkills}</p> : null
-    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
+    const noSkillsString = customSkillsList.length === 0 && defaultSkillsList.length === 0 ? <p>{text.noSelectedSkills}</p> : null
+    const customSkillsTitle = customSkillsList.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
 
     const needListString = needList.join(', ')
     const needListContent = needList.length > 0
@@ -54,12 +54,12 @@ const ProjectCard = ({ project }) => {
                             <div className="skills-list skills_project">
                                 {noSkillsString}
                                 <div className="skills-grid">
-                                    {globalSkillsList}
+                                    {defaultSkillsList}
                                 </div>
                                 <div className="skills-other">
-                                    {otherSkillsTitle}
+                                    {customSkillsTitle}
                                     <div className="skills-grid">
-                                        {otherSkillsList}
+                                        {customSkillsList}
                                     </div>
                                 </div>
                             </div>

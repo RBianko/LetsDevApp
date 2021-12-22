@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { map } from 'lodash'
 
 import { updateUserInfo } from '../../../redux/modules/user/actions'
 import { getUser } from '../../../redux/modules/users/actions'
@@ -135,6 +136,22 @@ const Settings = () => {
         setGithub(socials.github)
     }
 
+    const socialsData = {
+        'vk': [vkIcon, editedVk, vkInput],
+        'facebook': [facebookIcon, editedFacebook, facebookInput],
+        'linkedin': [linkedinIcon, editedLinkedin, linkedinInput],
+        'github': [githubIcon, editedGithub, githubInput]
+    }
+
+    const socialInputs = map(socialsData, (value, key) =>
+        <div key={key} className="settings__item">
+            <div className="social-settings__field">
+                <Icon className={'social-icon social-icon_settings'} alt={`add-${key}`} src={value[0]} />
+                <Input id={key} type="text" placeholder={placeholder.link} value={value[1]} ref={value[2]} onChange={() => onChangeHandler(key)} />
+            </div>
+        </div>
+    )
+
     return (
         <>
             <div className="container">
@@ -146,7 +163,7 @@ const Settings = () => {
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
-                            <div className="profile__contacts">
+                            <div className="settings__picture">
                                 <img className="profile-picture" src={profilePicture} alt="profile" />
                                 <label className="title-label" htmlFor="profilePicture">{placeholder.profilePicture}</label>
                                 <input className="text-input btn" id="profilePicture" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" />
@@ -201,30 +218,7 @@ const Settings = () => {
                         <div className="settings__item">
                             <label className="title-label" htmlFor="vk">{placeholder.addSocials}</label>
                             <div className="settings-socials__list">
-                                <div className="settings__item">
-                                    <div className="social-settings__field">
-                                        <Icon className={'social-icon social-icon_settings'} alt={'add-vk'} src={vkIcon} />
-                                        <Input id="vk" type="text" placeholder={placeholder.link} value={editedVk} ref={vkInput} onChange={() => onChangeHandler('vk')} />
-                                    </div>
-                                </div>
-                                <div className="settings__item">
-                                    <div className="social-settings__field">
-                                        <Icon className={'social-icon social-icon_settings'} alt={'add-facebook'} src={facebookIcon} />
-                                        <Input id="vk" type="text" placeholder={placeholder.link} value={editedFacebook} ref={facebookInput} onChange={() => onChangeHandler('facebook')} />
-                                    </div>
-                                </div>
-                                <div className="settings__item">
-                                    <div className="social-settings__field">
-                                        <Icon className={'social-icon social-icon_settings'} alt={'add-linkedin'} src={linkedinIcon} />
-                                        <Input id="vk" type="text" placeholder={placeholder.link} value={editedLinkedin} ref={linkedinInput} onChange={() => onChangeHandler('linkedin')} />
-                                    </div>
-                                </div>
-                                <div className="settings__item">
-                                    <div className="social-settings__field">
-                                        <Icon className={'social-icon social-icon_settings'} alt={'add-github'} src={githubIcon} />
-                                        <Input id="vk" type="text" placeholder={placeholder.link} value={editedGithub} ref={githubInput} onChange={() => onChangeHandler('github')} />
-                                    </div>
-                                </div>
+                                {socialInputs}
                             </div>
                         </div>
                         <div className="profile-content_body">

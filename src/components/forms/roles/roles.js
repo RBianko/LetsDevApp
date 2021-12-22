@@ -23,16 +23,21 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
     useEffect(() => { if (!multiply) setSelectList([roleSelector('')]) }, [stack])
 
     const onSelectHandler = (selectedRole, id) => {
-        const newRolesList = [...rolesList]
+        const editRole = (role, id, array) => array.splice(id, 1, role)
+        const addNewRole = (role, array) => array.push(role)
+
         if (selectedRole) {
-            if (id < rolesList.length) {
-                newRolesList.splice(id, 1, selectedRole)
-            } else {
-                newRolesList.push(selectedRole)
-            }
+            const newRolesList = [...rolesList]
+            const isEditing = id < rolesList.length
+
+            isEditing
+                ? editRole(selectedRole, id, newRolesList)
+                : addNewRole(selectedRole, newRolesList)
+
             setRolesList([...newRolesList])
         }
     }
+
 
     const roleSelector = (role, id) =>
         <RoleSelector key={`${id}-${role}`} role={role} roles={stack || roles} id={id} selectRole={onSelectHandler} />

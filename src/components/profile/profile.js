@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { forIn } from 'lodash'
+import { map } from 'lodash'
 
 import { followToggle } from './../../redux/modules/user/actions'
 import { getProjects } from './../../redux/modules/projects/actions'
@@ -30,6 +30,8 @@ const Profile = () => {
     const currentUser = useSelector(state => state.user)
     const { list: projectsList, loadingProjects } = useSelector((state) => state.projects);
     const { user, loadingUser } = useSelector(state => state.users)
+    const isLoading = loadingUser || loadingProjects
+
     const {
         _id,
         firstName,
@@ -57,21 +59,18 @@ const Profile = () => {
 
     useEffect(() => { setFollowState(getFollowState(currentUser, user)) }, [currentUser, user])
 
+    const { defaultSkills, customSkills } = useSkills()
+    const defaultSkillsList = defaultSkills(skills)
+    const customSkillsList = customSkills(skills)
 
-    const { global, other } = useSkills()
-    const globalSkillsList = global(skills)
-    const otherSkillsList = other(skills)
+    const noSkillsString = customSkillsList?.length === 0 && defaultSkillsList?.length === 0 ? <p>{text.noSelectedSkills}</p> : null
+    const customSkillsTitle = customSkillsList?.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
 
-    const noSkillsString = otherSkillsList?.length === 0 && globalSkillsList?.length === 0 ? <p>{text.noSelectedSkills}</p> : null
-    const otherSkillsTitle = otherSkillsList?.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
-
-    const socialsList = []
-    forIn(socials, (value, key) => {
-        socialsList.push(<SocialLink key={key} link={value} media={key} />)
-    })
+    let socialsList = map(socials, (value, key) =>
+        <SocialLink key={key} link={value} media={key} />)
 
     let userProjectsList = []
-    if (!loadingProjects && !loadingUser && projectsList.length) {
+    if (!isLoading && projectsList.length) {
         userProjectsList = projectsList.map(project =>
             <ProjectCardSmall
                 key={project._id}
@@ -93,7 +92,7 @@ const Profile = () => {
     const currentUserProfile = currentUser._id === _id
     const followButton = currentUserProfile ? null : <Button subClass={'btn_follow'} onClick={onFollowToggle} text={followState} />
 
-    const content = loadingUser || loadingProjects
+    const content = isLoading
         ? <LoaderComponent />
         : <>
             <div className="profile-content_header">
@@ -114,12 +113,12 @@ const Profile = () => {
                     <div className="skills-list">
                         {noSkillsString}
                         <div className="skills-grid">
-                            {globalSkillsList}
+                            {defaultSkillsList}
                         </div>
                         <div className="skills-other">
-                            {otherSkillsTitle}
+                            {customSkillsTitle}
                             <div className="skills-grid">
-                                {otherSkillsList}
+                                {customSkillsList}
                             </div>
                         </div>
                     </div>

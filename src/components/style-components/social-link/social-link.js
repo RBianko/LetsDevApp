@@ -18,9 +18,9 @@ const SocialLink = ({ media, link }) => {
         'vk': vk
     }
 
-    if (icons[media]) {
+    if (icons[media] && link) {
         icon = icons[media]
-    } else return
+    } else return null
 
     return (
         <div className="social-wrapper">

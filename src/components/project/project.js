@@ -6,6 +6,7 @@ import { useSkills } from '../../hooks/skills.hook'
 import { applyRequest } from '../../redux/modules/projects/actions'
 import { getProjectDetails } from '../../redux/modules/projects/actions'
 import { getUsers } from './../../redux/modules/users/actions'
+import { shortenLink } from './../../helpers/shorten-link';
 
 import ConfirmForm from '../forms/cofirm/confirm-form'
 import LoaderComponent from '../style-components/loader/loader'
@@ -25,7 +26,7 @@ import linkIcon from '../../img/link.svg'
 const Project = () => {
     const { state } = useLocation()
     const dispatch = useDispatch()
-    const { global, other } = useSkills()
+    const { defaultSkills, customSkills } = useSkills()
     const { placeholder, text, header, button, tooltip } = locale.translation
 
     useEffect(() => {
@@ -52,11 +53,11 @@ const Project = () => {
         if (devs.length > 0) dispatch(getUsers([...devs].map(dev => dev._id)))
     }, [devs, dispatch]);
 
-    const globalSkillsList = global(skills)
-    const otherSkillsList = other(skills)
+    const defaultSkillsList = defaultSkills(skills)
+    const customSkillsList = customSkills(skills)
 
-    const noSkillsString = otherSkillsList.length === 0 && globalSkillsList.length === 0 ? <p>{text.noSelectedSkills}</p> : null
-    const otherSkillsTitle = otherSkillsList.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
+    const noSkillsString = customSkillsList.length === 0 && defaultSkillsList.length === 0 ? <p>{text.noSelectedSkills}</p> : null
+    const customSkillsTitle = customSkillsList.length > 0 ? <span className="skills-other__title">{text.otherTechnologies}</span> : null
 
     const creator = devs.find(user => user.creator)
     const getRole = (id) => devs.find(dev => dev._id === id)?.role
@@ -111,15 +112,8 @@ const Project = () => {
 
     const applyRoles = (role) => dispatch(applyRequest(state.id, user._id, role[0].toString()))
 
-    const domainName = (link) => {
-        const pattern = /^(?:https?:\/\/)?(?:[^@\\/\n]+@)?(?:www\.)?([^:\\/?\n]+)/
-        if (link.length > 0) {
-            return pattern.exec(link)[1]
-        } else return null
-    }
-
-    const shortLink = domainName(link)
-    const linkContent = shortLink
+    const shortLink = shortenLink(link)
+    const linkString = shortLink
         ? <a className="social__link" href={link} target="_blank" rel="noopener noreferrer">
             <div className="link-wrapper">
                 <img className="link-icon link-icon_small" src={linkIcon} alt="link" />
@@ -139,16 +133,16 @@ const Project = () => {
                     {links}
                     <span className="project-info__title">{title}</span>
                     <span className="project-info__status">{status}</span>
-                    {linkContent}
+                    {linkString}
                     <div className="skills-list skills_project">
                         {noSkillsString}
                         <div className="skills-grid">
-                            {globalSkillsList}
+                            {defaultSkillsList}
                         </div>
                         <div className="skills-other">
-                            {otherSkillsTitle}
+                            {customSkillsTitle}
                             <div className="skills-grid">
-                                {otherSkillsList}
+                                {customSkillsList}
                             </div>
                         </div>
                     </div>

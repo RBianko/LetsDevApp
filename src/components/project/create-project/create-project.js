@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { PropTypes } from 'prop-types'
+import { map } from 'lodash'
 
 import { addProject, updateProject } from '../../../redux/modules/projects/actions'
 
@@ -120,6 +121,9 @@ const CreateProject = ({ isEditing = false }) => {
         setSkills(skills)
     }
 
+    let statusOptions = map(placeholder.statusList, (value, key) =>
+        <option key={key} value={value}>{value}</option>)
+
 
     return (
         <>
@@ -132,7 +136,7 @@ const CreateProject = ({ isEditing = false }) => {
                     </div>
                     <div className="card__content profile-content">
                         <div className="profile-content_header">
-                            <div className="profile__contacts">
+                            <div className="settings__picture">
                                 <img className="profile-picture" src={newPicture} alt="project" />
                                 <label className="picture-label" htmlFor="profilePicture">{placeholder.projectPicture}</label>
                                 <input className="text-input btn" name="profilePicture" type="file" size="40" accept="image/png, image/jpeg" ref={pictureUpload} onChange={() => onChangeHandler('picture')} />
@@ -154,11 +158,7 @@ const CreateProject = ({ isEditing = false }) => {
                                             ref={statusInput}
                                             onChange={() => onChangeHandler('status')}>
                                             <option hidden>{placeholder.selectOne}</option>
-                                            <option value={placeholder.statusList.online}>{placeholder.statusList.online}</option>
-                                            <option value={placeholder.statusList.offline}>{placeholder.statusList.offline}</option>
-                                            <option value={placeholder.statusList.active}>{placeholder.statusList.active}</option>
-                                            <option value={placeholder.statusList.done}>{placeholder.statusList.done}</option>
-                                            <option value={placeholder.statusList.planned}>{placeholder.statusList.planned}</option>
+                                            {statusOptions}
                                         </select>
                                     </div>
 

@@ -33,7 +33,7 @@ const ProjectSearch = () => {
         <ProjectCard key={project._id} project={project} />
     )
 
-    const projectsListContent = projectsList?.length > 0 ? projectsList : <h3>{text.noResultsFound}</h3>
+    const projectsListContent = projectsList.length > 0 ? projectsList : <h3>{text.noResultsFound}</h3>
     const searchOptions = { 'title': placeholder.title, 'needList': placeholder.needList, 'skills': placeholder.skills, 'status': placeholder.status }
 
     return (

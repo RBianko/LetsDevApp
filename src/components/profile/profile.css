@@ -36,7 +36,6 @@
 
 .profile__contacts {
   display: flex;
-  width: 25%;
   margin-right: 3%;
   flex-direction: column;
 }

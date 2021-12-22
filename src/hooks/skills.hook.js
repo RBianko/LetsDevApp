@@ -5,19 +5,19 @@ import SkillIcon from './../components/style-components/skills-icon/skill-icon';
 import OtherSkill from './../components/style-components/skills-icon/other-skill';
 
 export const useSkills = () => {
-    const { skills: skillsGlobalStack } = useSelector(({ skills }) => ({ skills }))
+    const { skills: defaultSkillsStack } = useSelector(({ skills }) => ({ skills }))
 
-    const global = (skills = []) => {
-        return intersection(skills, skillsGlobalStack).map(skill =>
+    const defaultSkills = (skills = []) => {
+        return intersection(skills, defaultSkillsStack).map(skill =>
             <SkillIcon key={skill} skill={skill} />
         )
     }
 
-    const other = (skills = []) => {
-        return difference(skills, skillsGlobalStack).map(skill =>
+    const customSkills = (skills = []) => {
+        return difference(skills, defaultSkillsStack).map(skill =>
             <OtherSkill key={skill} skill={skill} />
         )
     }
 
-    return { global, other }
+    return { defaultSkills, customSkills }
 }
