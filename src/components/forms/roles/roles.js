@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
+import { editElement, addNewElement } from './../../../helpers/array-helpers';
+
 import Button from './../../style-components/button';
 
 import CloseIcon from '../../../img/xmark.svg'
@@ -12,10 +14,10 @@ import locale from '../../../locale/en'
 
 import './roles.css'
 
+
 const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply = true }) => {
     const { roles } = useSelector(({ roles }) => ({ roles }))
     const { text, button } = locale.translation
-
 
     const [rolesList, setRolesList] = useState(currentRoles)
     const [isChecked, setIsChecked] = useState(false)
@@ -23,21 +25,13 @@ const RolesForm = ({ stack = null, roles: currentRoles = [], setRoles, multiply 
     useEffect(() => { if (!multiply) setSelectList([roleSelector('')]) }, [stack])
 
     const onSelectHandler = (selectedRole, id) => {
-        const editRole = (role, id, array) => array.splice(id, 1, role)
-        const addNewRole = (role, array) => array.push(role)
-
         if (selectedRole) {
-            const newRolesList = [...rolesList]
             const isEditing = id < rolesList.length
-
             isEditing
-                ? editRole(selectedRole, id, newRolesList)
-                : addNewRole(selectedRole, newRolesList)
-
-            setRolesList([...newRolesList])
+                ? setRolesList(editElement(selectedRole, id, rolesList))
+                : setRolesList(addNewElement(selectedRole, rolesList))
         }
     }
-
 
     const roleSelector = (role, id) =>
         <RoleSelector key={`${id}-${role}`} role={role} roles={stack || roles} id={id} selectRole={onSelectHandler} />

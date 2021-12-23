@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 
+import { editElement, addNewElement } from './../../../helpers/array-helpers';
+
 import SkillSelector from './skill-selector'
 import Button from './../../style-components/button';
 
@@ -9,6 +11,7 @@ import locale from '../../../locale/en'
 
 import CloseIcon from '../../../img/xmark.svg'
 import './skills.css'
+
 
 const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
     const skills = useSelector(state => state.skills)
@@ -18,14 +21,12 @@ const SkillsForm = ({ skills: currentSkills = [], setSkills }) => {
     const [isChecked, setIsChecked] = useState(false)
 
     const onSelectHandler = (selectedSkill, id) => {
-        const newSkillsList = [...skillsList]
         if (selectedSkill) {
-            if (id < skillsList.length) {
-                newSkillsList.splice(id, 1, selectedSkill)
-            } else {
-                newSkillsList.push(selectedSkill)
-            }
-            setSkillsList([...newSkillsList])
+            const isEditing = id < skillsList.length
+
+            isEditing
+                ? setSkillsList(editElement(selectedSkill, id, skillsList))
+                : setSkillsList(addNewElement(selectedSkill, skillsList))
         }
     }
 
