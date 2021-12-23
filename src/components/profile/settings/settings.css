@@ -1,0 +1,57 @@
+.edit-icon:hover {
+  transform: translatex(14%);
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__picture {
+  display: flex;
+  width: 25%;
+  margin-right: 3%;
+  flex-direction: column;
+}
+
+.settings__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3%;
+}
+
+.settings_profile-icon {
+  position: absolute;
+  bottom: 0;
+  left: -30px;
+}
+
+.settings__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings_btn {
+  flex-basis: 49%;
+  margin-bottom: 4%;
+  box-shadow: 3px 3px #000;
+  padding: 3px 20px;
+}
+
+.settings_btn:hover {
+  box-shadow: 4px 5px #000;
+  transform: translateY(-3px);
+}
+
+.title-label {
+  text-align: center;
+  font-size: 1rem;
+  padding: 2px;
+  letter-spacing: 1px;
+}
+
+.settings-socials__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

@@ -1,0 +1,124 @@
+.card {
+  border: 4px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 8px 8px 0 0 #000;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3%;
+
+  transition: var(--transition-all);
+}
+
+.card:hover .profile__info_role {
+  color: var(--highlight-color);
+}
+
+.card__content {
+  padding: calc(7% - 10px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+}
+
+.profile-content_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile__info {
+  flex-basis: 100%;
+}
+
+.profile__contacts {
+  display: flex;
+  margin-right: 3%;
+  flex-direction: column;
+}
+
+.profile-picture {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.profile__info_name {
+  font-size: 4rem;
+  line-height: 3rem;
+  font-weight: 900;
+}
+
+.profile__info_sity {
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--background-color-darken);
+  margin-bottom: 10px;
+}
+
+.profile__info_role {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  transition: var(--transition-all);
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.skills-grid {
+  max-width: 445px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skills-icon {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.profile__description {
+  margin-bottom: 40px;
+}
+
+.description_title {
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 700;
+}
+
+.skills-other__title {
+  display: block;
+  margin-top: 3%;
+  font-size: 1rem;
+  color: var(--background-color-dark);
+}
+
+.profile__socials {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.socials__title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 3% 0 1% 0;
+}
+
+.profile__card_search:hover {
+  transform: translateY(-2px);
+  box-shadow: 9px 10px #000;
+}
+
+.profile__card,
+.project__card {
+  min-height: 600px;
+}

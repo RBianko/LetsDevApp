@@ -1,0 +1,5 @@
+.devs__search-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 30px 4%;
+}

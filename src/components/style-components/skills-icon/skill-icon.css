@@ -1,0 +1,28 @@
+.skill_wrapper {
+  padding: 1px 4px;
+  background-color: var(--background-color-lighter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #000;
+  border-radius: 4px;
+  margin: 5px 10px;
+  margin-left: 0;
+  box-shadow: 3px 3px #000;
+  cursor: crosshair;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: var(--transition-all);
+}
+
+.skill-icon {
+  width: 50px;
+  height: 50px;
+  padding: 3px;
+}
+
+.skill_wrapper:hover {
+  transform: translateY(-3px);
+  color: var(--highlight-color);
+  box-shadow: 4px 6px #000;
+}

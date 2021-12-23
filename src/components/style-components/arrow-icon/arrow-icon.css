@@ -1,0 +1,18 @@
+.arrow-icon svg path {
+  transition: var(--transition-all);
+}
+
+.arrow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+}
+
+.arrow-icon_medium {
+  width: 20px;
+}
+
+.arrow-icon_small {
+  width: 15px;
+}

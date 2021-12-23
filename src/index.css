@@ -1,0 +1,329 @@
+body {
+  height: 100%;
+  font-family: "Baloo Thambi 2", sans-serif;
+  color: #000;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  background-color: var(--background-color-lighter);
+}
+
+* {
+  font-family: inherit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+a {
+  color: #000;
+}
+
+:root {
+  --highlight-color: rgb(161, 58, 58);
+  --background-color: #cccccc;
+  --background-color-darken: #a0a0a0;
+  --background-color-dark: rgb(65, 65, 65);
+  --background-color-mid-dark: rgb(94, 94, 94);
+  --background-color-lighter: #eeeeee;
+  --border-color: #9f9f9f;
+  --transition-all: all 200ms ease-in-out, color 150ms ease;
+}
+
+.container {
+  padding: 40px 25px 0 82px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: calc(100vh - 100px);
+}
+
+.loader-container {
+  margin-top: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 20px;
+  padding: 2px 50px;
+  border: 3px solid #000;
+  border-radius: 4px;
+  background-color: var(--background-color);
+
+  color: #000;
+  font-weight: 900;
+  text-align: center;
+  cursor: pointer;
+
+  transition: var(--transition-all);
+}
+
+.btn_login {
+  padding: 5px 60px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px #000;
+}
+
+.btn:hover {
+  background-color: var(--highlight-color);
+  color: #fff;
+}
+
+.btn:hover .arrow-icon svg path {
+  stroke: #fff;
+}
+
+@media screen and (max-width: 1000px) {
+  .profile-content_small {
+    padding: 10px 5px !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    padding: 20px 15px 50px 72px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: calc(100vh - 100px);
+  }
+  .welcome-page__title {
+    font-size: 6rem;
+  }
+  .welcome-page__text {
+    font-size: 4rem;
+    line-height: 3rem;
+  }
+
+  .profile-content_header {
+    flex-direction: column;
+  }
+  .profile-picture {
+    width: auto;
+  }
+  .profile__info_name {
+    text-align: center;
+  }
+  .profile__info {
+    width: 100%;
+    align-items: center;
+  }
+  .profile__contacts {
+    width: 50% !important;
+    margin-bottom: 4%;
+    margin-right: 0 !important;
+  }
+  .profile__info_role {
+    text-align: center;
+  }
+  .profile-content_search {
+    flex-direction: column !important;
+  }
+  .skills-list,
+  .skills-other {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .projects__list {
+    grid-template-columns: repeat(2, 49%) !important;
+  }
+  .profile__info_name_search {
+    font-size: 1.4rem !important;
+    text-align: center;
+  }
+  .profile__icon_search {
+    width: 50% !important;
+    margin-bottom: 3%;
+  }
+  .profile__other-info {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .other-info__items {
+    align-items: center;
+  }
+  .btn_follow {
+    width: 150px !important;
+  }
+
+  .project-content__header {
+    flex-direction: column !important;
+  }
+  .project-content__body {
+    align-items: center;
+    text-align: center;
+  }
+  .project__picture {
+    width: 90% !important;
+    margin-bottom: 5%;
+  }
+  .project__info,
+  .project-content_body {
+    align-items: center;
+  }
+  .project__description,
+  .profile__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .need-list,
+  .project-info__title,
+  .need-list__title {
+    text-align: center;
+  }
+
+  .devs__list {
+    grid-template-columns: repeat(3, 33%) !important;
+  }
+
+  .settings-field,
+  .input_complex {
+    width: 100% !important;
+  }
+
+  .footer-wrapper {
+    font-size: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .devs__list {
+    grid-template-columns: repeat(2, 50%) !important;
+  }
+  .card {
+    box-shadow: 5px 5px 0 0 #000 !important;
+  }
+  .welcome-page__title {
+    font-size: 8rem !important;
+    line-height: 5rem !important;
+  }
+  .welcome-page__text {
+    font-size: 4rem !important;
+    line-height: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .container {
+    padding: 10px 10px 0 55px;
+  }
+  .side-menu {
+    width: 50px !important;
+  }
+  .menu__icons {
+    width: 50px !important;
+    border: 4px solid #000 !important;
+  }
+  .menu-icon {
+    margin-bottom: 4px !important;
+  }
+  .menu-icon img {
+    padding: 8px !important;
+  }
+  .links__list {
+    left: 41px !important;
+  }
+
+  .projects__list {
+    grid-template-columns: repeat(1, 100%) !important;
+  }
+  .devs__search-grid {
+    grid-template-columns: repeat(1, 100%) !important;
+    grid-gap: 5px !important;
+  }
+  .profile__info_name_search {
+    font-size: 2rem !important;
+  }
+  .profile__icon_search {
+    width: 25% !important;
+  }
+  .profile-content_search {
+    flex-direction: row !important;
+  }
+  .search__select {
+    padding: 2px !important;
+  }
+  .card_search {
+    margin-bottom: 5% !important;
+  }
+  .skills-grid {
+    justify-content: center;
+  }
+
+  .project__picture {
+    width: 70% !important;
+  }
+  .creator-link__icon {
+    width: 25px !important;
+    height: 35px !important;
+  }
+  .notification-counter {
+    bottom: 65px !important;
+    right: -8px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .project__creator-links {
+    top: 2px !important;
+    right: 10px !important;
+  }
+
+  .settings__field {
+    flex-direction: column !important;
+    margin-bottom: 40px;
+  }
+  .input_btn {
+    width: 100% !important;
+  }
+  .settings__buttons {
+    flex-direction: column;
+  }
+  .welcome-page__text {
+    font-size: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .devs__list {
+    grid-template-columns: repeat(1, 100%) !important;
+  }
+  .welcome-page__title {
+    font-size: 7rem !important;
+  }
+
+  .profile-content_search {
+    flex-direction: column !important;
+  }
+  .profile__icon_search {
+    width: 40% !important;
+  }
+
+  .modal-content_roles,
+  .modal-content_skills,
+  .modal-content_devs,
+  .modal-content_login,
+  .modal-content_confirm {
+    width: auto !important;
+  }
+  .modal__buttons {
+    padding: 0 !important;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between !important;
+    height: 90px !important;
+  }
+  .modal-btn {
+    width: 100%;
+    margin: 0 !important;
+  }
+  .modal__select {
+    padding: 0 !important;
+  }
+}
