@@ -6,13 +6,12 @@ import {
 // roles: PropTypes.arrayOf(PropTypes.string)
 
 const initialState = [
-    'Frontend',
-    'Backend',
-    'Tester',
-    'Full-Stack',
-    'Software',
-    'UI-Designer',
-    'UX-Designer',
+    'Фронтенд',
+    'Бекенд',
+    'Тестировщик',
+    'Менеджер',
+    'Инженер',
+    'Художник',
 ]
 
 const rolesReduser = (state = initialState, { type, payload }) => {
