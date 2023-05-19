@@ -165,12 +165,16 @@
 
 .tab__radio-title {
   order: -1;
-  flex-basis: 48%;
+  flex-basis: 38%;
   flex-shrink: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   background-color: var(--background-color);
+}
+
+.title-register {
+  flex-basis: 60%;
 }
 
 .tab-content {

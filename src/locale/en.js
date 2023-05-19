@@ -3,11 +3,11 @@ export default {
     translation: {
         welcomePage: {
             main: 'Привет ДжазТим!',
-            phrase1: 'Code with frends',
-            phrase2: 'Boost your skills',
-            phrase3: 'Find your zen',
-            phrase4: 'Get moving',
-            phrase5: 'Share',
+            phrase1: 'Локальная социальная сеть',
+            phrase2: 'программистов компании',
+            phrase3: 'ДжазТим',
+            phrase4: 'города Минска',
+            phrase5: '',
         },
         button: {
             getStarted: 'Начать',

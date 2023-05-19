@@ -36,7 +36,7 @@ const SignUpForm = ({ active, setActive }) => {
     return (
         <>
             <input className="tab__radio" id="tab-2" type="radio" readOnly checked={!active} onClick={() => setActive(false)} />
-            <label className="tab__radio-title" htmlFor="tab-2">
+            <label className="tab__radio-title title-register" htmlFor="tab-2">
                 <span className="tab__title">{button.signUp}</span>
             </label>
             <div className="tab-content">

@@ -30,10 +30,14 @@ const Menu = () => {
                         state: { id: _id }
                     }}>
                         <Icon className={'link-icon'} alt={'profile'} src={ProfileIcon} />
+                        <h4>Главная</h4>
                     </Link>
                 </li>
                 <li className="menu-icon icon_follow">
-                    <Icon className={'link-icon'} alt={'follow-menu'} src={FriendsIcon} />
+                    <Link to="/following">
+                        <Icon className={'link-icon'} alt={'follow-menu'} src={FriendsIcon} />
+                        <h4>Коллеги</h4>
+                    </Link>
                     <ul className="links__list links_follow">
                         <li className="menu__link">
                             <Link to="/following">
@@ -48,7 +52,10 @@ const Menu = () => {
                     </ul>
                 </li>
                 <li className="menu-icon icon_project">
-                    <Icon className={'link-icon'} alt={'project-menu'} src={ProjectIcon} />
+                    <Link to="/my-projects">
+                        <Icon className={'link-icon'} alt={'project-menu'} src={ProjectIcon} />
+                        <h4>Проекты</h4>
+                    </Link>
                     <ul className="links__list links_project">
                         <li className="menu__link">
                             <Link to="/my-projects">
@@ -63,7 +70,10 @@ const Menu = () => {
                     </ul>
                 </li>
                 <li className="menu-icon icon_search">
-                    <Icon className={'link-icon'} alt={'search-menu'} src={SearchIcon} />
+                    <Link to="/search-projects">
+                        <Icon className={'link-icon'} alt={'search-menu'} src={SearchIcon} />
+                        <h4>Поиск</h4>
+                    </Link>
                     <ul className="links__list links_search">
                         <li className="menu__link">
                             <Link to="/search-projects">
@@ -78,19 +88,13 @@ const Menu = () => {
                     </ul>
                 </li>
                 <li className="menu-icon icon_settings">
-                    <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
-                    <ul className="links__list links_settings">
-                        <li className="menu__link">
-                            <Link to="/settings">
-                                <span className="link__title">{menu.settings}</span>
-                            </Link>
-                        </li>
-                        <li className="menu__link menu__link_logout">
-                            <Button subClass="btn_logout" onClick={() => logout()} text={button.logout} />
-                        </li>
-                    </ul>
+                    <Link to="/settings">
+                        <Icon className={'link-icon'} alt={'settings-menu'} src={SettingsIcon} />
+                        <h5>Настройки</h5>
+                    </Link>
                 </li>
                 <li className="icon_last"></li>
+                <Button subClass="btn_logout" onClick={() => logout()} text={button.logout} />
             </ul>
         </nav>
     )
